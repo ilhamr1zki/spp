@@ -121,7 +121,7 @@
         <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
        
     </div>
-    <form action="<?php echo $basegu; ?>a-guru/<?php echo md5('addnaikjuz'); ?>/access" method="post">
+    <form action="checkpembayarandaninputdata" method="post">
         <div class="box-body">
             <input type="hidden" id="_entryby" name="_entryby" class="form-control" value="<?php echo $na['nama'] ?>">
             <input type="hidden" id="_idsiswa" name="_idsiswa" class="form-control">
@@ -159,7 +159,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>Nama Siswa</label>
-                        <input type="text" name="" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" name="_nmsiswa2" />
+                        <input type="text" name="_nmsiswa2" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
                     </div>
                 </div>
 
@@ -169,7 +169,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>Kelas</label>
-                        <input type="text" name="" value="2 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" name="_nmsiswa2" />
+                        <input type="text" name="" value="2 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -181,17 +181,22 @@
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label>Filter By</label>
-                        <select class="form-control">  
-                            <option> -- PILIH -- </option>
-                            <option> SPP </option>
-                            <option> KEGIATAN </option>
+                        <select class="form-control" name="isi_filter">  
+                            <option value="kosong"> -- PILIH -- </option>
+                            <option value="SPP"> SPP </option>
+                            <option value="PANGKAL"> PANGKAL </option>
+                            <option value="KEGIATAN"> KEGIATAN </option>
+                            <option value="BUKU"> BUKU </option>
+                            <option value="SERAGAM"> SERAGAM </option>
+                            <option value="REGISTRASI"> REGISTRASI </option>
+                            <option value="LAIN-LAIN"> LAIN - LAIN </option>
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label style="color: white;"> Filter </label>
-                        <button class="form-control btn-primary"> Filter </button>
+                        <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
                     </div>
                 </div>
             </div> 
