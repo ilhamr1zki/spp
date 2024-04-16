@@ -66,6 +66,13 @@
 
     $dataPassword = $getData['password'];
 
+    function rupiah($angka){
+    
+        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+        return $hasil_rupiah;
+     
+    }
+
 ?>
 
 <div class="row">
@@ -537,9 +544,12 @@
             $jumlahPagination = ceil($totalData / $jumlahData);
             // echo $jumlahPagination;
 
-            if (isset($_POST['nextPage'])) {
+            if (isset($_POST['toPage'])) {
                 // echo $_POST['teslg'];exit;
-                $halamanAktif = $_POST['teslg'];
+                $halamanAktif = $_POST['halamanKe'];
+                $iniScrollNextPage = "ada";
+            } else if (isset($_POST['nextPage'])) {
+                $halamanAktif = $_POST['halamanLanjut'];
                 $iniScrollNextPage = "ada";
             } else if (isset($_POST['previousPage'])) {
                 $halamanAktif = $_POST['backPage'];
@@ -570,7 +580,7 @@
                 $end_number = $jumlahPagination;
             }
 
-            echo $jumlahLink;
+            // echo $end_number;
 
         } else {
 
@@ -664,12 +674,12 @@ $(document).ready(function() {
     if (scrollNextPage == 'ada') {
         // window.scrollTo(0, document.body.scrollHeight);
         window.scroll({
-          top: 700,
+          top: 550,
           behavior: 'smooth'
         });
     } else if ( scrollPreviousPage == 'ada' ) {
         window.scroll({
-          top: 700,
+          top: 550,
           behavior: 'smooth'
         });
     }
