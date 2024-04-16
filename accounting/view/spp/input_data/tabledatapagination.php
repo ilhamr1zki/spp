@@ -53,15 +53,15 @@
                         <td style="text-align: center;"> <?= $data['PANGKAL_SET']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                         <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                        <td style="text-align: center;"> <?= $data['KEGIATAN']; ?> </td>
+                        <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
                         <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                        <td style="text-align: center;"> <?= $data['BUKU']; ?> </td>
+                        <td style="text-align: center;"> <?= rupiah($data['BUKU']); ?> </td>
                         <td style="text-align: center;"> <?= $data['BUKU_txt']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['SERAGAM']); ?> </td>
                         <td style="text-align: center;"> <?= $data['SERAGAM_txt']; ?> </td>
-                        <td style="text-align: center;"> <?= $data['REGISTRASI']; ?> </td>
+                        <td style="text-align: center;"> <?= rupiah($data['REGISTRASI']); ?> </td>
                         <td style="text-align: center;"> <?= $data['REGISTRASI_txt']; ?> </td>
-                        <td style="text-align: center;"> <?= $data['LAIN']; ?> </td>
+                        <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                         <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
                         <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>

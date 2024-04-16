@@ -178,6 +178,22 @@
                         <input type="text" class="form-control" id="_kelassiswa" value="RAFARDHAN" name="_kelassiswa" />
                     </div>
                 </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Filter By</label>
+                        <select class="form-control">  
+                            <option> -- PILIH -- </option>
+                            <option> SPP </option>
+                            <option> KEGIATAN </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label style="color: white;"> Filter </label>
+                        <button class="form-control btn-primary"> Filter </button>
+                    </div>
+                </div>
             </div> 
 
             <hr class="new1" />
