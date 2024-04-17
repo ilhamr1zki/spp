@@ -227,6 +227,23 @@
       margin-left: -30px;
     }
 
+    @media only screen and (max-width: 600px) {
+
+      .cobasidebar {
+        margin-top: 17%;
+      }
+
+      #cobacontent {
+        min-height: 250px !important;
+        padding: 50px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+
+    }
+
     @media only screen and (max-width: 768px) {
 
       .uang_spp, 
@@ -457,7 +474,7 @@ oncontextmenu="return false">
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <section class="sidebar cobasidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
@@ -571,7 +588,7 @@ oncontextmenu="return false">
   <div class="content-wrapper">
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" id="cobacontent">
 
 <?php
   if(empty($_GET['on'])){require 'view/home.php';}
