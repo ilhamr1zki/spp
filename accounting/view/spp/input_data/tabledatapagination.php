@@ -8,7 +8,82 @@
 
         <?php if ($_POST['isi_filter'] != 'kosong'): ?>
             
-            <?php echo $_POST['isi_filter'] . " " . $_POST['_nmsiswa2']; ?>
+            <?php  
+
+                $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+                $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+            ?>
+
+            <!-- <?= "Nama : " . $_POST['_nmsiswa2'] . "<br> Filter : " . $_POST['isi_filter'] . "<br> Dari Tanggal : " . $dariTanggal . "<br> Sampai Tanggal : " . $sampaiTanggal; ?> -->
+
+            <?php if ($_POST['isi_filter'] == 'SPP') : ?>
+                
+                <?= "Nama : " . $_POST['_nmsiswa2'] . "<br> Filter : " . $_POST['isi_filter'] . "<br> Dari Tanggal : " . $dariTanggal . "<br> Sampai Tanggal : " . $sampaiTanggal. "<br>";?>
+
+                <?php  
+
+                    // Data SPP
+                    $namaMurid = $_POST['_nmsiswa2'];
+                    $queryGetDataSPP = "
+                    SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                    FROM input_data_sd
+                    WHERE
+                    SPP != 0
+                    AND STAMP >= '$dariTanggal' AND STAMP < '$sampaiTanggal' 
+                    AND NAMA LIKE '%$namaMurid%' ";
+                    $execQueryDataSPP = mysqli_query($con, $queryGetDataSPP);
+                    $getDataArr = mysqli_fetch_array($execQueryDataSPP);
+                    // foreach ($execQueryDataSPP as $data) {
+                    //     echo $data['NAMA'] . $data['pembayaran_bulan'] . $data['SPP'] . $data['SPP_txt'] . "<br>";
+                    // }
+                    // exit;
+                    // Akhir Data SPP
+
+                ?>
+
+                <!-- SPP -->
+                <div style="overflow-x: auto;">
+                            
+                    <table id="example1" class="table table-bordered">
+                        <thead>
+                          <tr>
+                             <th style="text-align: center; width: 100px;"> ID </th>
+                             <th style="text-align: center;"> NIS </th>
+                             <th style="text-align: center;"> NAMA </th>
+                             <th style="text-align: center;"> KELAS </th>
+                             <th style="text-align: center;"> SPP </th>
+                             <th style="text-align: center;"> PEMBAYARAN BULAN </th>
+                             <th style="text-align: center;"> KET SPP </th>
+                             <th style="text-align: center;"> Tanggal DiUpdate </th>
+                             <th style="text-align: center;"> DI INPUT OLEH </th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php foreach ($execQueryDataSPP as $data) : ?>
+                                <tr>
+                                    <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
+                                    <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <!-- Akhir Bagian SPP -->
+
+            <?php endif; ?>
         
         <?php else: ?>
 

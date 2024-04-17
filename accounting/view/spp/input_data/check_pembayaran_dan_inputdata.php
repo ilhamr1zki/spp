@@ -73,6 +73,16 @@
      
     }
 
+    $filter_by = [
+        'SPP',
+        'PANGKAL',
+        'KEGIATAN',
+        'BUKU',
+        'SERAGAM',
+        'REGISTRASI',
+        'LAIN - LAIN'
+    ];
+
 ?>
 
 <div class="row">
@@ -178,20 +188,34 @@
                         <input type="text" class="form-control" id="_kelassiswa" value="RAFARDHAN" name="_kelassiswa" />
                     </div>
                 </div>
+                
+            </div> 
+
+            <div class="row">
 
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label>Filter By</label>
                         <select class="form-control" name="isi_filter">  
                             <option value="kosong"> -- PILIH -- </option>
-                            <option value="SPP"> SPP </option>
-                            <option value="PANGKAL"> PANGKAL </option>
-                            <option value="KEGIATAN"> KEGIATAN </option>
-                            <option value="BUKU"> BUKU </option>
-                            <option value="SERAGAM"> SERAGAM </option>
-                            <option value="REGISTRASI"> REGISTRASI </option>
-                            <option value="LAIN-LAIN"> LAIN - LAIN </option>
+                            <?php foreach ($filter_by as $filby): ?>
+                                <option value="<?= $filby; ?>"> <?= $filby; ?> </option>    
+                            <?php endforeach; ?>
                         </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Filter Date From </label>
+                        <input type="date" class="form-control" name="tanggal1">
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label> Filter Date To </label>
+                        <input type="date" class="form-control" name="tanggal2">
                     </div>
                 </div>
 
@@ -201,8 +225,7 @@
                         <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
                     </div>
                 </div>
-                
-            </div> 
+            </div>
 
             <hr class="new1" />
 
