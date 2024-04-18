@@ -886,6 +886,8 @@
                 
                 <form action="checkpembayarandaninputdata" method="post">
                     <input type="hidden" name="halamanLanjutFilterSPP" value="<?= $halamanAktif + 1; ?>">
+                    <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                    <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
                     <button name="nextPageJustFilterSPP" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                         next
                         &raquo;
