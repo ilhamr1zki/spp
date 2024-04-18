@@ -73,15 +73,50 @@
      
     }
 
-    $filter_by = [
+    // $filter_by = [
+    //     'SPP',
+    //     'PANGKAL',
+    //     'KEGIATAN',
+    //     'BUKU',
+    //     'SERAGAM',
+    //     'REGISTRASI',
+    //     'LAIN - LAIN'
+    // ];
+
+    $isifilby       = 'kosong';
+    $tanggalDari    = 'kosong_tgl1';
+    $tanggalSampai  = 'kosong_tgl2';
+
+    if (isset($_POST['filter_by'])) {
+        if ($_POST['isi_filter'] != 'kosong') {
+            $isifilby       = $_POST['isi_filter'];
+            $tanggalDari    = $_POST['tanggal1'];
+            $tanggalSampai  = $_POST['tanggal2'];
+        } else {
+            $isifilby;
+        }
+    }
+    // echo $isifilby;exit;
+
+    $cbfilter_by = [];
+
+    $filter_by['isifilter_by'] = [
         'SPP',
         'PANGKAL',
         'KEGIATAN',
         'BUKU',
         'SERAGAM',
         'REGISTRASI',
-        'LAIN - LAIN'
+        'LAIN'
     ];
+
+    // foreach ($cbfilter_by['isifilter_by'] as $key) {
+    //     if ($key == 'BUKU') {
+    //         echo "BUKUNIH";
+    //     } else {
+    //         echo $key;
+    //     }
+    // }
 
 ?>
 
@@ -198,8 +233,25 @@
                         <label>Filter By</label>
                         <select class="form-control" name="isi_filter">  
                             <option value="kosong"> -- PILIH -- </option>
-                            <?php foreach ($filter_by as $filby): ?>
-                                <option value="<?= $filby; ?>"> <?= $filby; ?> </option>    
+                            <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                <?php if ($filby == $isifilby): ?>
+
+                                    <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                
+                                
+                                <?php else: ?>
+
+                                    <?php if ($filby == 'LAIN'): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                    <?php else: ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                        
+                                    <?php endif; ?>
+                                
+                                <?php endif ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -208,14 +260,22 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label> Filter Date From </label>
-                        <input type="date" class="form-control" name="tanggal1">
+                        <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                            <input type="date" class="form-control" name="tanggal1">
+                        <?php else: ?>
+                            <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                        <?php endif; ?>
                     </div>
                 </div>
 
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label> Filter Date To </label>
-                        <input type="date" class="form-control" name="tanggal2">
+                        <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                            <input type="date" class="form-control" name="tanggal2">
+                        <?php else: ?>
+                            <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -576,6 +636,7 @@
         $no = 1;
         $iniScrollNextPage      = "kosong";
         $iniScrollPreviousPage  = "kosong";
+        $iniScrollFilterPage    = "kosong";
 
         if ($code_accounting == 'accounting1') {
             
@@ -604,6 +665,9 @@
             } else if (isset($_POST['nextLastPage'])) {
                 $halamanAktif = $jumlahPagination;
                 $iniScrollPreviousPage  = "ada";
+            } else if (isset($_POST['filter_by'])) {
+                $halamanAktif = 1;
+                $iniScrollFilterPage = "ada";
             } else {
                 $halamanAktif = 1;
             }
@@ -717,6 +781,7 @@ $(document).ready(function() {
 
     let scrollNextPage        = `<?= $iniScrollNextPage; ?>`
     let scrollPreviousPage    = `<?= $iniScrollPreviousPage; ?>`
+    let scrollFilterPage      = `<?= $iniScrollFilterPage; ?>`
 
     if (scrollNextPage == 'ada') {
         // window.scrollTo(0, document.body.scrollHeight);
@@ -725,6 +790,11 @@ $(document).ready(function() {
           behavior: 'smooth'
         });
     } else if ( scrollPreviousPage == 'ada' ) {
+        window.scroll({
+          top: 550,
+          behavior: 'smooth'
+        });
+    } else if ( scrollFilterPage == 'ada' ) {
         window.scroll({
           top: 550,
           behavior: 'smooth'
