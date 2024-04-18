@@ -118,6 +118,253 @@
     //     }
     // }
 
+    $no = 1;
+    $iniScrollNextPage      = "kosong";
+    $iniScrollPreviousPage  = "kosong";
+    $iniScrollFilterPage    = "kosong";
+
+    if ($code_accounting == 'accounting1') {
+        
+        // histori input data sd
+        $queryGetAllDataHistori     = "SELECT * FROM input_data_sd";
+        $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
+
+        $halamanAktif = "";
+        
+        $jumlahData = 5;
+        $totalData = mysqli_num_rows($execQueryGetAllDataHistori);
+
+        $jumlahPagination = ceil($totalData / $jumlahData);
+        // echo $jumlahPagination;
+
+        if (isset($_POST['toPage'])) {
+            // echo $_POST['teslg'];exit;
+            $halamanAktif = $_POST['halamanKe'];
+            $iniScrollNextPage = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['nextPage'])) {
+
+            $halamanAktif = $_POST['halamanLanjut'];
+            $iniScrollNextPage = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }                
+
+        } else if (isset($_POST['previousPage'])) {
+
+            $halamanAktif = $_POST['backPage'];
+            $iniScrollPreviousPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['nextLastPage'])) {
+
+            $halamanAktif = $jumlahPagination;
+            $iniScrollPreviousPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['filter_by'])) {
+            
+            $halamanAktif = 1;
+            $iniScrollFilterPage = "ada";
+            $hitungDataFilterSPP = "";
+
+            // SPP
+            if ($_POST['isi_filter'] != 'kosong' ) {
+                $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+                $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+                
+                if ($_POST['isi_filter'] == 'SPP') {
+                    if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        // Data SPP
+                        $namaMurid = $_POST['_nmsiswa2'];
+                        $queryGetDataSPP = "
+                        SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                        FROM input_data_sd
+                        WHERE
+                        SPP != 0
+                        AND NAMA LIKE '%$namaMurid%' ";
+                        $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+                        $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+                        // echo $hitungDataFilterSPP;
+                        $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
+                    }
+                }
+
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData ");
+            // print_r($ambildata_perhalaman->num_rows);
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['nextPageJustFilterSPP'])) {
+            
+            $halamanAktif       = $_POST['halamanLanjutFilterSPP'];
+            $iniScrollNextPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid = $_POST['namaSiswaFilterSPP'];
+            $isifilby  = $_POST['iniFilterSPP'];
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else {
+
+            $halamanAktif = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    } else {
+
+        // histori input data tk
+        $queryGetAllDataHistori     = "SELECT * FROM input_data_tk";
+        $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
+
+    }
+
 ?>
 
 <div class="row">
@@ -161,551 +408,959 @@
     </div>
 </div>
 
-<div class="box box-info">
-    <div class="box-header with-border">
-        <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
-       
-    </div>
-    <form action="checkpembayarandaninputdata" method="post">
-        <div class="box-body">
-            <input type="hidden" id="_entryby" name="_entryby" class="form-control" value="<?php echo $na['nama'] ?>">
-            <input type="hidden" id="_idsiswa" name="_idsiswa" class="form-control">
-            <input type="hidden" id="_idjuz" name="_idjuz" class="form-control">
-            <input type="hidden" id="_idjuznext" name="_idjuznext" class="form-control">
-            <input type="hidden" id="_nmjuznext" name="_nmjuznext" class="form-control">
-            <input type="hidden" id="_seqnext" name="_seqnext" class="form-control">
-            <input type="hidden" id="code_siswa" name="code_siswa" class="form-control">
+<?php if (isset($_POST['nextPageJustFilterSPP'])): ?>
 
-            <input type="hidden" class="form-control" id="_nmsiswa" name="_nmsiswa">
-            <input type="hidden" class="form-control" id="_juzcur" name="_juzcur"/>
-            <input type="hidden" class="form-control" id="_juzutama" name="_juzutama"/>
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+                <input type="hidden" id="_entryby" name="_entryby" class="form-control" value="<?php echo $na['nama'] ?>">
+                <input type="hidden" id="_idsiswa" name="_idsiswa" class="form-control">
+                <input type="hidden" id="_idjuz" name="_idjuz" class="form-control">
+                <input type="hidden" id="_idjuznext" name="_idjuznext" class="form-control">
+                <input type="hidden" id="_nmjuznext" name="_nmjuznext" class="form-control">
+                <input type="hidden" id="_seqnext" name="_seqnext" class="form-control">
+                <input type="hidden" id="code_siswa" name="code_siswa" class="form-control">
 
-            <input type="hidden" id="_idjuzmanual" name="_idjuzmanual" class="form-control">
-            <input type="hidden" id="_seqnextmanual" name="_seqnextmanual" class="form-control">
-            <input type="hidden" id="_nmjuzmanual" name="_nmjuzmanual" class="form-control">
-            <input type="hidden" id="_nmbagianmanual" name="_nmbagianmanual" class="form-control">
+                <input type="hidden" class="form-control" id="_nmsiswa" name="_nmsiswa">
+                <input type="hidden" class="form-control" id="_juzcur" name="_juzcur"/>
+                <input type="hidden" class="form-control" id="_juzutama" name="_juzutama"/>
 
-            <div class="row">
+                <input type="hidden" id="_idjuzmanual" name="_idjuzmanual" class="form-control">
+                <input type="hidden" id="_seqnextmanual" name="_seqnextmanual" class="form-control">
+                <input type="hidden" id="_nmjuzmanual" name="_nmjuzmanual" class="form-control">
+                <input type="hidden" id="_nmbagianmanual" name="_nmbagianmanual" class="form-control">
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>ID</label>
-                        <input type="text" class="form-control" value="127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" value="127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                        </div>
                     </div>
-                </div>
-                
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>NIS</label>
-                        <input type="text" class="form-control" value="202202127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="202202127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Nama Siswa</label>
-                        <input type="text" name="_nmsiswa2" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="_nmsiswa2" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                        </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Kelas</label>
-                        <input type="text" name="" value="2 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="" value="2 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label>Panggilan</label>
-                        <input type="text" class="form-control" id="_kelassiswa" value="RAFARDHAN" name="_kelassiswa" />
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="_kelassiswa" value="RAFARDHAN" name="_kelassiswa" />
+                        </div>
                     </div>
-                </div>
-                
-            </div> 
+                    
+                </div> 
 
-            <div class="row">
+                <div class="row">
 
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label>Filter By</label>
-                        <select class="form-control" name="isi_filter">  
-                            <option value="kosong"> -- PILIH -- </option>
-                            <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
-                                <?php if ($filby == $isifilby): ?>
-
-                                    <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
-                                
-                                
-                                <?php else: ?>
-
-                                    <?php if ($filby == 'LAIN'): ?>
-
-                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
-
-                                    <?php else: ?>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
 
                                         <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
-                                        
-                                    <?php endif; ?>
-                                
-                                <?php endif ?>
-                            <?php endforeach; ?>
-                        </select>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label> Filter Date From </label>
-                        <?php if ($tanggalDari == 'kosong_tgl1'): ?>
-                            <input type="date" class="form-control" name="tanggal1">
-                        <?php else: ?>
-                            <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
-                        <?php endif; ?>
-                    </div>
-                </div>
+                <hr class="new1" />
 
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label> Filter Date To </label>
-                        <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
-                            <input type="date" class="form-control" name="tanggal2">
-                        <?php else: ?>
-                            <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
-                        <?php endif; ?>
-                    </div>
-                </div>
+                <!-- 3 Table -->
+                <!-- <div class="flex-container"> -->
 
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label style="color: white;"> Filter </label>
-                        <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
-                    </div>
-                </div>
+                    <!-- SPP -->
+                    <!-- <div style="background-color: yellow;">
+                    
+                        <div style="background-color: #DE7A22; color: white; padding: 5px;">
+
+                            <label id="forLabel"> SPP </label>
+
+                            <div id="total" style="margin-right: -65px;">
+                                <label> TOTAL </label>
+                                <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
+                            </div> 
+                            
+                        </div>
+
+                        <br><br>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> JUN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> JAN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 16px;"> JUL 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 10px;"> FEB 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> AUG 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 5px;"> MAR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> SEP 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 9px;"> APR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> OCT 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 8px;"> MAY 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> NOV 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 10px;"> JUN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> DEC 21 </label>
+                                <input type="text" style="width: 39%;" name="">
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                    <!-- Pangkal -->
+                    <!-- <div style="background-color: #F4CC70;">
+
+                        <div style="background-color: #DE7A22; color: white; padding: 5px;">
+
+                            <label id="forLabel"> Pangkal 2021 </label>
+
+                            <div id="total" style="margin-right: -65px;">
+                                <label> TOTAL </label>
+                                <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
+                            </div> 
+                            
+                        </div>
+
+                        <br><br>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> JAN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> OCT 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> FEB 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> NOV 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 11px;"> MAR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 12px;"> DES 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> APR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> JAN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> MAY 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> FEB 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> JUN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 9px;"> MAR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 16px;"> JUL 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> APR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> AUG 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> MAY 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> SEP 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> JUN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                    <!-- Registrasi -->
+                    <!-- <div style="background-color: #E6DF44;">
+
+                        <div style="background-color: #DE7A22; color: white; padding: 5px;">
+
+                            <label id="forLabel"> Registrasi 2021 </label>
+
+                            <div id="total" style="margin-right: -65px;">
+                                <label> TOTAL </label>
+                                <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
+                            </div> 
+                            
+                        </div>
+
+                        <br><br>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> JAN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> JUL 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> FEB 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> AUG 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 10px;"> MAR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 12px;"> SEP 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> APR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 10px;"> OCT 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> MAY 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> NOV 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> JUN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 15px;"> DES 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" id="jun22">
+                            <div class="form-group">
+                                <label style="margin-right: 16px;"> JUN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                    </div> -->  
+
+                <!-- </div> -->
+
+                <!-- <table id="tabelCariSiswaCheckPembayaran" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                         <th width="5%">NO</th>
+                         <th style="text-align: center;">Nama</th>
+                         <th style="text-align: center;">Juz</th>
+                         <th style="text-align: center;">Bagian</th>
+                         <th style="text-align: center;">Tgl Naik</th>
+                         <th style="text-align: center;"> Jml Hari </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td style="text-align: center;"> 1 </td>
+                            <td style="text-align: center;"><a style="cursor:pointer;"> NISWA </a> </td>
+                            <td style="text-align: center;"> lorem </td>
+                            <td style="text-align: center;"> ipsum </td>
+                            <td style="text-align: center;"> test </td>
+                            <td style="text-align: center;"> lorem ipsum </td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center;"> 2 </td>
+                            <td style="text-align: center;"><a style="cursor:pointer;"> GATHAN </a> </td>
+                            <td style="text-align: center;"> Bekasi </td>
+                            <td style="text-align: center;"> 16 Desember 2002 </td>
+                            <td style="text-align: center;"> Trisakti </td>
+                            <td style="text-align: center;"> English </td>
+                        </tr>
+
+                    </tbody>
+
+                </table> -->
+
             </div>
+        </form>
 
-            <hr class="new1" />
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
 
-            <!-- 3 Table -->
-            <!-- <div class="flex-container"> -->
+<?php else: ?>
 
-                <!-- SPP -->
-                <!-- <div style="background-color: yellow;">
-                
-                    <div style="background-color: #DE7A22; color: white; padding: 5px;">
-
-                        <label id="forLabel"> SPP </label>
-
-                        <div id="total" style="margin-right: -65px;">
-                            <label> TOTAL </label>
-                            <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
-                        </div> 
-                        
-                    </div>
-
-                    <br><br>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 15px;"> JUN 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 11px;"> JAN 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 16px;"> JUL 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 10px;"> FEB 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 12px;"> AUG 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 5px;"> MAR 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 14px;"> SEP 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 9px;"> APR 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 13px;"> OCT 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 8px;"> MAY 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 12px;"> NOV 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 10px;"> JUN 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 13px;"> DEC 21 </label>
-                            <input type="text" style="width: 39%;" name="">
-                        </div>
-                    </div>
-
-                </div> -->
-
-                <!-- Pangkal -->
-                <!-- <div style="background-color: #F4CC70;">
-
-                    <div style="background-color: #DE7A22; color: white; padding: 5px;">
-
-                        <label id="forLabel"> Pangkal 2021 </label>
-
-                        <div id="total" style="margin-right: -65px;">
-                            <label> TOTAL </label>
-                            <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
-                        </div> 
-                        
-                    </div>
-
-                    <br><br>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 15px;"> JAN 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 11px;"> OCT 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 15px;"> FEB 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 11px;"> NOV 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 11px;"> MAR 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 12px;"> DES 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 13px;"> APR 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 13px;"> JAN 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 13px;"> MAY 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 13px;"> FEB 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 15px;"> JUN 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 9px;"> MAR 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 16px;"> JUL 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 11px;"> APR 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 12px;"> AUG 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 11px;"> MAY 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 14px;"> SEP 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 13px;"> JUN 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                </div> -->
-
-                <!-- Registrasi -->
-                <!-- <div style="background-color: #E6DF44;">
-
-                    <div style="background-color: #DE7A22; color: white; padding: 5px;">
-
-                        <label id="forLabel"> Registrasi 2021 </label>
-
-                        <div id="total" style="margin-right: -65px;">
-                            <label> TOTAL </label>
-                            <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
-                        </div> 
-                        
-                    </div>
-
-                    <br><br>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 14px;"> JAN 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 13px;"> JUL 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 14px;"> FEB 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 13px;"> AUG 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 10px;"> MAR 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 12px;"> SEP 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 12px;"> APR 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 10px;"> OCT 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 12px;"> MAY 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 13px;"> NOV 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" style="display: flex;">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 14px;"> JUN 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                        <div class="form-group">
-                            <label style="margin-right: 15px;"> DES 21 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                    <div class="row" id="jun22">
-                        <div class="form-group">
-                            <label style="margin-right: 16px;"> JUN 22 </label>
-                            <input type="text" style="width: 50%;" name="">
-                        </div>
-                    </div>
-
-                </div> -->  
-
-            <!-- </div> -->
-
-            <!-- <table id="tabelCariSiswaCheckPembayaran" class="table table-bordered table-hover">
-                <thead>
-                  <tr>
-                     <th width="5%">NO</th>
-                     <th style="text-align: center;">Nama</th>
-                     <th style="text-align: center;">Juz</th>
-                     <th style="text-align: center;">Bagian</th>
-                     <th style="text-align: center;">Tgl Naik</th>
-                     <th style="text-align: center;"> Jml Hari </th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td style="text-align: center;"> 1 </td>
-                        <td style="text-align: center;"><a style="cursor:pointer;"> NISWA </a> </td>
-                        <td style="text-align: center;"> lorem </td>
-                        <td style="text-align: center;"> ipsum </td>
-                        <td style="text-align: center;"> test </td>
-                        <td style="text-align: center;"> lorem ipsum </td>
-                    </tr>
-
-                    <tr>
-                        <td style="text-align: center;"> 2 </td>
-                        <td style="text-align: center;"><a style="cursor:pointer;"> GATHAN </a> </td>
-                        <td style="text-align: center;"> Bekasi </td>
-                        <td style="text-align: center;"> 16 Desember 2002 </td>
-                        <td style="text-align: center;"> Trisakti </td>
-                        <td style="text-align: center;"> English </td>
-                    </tr>
-
-                </tbody>
-
-            </table> -->
-
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
         </div>
-    </form>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+                <input type="hidden" id="_entryby" name="_entryby" class="form-control" value="<?php echo $na['nama'] ?>">
+                <input type="hidden" id="_idsiswa" name="_idsiswa" class="form-control">
+                <input type="hidden" id="_idjuz" name="_idjuz" class="form-control">
+                <input type="hidden" id="_idjuznext" name="_idjuznext" class="form-control">
+                <input type="hidden" id="_nmjuznext" name="_nmjuznext" class="form-control">
+                <input type="hidden" id="_seqnext" name="_seqnext" class="form-control">
+                <input type="hidden" id="code_siswa" name="code_siswa" class="form-control">
 
-    <?php  
+                <input type="hidden" class="form-control" id="_nmsiswa" name="_nmsiswa">
+                <input type="hidden" class="form-control" id="_juzcur" name="_juzcur"/>
+                <input type="hidden" class="form-control" id="_juzutama" name="_juzutama"/>
 
-        $no = 1;
-        $iniScrollNextPage      = "kosong";
-        $iniScrollPreviousPage  = "kosong";
-        $iniScrollFilterPage    = "kosong";
+                <input type="hidden" id="_idjuzmanual" name="_idjuzmanual" class="form-control">
+                <input type="hidden" id="_seqnextmanual" name="_seqnextmanual" class="form-control">
+                <input type="hidden" id="_nmjuzmanual" name="_nmjuzmanual" class="form-control">
+                <input type="hidden" id="_nmbagianmanual" name="_nmbagianmanual" class="form-control">
 
-        if ($code_accounting == 'accounting1') {
-            
-            // histori input data sd
-            $queryGetAllDataHistori     = "SELECT * FROM input_data_sd";
-            $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
+                <div class="row">
 
-            $halamanAktif = "";
-            
-            $jumlahData = 5;
-            $totalData = mysqli_num_rows($execQueryGetAllDataHistori);
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" value="127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="202202127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                        </div>
+                    </div>
 
-            $jumlahPagination = ceil($totalData / $jumlahData);
-            // echo $jumlahPagination;
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="_nmsiswa2" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                        </div>
+                    </div>
 
-            if (isset($_POST['toPage'])) {
-                // echo $_POST['teslg'];exit;
-                $halamanAktif = $_POST['halamanKe'];
-                $iniScrollNextPage = "ada";
-            } else if (isset($_POST['nextPage'])) {
-                $halamanAktif = $_POST['halamanLanjut'];
-                $iniScrollNextPage = "ada";
-            } else if (isset($_POST['previousPage'])) {
-                $halamanAktif = $_POST['backPage'];
-                $iniScrollPreviousPage  = "ada";
-            } else if (isset($_POST['nextLastPage'])) {
-                $halamanAktif = $jumlahPagination;
-                $iniScrollPreviousPage  = "ada";
-            } else if (isset($_POST['filter_by'])) {
-                $halamanAktif = 1;
-                $iniScrollFilterPage = "ada";
-            } else {
-                $halamanAktif = 1;
-            }
+                </div>
 
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
-            // print_r($ambildata_perhalaman->num_rows);
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="" value="2 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="_kelassiswa" value="RAFARDHAN" name="_kelassiswa" />
+                        </div>
+                    </div>
+                    
+                </div> 
 
-            $jumlahLink = 2;
+                <div class="row">
 
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
-            } else {
-                $start_number = 1;
-            }
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
 
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
-            }
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
 
-            // echo $end_number;
+                                        <?php if ($filby == 'LAIN'): ?>
 
-        } else {
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
 
-            // histori input data tk
-            $queryGetAllDataHistori     = "SELECT * FROM input_data_tk";
-            $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
+                                        <?php else: ?>
 
-        }
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
 
-    ?>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
 
-    <?php require 'tabledatapagination.php'; ?>
-    
-</div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+                <!-- 3 Table -->
+                <!-- <div class="flex-container"> -->
+
+                    <!-- SPP -->
+                    <!-- <div style="background-color: yellow;">
+                    
+                        <div style="background-color: #DE7A22; color: white; padding: 5px;">
+
+                            <label id="forLabel"> SPP </label>
+
+                            <div id="total" style="margin-right: -65px;">
+                                <label> TOTAL </label>
+                                <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
+                            </div> 
+                            
+                        </div>
+
+                        <br><br>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> JUN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> JAN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 16px;"> JUL 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 10px;"> FEB 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> AUG 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 5px;"> MAR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> SEP 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 9px;"> APR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> OCT 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 8px;"> MAY 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> NOV 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 10px;"> JUN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> DEC 21 </label>
+                                <input type="text" style="width: 39%;" name="">
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                    <!-- Pangkal -->
+                    <!-- <div style="background-color: #F4CC70;">
+
+                        <div style="background-color: #DE7A22; color: white; padding: 5px;">
+
+                            <label id="forLabel"> Pangkal 2021 </label>
+
+                            <div id="total" style="margin-right: -65px;">
+                                <label> TOTAL </label>
+                                <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
+                            </div> 
+                            
+                        </div>
+
+                        <br><br>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> JAN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> OCT 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> FEB 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> NOV 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 11px;"> MAR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 12px;"> DES 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> APR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> JAN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 13px;"> MAY 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> FEB 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 15px;"> JUN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 9px;"> MAR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 16px;"> JUL 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> APR 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> AUG 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 11px;"> MAY 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> SEP 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> JUN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                    <!-- Registrasi -->
+                    <!-- <div style="background-color: #E6DF44;">
+
+                        <div style="background-color: #DE7A22; color: white; padding: 5px;">
+
+                            <label id="forLabel"> Registrasi 2021 </label>
+
+                            <div id="total" style="margin-right: -65px;">
+                                <label> TOTAL </label>
+                                <input type="text" name="" value="0.00" readonly="" style="width: 50%; background-color: #eee; color: black;">
+                            </div> 
+                            
+                        </div>
+
+                        <br><br>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> JAN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> JUL 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> FEB 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> AUG 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 10px;"> MAR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 12px;"> SEP 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> APR 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 10px;"> OCT 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 12px;"> MAY 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 13px;"> NOV 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" style="display: flex;">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 14px;"> JUN 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                            <div class="form-group">
+                                <label style="margin-right: 15px;"> DES 21 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                        <div class="row" id="jun22">
+                            <div class="form-group">
+                                <label style="margin-right: 16px;"> JUN 22 </label>
+                                <input type="text" style="width: 50%;" name="">
+                            </div>
+                        </div>
+
+                    </div> -->  
+
+                <!-- </div> -->
+
+                <!-- <table id="tabelCariSiswaCheckPembayaran" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                         <th width="5%">NO</th>
+                         <th style="text-align: center;">Nama</th>
+                         <th style="text-align: center;">Juz</th>
+                         <th style="text-align: center;">Bagian</th>
+                         <th style="text-align: center;">Tgl Naik</th>
+                         <th style="text-align: center;"> Jml Hari </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td style="text-align: center;"> 1 </td>
+                            <td style="text-align: center;"><a style="cursor:pointer;"> NISWA </a> </td>
+                            <td style="text-align: center;"> lorem </td>
+                            <td style="text-align: center;"> ipsum </td>
+                            <td style="text-align: center;"> test </td>
+                            <td style="text-align: center;"> lorem ipsum </td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: center;"> 2 </td>
+                            <td style="text-align: center;"><a style="cursor:pointer;"> GATHAN </a> </td>
+                            <td style="text-align: center;"> Bekasi </td>
+                            <td style="text-align: center;"> 16 Desember 2002 </td>
+                            <td style="text-align: center;"> Trisakti </td>
+                            <td style="text-align: center;"> English </td>
+                        </tr>
+
+                    </tbody>
+
+                </table> -->
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php endif ?>
 
 <!-- Modal Cari Siswa -->
 <div id="datamassiswa" class="modal"  data-bs-backdrop="static" data-bs-keyboard="false">
@@ -796,7 +1451,7 @@ $(document).ready(function() {
         });
     } else if ( scrollFilterPage == 'ada' ) {
         window.scroll({
-          top: 550,
+          top: 350,
           behavior: 'smooth'
         });
     }
