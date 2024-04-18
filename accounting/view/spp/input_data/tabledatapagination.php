@@ -877,8 +877,10 @@
                         <?= $i; ?>
                     </a> -->
                     <form action="checkpembayarandaninputdata" method="post">
-                        <input type="hidden" name="halamanKe" value="<?= $i; ?>">
-                        <button name="toPage">
+                        <input type="hidden" name="halamanKeFilterSPP" value="<?= $i; ?>">
+                        <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                        <button name="toPageFilterSPP">
                             <?= $i; ?>
                         </button>
                     </form>
@@ -1035,6 +1037,8 @@
                     </a> -->
                     <form action="checkpembayarandaninputdata" method="post">
                         <input type="hidden" name="halamanKeFilterSPP" value="<?= $i; ?>">
+                        <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
                         <button name="toPageFilterSPP">
                             <?= $i; ?>
                         </button>
@@ -1159,8 +1163,10 @@
                 </a> -->
 
                 <form action="checkpembayarandaninputdata" method="post">
-                    <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
-                    <button name="previousPage">
+                    <input type="hidden" name="halamanSebelumnyaFilterSPP" value="<?= $halamanAktif - 1; ?>">
+                    <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
+                    <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                    <button name="previousPageJustFilterSPP">
                         &laquo;
                         Previous
                     </button>
