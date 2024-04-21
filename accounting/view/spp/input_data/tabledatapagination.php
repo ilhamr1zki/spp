@@ -158,13 +158,6 @@
                     <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
 
                         <?php if ($halamanAktif > 1): ?>
-                        
-                            <form action="checkpembayarandaninputdata" method="post">
-                                <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                                <button name="nextPage">
-                                    &laquo;&laquo;
-                                </button>
-                            </form>
 
                             <form action="checkpembayarandaninputdata" method="post">
                                 <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
@@ -173,27 +166,13 @@
                                     First Page
                                 </button>
                             </form>
-                        <?php endif; ?>      
-
-                        <form action="checkpembayarandaninputdata" method="post">
-                            <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                            <button name="nextLastPage">
-                                On Page
-                            </button>
-                        </form>  
+                        <?php endif; ?>        
 
                         <form action="checkpembayarandaninputdata" method="post">
                             <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
                             <button name="nextLastPage">
                                 Last Page
                                 &raquo;
-                            </button>
-                        </form>
-
-                        <form action="checkpembayarandaninputdata" method="post">
-                            <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                            <button name="nextPage">
-                                &raquo;&raquo;
                             </button>
                         </form>
 
@@ -591,7 +570,7 @@
             <?php endif; ?>
         
         <?php else: ?>
-            
+
             <div style="overflow-x: auto;">
                         
                 <table id="example1" class="table table-bordered">
@@ -907,13 +886,6 @@
         <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
 
             <?php if ($halamanAktif > 1): ?>
-            
-                <form action="checkpembayarandaninputdata" method="post">
-                    <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                    <button name="nextPage">
-                        &laquo;&laquo;
-                    </button>
-                </form>
 
                 <form action="checkpembayarandaninputdata" method="post">
                     <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
@@ -922,27 +894,13 @@
                         First Page
                     </button>
                 </form>
-            <?php endif; ?>      
-
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextLastPage">
-                    On Page
-                </button>
-            </form>  
+            <?php endif; ?>
 
             <form action="checkpembayarandaninputdata" method="post">
                 <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
                 <button name="nextLastPage">
                     Last Page
                     &raquo;
-                </button>
-            </form>
-
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextPage">
-                    &raquo;&raquo;
                 </button>
             </form>
 
@@ -1066,13 +1024,6 @@
         <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
 
             <?php if ($halamanAktif > 1): ?>
-            
-                <form action="checkpembayarandaninputdata" method="post">
-                    <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                    <button name="nextPage">
-                        &laquo;&laquo;
-                    </button>
-                </form>
 
                 <form action="checkpembayarandaninputdata" method="post">
                     <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
@@ -1081,27 +1032,13 @@
                         First Page
                     </button>
                 </form>
-            <?php endif; ?>      
-
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextLastPage">
-                    On Page
-                </button>
-            </form>  
+            <?php endif; ?>
 
             <form action="checkpembayarandaninputdata" method="post">
                 <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
                 <button name="nextLastPage">
                     Last Page
                     &raquo;
-                </button>
-            </form>
-
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextPage">
-                    &raquo;&raquo;
                 </button>
             </form>
 
@@ -1225,13 +1162,6 @@
         <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
 
             <?php if ($halamanAktif > 1): ?>
-            
-                <form action="checkpembayarandaninputdata" method="post">
-                    <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                    <button name="nextPage">
-                        &laquo;&laquo;
-                    </button>
-                </form>
 
                 <form action="checkpembayarandaninputdata" method="post">
                     <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
@@ -1240,27 +1170,13 @@
                         First Page
                     </button>
                 </form>
-            <?php endif; ?>      
-
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextLastPage">
-                    On Page
-                </button>
-            </form>  
+            <?php endif; ?>
 
             <form action="checkpembayarandaninputdata" method="post">
                 <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
                 <button name="nextLastPage">
                     Last Page
                     &raquo;
-                </button>
-            </form>
-
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextPage">
-                    &raquo;&raquo;
                 </button>
             </form>
 
