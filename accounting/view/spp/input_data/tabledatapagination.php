@@ -20,12 +20,13 @@
 
                 <?php if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") : ?>
 
-                    <?php echo "Semua Data Muncul berdasarkan filter " . $_POST['isi_filter'] . " Atas nama " . $_POST['_nmsiswa2']; ?>
+                    <!-- <?php echo "Semua Data Muncul berdasarkan filter " . $_POST['isi_filter'] . " Atas nama " . $_POST['nama_siswa']; ?> -->
 
                     <?php  
 
                         // Data SPP
-                        $namaMurid = $_POST['_nmsiswa2'];
+                        $namaMurid = $_POST['nama_siswa'];
+                        $nis       = $_POST['nis_siswa'];
                         $queryGetDataSPP = "
                         SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                         FROM input_data_sd
@@ -34,7 +35,7 @@
                         AND NAMA LIKE '%$namaMurid%' ";
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
-                        echo $hitungDataFilterSPP;
+                        // echo $hitungDataFilterSPP;
                         $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
 
                         // echo $hitungDataFilterSPP;exit;
@@ -145,6 +146,7 @@
                                 <input type="hidden" name="halamanLanjutFilterSPP" value="<?= $halamanAktif + 1; ?>">
                                 <input type="hidden" name="iniFilterSPP" value="<?= $_POST['isi_filter']; ?>">
                                 <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                                <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
                                 <button name="nextPageJustFilterSPP" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                                     next
                                     &raquo;
@@ -168,13 +170,18 @@
                             </form>
                         <?php endif; ?>        
 
-                        <form action="checkpembayarandaninputdata" method="post">
-                            <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                            <button name="nextLastPage">
-                                Last Page
-                                &raquo;
-                            </button>
-                        </form>
+                        <?php if ($hitungDataFilterSPP < 5): ?>
+                        <?php else: ?>
+                            
+                            <form action="checkpembayarandaninputdata" method="post">
+                                <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
+                                <button name="nextLastPage">
+                                    Last Page
+                                    &raquo;
+                                </button>
+                            </form>
+
+                        <?php endif ?>
 
                     </div>
 

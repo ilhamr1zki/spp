@@ -73,27 +73,42 @@
      
     }
 
-    // $filter_by = [
-    //     'SPP',
-    //     'PANGKAL',
-    //     'KEGIATAN',
-    //     'BUKU',
-    //     'SERAGAM',
-    //     'REGISTRASI',
-    //     'LAIN - LAIN'
-    // ];
-
     $isifilby       = 'kosong';
     $tanggalDari    = 'kosong_tgl1';
     $tanggalSampai  = 'kosong_tgl2';
 
+    // isi form default
+    $id         = "";
+    $nis        = "";
+    $namaSiswa  = "";
+    $kelas      = "";
+    $panggilan  = "";
+
     if (isset($_POST['filter_by'])) {
-        if ($_POST['isi_filter'] != 'kosong') {
-            $isifilby       = $_POST['isi_filter'];
-            $tanggalDari    = $_POST['tanggal1'];
-            $tanggalSampai  = $_POST['tanggal2'];
+
+        $id         = $_POST['id_siswa'];
+        $nis        = $_POST['nis_siswa'];
+        $namaSiswa  = $_POST['nama_siswa'];
+        $kelas      = $_POST['kelas_siswa'];
+        $panggilan  = $_POST['panggilan_siswa'];
+
+        if ($id !== "" && $nis !== "") {
+            // Jika ID & NIS pada form tidak kosong maka lanjut
+            if ($_POST['isi_filter'] != 'kosong') {
+
+                $isifilby                   = $_POST['isi_filter'];
+                $tanggalDari                = $_POST['tanggal1'];
+                $tanggalSampai              = $_POST['tanggal2'];
+                $_SESSION['form_kosong']    = "form_not_empty";
+
+            } else {
+                $isifilby;
+            }
+
         } else {
-            $isifilby;
+            // Jika ID & NIS pada form kosong maka kembalikan pada halaman awal
+            $_SESSION['form_kosong'] = "empty_form";
+            // header("Location:/checkpembayarandaninputdata");
         }
     }
     // echo $isifilby;exit;
@@ -236,7 +251,13 @@
         } else if (isset($_POST['filter_by'])) {
             
             $halamanAktif = 1;
-            $iniScrollFilterPage = "ada";
+
+            if ($_SESSION['form_kosong'] == 'form_not_empty') {
+                $iniScrollFilterPage;
+            } else {
+                $iniScrollFilterPage = "ada";
+            }
+
             $hitungDataFilterSPP = "";
 
             // SPP
@@ -251,7 +272,7 @@
 
                         // Data SPP
                         // echo "Masuk filter SPP tanpa filter tanggal dari dan tanggal sampai";exit;
-                        $namaMurid = $_POST['_nmsiswa2'];
+                        $namaMurid = $namaSiswa;
                         $queryGetDataSPP = "
                         SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                         FROM input_data_sd
@@ -322,6 +343,8 @@
 
             $namaMurid = $_POST['namaSiswaFilterSPP'];
             $isifilby  = $_POST['iniFilterSPP'];
+
+            $nis = $_POST['nisFormFilterSPP'];
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -483,6 +506,13 @@
 <div class="row">
     <div class="col-xs-12 col-md-12 col-lg-12">  
 
+        <?php if(isset($_SESSION['form_kosong']) && $_SESSION['form_kosong'] == 'empty_form'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Harap Pilih Siswa Terlebih Dahulu
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <?php unset($_SESSION['form_kosong']); ?>
+          </div>
+        <?php } ?>
+
         <?php if(isset($_SESSION['pesan']) && $_SESSION['pesan'] == 'tambah'){?>
           <div style="display: none;" class="alert alert-warning alert-dismissable">Setup Naik Juz Berhasil Disimpan
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -530,43 +560,27 @@
         </div>
         <form action="checkpembayarandaninputdata" method="post">
             <div class="box-body">
-                <input type="hidden" id="_entryby" name="_entryby" class="form-control" value="<?php echo $na['nama'] ?>">
-                <input type="hidden" id="_idsiswa" name="_idsiswa" class="form-control">
-                <input type="hidden" id="_idjuz" name="_idjuz" class="form-control">
-                <input type="hidden" id="_idjuznext" name="_idjuznext" class="form-control">
-                <input type="hidden" id="_nmjuznext" name="_nmjuznext" class="form-control">
-                <input type="hidden" id="_seqnext" name="_seqnext" class="form-control">
-                <input type="hidden" id="code_siswa" name="code_siswa" class="form-control">
-
-                <input type="hidden" class="form-control" id="_nmsiswa" name="_nmsiswa">
-                <input type="hidden" class="form-control" id="_juzcur" name="_juzcur"/>
-                <input type="hidden" class="form-control" id="_juzutama" name="_juzutama"/>
-
-                <input type="hidden" id="_idjuzmanual" name="_idjuzmanual" class="form-control">
-                <input type="hidden" id="_seqnextmanual" name="_seqnextmanual" class="form-control">
-                <input type="hidden" id="_nmjuzmanual" name="_nmjuzmanual" class="form-control">
-                <input type="hidden" id="_nmbagianmanual" name="_nmbagianmanual" class="form-control">
 
                 <div class="row">
 
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>ID</label>
-                            <input type="text" class="form-control" value="127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
                         </div>
                     </div>
                     
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>NIS</label>
-                            <input type="text" class="form-control" value="202202127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
                         </div>
                     </div>
 
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="_nmsiswa2" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -576,13 +590,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="" value="2 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="_kelassiswa" value="RAFARDHAN" name="_kelassiswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -1958,43 +1972,27 @@
         </div>
         <form action="checkpembayarandaninputdata" method="post">
             <div class="box-body">
-                <input type="hidden" id="_entryby" name="_entryby" class="form-control" value="<?php echo $na['nama'] ?>">
-                <input type="hidden" id="_idsiswa" name="_idsiswa" class="form-control">
-                <input type="hidden" id="_idjuz" name="_idjuz" class="form-control">
-                <input type="hidden" id="_idjuznext" name="_idjuznext" class="form-control">
-                <input type="hidden" id="_nmjuznext" name="_nmjuznext" class="form-control">
-                <input type="hidden" id="_seqnext" name="_seqnext" class="form-control">
-                <input type="hidden" id="code_siswa" name="code_siswa" class="form-control">
-
-                <input type="hidden" class="form-control" id="_nmsiswa" name="_nmsiswa">
-                <input type="hidden" class="form-control" id="_juzcur" name="_juzcur"/>
-                <input type="hidden" class="form-control" id="_juzutama" name="_juzutama"/>
-
-                <input type="hidden" id="_idjuzmanual" name="_idjuzmanual" class="form-control">
-                <input type="hidden" id="_seqnextmanual" name="_seqnextmanual" class="form-control">
-                <input type="hidden" id="_nmjuzmanual" name="_nmjuzmanual" class="form-control">
-                <input type="hidden" id="_nmbagianmanual" name="_nmbagianmanual" class="form-control">
 
                 <div class="row">
 
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>ID</label>
-                            <input type="text" class="form-control" value="127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
                         </div>
                     </div>
                     
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>NIS</label>
-                            <input type="text" class="form-control" value="202202127" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
                         </div>
                     </div>
 
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="_nmsiswa2" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -2004,13 +2002,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="" value="2 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" />
+                            <input type="text" name="kelas_siswa" class="form-control" value="<?= $kelas; ?>" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="_kelassiswa" value="RAFARDHAN" name="_kelassiswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -2472,16 +2470,24 @@
                         ?>
                         <tbody>
                             <?php foreach ($execqueryGetAllDataSiswa as $data): ?>
-                            <tr>
-                                <td style="text-align: center;"> <?= $no++; ?> </td>
-                                <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['Nama']; ?> </td>
-                                <?php if ($data['jk'] == 'L'): ?>
-                                    <td style="text-align: center;"> Laki - Laki </td>
-                                <?php else: ?>
-                                    <td style="text-align: center;"> Perempuan </td>
-                                <?php endif; ?>
+                            <tr onclick="
+                                OnSiswaSelectedModal(
+                                    '<?= $data['ID']; ?>', 
+                                    '<?= $data['NIS']; ?>', 
+                                    '<?= $data['Nama']; ?>', 
+                                    '<?= $data['KELAS']; ?>', 
+                                    '<?= $data['Panggilan']; ?>'
+                                    )
+                                ">
+                                    <td style="text-align: center;"> <?= $no++; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['Nama']; ?> </td>
+                                    <?php if ($data['jk'] == 'L'): ?>
+                                        <td style="text-align: center;"> Laki - Laki </td>
+                                    <?php else: ?>
+                                        <td style="text-align: center;"> Perempuan </td>
+                                    <?php endif; ?>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -2579,82 +2585,15 @@ $(document).ready(function() {
         $('#datamassiswa').modal("show");
     }
 
-    function OnSiswaSelectedModal(kode, nama, kelas, c_siswa, curjuz, idcurjuz, seqjuz, 
-    nextSeq, nextnmjuz, nextidjuz, nmbagian, catatan, nextjuzutama){
+    function OnSiswaSelectedModal(id, nis, nmsiswa, kelas, panggilan){
 
-        // alert(kode)
+        alert(nmsiswa)
 
-        $('#_idsiswa').val(kode);
-        $('#_nmsiswa').val(nama);
-        $('#_nmsiswa2').text(nama);
-        $('#_kelassiswa').text(kelas);
-
-        //$('#editorcatatan').summernote('reset');
-        $('#editorcatatan').summernote('code', '<p><br></p>');
-
-        // Jika code siswa tidak ada di tabel sisjuz_h
-        if(c_siswa == undefined || c_siswa == null || c_siswa == '') {
-
-            let btnnaikjuz              = document.getElementById("btnnaikjuz");
-            btnnaikjuz.style.display    = "block";
-            btnnaikjuz.style.marginTop  = "10px";
-
-            alert(`${nama} belum ada di data naik juz`);
-            document.getElementById('code_siswa').value = kode
-
-            document.getElementById("isijuzsekarang").value = 30
-            document.getElementById("_setmanualjuzselect").value = "kosong"
-            $('#_juzcur').val("An Nas - Al Fajr");
-            $('#_bagianjuzcur2').val("An Nas - Al Fajr");
-            $('#_idjuz').val(`<?= $getDataIdJuz; ?>`);
-            $('#_seqnext').val(`<?= $getDataSeqJuz; ?>`);
-            
-        } else {
-
-            // Jika code siswa ada di table sisjuz_h tetapi di kolom juz dan kolom ketjuzsurah tidak ada data nya
-            let btnnaikjuz              = document.getElementById("btnnaikjuz");
-            btnnaikjuz.style.display    = "block";
-            btnnaikjuz.style.marginTop  = "10px";
-
-            $('#_idjuz').val(nextidjuz);
-            $('#_seqnext').val(nextSeq);
-            $('#_bagianjuzcur2').val(nmbagian ?? "");
-            $('#_nmjuznext').val(nextnmjuz ?? "");
-            
-            $('#_juzutama').val(nextjuzutama ?? "");
-            
-            fetch("view/tahfidz/singledatajuz_h.php?c_siswa=" + c_siswa)
-            .then((response) => {
-                if(!response.ok){ // Before parsing (i.e. decoding) the JSON data,// check for any errors.// In case of an error, throw.
-                    throw new Error("Terjadi kesalahan!");
-                }
-
-                return response.json(); // Parse the JSON data.
-            })
-            .then((data) => {
-                // console.log(data.catatan)
-                // alert('fetch');
-                const myJSON                = JSON.stringify(data.catatan);
-                const ketjuzsurahsekarang   = JSON.stringify(data.juz);
-                const idjuzsekarang         = JSON.stringify(data.idjuz);
-                document.getElementById("isijuzsekarang").value = ketjuzsurahsekarang.slice(1, -1).trim()
-                // alert(ketjuzsurahsekarang.slice(1, -1).trim())
-
-                // This is where you handle what to do with the response.
-                $('#editorcatatan').summernote('pasteHTML', myJSON.slice(1, -1).trim());
-                $('#_juzcur').val(ketjuzsurahsekarang.slice(1, -1).trim());
-
-                if(idjuzsekarang.slice(1, -1).trim() == "23")
-                {
-                    _btnnaikjuz.style.display = "none";
-                }
-
-            })
-            .catch((error) => {
-                // This is where you handle errors.
-            });
-
-        }
+        $('#id_siswa').val(id);
+        $('#nis_siswa').val(nis);
+        $('#nama_siswa').val(nmsiswa);
+        $('#kelas_siswa').val(kelas);
+        $('#panggilan_siswa').val(panggilan)
 
         $('#datamassiswa').modal("hide");
     }
