@@ -245,8 +245,12 @@
                 $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
                 
                 if ($_POST['isi_filter'] == 'SPP') {
+
+                    // Jika filter by SPP sedangkan filter tanggal dari dan tanggal sampai tidak di isi 
                     if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+
                         // Data SPP
+                        // echo "Masuk filter SPP tanpa filter tanggal dari dan tanggal sampai";exit;
                         $namaMurid = $_POST['_nmsiswa2'];
                         $queryGetDataSPP = "
                         SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -258,34 +262,55 @@
                         $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         // echo $hitungDataFilterSPP;
                         $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
+
+                        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                        // echo $dataAwal . "<br>";
+                        $ambildata_perhalaman = mysqli_query($con, "
+                            SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            FROM input_data_sd
+                            WHERE
+                            SPP != 0
+                            AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData ");
+                        // print_r($ambildata_perhalaman->num_rows);
+                        $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+                        $jumlahLink = 2;
+
+                        if ($halamanAktif > $jumlahLink) {
+                            $start_number = $halamanAktif - $jumlahLink;
+                        } else {
+                            $start_number = 1;
+                        }
+
+                        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                            $end_number = $halamanAktif + $jumlahLink;
+                        } else {
+                            $end_number = $jumlahPagination;
+                        }
+
                     }
                 }
 
-            }
-
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
-                WHERE
-                SPP != 0
-                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData ");
-            // print_r($ambildata_perhalaman->num_rows);
-            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
-
-            $jumlahLink = 2;
-
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
             } else {
-                $start_number = 1;
-            }
+                // Jika tidak ada filter yang di pilih (kosong)
+                $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                // echo $dataAwal . "<br>";
+                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+                // print_r($ambildata_perhalaman->num_rows);
 
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
+                $jumlahLink = 2;
+
+                if ($halamanAktif > $jumlahLink) {
+                    $start_number = $halamanAktif - $jumlahLink;
+                } else {
+                    $start_number = 1;
+                }
+
+                if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                    $end_number = $halamanAktif + $jumlahLink;
+                } else {
+                    $end_number = $jumlahPagination;
+                }
             }
 
         } else if (isset($_POST['nextPageJustFilterSPP'])) {

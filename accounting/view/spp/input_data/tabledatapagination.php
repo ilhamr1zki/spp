@@ -591,7 +591,7 @@
             <?php endif; ?>
         
         <?php else: ?>
-
+            
             <div style="overflow-x: auto;">
                         
                 <table id="example1" class="table table-bordered">
