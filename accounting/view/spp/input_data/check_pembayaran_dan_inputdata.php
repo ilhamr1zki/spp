@@ -1977,7 +1977,7 @@
 
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label>ID</label>
+                            <label>ID Siswa</label>
                             <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
                         </div>
                     </div>
