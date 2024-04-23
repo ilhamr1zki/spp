@@ -2444,7 +2444,7 @@ $(document).ready(function() {
 
     function OnSiswaSelectedModal(id, nis, nmsiswa, kelas, panggilan){
 
-        alert(nmsiswa)
+        // alert(nmsiswa)
 
         $('#id_siswa').val(id);
         $('#nis_siswa').val(nis);
