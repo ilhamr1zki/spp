@@ -78,11 +78,12 @@
     $tanggalSampai  = 'kosong_tgl2';
 
     // isi form default
-    $id         = "";
-    $nis        = "";
-    $namaSiswa  = "";
-    $kelas      = "";
-    $panggilan  = "";
+    $id                 = "";
+    $nis                = "";
+    $namaSiswa          = "";
+    $kelas              = "";
+    $panggilan          = "";
+    $checkFilterSiswa   = "";
 
     if (isset($_POST['filter_by'])) {
 
@@ -99,10 +100,61 @@
                 $isifilby                   = $_POST['isi_filter'];
                 $tanggalDari                = $_POST['tanggal1'];
                 $tanggalSampai              = $_POST['tanggal2'];
+                $checkFilterSiswa           = "adafilter";
+
                 $_SESSION['form_kosong']    = "form_not_empty";
 
             } else {
                 $isifilby;
+                $id                 = "";
+                $nis                = "";
+                $namaSiswa          = "";
+                $kelas              = "";
+                $panggilan          = "";
+                $checkFilterSiswa   = "tidakadafilter";
+                $iniScrollFilterPage    = "kosong";
+
+                $halamanAktif = 1;
+
+                $jumlahData = 5;
+                $queryGetAllDataHistori     = "SELECT * FROM input_data_sd";
+                $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
+                $totalData = mysqli_num_rows($execQueryGetAllDataHistori);
+
+                $jumlahPagination = ceil($totalData / $jumlahData);
+
+                $totalHalamanTambah100 = $halamanAktif;
+
+                $showAddPage100 = "";
+
+                $totalHalamanTambah100 = $halamanAktif + 100;
+
+                if ($totalHalamanTambah100 <= $jumlahPagination) {
+                    $showAddPage100 = "muncul";
+                } else {
+                    $showAddPage100 = "tidak_muncul";
+                }            
+
+                $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                // echo $dataAwal . "<br>";
+                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+                // print_r($ambildata_perhalaman->num_rows);
+
+                $jumlahLink = 2;
+
+                if ($halamanAktif > $jumlahLink) {
+                    $start_number = $halamanAktif - $jumlahLink;
+                } else {
+                    $start_number = 1;
+                }
+
+                if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                    $end_number = $halamanAktif + $jumlahLink;
+                } else {
+                    $end_number = $jumlahPagination;
+                }
+
+                $_SESSION['form_kosong'] = "filter_kosong";
             }
 
         } else {
@@ -379,7 +431,11 @@
 
             if ($_SESSION['form_kosong'] == 'form_not_empty') {
                 $iniScrollFilterPage;
-            } else {
+            } else if($_SESSION['form_kosong'] == 'filter_kosong') {
+                $iniScrollFilterPage;
+            } else if($_SESSION['form_kosong'] == 'empty_form') {
+                $iniScrollFilterPage;
+            } else {           
                 $iniScrollFilterPage = "ada";
             }
 
@@ -445,6 +501,16 @@
                 // print_r($ambildata_perhalaman->num_rows);
 
                 $jumlahLink = 2;
+
+                $showAddPage100 = "";
+
+                $totalHalamanTambah100 = $halamanAktif + 100;
+
+                if ($totalHalamanTambah100 <= $jumlahPagination) {
+                    $showAddPage100 = "muncul";
+                } else {
+                    $showAddPage100 = "tidak_muncul";
+                }
 
                 if ($halamanAktif > $jumlahLink) {
                     $start_number = $halamanAktif - $jumlahLink;
@@ -800,7 +866,14 @@
 ?>
 
 <div class="row">
-    <div class="col-xs-12 col-md-12 col-lg-12">  
+    <div class="col-xs-12 col-md-12 col-lg-12">
+
+        <?php if(isset($_SESSION['form_kosong']) && $_SESSION['form_kosong'] == 'filter_kosong'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Tidak Ada Filter yang di pilih
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <?php unset($_SESSION['form_kosong']); ?>
+          </div>
+        <?php } ?>
 
         <?php if(isset($_SESSION['form_kosong']) && $_SESSION['form_kosong'] == 'empty_form'){?>
           <div style="display: none;" class="alert alert-danger alert-dismissable"> Harap Pilih Siswa Terlebih Dahulu
