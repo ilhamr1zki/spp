@@ -15,10 +15,10 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 /* css.plugin.hancon <?php echo $base; ?> */
 /* $base='https://apps.aiis.sch.id/'; */
 // $base='http://localhost/spp/';
-$base='http://192.168.56.1/spp/';
+$base='http://localhost/spp/';
 /* control(link.redirect) <?php echo $basecon; ?> */
 $basead='http://localhost/spp/admin/';
-$baseac='http://192.168.56.1/spp/accounting/';
+$baseac='http://localhost/spp/accounting/';
 /* $basead='https://apps.aiis.sch.id/admin/'; */
 /*kelas(link.redirect) <?php echo $basekel; ?>*/
 /* $basegu='https://apps.aiis.sch.id/guru/'; */

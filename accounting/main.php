@@ -125,6 +125,16 @@
       border-top: 1px solid black;
     }
 
+    .tombol {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-isi {
+      display: flex;
+      flex-direction: column;
+    }
+
     #spp1 {
       width: 20%;
       margin-right: 10px;
@@ -256,6 +266,12 @@
         width: 40%;
         margin-right: 10px; 
         text-align: end;
+      }
+
+      .tombol {
+        display: flex;
+        flex-direction: column;
+        margin-right: 50px;
       }
 
       .ket_uang_spp, 

@@ -259,7 +259,7 @@
                         </div>
                     </div>
 
-                    <div class="row" id="tombol">
+                    <!-- <div class="row" id="tombol">
                         <div class="col-sm-4">
                             <div class="form-group" style="margin-left: 15px;">
                                 <button id="save_record" class="btn btn-warning btn-circle"> Save Record </button>
@@ -279,6 +279,24 @@
                             <div class="form-group" style="margin-left: 44px; width: 145%;">
                                 <button id="cek_pembayaran" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </button>
                             </div>
+                        </div>
+                    </div> -->
+
+                    <div class="tombol">
+                        <div class="form-group">
+                            <button id="save_record" class="btn btn-warning btn-circle"> Save Record </button>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="cek_pembayaran" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </button>
                         </div>
                     </div>
 
