@@ -85,83 +85,169 @@
     $panggilan          = "";
     $checkFilterSiswa   = "";
 
-    if (isset($_POST['filter_by'])) {
 
-        $id         = $_POST['id_siswa'];
-        $nis        = $_POST['nis_siswa'];
-        $namaSiswa  = $_POST['nama_siswa'];
-        $kelas      = $_POST['kelas_siswa'];
-        $panggilan  = $_POST['panggilan_siswa'];
+    if ($code_accounting == 'accounting1') {
 
-        if ($id !== "" && $nis !== "") {
-            // Jika ID & NIS pada form tidak kosong maka lanjut
-            if ($_POST['isi_filter'] != 'kosong') {
+        if (isset($_POST['filter_by'])) {
 
-                $isifilby                   = $_POST['isi_filter'];
-                $tanggalDari                = $_POST['tanggal1'];
-                $tanggalSampai              = $_POST['tanggal2'];
-                $checkFilterSiswa           = "adafilter";
+            $id         = $_POST['id_siswa'];
+            $nis        = $_POST['nis_siswa'];
+            $namaSiswa  = $_POST['nama_siswa'];
+            $kelas      = $_POST['kelas_siswa'];
+            $panggilan  = $_POST['panggilan_siswa'];
 
-                $_SESSION['form_kosong']    = "form_not_empty";
+            if ($id !== "" && $nis !== "") {
+                // Jika ID & NIS pada form tidak kosong maka lanjut
+                if ($_POST['isi_filter'] != 'kosong') {
+
+                    $isifilby                   = $_POST['isi_filter'];
+                    $tanggalDari                = $_POST['tanggal1'];
+                    $tanggalSampai              = $_POST['tanggal2'];
+                    $checkFilterSiswa           = "adafilter";
+
+                    $_SESSION['form_kosong']    = "form_not_empty";
+
+                } else {
+                    $isifilby;
+                    $id                 = "";
+                    $nis                = "";
+                    $namaSiswa          = "";
+                    $kelas              = "";
+                    $panggilan          = "";
+                    $checkFilterSiswa   = "tidakadafilter";
+                    $iniScrollFilterPage    = "kosong";
+
+                    $halamanAktif = 1;
+
+                    $jumlahData = 5;
+                    $queryGetAllDataHistori     = "SELECT * FROM input_data_sd";
+                    $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
+                    $totalData = mysqli_num_rows($execQueryGetAllDataHistori);
+
+                    $jumlahPagination = ceil($totalData / $jumlahData);
+
+                    $totalHalamanTambah100 = $halamanAktif;
+
+                    $showAddPage100 = "";
+
+                    $totalHalamanTambah100 = $halamanAktif + 100;
+
+                    if ($totalHalamanTambah100 <= $jumlahPagination) {
+                        $showAddPage100 = "muncul";
+                    } else {
+                        $showAddPage100 = "tidak_muncul";
+                    }            
+
+                    $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                    // echo $dataAwal . "<br>";
+                    $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+                    // print_r($ambildata_perhalaman->num_rows);
+
+                    $jumlahLink = 2;
+
+                    if ($halamanAktif > $jumlahLink) {
+                        $start_number = $halamanAktif - $jumlahLink;
+                    } else {
+                        $start_number = 1;
+                    }
+
+                    if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                        $end_number = $halamanAktif + $jumlahLink;
+                    } else {
+                        $end_number = $jumlahPagination;
+                    }
+
+                    $_SESSION['form_kosong'] = "filter_kosong";
+                }
 
             } else {
-                $isifilby;
-                $id                 = "";
-                $nis                = "";
-                $namaSiswa          = "";
-                $kelas              = "";
-                $panggilan          = "";
-                $checkFilterSiswa   = "tidakadafilter";
-                $iniScrollFilterPage    = "kosong";
-
-                $halamanAktif = 1;
-
-                $jumlahData = 5;
-                $queryGetAllDataHistori     = "SELECT * FROM input_data_sd";
-                $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
-                $totalData = mysqli_num_rows($execQueryGetAllDataHistori);
-
-                $jumlahPagination = ceil($totalData / $jumlahData);
-
-                $totalHalamanTambah100 = $halamanAktif;
-
-                $showAddPage100 = "";
-
-                $totalHalamanTambah100 = $halamanAktif + 100;
-
-                if ($totalHalamanTambah100 <= $jumlahPagination) {
-                    $showAddPage100 = "muncul";
-                } else {
-                    $showAddPage100 = "tidak_muncul";
-                }            
-
-                $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-                // echo $dataAwal . "<br>";
-                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
-                // print_r($ambildata_perhalaman->num_rows);
-
-                $jumlahLink = 2;
-
-                if ($halamanAktif > $jumlahLink) {
-                    $start_number = $halamanAktif - $jumlahLink;
-                } else {
-                    $start_number = 1;
-                }
-
-                if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                    $end_number = $halamanAktif + $jumlahLink;
-                } else {
-                    $end_number = $jumlahPagination;
-                }
-
-                $_SESSION['form_kosong'] = "filter_kosong";
+                // Jika ID & NIS pada form kosong maka kembalikan pada halaman awal
+                $_SESSION['form_kosong'] = "empty_form";
+                // header("Location:/checkpembayarandaninputdata");
             }
-
-        } else {
-            // Jika ID & NIS pada form kosong maka kembalikan pada halaman awal
-            $_SESSION['form_kosong'] = "empty_form";
-            // header("Location:/checkpembayarandaninputdata");
         }
+
+    } else {
+
+        if (isset($_POST['filter_by'])) {
+
+            $id         = $_POST['id_siswa'];
+            $nis        = $_POST['nis_siswa'];
+            $namaSiswa  = $_POST['nama_siswa'];
+            $kelas      = $_POST['kelas_siswa'];
+            $panggilan  = $_POST['panggilan_siswa'];
+
+            if ($id !== "" && $nis !== "") {
+                // Jika ID & NIS pada form tidak kosong maka lanjut
+                if ($_POST['isi_filter'] != 'kosong') {
+
+                    $isifilby                   = $_POST['isi_filter'];
+                    $tanggalDari                = $_POST['tanggal1'];
+                    $tanggalSampai              = $_POST['tanggal2'];
+                    $checkFilterSiswa           = "adafilter";
+
+                    $_SESSION['form_kosong']    = "form_not_empty";
+
+                } else {
+                    $isifilby;
+                    $id                 = "";
+                    $nis                = "";
+                    $namaSiswa          = "";
+                    $kelas              = "";
+                    $panggilan          = "";
+                    $checkFilterSiswa   = "tidakadafilter";
+                    $iniScrollFilterPage    = "kosong";
+
+                    $halamanAktif = 1;
+
+                    $jumlahData = 5;
+                    $queryGetAllDataHistori     = "SELECT * FROM input_data_tk";
+                    $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
+                    $totalData = mysqli_num_rows($execQueryGetAllDataHistori);
+
+                    $jumlahPagination = ceil($totalData / $jumlahData);
+
+                    $totalHalamanTambah100 = $halamanAktif;
+
+                    $showAddPage100 = "";
+
+                    $totalHalamanTambah100 = $halamanAktif + 100;
+
+                    if ($totalHalamanTambah100 <= $jumlahPagination) {
+                        $showAddPage100 = "muncul";
+                    } else {
+                        $showAddPage100 = "tidak_muncul";
+                    }            
+
+                    $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                    // echo $dataAwal . "<br>";
+                    $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+                    // print_r($ambildata_perhalaman->num_rows);
+
+                    $jumlahLink = 2;
+
+                    if ($halamanAktif > $jumlahLink) {
+                        $start_number = $halamanAktif - $jumlahLink;
+                    } else {
+                        $start_number = 1;
+                    }
+
+                    if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                        $end_number = $halamanAktif + $jumlahLink;
+                    } else {
+                        $end_number = $jumlahPagination;
+                    }
+
+                    $_SESSION['form_kosong'] = "filter_kosong";
+                }
+
+            } else {
+                // Jika ID & NIS pada form kosong maka kembalikan pada halaman awal
+                $_SESSION['form_kosong'] = "empty_form";
+                // header("Location:/checkpembayarandaninputdata");
+            }
+        }        
+
     }
     // echo $isifilby;exit;
 
@@ -189,6 +275,7 @@
     $iniScrollNextPage      = "kosong";
     $iniScrollPreviousPage  = "kosong";
     $iniScrollFilterPage    = "kosong";
+
 
     if ($code_accounting == 'accounting1') {
         
@@ -861,6 +948,714 @@
         $queryGetAllDataHistori     = "SELECT * FROM input_data_tk";
         $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
 
+        $halamanAktif = "";
+        
+        $jumlahData = 5;
+        $totalData = mysqli_num_rows($execQueryGetAllDataHistori);
+
+        $jumlahPagination = ceil($totalData / $jumlahData);
+        // echo $jumlahPagination;
+
+        if (isset($_POST['toPage'])) {
+            // echo $_POST['teslg'];exit;
+            $halamanAktif = $_POST['halamanKe'];
+            $iniScrollNextPage = "ada";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['nextPage'])) {
+
+            $halamanAktif = $_POST['halamanLanjut'];
+            $iniScrollNextPage = "ada";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }                
+
+        } else if (isset($_POST['previousPage'])) {
+
+            $halamanAktif = $_POST['backPage'];
+            $iniScrollPreviousPage  = "ada";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['firstPage'])) {
+
+            $halamanAktif = 1;
+            $iniScrollPreviousPage  = "ada";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['addPage100'])) {
+
+            $halamanAktif = $_POST['paginationSekarangTambah100'] + 100;
+            $iniScrollPreviousPage  = "ada";
+
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }            
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['reductionPage100'])) {
+
+            $halamanAktif = $_POST['paginationSekarangKurang100'] - 100;
+
+            $iniScrollPreviousPage = "ada";
+
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['nextLastPage'])) {
+
+            $halamanAktif = $jumlahPagination;
+            $iniScrollPreviousPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['filter_by'])) {
+            
+            $halamanAktif = 1;
+
+            if ($_SESSION['form_kosong'] == 'form_not_empty') {
+                $iniScrollFilterPage;
+            } else if($_SESSION['form_kosong'] == 'filter_kosong') {
+                $iniScrollFilterPage;
+            } else if($_SESSION['form_kosong'] == 'empty_form') {
+                $iniScrollFilterPage;
+            } else {           
+                $iniScrollFilterPage = "ada";
+            }
+
+            $hitungDataFilterSPP = "";
+
+            // SPP
+            if ($_POST['isi_filter'] != 'kosong' ) {
+                $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+                $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+                
+                if ($_POST['isi_filter'] == 'SPP') {
+
+                    // Jika filter by SPP sedangkan filter tanggal dari dan tanggal sampai tidak di isi 
+                    if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+
+                        // Data SPP
+                        // echo "Masuk filter SPP tanpa filter tanggal dari dan tanggal sampai";exit;
+                        $namaMurid = $namaSiswa;
+                        $queryGetDataSPP = "
+                        SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                        FROM input_data_tk
+                        WHERE
+                        SPP != 0
+                        AND NAMA LIKE '%$namaMurid%' ";
+                        $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+                        $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+                        if ($hitungDataFilterSPP == 0) {
+
+                            $id                 = "";
+                            $nis                = "";
+                            $namaSiswa          = "";
+                            $kelas              = "";
+                            $panggilan          = "";
+                            $checkFilterSiswa   = "";
+
+                            $halamanAktif = 1;
+                            $namaMurid;
+
+                            $totalHalamanTambah100 = $halamanAktif;
+
+                            $showAddPage100 = "";
+                            $isifilby = "kosong";
+                            $_SESSION['err_warning'] = "no_data";
+
+                            $totalHalamanTambah100 = $halamanAktif + 100;
+
+                            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                                $showAddPage100 = "muncul";
+                            } else {
+                                $showAddPage100 = "tidak_muncul";
+                            }            
+
+                            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                            // echo $dataAwal . "<br>";
+                            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+                            // print_r($ambildata_perhalaman->num_rows);
+
+                            $jumlahLink = 2;
+
+                            if ($halamanAktif > $jumlahLink) {
+                                $start_number = $halamanAktif - $jumlahLink;
+                            } else {
+                                $start_number = 1;
+                            }
+
+                            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                                $end_number = $halamanAktif + $jumlahLink;
+                            } else {
+                                $end_number = $jumlahPagination;
+                            }
+
+                        } else {
+
+                            $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
+
+                            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                            // echo $dataAwal . "<br>";
+                            $ambildata_perhalaman = mysqli_query($con, "
+                                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                                FROM input_data_tk
+                                WHERE
+                                SPP != 0
+                                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData ");
+                            // print_r($ambildata_perhalaman->num_rows);
+                            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+                            $jumlahLink = 2;
+
+                            if ($halamanAktif > $jumlahLink) {
+                                $start_number = $halamanAktif - $jumlahLink;
+                            } else {
+                                $start_number = 1;
+                            }
+
+                            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                                $end_number = $halamanAktif + $jumlahLink;
+                            } else {
+                                $end_number = $jumlahPagination;
+                            }
+
+                            }
+
+                    }
+                }
+
+            } else {
+                // Jika tidak ada filter yang di pilih (kosong)
+                $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                // echo $dataAwal . "<br>";
+                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+                // print_r($ambildata_perhalaman->num_rows);
+
+                $jumlahLink = 2;
+
+                $showAddPage100 = "";
+
+                $totalHalamanTambah100 = $halamanAktif + 100;
+
+                if ($totalHalamanTambah100 <= $jumlahPagination) {
+                    $showAddPage100 = "muncul";
+                } else {
+                    $showAddPage100 = "tidak_muncul";
+                }
+
+                if ($halamanAktif > $jumlahLink) {
+                    $start_number = $halamanAktif - $jumlahLink;
+                } else {
+                    $start_number = 1;
+                }
+
+                if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                    $end_number = $halamanAktif + $jumlahLink;
+                } else {
+                    $end_number = $jumlahPagination;
+                }
+            }
+
+        } else if (isset($_POST['nextPageJustFilterSPP'])) {
+            
+            $halamanAktif       = $_POST['halamanLanjutFilterSPP'];
+            $iniScrollNextPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid  = $_POST['namaSiswaFilterSPP'];
+            $isifilby   = $_POST['iniFilterSPP'];
+
+            $id         = $_POST['idSiswaFilterSPP'];
+            $kelas      = $_POST['kelasFormFilterSPP'];
+            $panggilan  = $_POST['panggilanFormFilterSPP'];
+            $nis        = $_POST['nisFormFilterSPP'];
+            $namaSiswa  = $_POST['namaFormFilterSPP'];
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['previousPageJustFilterSPP'])) {
+
+            $halamanAktif           = $_POST['halamanSebelumnyaFilterSPP'];
+            $iniScrollPreviousPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid = $_POST['namaSiswaFilterSPP'];
+            $isifilby  = $_POST['iniFilterSPP'];
+
+            $id        = $_POST['idSiswaFilterSPP'];
+            $nis       = $_POST['nisFormFilterSPP'];
+            $namaSiswa = $_POST['namaFormFilterSPP'];
+            $panggilan = $_POST['panggilanFormFilterSPP'];
+            $kelas     = $_POST['kelasFormFilterSPP'];
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['toPageFilterSPP'])) {
+
+            $halamanAktif = $_POST['halamanKeFilterSPP'];
+            $iniScrollNextPage = "ada";
+
+            $namaMurid = $_POST['namaSiswaFilterSPP'];
+            $isifilby  = $_POST['iniFilterSPP'];
+
+            $namaSiswa = $namaMurid;
+            $id        = $_POST['idSiswaFilterSPP'];
+            $nis       = $_POST['nisFormFilterSPP'];
+            $panggilan = $_POST['panggilanFormFilterSPP'];
+            $kelas     = $_POST['kelasFormFilterSPP'];
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['firstPageFilterSPP'])) {
+
+            $namaMurid      = $_POST['namaFormFilterSPP'];
+
+            $id             = $_POST['idSiswaFilterSPP'];
+            $nis            = $_POST['nisFormFilterSPP'];
+            $kelas          = $_POST['kelasFormFilterSPP'];
+            $panggilan      = $_POST['panggilanFormFilterSPP'];
+            $namaSiswa      = $namaMurid;
+
+            $isifilby       = $_POST['iniFilterSPP'];
+
+            $iniScrollPreviousPage  = "ada";
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['lastPageFilterSPP'])) {
+
+            $namaMurid      = $_POST['namaSiswaFilterSPP'];
+            $isifilby       = $_POST['iniFilterSPP'];
+
+            $id             = $_POST['idSiswaFilterSPP'];
+            $namaSiswa      = $namaMurid;
+            $kelas          = $_POST['kelasFormFilterSPP'];
+            $panggilan      = $_POST['panggilanFormFilterSPP'];
+            $nis            = $_POST['nisFormFilterSPP'];
+
+            $iniScrollPreviousPage  = "ada";
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['findPageData'])) {
+
+            $halamanAktif = $_POST['cari_halaman'];
+            $iniScrollPreviousPage  = "ada";
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }            
+
+        } else {
+
+            $halamanAktif = 1;
+
+            $totalHalamanTambah100 = $halamanAktif;
+
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }            
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
     }
 
 ?>
@@ -912,6 +1707,13 @@
 
         <?php if(isset($_SESSION['err_warning']) && $_SESSION['err_warning'] == 'err_validation'){?>
           <div style="display: none;" class="alert alert-danger alert-dismissable"> Mohon Cari Siswa Terlebih Dahulu
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?php unset($_SESSION['err_warning']); ?>
+          </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['err_warning']) && $_SESSION['err_warning'] == 'no_data'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Tidak Ada Data SPP atas Nama <?= $namaMurid; ?>
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <?php unset($_SESSION['err_warning']); ?>
           </div>
