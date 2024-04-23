@@ -2845,24 +2845,6 @@
                                         </tr>
                                     <?php endforeach; ?>
 
-                                    <!-- <tr>
-                                        <td style="text-align: center;"> 1 </td>
-                                        <td style="text-align: center;"><a style="cursor:pointer;"> NISWA </a> </td>
-                                        <td style="text-align: center;"> lorem </td>
-                                        <td style="text-align: center;"> ipsum </td>
-                                        <td style="text-align: center;"> test </td>
-                                        <td style="text-align: center;"> lorem ipsum </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td style="text-align: center;"> 2 </td>
-                                        <td style="text-align: center;"><a style="cursor:pointer;"> GATHAN </a> </td>
-                                        <td style="text-align: center;"> Bekasi </td>
-                                        <td style="text-align: center;"> 16 Desember 2002 </td>
-                                        <td style="text-align: center;"> Trisakti </td>
-                                        <td style="text-align: center;"> English </td>
-                                    </tr> -->
-
                                 </tbody>
 
                             </table>
@@ -2892,9 +2874,6 @@
                                 <?php if ($jumlahPagination == 1): ?>
                                     
                                 <?php elseif ($halamanAktif == $i): ?>
-                                    <!-- <a href="check_pembayaran_dan_inputdata.php?nextPage=<?= $halamanAktif - 1; ?>&page=<?= $i; ?>" style="color: red; font-weight: bold; font-size: 19px;">
-                                        <?= $i; ?>
-                                    </a> -->
 
                                     <form action="checkpembayarandaninputdata" method="post">
                                         <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
@@ -2904,9 +2883,7 @@
                                     </form>
 
                                 <?php else: ?>
-                                    <!-- <a href="check_pembayaran_dan_inputdata.php?page=<?= $i; ?>" id="nextsPage" data-next="<?= $i; ?>">
-                                        <?= $i; ?>
-                                    </a> -->
+
                                     <form action="checkpembayarandaninputdata" method="post">
                                         <input type="hidden" name="halamanKe" value="<?= $i; ?>">
                                         <button name="toPage">
@@ -3192,7 +3169,6 @@
                              <th style="text-align: center;"> DATE </th>
                              <th style="text-align: center;"> BULAN </th>
                              <th style="text-align: center;"> KELAS </th>
-                             <th style="text-align: center;"> NAMA KELAS</th>
                              <th style="text-align: center;"> NAMA </th>
                              <th style="text-align: center;"> PANGGILAN </th>
                              <th style="text-align: center;"> TRANSAKSI </th>
@@ -3224,7 +3200,6 @@
                                     <td style="text-align: center;"> <?= $data['DATE']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['BULAN']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
-                                    <td style="text-align: center;"> <?= $data['NAMA_KELAS']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -3246,24 +3221,6 @@
                                     <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
                                 </tr>
                             <?php endforeach; ?>
-
-                            <!-- <tr>
-                                <td style="text-align: center;"> 1 </td>
-                                <td style="text-align: center;"><a style="cursor:pointer;"> NISWA </a> </td>
-                                <td style="text-align: center;"> lorem </td>
-                                <td style="text-align: center;"> ipsum </td>
-                                <td style="text-align: center;"> test </td>
-                                <td style="text-align: center;"> lorem ipsum </td>
-                            </tr>
-
-                            <tr>
-                                <td style="text-align: center;"> 2 </td>
-                                <td style="text-align: center;"><a style="cursor:pointer;"> GATHAN </a> </td>
-                                <td style="text-align: center;"> Bekasi </td>
-                                <td style="text-align: center;"> 16 Desember 2002 </td>
-                                <td style="text-align: center;"> Trisakti </td>
-                                <td style="text-align: center;"> English </td>
-                            </tr> -->
 
                         </tbody>
 
