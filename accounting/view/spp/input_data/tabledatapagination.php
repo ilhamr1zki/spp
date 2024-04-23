@@ -1799,47 +1799,106 @@
         <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
 
             <?php if ($halamanAktif > 1): ?>
-            
-                <form action="checkpembayarandaninputdata" method="post">
-                    <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                    <button name="nextPage">
-                        &laquo;&laquo;
-                    </button>
-                </form>
+
+                <?php if ($halamanAktif > 100): ?>
+                    
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="paginationSekarangKurang100" value="<?= $halamanAktif; ?>">
+                        <button name="reductionPage100">
+                            &laquo;&laquo;
+                        </button>
+                    </form>
+
+                <?php else: ?>
+
+                <?php endif; ?>
 
                 <form action="checkpembayarandaninputdata" method="post">
                     <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
-                    <button name="previousPage">
+                    <button name="firstPage">
                         &laquo;
                         First Page
                     </button>
                 </form>
             <?php endif; ?>      
 
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextLastPage">
-                    On Page
-                </button>
-            </form>  
+            <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
+            <button name="findGetPage" onclick="findOpenPage()">
+                On Page
+            </button>
 
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextLastPage">
-                    Last Page
-                    &raquo;
-                </button>
-            </form>
+            <?php if ($halamanAktif == $jumlahPagination): ?>
+                
+            <?php else: ?>
 
-            <form action="checkpembayarandaninputdata" method="post">
-                <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextPage">
-                    &raquo;&raquo;
-                </button>
-            </form>
+                <form action="checkpembayarandaninputdata" method="post">
+                    <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
+                    <button name="nextLastPage">
+                        Last Page
+                        &raquo;
+                    </button>
+                </form>
+
+                <?php if ($showAddPage100 == "muncul" ): ?>
+
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="paginationSekarangTambah100" value="<?= $halamanAktif; ?>">
+                        <button name="addPage100">
+                            &raquo;&raquo;
+                        </button>
+                    </form>
+
+                <?php else: ?>
+                    
+
+                <?php endif ?>
+
+                
+
+            <?php endif ?>
 
         </div>
 
         <br>
     
     <?php endif; ?>
+
+    <!-- Modal Cari Siswa -->
+        <div id="findPage" class="modal"  data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel"> <i class="glyphicon glyphicon-calendar"></i> Cari Halaman </h4>
+                    </div>
+                    <div class="modal-body"> 
+                        <form action="checkpembayarandaninputdata" method="post">
+                            <div class="box-body">
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label> Cari Halaman Ke Berapa : </label>
+                                            <input type="text" class="form-control" id="cari_halaman" name="cari_halaman" placeholder="Wajib Di Tulis Angka">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label style="color: white;"> Cari Halaman Ke Berapa : </label>
+                                            <button name="findPageData" class="btn btn-success btn-sm">
+                                                Find Page
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    <!-- Akhir Modal Cari Siswa -->

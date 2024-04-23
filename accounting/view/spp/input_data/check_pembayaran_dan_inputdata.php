@@ -157,6 +157,14 @@
             $halamanAktif = $_POST['halamanKe'];
             $iniScrollNextPage = "ada";
 
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
@@ -181,6 +189,14 @@
             $halamanAktif = $_POST['halamanLanjut'];
             $iniScrollNextPage = "ada";
 
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
@@ -204,6 +220,115 @@
 
             $halamanAktif = $_POST['backPage'];
             $iniScrollPreviousPage  = "ada";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['firstPage'])) {
+
+            $halamanAktif = 1;
+            $iniScrollPreviousPage  = "ada";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['addPage100'])) {
+
+            $halamanAktif = $_POST['paginationSekarangTambah100'] + 100;
+            $iniScrollPreviousPage  = "ada";
+
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }            
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['reductionPage100'])) {
+
+            $halamanAktif = $_POST['paginationSekarangKurang100'] - 100;
+
+            $iniScrollPreviousPage = "ada";
+
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
@@ -594,9 +719,54 @@
                 $end_number = $jumlahPagination;
             }
 
+        } else if (isset($_POST['findPageData'])) {
+
+            $halamanAktif = $_POST['cari_halaman'];
+            $iniScrollPreviousPage  = "ada";
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }            
+
         } else {
 
             $halamanAktif = 1;
+
+            $totalHalamanTambah100 = $halamanAktif;
+
+            $showAddPage100 = "";
+
+            $totalHalamanTambah100 = $halamanAktif + 100;
+
+            if ($totalHalamanTambah100 <= $jumlahPagination) {
+                $showAddPage100 = "muncul";
+            } else {
+                $showAddPage100 = "tidak_muncul";
+            }            
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
@@ -2237,6 +2407,35 @@ $(document).ready(function() {
     // })
 
 });
+
+    function findOpenPage() {
+        $('#findPage').modal("show");
+        $('#cari_halaman').focus();
+
+        $(function () {
+            $("input[name='cari_halaman']").on('input', function (e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+        function onlynum() {
+            let ip = document.getElementById("num");
+            let tag = document.getElementById("value");
+            let res = ip.value;
+ 
+            if (res != '') {
+                if (isNaN(res)) {
+ 
+                    // Set input value empty
+                    ip.value = "";
+ 
+                    // Reset the form
+                    return false;
+                } else {
+                    return true
+                }
+            }
+        }
+    }
 
     function OpenCarisiswaModal(){
 
