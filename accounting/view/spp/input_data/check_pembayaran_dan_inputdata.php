@@ -70,6 +70,8 @@
 
                     if ($tanggalDari != ' dari' && $tanggalSampai == " sampai") {
                         $_SESSION['form_kosong']    = "hanya_tanggal_dari";
+                    } else if ($_POST['tanggal1'] > $_POST['tanggal2']) {
+                        $_SESSION['form_kosong']    = "tanggal_awal_lebih_besar";
                     } else {
                         $_SESSION['form_kosong']    = "form_not_empty";
                     }
@@ -491,6 +493,8 @@
                 $iniScrollFilterPage;
             } else if ($_SESSION['form_kosong'] == 'hanya_tanggal_dari') {         
                 $iniScrollFilterPage;
+            } else if($_SESSION['form_kosong'] == 'tanggal_awal_lebih_besar') {
+                $iniScrollFilterPage;
             } else {
                 $iniScrollFilterPage = "ada";
             }
@@ -574,6 +578,98 @@
                         // echo $dataAwal . "<br>";
                         $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
                         // print_r($ambildata_perhalaman->num_rows);
+
+                        $jumlahLink = 2;
+
+                        if ($halamanAktif > $jumlahLink) {
+                            $start_number = $halamanAktif - $jumlahLink;
+                        } else {
+                            $start_number = 1;
+                        }
+
+                        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                            $end_number = $halamanAktif + $jumlahLink;
+                        } else {
+                            $end_number = $jumlahPagination;
+                        }
+
+                    } else if ($dariTanggal > $sampaiTanggal) {
+
+                        $id                 = "";
+                        $nis                = "";
+                        $namaSiswa          = "";
+                        $kelas              = "";
+                        $panggilan          = "";
+
+                        $isifilby           = "kosong";
+
+                        $halamanAktif = 1;
+
+                        $totalHalamanTambah100 = $halamanAktif;
+
+                        $showAddPage100 = "";
+
+                        $totalHalamanTambah100 = $halamanAktif + 100;
+
+                        if ($totalHalamanTambah100 <= $jumlahPagination) {
+                            $showAddPage100 = "muncul";
+                        } else {
+                            $showAddPage100 = "tidak_muncul";
+                        }            
+
+                        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                        // echo $dataAwal . "<br>";
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+                        // print_r($ambildata_perhalaman->num_rows);
+
+                        $jumlahLink = 2;
+
+                        if ($halamanAktif > $jumlahLink) {
+                            $start_number = $halamanAktif - $jumlahLink;
+                        } else {
+                            $start_number = 1;
+                        }
+
+                        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                            $end_number = $halamanAktif + $jumlahLink;
+                        } else {
+                            $end_number = $jumlahPagination;
+                        }
+
+                    } else if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+
+                        echo "Masuk ke filter tanggal lengkap";
+
+                        // Data Filter SPP dan tanggal Filter
+                        echo "Masuk ke filter tanggal " . $dariTanggal . " & " . $sampaiTanggal;
+                        $namaMurid = $namaSiswa;
+
+                        $queryGetDataSPP = "
+                            SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            FROM input_data_sd
+                            WHERE
+                            SPP != 0
+                            AND NAMA LIKE '%$namaMurid%'
+                            AND STAMP BETWEEN '$dariTanggal' AND '$sampaiTanggal'
+                        ";
+
+                        $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+                        $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+                        // echo $hitungDataFilterSPP;
+                        $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
+
+                        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+                        $ambildata_perhalaman = mysqli_query($con, "
+                            SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            FROM input_data_sd
+                            WHERE
+                            SPP != 0
+                            AND NAMA LIKE '%$namaMurid%'
+                            AND STAMP BETWEEN '$dariTanggal' AND '$sampaiTanggal'
+                        ");
+
+                        $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
 
                         $jumlahLink = 2;
 
@@ -1677,6 +1773,13 @@
 
         <?php if(isset($_SESSION['form_kosong']) && $_SESSION['form_kosong'] == 'filter_kosong'){?>
           <div style="display: none;" class="alert alert-danger alert-dismissable"> Tidak Ada Filter yang di pilih
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <?php unset($_SESSION['form_kosong']); ?>
+          </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['form_kosong']) && $_SESSION['form_kosong'] == 'tanggal_awal_lebih_besar'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Tanggal Awal harus lebih dulu dari pada tanggal Akhir
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_kosong']); ?>
           </div>
