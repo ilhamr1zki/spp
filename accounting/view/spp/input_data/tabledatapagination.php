@@ -1794,31 +1794,26 @@
                             First Page
                         </button>
                     </form>
-                <?php endif; ?>        
+                <?php endif; ?>
 
                 <?php if ($hitungDataFilterSPP < 5): ?>
-                <?php else: ?>
-                    
-                    <?php if ($halamanAktif == $jumlahPagination): ?>
-                    
-                    <?php else: ?>
-                        
-                        <form action="checkpembayarandaninputdata" method="post">
-                            <input type="hidden" name="halamanTerakhirFilterSPP" value="<?= $halamanAktif + 1; ?>">
-                            <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
-                            <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
-                            <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
-                            <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
-                            <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
-                            <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
-                            <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
-                            <button name="lastPageFilterSPP">
-                                Last Page
-                                &raquo;
-                            </button>
-                        </form>
 
-                    <?php endif ?>
+                <?php else: ?>
+                        
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanTerakhirFilterSPP" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                        <button name="lastPageFilterSPP">
+                            Last Page
+                            &raquo;
+                        </button>
+                    </form>
 
                 <?php endif ?>
 

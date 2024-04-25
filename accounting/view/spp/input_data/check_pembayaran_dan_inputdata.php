@@ -532,7 +532,9 @@
                             FROM input_data_sd
                             WHERE
                             SPP != 0
-                            AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData ");
+                            AND NAMA LIKE '%$namaMurid%' 
+                            ORDER BY STAMP DESC
+                            LIMIT $dataAwal, $jumlahData");
                         // print_r($ambildata_perhalaman->num_rows);
                         $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
 
@@ -756,7 +758,9 @@
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData");
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
@@ -806,7 +810,9 @@
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData");
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
@@ -856,7 +862,9 @@
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND NAMA LIKE '%$namaMurid%' LIMIT $dataAwal, $jumlahData");
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
@@ -905,7 +913,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
-            $hitungDataFilterSPP = $jumlahPagination;
+            $hitungDataFilterSPP = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -913,6 +921,7 @@
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -960,7 +969,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
-            $hitungDataFilterSPP = $jumlahPagination;
+            $hitungDataFilterSPP = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -968,6 +977,7 @@
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -1055,6 +1065,7 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
+                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
             // print_r($ambildata_perhalaman->num_rows);
@@ -1112,6 +1123,7 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai' 
+                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -1174,6 +1186,7 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
+                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -1234,6 +1247,7 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
+                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -1288,6 +1302,7 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
+                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -2138,8 +2153,9 @@
     </div>
 </div>
 
+<!-- Filter SPP -->
 <?php if (isset($_POST['nextPageJustFilterSPP'])): ?>
-    <?php echo "if nextPageJustFilterSPP"; ?>
+    <!-- <?php echo "if nextPageJustFilterSPP"; ?> -->
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -2260,7 +2276,7 @@
     </div>
 
 <?php elseif(isset($_POST['previousPageJustFilterSPP'])): ?>
-    <?php echo "elseif previousPageJustFilterSPP"; ?>
+    <!-- <?php echo "elseif previousPageJustFilterSPP"; ?> -->
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -2381,7 +2397,7 @@
     </div>
 
 <?php elseif(isset($_POST['toPageFilterSPP'])): ?>
-    <?php echo "elseif toPageFilterSPP"; ?>
+    <!-- <?php echo "elseif toPageFilterSPP"; ?> -->
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -2502,7 +2518,7 @@
     </div>
 
 <?php elseif(isset($_POST['firstPageFilterSPP'])): ?>
-    <?php echo "elseif firstPageFilterSPP"; ?>
+    <!-- <?php echo "elseif firstPageFilterSPP"; ?> -->
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -2623,7 +2639,7 @@
     </div>
 
 <?php elseif(isset($_POST['lastPageFilterSPP'])): ?>
-    <?php echo "elseif lastPageFilterSPP"; ?>
+    <!-- <?php echo "elseif lastPageFilterSPP"; ?> -->
 
     <div class="box box-info">
         <div class="box-header with-border">
@@ -2743,9 +2759,11 @@
         <?php require 'tabledatapagination.php'; ?>
         
     </div>
+<!-- End Filter SPP -->
 
+<!-- Filter SPP with Date -->
 <?php elseif(isset($_POST['nextPageFilterSPPWithDate'])): ?>
-    <?php echo "elseif nextPageFilterSPPWithDate"; ?>
+    <!-- <?php echo "elseif nextPageFilterSPPWithDate"; ?> -->
 
     <div class="box box-info">
 
@@ -2870,7 +2888,7 @@
 
 <?php elseif(isset($_POST['previousPageFilterSPPWithDate'])): ?>
 
-    <?php echo "elseif previousPageFilterSPPWithDate"; ?>
+    <!-- <?php echo "elseif previousPageFilterSPPWithDate"; ?> -->
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -2992,7 +3010,7 @@
 
 <?php elseif(isset($_POST['firstPageFilterSPPWithDate'])): ?>
 
-    <?php echo "elseif firstPageFilterSPPWithDate"; ?>
+    <!-- <?php echo "elseif firstPageFilterSPPWithDate"; ?> -->
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -3113,7 +3131,7 @@
     </div>
 
 <?php elseif(isset($_POST['lastPageFilterSPPWithDate'])): ?>
-    <?php echo "elseif lastPageFilterSPPWithDate"; ?>
+    <!-- <?php echo "elseif lastPageFilterSPPWithDate"; ?> -->
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -3234,7 +3252,7 @@
     </div>
 
 <?php elseif(isset($_POST['toPageFilterSPPWithDate'])): ?>
-    <?php echo "elseif toPageFilterSPPWithDate"; ?>
+    <!-- <?php echo "elseif toPageFilterSPPWithDate"; ?> -->
 
     <div class="box box-info">
         <div class="box-header with-border">
@@ -3354,10 +3372,11 @@
         <?php require 'tabledatapagination.php'; ?>
         
     </div>    
+<!-- End Filter SPP with Date -->
 
 <?php else: ?>
 
-    <?php echo "Else"; ?>
+    <!-- <?php echo "Else"; ?> -->
 
     <div class="box box-info">
         <div class="box-header with-border">
