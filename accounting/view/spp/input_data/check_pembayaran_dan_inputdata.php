@@ -2183,7 +2183,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
                         </div>
                     </div>
 
@@ -2193,13 +2193,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
                         </div>
                     </div>
                     
@@ -2304,7 +2304,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
                         </div>
                     </div>
 
@@ -2314,13 +2314,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" readonly/>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
                         </div>
                     </div>
                     
@@ -2425,7 +2425,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
                         </div>
                     </div>
 
@@ -2435,13 +2435,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
                         </div>
                     </div>
                     
@@ -2546,7 +2546,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
                         </div>
                     </div>
 
@@ -2556,13 +2556,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
                         </div>
                     </div>
                     
@@ -2668,7 +2668,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
                         </div>
                     </div>
 
@@ -2678,13 +2678,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
                         </div>
                     </div>
                     
@@ -3405,7 +3405,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
                         </div>
                     </div>
 
@@ -3415,13 +3415,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" class="form-control" value="<?= $kelas; ?>" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" class="form-control" value="<?= $kelas; ?>" id="kelas_siswa" readonly/>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly />
                         </div>
                     </div>
                     
