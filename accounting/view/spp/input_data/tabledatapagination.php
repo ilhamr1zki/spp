@@ -2444,7 +2444,7 @@
                     
                     <form action="checkpembayarandaninputdata" method="post">
                         <input type="hidden" name="halamanLanjutFilterSPPWithDate" value="<?= $halamanAktif + 1; ?>">
-                        <input type="hidden" name="iniFilterSPPWithDate" value="<?= $_POST['isi_filter']; ?>">
+                        <input type="hidden" name="iniFilterSPPWithDate" value="<?= $isifilby; ?>">
                         <input type="hidden" name="idSiswaFilterSPPWithDate" value="<?= $id; ?>">
                         <input type="hidden" name="namaSiswaFilterSPPWithDate" value="<?= $namaMurid; ?>">
                         <input type="hidden" name="nisFormFilterSPPWithDate" value="<?= $nis; ?>">
