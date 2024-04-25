@@ -1764,7 +1764,7 @@
                     
                     <form action="checkpembayarandaninputdata" method="post">
                         <input type="hidden" name="halamanLanjutFilterSPP" value="<?= $halamanAktif + 1; ?>">
-                        <input type="hidden" name="iniFilterSPP" value="<?= $_POST['isi_filter']; ?>">
+                        <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
                         <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
                         <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
                         <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
