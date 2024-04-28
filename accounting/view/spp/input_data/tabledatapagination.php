@@ -46,7 +46,7 @@
                         ?>
 
                         <!-- SPP -->
-                        <div style="overflow-x: auto;">
+                         <div style="overflow-x: auto;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -935,6 +935,195 @@
                     <?php endif ?>
 
                     <!-- Akhir Bagian SPP -->
+
+                <?php elseif($_POST['isi_filter'] == 'PANGKAL') : ?>
+
+                    <?php if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") : ?>
+                        
+                        <?php echo "PAngkal"; ?>
+                        <?php  
+
+                            // Data PANGKAL
+                            $namaMurid = $_POST['nama_siswa'];
+                            $nis       = $_POST['nis_siswa'];
+                            $queryGetDataPANGKAL = "
+                            SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            FROM input_data_sd
+                            WHERE
+                            PANGKAL != 0
+                            AND NAMA LIKE '%$namaMurid%' ";
+                            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
+                            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
+                            // echo $hitungDataFilterPANGKAL;
+                            $getDataArr          = mysqli_fetch_array($execQueryDataPANGKAL);
+
+                            // Akhir Data PANGKAL
+
+                        ?>
+
+                        <!-- PANGKAL -->
+                        <div style="overflow-x: auto;">
+                                    
+                            <table id="example1" class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th style="text-align: center; width: 50px;"> ID </th>
+                                    <th style="text-align: center;"> NIS </th>
+                                    <th style="text-align: center;"> NAMA </th>
+                                    <th style="text-align: center;"> KELAS </th>
+                                    <th style="text-align: center;"> PANGKAL </th>
+                                    <th style="text-align: center;"> PEMBAYARAN BULAN </th>
+                                    <th style="text-align: center;"> KET PANGKAL </th>
+                                    <th style="text-align: center;"> TRANSAKSI </th>
+                                    <th style="text-align: center;"> Tanggal DiUpdate </th>
+                                    <th style="text-align: center;"> DI INPUT OLEH </th>
+                                    <th style="text-align: center;"> CETAK </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($ambildata_perhalaman as $data) : ?>
+                                        <tr>
+                                            <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
+                                            <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                                            <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                            <td style="text-align: center;">
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Kuitansi 
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
+
+                            <?php if ($halamanAktif > 1): ?>
+
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                                    <button name="previousPage">
+                                        &laquo;
+                                        Previous
+                                    </button>
+                                </form>
+
+                            <?php endif; ?>
+
+                            <?php for ($i = $start_number; $i <= $end_number; $i++): ?>
+
+                                <?php if ($jumlahPagination == 1): ?>
+                                    
+                                <?php elseif ($halamanAktif == $i): ?>
+
+                                    <form action="checkpembayarandaninputdata" method="post">
+                                        <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                                        <button name="currentPage" style="color: black; font-weight: bold; background-color: lightgreen;">
+                                            <?= $i; ?>
+                                        </button>
+                                    </form>
+
+                                <?php else: ?>
+
+                                    <form action="checkpembayarandaninputdata" method="post">
+                                        <input type="hidden" name="halamanKeFilterSPP" value="<?= $i; ?>">
+                                        <input type="hidden" name="iniFilterSPP" value="<?= $_POST['isi_filter']; ?>">
+                                        <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
+                                        <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                                        <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
+                                        <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
+                                        <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
+                                        <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                                        <button name="toPageFilterSPP">
+                                            <?= $i; ?>
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
+
+                            <?php endfor; ?>
+
+                            <?php if ($halamanAktif < $jumlahPagination): ?>
+                                
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="halamanLanjutFilterSPP" value="<?= $halamanAktif + 1; ?>">
+                                    <input type="hidden" name="iniFilterSPP" value="<?= $_POST['isi_filter']; ?>">
+                                    <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
+                                    <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
+                                    <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
+                                    <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                                    <button name="nextPageJustFilterSPP" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
+                                        next
+                                        &raquo;
+                                    </button>
+                                </form>
+
+                            <?php endif; ?>
+
+                        </div>
+
+                        <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
+
+                            <?php if ($halamanAktif > 1): ?>
+
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                                    <button name="previousPage">
+                                        &laquo;
+                                        First Page
+                                    </button>
+                                </form>
+                            <?php endif; ?>        
+
+                            <?php if ($hitungDataFilterSPP < 5): ?>
+                            <?php else: ?>
+                                
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="halamanTerakhirFilterSPP" value="<?= $halamanAktif + 1; ?>">
+                                    <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
+                                    <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
+                                    <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
+                                    <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
+                                    <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                                    <button name="lastPageFilterSPP">
+                                        Last Page
+                                        &raquo;
+                                    </button>
+                                </form>
+
+                            <?php endif ?>
+
+                        </div>
+
+                        <br>
+                   
+                    <?php endif; ?>
 
                 <?php endif; ?>
             

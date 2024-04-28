@@ -708,7 +708,7 @@
                         // echo "Masuk filter PANGKAL tanpa filter tanggal dari dan tanggal sampai";exit;
                         $namaMurid = $namaSiswa;
                         $queryGetDataSPP = "
-                        SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                        SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                         FROM input_data_sd
                         WHERE
                         PANGKAL != 0
@@ -721,10 +721,10 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_sd
                             WHERE
-                            SPP != 0
+                            PANGKAL != 0
                             AND NAMA LIKE '%$namaMurid%' 
                             ORDER BY STAMP DESC
                             LIMIT $dataAwal, $jumlahData");
