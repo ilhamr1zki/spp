@@ -4,43 +4,6 @@
 
     $code_accounting = $_SESSION['c_accounting'];
 
-    $sqlJuz = mysqli_query($con,
-    "select CONCAT('Juz ', tblall.juz_atau_keterangan_ayat,' Surah ', nmbagian) as nmjuzall, tblall.* from 
-    (
-        select tbl1.* from
-        (
-            select tj.id, tbl1.juz_atau_keterangan_ayat, tj.juz_atau_keterangan_ayat as nmbagian, count(sh.c_siswa) as jml, tj.seqjuz from tbl_juz tj
-            left join sisjuz_h sh on tj.id = sh.idjuz 
-            left join (select distinct tj2.id, tj2.juz_atau_keterangan_ayat from tbl_juz tj2 ) as tbl1 
-            on tj.parentid  = tbl1.id
-            where tj.parentid != 0
-            
-            and coalesce(sh.flag, 'N') = 'N'
-            group by tj.id, tj.juz_atau_keterangan_ayat, tbl1.juz_atau_keterangan_ayat, tj.seqjuz
-            order by tj.seqjuz
-        ) as tbl1
-    union 
-        select tbl2.* from
-        ( 
-            select tj.id, '' juz_atau_keterangan_ayat, tj.juz_atau_keterangan_ayat as nmbagian, count(sh.c_siswa) as jml, tj.seqjuz  from tbl_juz tj
-            left join sisjuz_h sh on tj.id = sh.idjuz  
-            where tj.parentid = 0 and tj.seqjuz  > 14
-            and coalesce(sh.flag, 'N') = 'N'
-            group by tj.id, tj.juz_atau_keterangan_ayat, tj.seqjuz
-            order by tj.seqjuz
-        ) as tbl2
-   ) as tblall
-   order by seqjuz"); 
-
-    $queryGetDataSeqJuz1 = mysqli_query($con, 
-        "SELECT id, juz_atau_keterangan_ayat, seqjuz FROM tbl_juz WHERE seqjuz = '1' "
-    );
-
-    $getDataArr = mysqli_fetch_array($queryGetDataSeqJuz1);
-    
-    $getDataIdJuz  = $getDataArr['id'];
-    $getDataSeqJuz = $getDataArr['seqjuz'];
-
     $dataBulan = [
         'Januari',
         'Februari',
@@ -55,6 +18,73 @@
         'November',
         'Desember'
     ];
+
+    $opsiTx = [
+        'TRANSFER',
+        'CASH'
+    ];
+
+    function hariIndo ($hariInggris) {
+      switch ($hariInggris) {
+        case 'Sunday':
+          return 'Minggu';
+        case 'Monday':
+          return 'Senin';
+        case 'Tuesday':
+          return 'Selasa';
+        case 'Wednesday':
+          return 'Rabu';
+        case 'Thursday':
+          return 'Kamis';
+        case 'Friday':
+          return 'Jumat';
+        case 'Saturday':
+          return 'Sabtu';
+        default:
+          return 'hari tidak valid';
+      }
+    }
+
+    function bulan_indo($month) {
+        $bulan = (int) $month;
+        $arrBln = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        return $arrBln[$bulan];
+    }
+
+    function bulan_indo_stempel($month) {
+        $bulan = (int) $month;
+        $arrBln = array('', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agust', 'Sept', 'Okt', 'Nov', 'Des');
+        return $arrBln[$bulan];
+    }
+
+    function format_tanggal_indo($tgl) {
+        $tanggal = substr($tgl, 8, 2);
+        $bulan = bulan_indo(substr($tgl, 5, 2));
+        $tahun = substr($tgl, 0, 4);
+        $day = date('D', strtotime($tgl));
+        $dayList = array(
+            'Sun' => 'Minggu',
+            'Mon' => 'Senin',
+            'Tue' => 'Selasa',
+            'Wed' => 'Rabu',
+            'Thu' => 'Kamis',
+            'Fri' => 'Jumat',
+            'Sat' => 'Sabtu'
+        );
+
+        return $tanggal . ' ' . $bulan . ' '. $tahun;  
+    }
+
+    function format_tanggal_stempel($tgl) {
+        $tanggal = substr($tgl, 8, 2);
+        $bulan = bulan_indo(substr($tgl, 5, 2));
+        $tahun = substr($tgl, 0, 4);
+        $day = date('D', strtotime($tgl));
+
+        return $tanggal . ' ' . $bulan . ' '. $tahun;  
+    }
+
+    // echo format_tanggal_indo(date("Y-m-d"));
 
 ?>
 
@@ -104,54 +134,38 @@
         <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
        
     </div>
-    <form action="<?php echo $basegu; ?>a-guru/<?php echo md5('addnaikjuz'); ?>/access" method="post">
+    <form action="<?= $baseac; ?>checkdata" method="post" target="_blank">
         <div class="box-body table-responsive">
-            <input type="hidden" id="_entryby" name="_entryby" class="form-control" value="<?php echo $na['nama'] ?>">
-            <input type="hidden" id="_idsiswa" name="_idsiswa" class="form-control">
-            <input type="hidden" id="_idjuz" name="_idjuz" class="form-control">
-            <input type="hidden" id="_idjuznext" name="_idjuznext" class="form-control">
-            <input type="hidden" id="_nmjuznext" name="_nmjuznext" class="form-control">
-            <input type="hidden" id="_seqnext" name="_seqnext" class="form-control">
-            <input type="hidden" id="code_siswa" name="code_siswa" class="form-control">
-
-            <input type="hidden" class="form-control" id="_nmsiswa" name="_nmsiswa">
-            <input type="hidden" class="form-control" id="_juzcur" name="_juzcur"/>
-            <input type="hidden" class="form-control" id="_juzutama" name="_juzutama"/>
-
-            <input type="hidden" id="_idjuzmanual" name="_idjuzmanual" class="form-control">
-            <input type="hidden" id="_seqnextmanual" name="_seqnextmanual" class="form-control">
-            <input type="hidden" id="_nmjuzmanual" name="_nmjuzmanual" class="form-control">
-            <input type="hidden" id="_nmbagianmanual" name="_nmbagianmanual" class="form-control">
 
             <div class="row">
                 <div class="col-sm-1">
                     <div class="form-group">
                         <label>ID</label>
-                        <input type="text" name="" value="4739" readonly="" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" name="_nmsiswa2" />
+                        <input type="text" name="" readonly="" class="form-control" id="id_siswa" name="id_siswa" />
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label>NIS</label>
-                        <input type="text" class="form-control" id="_kelassiswa" value="202302002" name="_kelassiswa" />
+                        <input type="text" class="form-control" id="nis_siswa" name="nis_siswa" readonly="" />
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-group">
                         <label>NAMA</label>
-                        <input type="text" name="" value="ZILLJIZAN" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" name="_nmsiswa2" />
+                        <input type="text" class="form-control" id="nama_siswa" readonly="" name="nama_siswa" />
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>PANGGILAN</label>
-                        <input type="text" name="" value="JIZAN" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" name="_nmsiswa2" />
+                        <input type="text" class="form-control" id="panggilan_siswa" readonly="" name="panggilan_siswa" />
                     </div>
                 </div>
                 <div class="col-sm-1">
                     <div class="form-group">
                         <label>Kelas</label>
-                        <input type="text" name="" value="1 SD" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="_nmsiswa2" name="_nmsiswa2" />
+                        <input type="text" class="form-control" readonly="" id="kelas_siswa" name="kelas_siswa" />
                     </div>
                 </div>
             </div> 
@@ -161,7 +175,7 @@
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label>TANGGAL</label>
-                        <input type="text" class="form-control" value="26-Feb-24" name="_bagianjuzcur2" id="_bagianjuzcur2" readonly="">
+                        <input type="date" class="form-control" name="tanggal_bukti_tf" id="tanggal_bukti_tf">
                     </div>
                 </div>
                 
@@ -188,8 +202,10 @@
                     <div class="form-group">
                         <label>TX</label>
                         <select class="form-control">
-                            <option> TRANSFER </option>
-                            <option> CASH  </option>
+                            <option> -- PILIH -- </option>
+                            <?php foreach ($opsiTx as $tx): ?>
+                                <option value="<?= $tx; ?>"> <?= $tx; ?> </option>
+                            <?php endforeach ?>
                         </select>
                     </div>
                 </div>
@@ -206,8 +222,8 @@
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 213px;"> UANG SPP </label>
-                            <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="">
-                            <input type="text" class="ket_uang_spp" name="">
+                            <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="nominal_spp">
+                            <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp" placeholder="Keterangan">
                         </div>
                     </div>
 
@@ -215,7 +231,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 174px;"> UANG PANGKAL </label>
                             <input type="text" id="rupiah_pangkal" class="uang_pangkal" value="0" name="">
-                            <input type="text" class="ket_uang_pangkal" name="">
+                            <input type="text" class="ket_uang_pangkal" name="" placeholder="Keterangan">
                         </div>
                     </div>
 
@@ -223,7 +239,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
                             <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="">
-                            <input type="text" class="ket_uang_regis" name="">
+                            <input type="text" class="ket_uang_regis" name="" placeholder="Keterangan">
                         </div>
                     </div>
 
@@ -231,7 +247,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 171px;"> UANG SERAGAM </label>
                             <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="">
-                            <input type="text" class="ket_uang_seragam" name="">
+                            <input type="text" class="ket_uang_seragam" name="" placeholder="Keterangan">
                         </div>
                     </div>
 
@@ -239,7 +255,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 203px;"> UANG BUKU </label>
                             <input type="text" id="rupiah_buku" class="uang_buku" value="0" name="">
-                            <input type="text" class="ket_uang_buku" name="">
+                            <input type="text" class="ket_uang_buku" name="" placeholder="Keterangan">
                         </div>
                     </div>
 
@@ -247,57 +263,48 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 172px;"> UANG KEGIATAN </label>
                             <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="">
-                            <input type="text" class="ket_uang_kegiatan" name="">
+                            <input type="text" class="ket_uang_kegiatan" name="" placeholder="Keterangan">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 22px;"> LAIN2/INFAQ/Sumbangan/Antar Jemput </label>
-                            <input type="text" id="rupiah_lain" class="lain2" value="100000" name="">
-                            <input type="text" class="ket_lain2" name="">
+                            <input type="text" id="rupiah_lain" class="lain2" value="0" name="">
+                            <input type="text" class="ket_lain2" name="" placeholder="Keterangan">
                         </div>
                     </div>
-
-                    <!-- <div class="row" id="tombol">
-                        <div class="col-sm-4">
-                            <div class="form-group" style="margin-left: 15px;">
-                                <button id="save_record" class="btn btn-warning btn-circle"> Save Record </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group" style="margin-left: 15px;">
-                                <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group" style="margin-left: 44px; width: 145%;">
-                                <button id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group" style="margin-left: 44px; width: 145%;">
-                                <button id="cek_pembayaran" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </button>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div class="tombol">
                         <div class="form-group">
                             <button id="save_record" class="btn btn-warning btn-circle"> Save Record </button>
                         </div>
 
+    </form>
+                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                        
                         <div class="form-group">
-                            <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button>
+                            <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp">
+                            <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa">
+                            <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa">
+                            <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa">
+                            <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf">
+                            <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp">
+                            <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
                         </div>
+                        
+                    </form>
 
                         <div class="form-group">
-                            <button id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
+                            <button id="cetak_slip_kuitansi" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </button>
                         </div>
-
+                    <!-- <form> -->
                         <div class="form-group">
-                            <button id="cek_pembayaran" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </button>
+                            <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </a>
+                            <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
                         </div>
+                    <!-- </form> -->
+
                     </div>
 
                 </div>  
@@ -305,10 +312,10 @@
             </div>
             
         </div>
-    </form>
     
 </div>
 
+<!-- Modal Cari Siswa -->
 <div id="datamassiswa" class="modal"  data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -318,7 +325,7 @@
             </div>
             <div class="modal-body"> 
                 <div class="box-body table-responsive">
-                    <table id="example1" class="table table-bordered table-hover">
+                    <table id="example1x" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                               <th style="text-align: center;" width="5%">NO</th>
@@ -353,16 +360,24 @@
                         ?>
                         <tbody>
                             <?php foreach ($execqueryGetAllDataSiswa as $data): ?>
-                            <tr>
-                                <td style="text-align: center;"> <?= $no++; ?> </td>
-                                <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['Nama']; ?> </td>
-                                <?php if ($data['jk'] == 'L'): ?>
-                                    <td style="text-align: center;"> Laki - Laki </td>
-                                <?php else: ?>
-                                    <td style="text-align: center;"> Perempuan </td>
-                                <?php endif; ?>
+                            <tr onclick="
+                                OnSiswaSelectedModal(
+                                    '<?= $data['ID']; ?>', 
+                                    '<?= $data['NIS']; ?>', 
+                                    '<?= $data['Nama']; ?>', 
+                                    '<?= $data['KELAS']; ?>', 
+                                    '<?= $data['Panggilan']; ?>'
+                                    )
+                                ">
+                                    <td style="text-align: center;"> <?= $no++; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
+                                    <td style="text-align: center;"> <?= $data['Nama']; ?> </td>
+                                    <?php if ($data['jk'] == 'L'): ?>
+                                        <td style="text-align: center;"> Laki - Laki </td>
+                                    <?php else: ?>
+                                        <td style="text-align: center;"> Perempuan </td>
+                                    <?php endif; ?>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -372,28 +387,60 @@
         </div>
     </div>    
 </div>
+<!-- Akhir Modal Cari Siswa -->
 
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
 
 <script language="javascript" type="text/javascript">
 
     /* Format Rupiah SPP */
-    let rupiah_spp = document.getElementById('rupiah_spp');
+    let rupiah_spp                  = document.getElementById('rupiah_spp')
+
+    // Form Data Siswa 
+    let dataNamaSiswa               = document.getElementById('nama_siswa')
+    let dataKetUangSPP              = document.getElementById('ket_uang_spp')
+    let dataTglBuktiTf              = document.getElementById('tanggal_bukti_tf');
+
+    // Kirim Data Tombol Cetak Kuitansi
+    let dataCetakKuitansiNamaSiswa  = document.getElementById('cetakKuitansi_nama_siswa')
+    let dataCetakKuitansiUangSPP    = document.getElementById('cetakKuitansi_uang_spp')
+    let dataCetakKuitansiTglTf      = document.getElementById('cetakKuitansi_bukti_tf')
+    let dataCetakKuitansiKetUangSPP = document.getElementById('cetakKuitansi_ket_uang_spp')
+
+    dataNamaSiswa.addEventListener('keyup', function(e) {
+        dataCetakKuitansiNamaSiswa.value = dataNamaSiswa.value
+    })
+
+    dataKetUangSPP.addEventListener('keyup', function(e) {
+        dataCetakKuitansiKetUangSPP.value = dataKetUangSPP.value
+    })
+
+    dataTglBuktiTf.addEventListener('change', function(e) {
+        dataCetakKuitansiTglTf.value = dataTglBuktiTf.value
+    })
 
     rupiah_spp.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik
         // alert("ok")
         // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah_spp.value = formatRupiah(this.value, 'Rp. ');
+        rupiah_spp.value = formatRupiahSPP(this.value, 'Rp. ');
+        dataCetakKuitansiUangSPP.value = rupiah_spp.value
     });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix){
+    let buttonCheckPayment = document.getElementById('cek_pembayaran')
+    buttonCheckPayment.addEventListener('click', function() {
+        document.location.href = `<?= $baseac; ?>checkpembayarandaninputdata`
+    })
+
+    let namaSiswa = document.getElementById('nama_siswa')
+
+    /* Fungsi formatRupiahSPP */
+    function formatRupiahSPP(angka, prefix){
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
-        split           = number_string.split(','),
-        sisa            = split[0].length % 3,
-        rupiah_spp          = split[0].substr(0, sisa),
-        ribuan          = split[0].substr(sisa).match(/\d{3}/gi);
+        split             = number_string.split(','),
+        sisa              = split[0].length % 3,
+        rupiah_spp        = split[0].substr(0, sisa),
+        ribuan            = split[0].substr(sisa).match(/\d{3}/gi);
 
         // tambahkan titik jika yang di input sudah menjadi angka ribuan
         if(ribuan){
@@ -413,12 +460,12 @@
     rupiah_pangkal.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik
         // alert("ok")
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah_pangkal.value = formatRupiah(this.value, 'Rp. ');
+        // gunakan fungsi formatRupiahPangkal() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah_pangkal.value = formatRupiahPangkal(this.value, 'Rp. ');
     });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix){
+    /* Fungsi formatRupiahPangkal */
+    function formatRupiahPangkal(angka, prefix){
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
         split           = number_string.split(','),
         sisa            = split[0].length % 3,
@@ -443,12 +490,12 @@
     rupiah_regis.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik
         // alert("ok")
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah_regis.value = formatRupiah(this.value, 'Rp. ');
+        // gunakan fungsi formatRupiahRegistrasi() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah_regis.value = formatRupiahRegistrasi(this.value, 'Rp. ');
     });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix){
+    /* Fungsi formatRupiahRegistrasi */
+    function formatRupiahRegistrasi(angka, prefix){
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
         split           = number_string.split(','),
         sisa            = split[0].length % 3,
@@ -473,12 +520,12 @@
     rupiah_seragam.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik
         // alert("ok")
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah_seragam.value = formatRupiah(this.value, 'Rp. ');
+        // gunakan fungsi formatRupiahSeragam() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah_seragam.value = formatRupiahSeragam(this.value, 'Rp. ');
     });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix){
+    /* Fungsi formatRupiahSeragam */
+    function formatRupiahSeragam(angka, prefix){
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
         split           = number_string.split(','),
         sisa            = split[0].length % 3,
@@ -503,12 +550,12 @@
     rupiah_buku.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik
         // alert("ok")
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah_buku.value = formatRupiah(this.value, 'Rp. ');
+        // gunakan fungsi formatRupiahBuku() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah_buku.value = formatRupiahBuku(this.value, 'Rp. ');
     });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix){
+    /* Fungsi formatRupiahBuku */
+    function formatRupiahBuku(angka, prefix){
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
         split           = number_string.split(','),
         sisa            = split[0].length % 3,
@@ -533,12 +580,12 @@
     rupiah_kegiatan.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik
         // alert("ok")
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah_kegiatan.value = formatRupiah(this.value, 'Rp. ');
+        // gunakan fungsi formatRupiahKegiatan() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah_kegiatan.value = formatRupiahKegiatan(this.value, 'Rp. ');
     });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix){
+    /* Fungsi formatRupiahKegiatan */
+    function formatRupiahKegiatan(angka, prefix){
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
         split           = number_string.split(','),
         sisa            = split[0].length % 3,
@@ -563,12 +610,12 @@
     rupiah_lain.addEventListener('keyup', function(e){
         // tambahkan 'Rp.' pada saat form di ketik
         // alert("ok")
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        rupiah_lain.value = formatRupiah(this.value, 'Rp. ');
+        // gunakan fungsi formatRupiahLain() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah_lain.value = formatRupiahLain(this.value, 'Rp. ');
     });
 
-    /* Fungsi formatRupiah */
-    function formatRupiah(angka, prefix){
+    /* Fungsi formatRupiahLain */
+    function formatRupiahLain(angka, prefix){
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
         split           = number_string.split(','),
         sisa            = split[0].length % 3,
@@ -600,20 +647,6 @@ $(document).ready(function() {
         height: 150
       });
 
-    // $("#btnSimpanCatatan").click(function() {
-    //     alert("Hello")
-    //     $.ajax({
-    //         url     : "../../a-guru/control.php",
-    //         type    : "POST",
-    //         data    : {
-    //             datanama : document.getElementById("_nmsiswa2").value
-    //         },
-    //         success:function(data) {
-    //             console.log(data);
-    //         }
-    //     });
-    // })
-
 });
 
     function OpenCarisiswaModal(){
@@ -621,83 +654,19 @@ $(document).ready(function() {
         $('#datamassiswa').modal("show");
     }
 
-    function OnSiswaSelectedModal(kode, nama, kelas, c_siswa, curjuz, idcurjuz, seqjuz, 
-    nextSeq, nextnmjuz, nextidjuz, nmbagian, catatan, nextjuzutama){
+    function OnSiswaSelectedModal(id, nis, nmsiswa, kelas, panggilan){
 
-        // alert(kode)
+        // alert(nmsiswa)
 
-        $('#_idsiswa').val(kode);
-        $('#_nmsiswa').val(nama);
-        $('#_nmsiswa2').text(nama);
-        $('#_kelassiswa').text(kelas);
+        $('#id_siswa').val(id);
+        $('#nis_siswa').val(nis);
+        $('#nama_siswa').val(nmsiswa);
+        $('#kelas_siswa').val(kelas);
+        $('#panggilan_siswa').val(panggilan)
 
-        //$('#editorcatatan').summernote('reset');
-        $('#editorcatatan').summernote('code', '<p><br></p>');
-
-        // Jika code siswa tidak ada di tabel sisjuz_h
-        if(c_siswa == undefined || c_siswa == null || c_siswa == '') {
-
-            let btnnaikjuz              = document.getElementById("btnnaikjuz");
-            btnnaikjuz.style.display    = "block";
-            btnnaikjuz.style.marginTop  = "10px";
-
-            alert(`${nama} belum ada di data naik juz`);
-            document.getElementById('code_siswa').value = kode
-
-            document.getElementById("isijuzsekarang").value = 30
-            document.getElementById("_setmanualjuzselect").value = "kosong"
-            $('#_juzcur').val("An Nas - Al Fajr");
-            $('#_bagianjuzcur2').val("An Nas - Al Fajr");
-            $('#_idjuz').val(`<?= $getDataIdJuz; ?>`);
-            $('#_seqnext').val(`<?= $getDataSeqJuz; ?>`);
-            
-        } else {
-
-            // Jika code siswa ada di table sisjuz_h tetapi di kolom juz dan kolom ketjuzsurah tidak ada data nya
-            let btnnaikjuz              = document.getElementById("btnnaikjuz");
-            btnnaikjuz.style.display    = "block";
-            btnnaikjuz.style.marginTop  = "10px";
-
-            $('#_idjuz').val(nextidjuz);
-            $('#_seqnext').val(nextSeq);
-            $('#_bagianjuzcur2').val(nmbagian ?? "");
-            $('#_nmjuznext').val(nextnmjuz ?? "");
-            
-            $('#_juzutama').val(nextjuzutama ?? "");
-            
-            fetch("view/tahfidz/singledatajuz_h.php?c_siswa=" + c_siswa)
-            .then((response) => {
-                if(!response.ok){ // Before parsing (i.e. decoding) the JSON data,// check for any errors.// In case of an error, throw.
-                    throw new Error("Terjadi kesalahan!");
-                }
-
-                return response.json(); // Parse the JSON data.
-            })
-            .then((data) => {
-                // console.log(data.catatan)
-                // alert('fetch');
-                const myJSON                = JSON.stringify(data.catatan);
-                const ketjuzsurahsekarang   = JSON.stringify(data.juz);
-                const idjuzsekarang         = JSON.stringify(data.idjuz);
-                document.getElementById("isijuzsekarang").value = ketjuzsurahsekarang.slice(1, -1).trim()
-                // alert(ketjuzsurahsekarang.slice(1, -1).trim())
-
-                // This is where you handle what to do with the response.
-                $('#editorcatatan').summernote('pasteHTML', myJSON.slice(1, -1).trim());
-                $('#_juzcur').val(ketjuzsurahsekarang.slice(1, -1).trim());
-
-                if(idjuzsekarang.slice(1, -1).trim() == "23")
-                {
-                    _btnnaikjuz.style.display = "none";
-                }
-
-            })
-            .catch((error) => {
-                // This is where you handle errors.
-            });
-
-        }
-
+        $('#cetakKuitansi_id_siswa').val(id)
+        $('#cetakKuitansi_nis_siswa').val(nis)
+        $('#cetakKuitansi_nama_siswa').val(nmsiswa)
         $('#datamassiswa').modal("hide");
     }
 

@@ -298,6 +298,16 @@
         margin-left: 29px;
       }
 
+      #cetak_kuitansi {
+        width: 100%;
+        margin-left: 29px;
+      }
+
+      #cetak_slip_kuitansi {
+        width: 100%;
+        margin-left: 29px;
+      }
+
       #jun22 {
         margin-left: 180px;
       }      
@@ -631,6 +641,11 @@ oncontextmenu="return false">
       require 'view/spp/input_data/datacheckpembayaran.php';
     }
 
+    #region cetak data
+    else if ($act == 'checkdata') {
+      require 'view/spp/input_data/checkformdata.php';
+    }    
+
     else{
       require 'view/404.php';
     }
@@ -751,7 +766,6 @@ oncontextmenu="return false">
 $(document).ready(function(){setTimeout(function(){$(".alert").fadeIn('fast');}, 100);});
 //angka 3000 dibawah ini artinya pesan akan hilang dalam 3 detik setelah muncul
 setTimeout(function(){$(".alert").fadeOut('fast');}, 3000);
-
 </script>
 </body>
 </html>
