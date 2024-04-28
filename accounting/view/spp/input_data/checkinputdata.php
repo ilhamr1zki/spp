@@ -51,12 +51,6 @@
         return $arrBln[$bulan];
     }
 
-    function bulan_indo_stempel($month) {
-        $bulan = (int) $month;
-        $arrBln = array('', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agust', 'Sept', 'Okt', 'Nov', 'Des');
-        return $arrBln[$bulan];
-    }
-
     function format_tanggal_indo($tgl) {
         $tanggal = substr($tgl, 8, 2);
         $bulan = bulan_indo(substr($tgl, 5, 2));
@@ -75,13 +69,8 @@
         return $tanggal . ' ' . $bulan . ' '. $tahun;  
     }
 
-    function format_tanggal_stempel($tgl) {
-        $tanggal = substr($tgl, 8, 2);
-        $bulan = bulan_indo(substr($tgl, 5, 2));
-        $tahun = substr($tgl, 0, 4);
-        $day = date('D', strtotime($tgl));
-
-        return $tanggal . ' ' . $bulan . ' '. $tahun;  
+    if (isset($_POST['simpan_data'])) {
+        echo $_POST['nominal_spp'];
     }
 
     // echo format_tanggal_indo(date("Y-m-d"));
@@ -134,7 +123,7 @@
         <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
        
     </div>
-    <form action="<?= $baseac; ?>checkdata" method="post" target="_blank">
+    <form action="<?= $baseac; ?>checkinputdata" method="post" target="_blank">
         <div class="box-body table-responsive">
 
             <div class="row">
@@ -277,7 +266,7 @@
 
                     <div class="tombol">
                         <div class="form-group">
-                            <button id="save_record" class="btn btn-warning btn-circle"> Save Record </button>
+                            <button id="save_record" name="simpan_data" class="btn btn-warning btn-circle"> Save Record </button>
                         </div>
 
     </form>
@@ -288,6 +277,7 @@
                             <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa">
                             <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa">
                             <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa">
+                            <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa">
                             <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf">
                             <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp">
                             <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
@@ -667,6 +657,7 @@ $(document).ready(function() {
         $('#cetakKuitansi_id_siswa').val(id)
         $('#cetakKuitansi_nis_siswa').val(nis)
         $('#cetakKuitansi_nama_siswa').val(nmsiswa)
+        $('#cetakKuitansi_kelas_siswa').val(kelas)
         $('#datamassiswa').modal("hide");
     }
 

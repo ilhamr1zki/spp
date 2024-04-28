@@ -65,6 +65,7 @@
     $idSiswa    = "";
     $namaSiswa  = "";
     $nisSiswa   = "";
+    $kelasSiswa = "";
     $tglTf      = "";
     $ketUangSPP = "";
 
@@ -80,6 +81,7 @@
         $idSiswa                      = $_POST['cetak_kuitansi_id_siswa'];
         $namaSiswa                    = $_POST['cetak_kuitansi_nama_siswa'];
         $nisSiswa                     = $_POST['cetak_kuitansi_nis_siswa'];
+        $kelasSiswa                   = $_POST['cetak_kuitansi_kelas_siswa'];
         $tglTf                        = date_create($_POST['cetak_kuitansi_bukti_tf']);
         $tglTf                        = date_format($tglTf, "d-M-y");
         $ketUangSPP                   = $_POST['cetak_kuitansi_ket_uang_spp'];
@@ -96,7 +98,7 @@
         $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
         $formatUangKeseluruhan = rupiah($totalKeseluruhan);
         $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
-        echo $formatUangKeseluruhan;
+        // echo $formatUangKeseluruhan;
 
         $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal_uang_spp);
 
@@ -237,8 +239,8 @@
                     <div class="details">
                         <p> NIS <span style="margin-left: 30px;"></span> : <span style="margin-left: 20px;">  </span> <strong> <?= $nisSiswa; ?> </strong> </p>
                         <!-- <p> NAMA  <span style="margin-left: 10px;"></span> : <span style="margin-left: 20px;">  </span> AIDIL HAMIZAN IBRAHIM PUSPANEGARA </p> -->
-                        <p> NAMA  <span style="margin-left: 12px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $namaSiswa; ?> </strong> </p>
-                        <p> KELAS  <span style="margin-left: 6px;"></span> : <span style="margin-left: 20px;"> </span> <strong> 3 SD </strong> </p>
+                        <p> NAMA  <span style="margin-left: 12px;"></span> : <span style="margin-left: 18px;"> </span> <strong> <?= $namaSiswa; ?> </strong> </p>
+                        <p> KELAS  <span style="margin-left: 6px;"></span> : <span style="margin-left: 18px;"> </span> <strong> <?= $kelasSiswa; ?> </strong> </p>
                     </div>
                     
                 </div>
