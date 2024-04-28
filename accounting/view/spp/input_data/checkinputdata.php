@@ -429,7 +429,7 @@
 
     let buttonCheckPayment = document.getElementById('cek_pembayaran')
     buttonCheckPayment.addEventListener('click', function() {
-        document.location.href = `<?= $baseac; ?>checkpembayarandaninputdata`
+        window.open(`<?= $baseac; ?>checkpembayarandaninputdata`)
     })
 
     let namaSiswa = document.getElementById('nama_siswa')

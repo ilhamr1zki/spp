@@ -528,7 +528,7 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_sd
                             WHERE
                             SPP != 0
@@ -667,7 +667,7 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_sd
                             WHERE
                             SPP != 0
@@ -754,7 +754,7 @@
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -806,7 +806,7 @@
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -858,7 +858,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -916,7 +916,7 @@
             $hitungDataFilterSPP = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -972,7 +972,7 @@
             $hitungDataFilterSPP = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -1059,7 +1059,7 @@
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -1117,7 +1117,7 @@
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -1180,7 +1180,7 @@
             $hitungDataFilterSPP = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -1241,7 +1241,7 @@
             $hitungDataFilterSPP = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
@@ -1296,7 +1296,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0

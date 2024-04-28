@@ -72,6 +72,11 @@
 
         // Data Form
         $terbilang_nominal_uang_spp   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_spp']);
+
+        if ($terbilang_nominal_uang_spp == '') {
+            echo "Tidak ada data apapun yang dikirim";exit; 
+        }
+
         $idSiswa                      = $_POST['cetak_kuitansi_id_siswa'];
         $namaSiswa                    = $_POST['cetak_kuitansi_nama_siswa'];
         $nisSiswa                     = $_POST['cetak_kuitansi_nis_siswa'];

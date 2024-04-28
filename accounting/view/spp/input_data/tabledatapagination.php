@@ -51,13 +51,14 @@
                             <table id="example1" class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th style="text-align: center; width: 100px;"> ID </th>
+                                    <th style="text-align: center; width: 50px;"> ID </th>
                                     <th style="text-align: center;"> NIS </th>
                                     <th style="text-align: center;"> NAMA </th>
                                     <th style="text-align: center;"> KELAS </th>
                                     <th style="text-align: center;"> SPP </th>
                                     <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                                     <th style="text-align: center;"> KET SPP </th>
+                                    <th style="text-align: center;"> TRANSAKSI </th>
                                     <th style="text-align: center;"> Tanggal DiUpdate </th>
                                     <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -75,6 +76,7 @@
                                             <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                         </tr>
@@ -590,13 +592,14 @@
                             <table id="example1" class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th style="text-align: center; width: 100px;"> ID </th>
+                                    <th style="text-align: center; width: 50px;"> ID </th>
                                     <th style="text-align: center;"> NIS </th>
                                     <th style="text-align: center;"> NAMA </th>
                                     <th style="text-align: center;"> KELAS </th>
                                     <th style="text-align: center;"> SPP </th>
                                     <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                                     <th style="text-align: center;"> KET SPP </th>
+                                    <th style="text-align: center;"> TRANSAKSI </th>
                                     <th style="text-align: center;"> Tanggal DiUpdate </th>
                                     <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -614,6 +617,7 @@
                                             <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                         </tr>
@@ -1149,13 +1153,14 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -1173,6 +1178,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -1321,13 +1327,14 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -1345,6 +1352,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -1492,13 +1500,14 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -1516,6 +1525,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -1663,13 +1673,14 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -1687,6 +1698,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -1829,13 +1841,14 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -1853,6 +1866,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -2003,6 +2017,7 @@
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -2020,6 +2035,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -2176,6 +2192,7 @@
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -2193,6 +2210,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -2350,6 +2368,7 @@
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -2367,6 +2386,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -2517,6 +2537,7 @@
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -2534,6 +2555,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
@@ -2690,6 +2712,7 @@
                         <th style="text-align: center;"> SPP </th>
                         <th style="text-align: center;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center;"> KET SPP </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
                         <th style="text-align: center;"> Tanggal DiUpdate </th>
                         <th style="text-align: center;"> DI INPUT OLEH </th>
 
@@ -2707,6 +2730,7 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                             </tr>
