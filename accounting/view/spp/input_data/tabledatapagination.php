@@ -2010,7 +2010,7 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
@@ -2185,7 +2185,7 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
@@ -2361,7 +2361,7 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
@@ -2530,7 +2530,7 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
@@ -2705,7 +2705,7 @@
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 100px;"> ID </th>
+                        <th style="text-align: center; width: 50px;"> ID </th>
                         <th style="text-align: center;"> NIS </th>
                         <th style="text-align: center;"> NAMA </th>
                         <th style="text-align: center;"> KELAS </th>
