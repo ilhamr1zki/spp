@@ -62,48 +62,109 @@
     $uangLain2          = 0;
     $totalKeseluruhan   = 0;
 
-    $idSiswa    = "";
-    $namaSiswa  = "";
-    $nisSiswa   = "";
-    $kelasSiswa = "";
-    $tglTf      = "";
-    $ketUangSPP = "";
+    $isiUangSPP         = 0;
+    $isiUangPangkal     = 0;
+    $isiUangKegiatan    = 0;
+    $isiUangBuku        = 0;
+    $isiUangSeragam     = 0;
+    $isiUangLain        = 0;
+    $isiUangRegis       = 0;
+
+    $terbilang_nominal  = 0; 
+
+    $idSiswa        = "";
+    $namaSiswa      = "";
+    $nisSiswa       = "";
+    $kelasSiswa     = "";
+    $tglTf          = "";
+    $bayarBulan     = "";
+
+    $ketUangSPP     = "";
+    $ketUangPANGKAL = "";
+    $rupiah_terbilang = "";
 
     if (isset($_POST['cetak_kuitansi'])) {
 
-        // Data Form
-        $terbilang_nominal_uang_spp   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_spp']);
 
-        if ($terbilang_nominal_uang_spp == '') {
-            echo "Tidak ada data apapun yang dikirim";exit; 
+        if ($_POST['cetak_kuitansi_uang_spp'] = 'kosong') {
+
+            $isiUangSPP;
+            $isiUangPangkal     = $_POST['cetak_kuitansi_uang_pangkal'];
+            $isiUangRegis;
+            $isiUangSeragam;
+            $isiUangBuku;
+            $isiUangKegiatan;
+            $isiUangLain;
+
+            $uangSPP;
+            $ketUangSPP;
+            $uangSeragam;
+            $uangBuku;
+            $uangKegiatan;
+            $uangLain2;
+
+            // Data Form
+            $terbilang_nominal   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_pangkal']);
+
+            $idSiswa                      = $_POST['cetak_kuitansi_id_siswa'];
+            $namaSiswa                    = $_POST['cetak_kuitansi_nama_siswa'];
+            $nisSiswa                     = $_POST['cetak_kuitansi_nis_siswa'];
+            $kelasSiswa                   = $_POST['cetak_kuitansi_kelas_siswa'];
+            $tglTf                        = date_create($_POST['cetak_kuitansi_bukti_tf']);
+            $tglTf                        = date_format($tglTf, "d-M-y");
+            $bayarBulan                   = $_POST['cetak_kuitansi_pembayaran_bulan'];
+            $ketUangPANGKAL               = $_POST['cetak_kuitansi_ket_uang_pangkal'];
+
+            $uangPangkal        = str_replace(["Rp. ",'"', ",", "."],"", $_POST['cetak_kuitansi_uang_pangkal']);
+            $formatUangPangkal  = rupiahFormat($uangPangkal);
+            $isiUangPangkal     = str_replace(["Rp "], "", $formatUangPangkal);
+            $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
+            $formatUangKeseluruhan = rupiah($totalKeseluruhan);
+            $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
+            // echo $formatUangKeseluruhan;
+
+            $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal);
+
+            $rupiah_terbilang = terbilang($terbilang);
+
+        } else {
+
+            // Data Form
+            $terbilang_nominal_uang_spp   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_spp']);
+
+            if ($terbilang_nominal_uang_spp == '') {
+                echo "Tidak ada data apapun yang dikirim";exit; 
+            }
+
+            $idSiswa         = $_POST['cetak_kuitansi_id_siswa'];
+            $namaSiswa       = $_POST['cetak_kuitansi_nama_siswa'];
+            $nisSiswa        = $_POST['cetak_kuitansi_nis_siswa'];
+            $kelasSiswa      = $_POST['cetak_kuitansi_kelas_siswa'];
+            $tglTf           = date_create($_POST['cetak_kuitansi_bukti_tf']);
+            $tglTf           = date_format($tglTf, "d-M-y");
+            $ketUangSPP      = $_POST['cetak_kuitansi_ket_uang_spp'];
+            $bayarBulan      = $_POST['cetak_kuitansi_pembayaran_bulan'];        
+
+            $uangSPP        = str_replace(["Rp. ",'"', ",", "."],"", $_POST['cetak_kuitansi_uang_spp']);
+            $formatUangSPP  = rupiahFormat($uangSPP);
+            $isiUangSPP     = str_replace(["Rp "], "", $formatUangSPP);
+            $uangPangkal;
+            $uangRegis;
+            $uangSeragam;
+            $uangBuku;
+            $uangKegiatan;
+            $uangLain2;
+            $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
+            $formatUangKeseluruhan = rupiah($totalKeseluruhan);
+            $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
+            // echo $formatUangKeseluruhan;
+
+            $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal_uang_spp);
+
+            $rupiah_terbilang = terbilang($terbilang);
+
         }
-
-        $idSiswa                      = $_POST['cetak_kuitansi_id_siswa'];
-        $namaSiswa                    = $_POST['cetak_kuitansi_nama_siswa'];
-        $nisSiswa                     = $_POST['cetak_kuitansi_nis_siswa'];
-        $kelasSiswa                   = $_POST['cetak_kuitansi_kelas_siswa'];
-        $tglTf                        = date_create($_POST['cetak_kuitansi_bukti_tf']);
-        $tglTf                        = date_format($tglTf, "d-M-y");
-        $ketUangSPP                   = $_POST['cetak_kuitansi_ket_uang_spp'];
-
-        $uangSPP        = str_replace(["Rp. ",'"', ",", "."],"", $_POST['cetak_kuitansi_uang_spp']);
-        $formatUangSPP  = rupiahFormat($uangSPP);
-        $isiUangSPP     = str_replace(["Rp "], "", $formatUangSPP);
-        $uangPangkal;
-        $uangRegis;
-        $uangSeragam;
-        $uangBuku;
-        $uangKegiatan;
-        $uangLain2;
-        $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
-        $formatUangKeseluruhan = rupiah($totalKeseluruhan);
-        $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
-        // echo $formatUangKeseluruhan;
-
-        $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal_uang_spp);
-
-        $rupiah_terbilang = terbilang($terbilang);
-        // echo json_encode(intval($nominal));
+         
     } else {
         echo "Tidak ada data yang dikirim";
         exit;
@@ -264,10 +325,10 @@
                 <div>
 
                     <div class="details">
-                        <!-- <p> NO <span style="margin-left: 42px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $idSiswa; ?> </strong> </p> -->
-                        <p> ID Siswa <span style="margin-left: 3px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $idSiswa; ?> </strong> </p>
+                        <p> NO <span style="margin-left: 42px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $idSiswa; ?> </strong> </p>
+                        <!-- <p> ID Siswa <span style="margin-left: 3px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $idSiswa; ?> </strong> </p> -->
                         <p> Tanggal  <span style="margin-left: 10px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $tglTf; ?> </strong> </p>
-                        <p> Bulan  <span style="margin-left: 25px;"></span> : <span style="margin-left: 20px;"> </span> <strong> MARET 2024 </strong> </p>
+                        <p> Bulan  <span style="margin-left: 25px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $bayarBulan; ?> </strong> </p>
                     </div>
                     
                 </div>
@@ -321,7 +382,7 @@
                         <strong>
                             2. Uang Pangkal 
                         </strong>
-                        <span style="margin-left: 28px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="0" style="font-weight: bold; text-align: end; width: 25%;" name="">
+                        <span style="margin-left: 28px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="<?= $isiUangPangkal; ?>" style="font-weight: bold; text-align: end; width: 25%;" name="">
                     </div>
 
                     <div class="details">
@@ -372,7 +433,7 @@
                     </div>
 
                     <div class="details">
-                        <input type="text" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" value="<?= $ketUangPANGKAL; ?>" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div>
 
                     <div class="details">
