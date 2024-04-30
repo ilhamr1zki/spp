@@ -81,6 +81,7 @@
 
     $ketUangSPP     = "";
     $ketUangPANGKAL = "";
+    $ketUangKegiatan = "";
     $rupiah_terbilang = "";
 
     if (isset($_POST['cetak_kuitansi'])) {
