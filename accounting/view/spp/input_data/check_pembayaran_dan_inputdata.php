@@ -2522,6 +2522,63 @@
                 $end_number = $jumlahPagination;
             }
 
+        } else if (isset($_POST['toPageFilterPangkalWithDate'])) {
+
+            $halamanAktif = $_POST['halamanKeFilterPangkalWithDate'];
+            $iniScrollNextPage = "ada";
+
+            $namaMurid = $_POST['namaSiswaFilterPangkalWithDate'];
+            $isifilby  = $_POST['iniFilterPangkalWithDate'];
+
+            $namaSiswa = $namaMurid;
+            $id        = $_POST['idSiswaFilterPangkalWithDate'];
+            $nis       = $_POST['nisFormFilterPangkalWithDate'];
+            $panggilan = $_POST['panggilanFormFilterPangkalWithDate'];
+            $kelas     = $_POST['kelasFormFilterPangkalWithDate'];
+
+            $tanggalDari    = $_POST['tanggalDariFormFilterPangkalWithDate'];
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterPangkalWithDate'];
+
+            $queryGetDataPangkalWithDate = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
+            $hitungDataFilterSemuaWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSemuaWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
         } else if (isset($_POST['nextPageFilterKegiatan'])) {
 
             $halamanAktif       = $_POST['halamanLanjutFilterKegiatan'];
