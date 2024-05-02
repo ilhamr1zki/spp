@@ -151,6 +151,10 @@
       width: 100px;
     }
 
+    #example1 tbody tr:hover {
+      background-color: aqua;
+    }
+
     .uang_spp, 
     .uang_pangkal, 
     .uang_regis,
