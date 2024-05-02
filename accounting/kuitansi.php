@@ -53,6 +53,8 @@
      
     }
 
+    $cetak_kuitansi_filter = "";
+
     $uangSPP            = 0;
     $uangPangkal        = 0;
     $uangRegis          = 0;
@@ -70,6 +72,10 @@
     $isiUangLain        = 0;
     $isiUangRegis       = 0;
 
+    $ketUangSPP         = "";
+    $ketUangPANGKAL     = "";
+    $ketUangKegiatan    = "";
+
     $terbilang_nominal  = 0; 
 
     $idSiswa        = "";
@@ -79,56 +85,23 @@
     $tglTf          = "";
     $bayarBulan     = "";
 
-    $ketUangSPP     = "";
-    $ketUangPANGKAL = "";
-    $ketUangKegiatan = "";
     $rupiah_terbilang = "";
 
     if (isset($_POST['cetak_kuitansi'])) {
 
+        $isiUangSPP      = $_POST['cetak_kuitansi_uang_spp'];
+        $isiUangPangkal  = $_POST['cetak_kuitansi_uang_pangkal'];
+        $isiUangKegiatan = $_POST['cetak_kuitansi_uang_kegiatan'];
+        $isiUangBuku     = $_POST['cetak_kuitansi_uang_buku'];
+        $isiUangSeragam  = $_POST['cetak_kuitansi_uang_seragam'];
+        $isiUangLain     = $_POST['cetak_kuitansi_uang_lain'];
+        $isiUangRegis    = $_POST['cetak_kuitansi_uang_registrasi'];
 
-        if ($_POST['cetak_kuitansi_uang_spp'] = 'kosong') {
+        $cetak_kuitansi_filter = $_POST['cetak_kuitansi_filter'];
 
-            $isiUangSPP;
-            $isiUangPangkal     = $_POST['cetak_kuitansi_uang_pangkal'];
-            $isiUangRegis;
-            $isiUangSeragam;
-            $isiUangBuku;
-            $isiUangKegiatan;
-            $isiUangLain;
-
-            $uangSPP;
-            $ketUangSPP;
-            $uangSeragam;
-            $uangBuku;
-            $uangKegiatan;
-            $uangLain2;
-
-            // Data Form
-            $terbilang_nominal   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_pangkal']);
-
-            $idSiswa                      = $_POST['cetak_kuitansi_id_siswa'];
-            $namaSiswa                    = $_POST['cetak_kuitansi_nama_siswa'];
-            $nisSiswa                     = $_POST['cetak_kuitansi_nis_siswa'];
-            $kelasSiswa                   = $_POST['cetak_kuitansi_kelas_siswa'];
-            $tglTf                        = date_create($_POST['cetak_kuitansi_bukti_tf']);
-            $tglTf                        = date_format($tglTf, "d-M-y");
-            $bayarBulan                   = $_POST['cetak_kuitansi_pembayaran_bulan'];
-            $ketUangPANGKAL               = $_POST['cetak_kuitansi_ket_uang_pangkal'];
-
-            $uangPangkal        = str_replace(["Rp. ",'"', ",", "."],"", $_POST['cetak_kuitansi_uang_pangkal']);
-            $formatUangPangkal  = rupiahFormat($uangPangkal);
-            $isiUangPangkal     = str_replace(["Rp "], "", $formatUangPangkal);
-            $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
-            $formatUangKeseluruhan = rupiah($totalKeseluruhan);
-            $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
-            // echo $formatUangKeseluruhan;
-
-            $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal);
-
-            $rupiah_terbilang = terbilang($terbilang);
-
-        } else {
+        if ($cetak_kuitansi_filter == 'semua') {
+            echo "semua";exit;
+        } elseif ($cetak_kuitansi_filter == 'spp') {
 
             // Data Form
             $terbilang_nominal_uang_spp   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_spp']);
@@ -165,6 +138,49 @@
             $rupiah_terbilang = terbilang($terbilang);
 
         }
+
+        // if ($_POST['cetak_kuitansi_uang_spp'] = 'kosong') {
+
+        //     $isiUangSPP;
+        //     $isiUangPangkal     = $_POST['cetak_kuitansi_uang_pangkal'];
+        //     $isiUangRegis;
+        //     $isiUangSeragam;
+        //     $isiUangBuku;
+        //     $isiUangKegiatan;
+        //     $isiUangLain;
+
+        //     $uangSPP;
+        //     $ketUangSPP;
+        //     $uangSeragam;
+        //     $uangBuku;
+        //     $uangKegiatan;
+        //     $uangLain2;
+
+        //     // Data Form
+        //     $terbilang_nominal   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_pangkal']);
+
+        //     $idSiswa                      = $_POST['cetak_kuitansi_id_siswa'];
+        //     $namaSiswa                    = $_POST['cetak_kuitansi_nama_siswa'];
+        //     $nisSiswa                     = $_POST['cetak_kuitansi_nis_siswa'];
+        //     $kelasSiswa                   = $_POST['cetak_kuitansi_kelas_siswa'];
+        //     $tglTf                        = date_create($_POST['cetak_kuitansi_bukti_tf']);
+        //     $tglTf                        = date_format($tglTf, "d-M-y");
+        //     $bayarBulan                   = $_POST['cetak_kuitansi_pembayaran_bulan'];
+        //     $ketUangPANGKAL               = $_POST['cetak_kuitansi_ket_uang_pangkal'];
+
+        //     $uangPangkal        = str_replace(["Rp. ",'"', ",", "."],"", $_POST['cetak_kuitansi_uang_pangkal']);
+        //     $formatUangPangkal  = rupiahFormat($uangPangkal);
+        //     $isiUangPangkal     = str_replace(["Rp "], "", $formatUangPangkal);
+        //     $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
+        //     $formatUangKeseluruhan = rupiah($totalKeseluruhan);
+        //     $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
+        //     // echo $formatUangKeseluruhan;
+
+        //     $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal);
+
+        //     $rupiah_terbilang = terbilang($terbilang);
+
+        // }
          
     } else {
         echo "Tidak ada data yang dikirim";

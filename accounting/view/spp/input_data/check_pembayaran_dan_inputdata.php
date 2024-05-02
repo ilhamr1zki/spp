@@ -1181,6 +1181,62 @@
                 $end_number = $jumlahPagination;
             }
 
+        } else if (isset($_POST['nextPageFilterSemuaWithDate'])) {
+
+            $halamanAktif       = $_POST['halamanLanjutFilterSemuaWithDate'];
+            $iniScrollNextPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid  = $_POST['namaSiswaFilterSemuaWithDate'];
+            $isifilby   = $_POST['iniFilterSemuaWithDate'];
+
+            $id         = $_POST['idSiswaFilterSemuaWithDate'];
+            $kelas      = $_POST['kelasFormFilterSemuaWithDate'];
+            $panggilan  = $_POST['panggilanFormFilterSemuaWithDate'];
+            $nis        = $_POST['nisFormFilterSemuaWithDate'];
+            $namaSiswa  = $_POST['namaFormFilterSemuaWithDate'];
+
+            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'];
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'];
+
+            $queryGetDataFilterSemua = "
+                SELECT * FROM input_data_sd
+                WHERE
+                STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
+            $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT * 
+                FROM input_data_sd
+                WHERE
+                NAMA LIKE '%$namaMurid%'
+                AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
         } else if (isset($_POST['nextPageJustFilterSPP'])) {
             
             $halamanAktif       = $_POST['halamanLanjutFilterSPP'];
@@ -1519,7 +1575,6 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
-                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
             // print_r($ambildata_perhalaman->num_rows);
@@ -1577,7 +1632,6 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai' 
-                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -1640,7 +1694,6 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
-                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -1701,7 +1754,6 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
-                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -1756,7 +1808,6 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP BETWEEN '$tanggalDari' AND '$tanggalSampai'
-                ORDER BY STAMP DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
