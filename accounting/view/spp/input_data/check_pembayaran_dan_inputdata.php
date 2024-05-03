@@ -516,7 +516,6 @@
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         // echo $hitungDataFilterSPP;
-                        $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
@@ -640,7 +639,7 @@
                         $namaMurid = $namaSiswa;
 
                         $tanggalDari    = $_POST['tanggal1'];
-                        $tanggalSampai  = $_POST['tanggal2']; 
+                        $tanggalSampai  = $_POST['tanggal2'];
 
                         $queryGetDataSPP = "
                             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -648,14 +647,12 @@
                             WHERE
                             SPP != 0
                             AND NAMA LIKE '%$namaMurid%'
-                            AND STAMP = '$dariTanggal' <= '$sampaiTanggal'
+                            AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                         ";
 
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         // $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         $hitungDataFilterSPPDate = mysqli_num_rows($execQueryDataSPP);
-                        echo $hitungDataFilterSPPDate . " Atas";
-                        $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -665,7 +662,7 @@
                             WHERE
                             SPP != 0
                             AND NAMA LIKE '%$namaMurid%'
-                            AND STAMP = '$dariTanggal' <= '$sampaiTanggal'
+                            AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             LIMIT $dataAwal, $jumlahData
                         ");
 
@@ -708,7 +705,6 @@
                         $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                         $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
                         // echo $hitungDataFilterPANGKAL;
-                        $getDataArr          = mysqli_fetch_array($execQueryDataPANGKAL);
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
@@ -893,7 +889,6 @@
                         $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
                         $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
                         // echo $hitungDataFilterSemua;
-                        $getDataArr          = mysqli_fetch_array($execQueryDataFilterSemua);
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
@@ -1862,20 +1857,19 @@
             $nis        = $_POST['nisFormFilterSPPWithDate'];
             $namaSiswa  = $_POST['namaFormFilterSPPWithDate'];
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'] . " 23:59:59";
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
-            echo $hitungDataFilterSPP . " Bawah";
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -1883,7 +1877,7 @@
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
             // print_r($ambildata_perhalaman->num_rows);
@@ -1933,7 +1927,6 @@
             ";
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
-            echo $hitungDataFilterSPP;
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -1975,15 +1968,15 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'] . " 23:59:59";
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -2004,7 +1997,7 @@
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -2035,15 +2028,15 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'] . " 23:59:59";
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -2065,7 +2058,7 @@
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -2097,20 +2090,20 @@
             $panggilan = $_POST['panggilanFormFilterSPPWithDate'];
             $kelas     = $_POST['kelasFormFilterSPPWithDate'];
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'] . " 23:59:59";
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
+
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
-            echo $hitungDataFilterSPP;
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -2120,7 +2113,7 @@
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -3330,8 +3323,6 @@
 
                         } else {
 
-                            $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
-
                             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                             // echo $dataAwal . "<br>";
                             $ambildata_perhalaman = mysqli_query($con, "
@@ -3806,7 +3797,7 @@
 
 <!-- Filter SPP -->
 <?php if (isset($_POST['nextPageJustFilterSPP'])): ?>
-    <!-- <?php echo "if nextPageJustFilterSPP"; ?> -->
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -4414,7 +4405,13 @@
 
 <!-- Filter SPP with Date -->
 <?php elseif(isset($_POST['nextPageFilterSPPWithDate'])): ?>
-    <!-- <?php echo "elseif nextPageFilterSPPWithDate"; ?> -->
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
 
     <div class="box box-info">
 
@@ -4445,7 +4442,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" readonly id="nama_siswa" />
                         </div>
                     </div>
 
@@ -4455,13 +4452,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" readonly class="form-control" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" readonly name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -4539,7 +4536,13 @@
 
 <?php elseif(isset($_POST['previousPageFilterSPPWithDate'])): ?>
 
-    <!-- <?php echo "elseif previousPageFilterSPPWithDate"; ?> -->
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -4567,7 +4570,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" readonly name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -4577,13 +4580,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
+                            <input type="text" readonly name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" readonly class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -4661,7 +4664,13 @@
 
 <?php elseif(isset($_POST['firstPageFilterSPPWithDate'])): ?>
 
-    <!-- <?php echo "elseif firstPageFilterSPPWithDate"; ?> -->
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -4689,7 +4698,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" readonly value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -4699,13 +4708,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" readonly id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" readonly id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -4782,7 +4791,14 @@
     </div>
 
 <?php elseif(isset($_POST['lastPageFilterSPPWithDate'])): ?>
-    <!-- <?php echo "elseif lastPageFilterSPPWithDate"; ?> -->
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -4810,7 +4826,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" name="nama_siswa" class="form-control" readonly="" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -4820,13 +4836,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" readonly class="form-control" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" class="form-control" id="panggilan_siswa" readonly value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -4903,7 +4919,13 @@
     </div>
 
 <?php elseif(isset($_POST['toPageFilterSPPWithDate'])): ?>
-    <!-- <?php echo "elseif toPageFilterSPPWithDate"; ?> -->
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
 
     <div class="box box-info">
         <div class="box-header with-border">
@@ -4932,7 +4954,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" readonly name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -4942,13 +4964,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" readonly name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" readonly class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
