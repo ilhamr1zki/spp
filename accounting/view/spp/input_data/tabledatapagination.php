@@ -2096,6 +2096,188 @@
 
                     <?php endif; ?>
 
+                <?php elseif($_POST['isi_filter'] == 'BUKU'): ?>
+
+                    <!-- <?php echo $_POST['isi_filter'] . " Belakang"; ?> -->
+                    <?php if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") : ?>
+
+                        <!-- KEGIATAN -->
+                        <div style="overflow-x: auto;">
+                                    
+                            <table id="example1" class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th style="text-align: center; width: 50px;"> ID </th>
+                                    <th style="text-align: center;"> NIS </th>
+                                    <th style="text-align: center;"> NAMA </th>
+                                    <th style="text-align: center;"> KELAS </th>
+                                    <th style="text-align: center;"> BUKU </th>
+                                    <th style="text-align: center;"> PEMBAYARAN BULAN </th>
+                                    <th style="text-align: center;"> KET BUKU </th>
+                                    <th style="text-align: center;"> TRANSAKSI </th>
+                                    <th style="text-align: center;"> STAMP </th>
+                                    <th style="text-align: center;"> DI INPUT OLEH </th>
+                                    <th style="text-align: center;"> CETAK </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($ambildata_perhalaman as $data) : ?>
+                                        <tr>
+                                            <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
+                                            <td style="text-align: center;"> <?= rupiah($data['BUKU']); ?> </td>
+                                            <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['BUKU_txt']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                            <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                            <td style="text-align: center;">
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['BUKU']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data['KEGIATAN_txt']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Kuitansi 
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
+
+                            <?php if ($halamanAktif > 1): ?>
+
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                                    <button name="previousPage">
+                                        &laquo;
+                                        Previous
+                                    </button>
+                                </form>
+
+                            <?php endif; ?>
+
+                            <?php for ($i = $start_number; $i <= $end_number; $i++): ?>
+
+                                <?php if ($jumlahPagination == 1): ?>
+                                    
+                                <?php elseif ($halamanAktif == $i): ?>
+
+                                    <form action="checkpembayarandaninputdata" method="post">
+                                        <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                                        <button name="currentPage" style="color: black; font-weight: bold; background-color: lightgreen;">
+                                            <?= $i; ?>
+                                        </button>
+                                    </form>
+
+                                <?php else: ?>
+
+                                    <form action="checkpembayarandaninputdata" method="post">
+                                        <input type="hidden" name="halamanKeFilterBuku" value="<?= $i; ?>">
+                                        <input type="hidden" name="iniFilterBuku" value="<?= $_POST['isi_filter']; ?>">
+                                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                                        <button name="toPageFilterBuku">
+                                            <?= $i; ?>
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
+
+                            <?php endfor; ?>
+
+                            <?php if ($halamanAktif < $jumlahPagination): ?>
+                                
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="halamanLanjutFilterBuku" value="<?= $halamanAktif + 1; ?>">
+                                    <input type="hidden" name="iniFilterBuku" value="<?= $_POST['isi_filter']; ?>">
+                                    <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                                    <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                                    <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                                    <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                                    <button name="nextPageFilterBuku" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
+                                        next
+                                        &raquo;
+                                    </button>
+                                </form>
+
+                            <?php endif; ?>
+
+                        </div>
+
+                        <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
+
+                            <?php if ($halamanAktif > 1): ?>
+
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                                    <button name="previousPage">
+                                        &laquo;
+                                        First Page
+                                    </button>
+                                </form>
+                            <?php endif; ?>        
+
+                            <?php if ($hitungDataFilterKegiatan <= 5): ?>
+                            <?php else: ?>
+                                
+                                <form action="checkpembayarandaninputdata" method="post">
+                                    <input type="hidden" name="halamanTerakhirFilterBuku" value="<?= $halamanAktif + 1; ?>">
+                                    <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                                    <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                                    <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                                    <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                                    <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                                    <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                                    <button name="lastPageFilterBuku">
+                                        Last Page
+                                        &raquo;
+                                    </button>
+                                </form>
+
+                            <?php endif; ?>
+
+                        </div>
+
+                        <br>
+
+                    <?php endif; ?>
+
                 <?php endif; ?>
             
             <?php else: ?>
@@ -10051,6 +10233,365 @@
                         <input type="hidden" name="tanggalDariFormFilterKegiatanWithDate" value="<?= $tanggalDari; ?>">
                         <input type="hidden" name="tanggalSampaiFormFilterKegiatanWithDate" value="<?= $tanggalSampai; ?>">
                         <button name="lastPageFilterKegiatanWithDate">
+                            Last Page
+                            &raquo;
+                        </button>
+                    </form>
+
+                <?php endif ?>
+
+            </div>
+
+            <br>
+
+        <?php elseif(isset($_POST['nextPageFilterBuku'])): ?>
+
+            <!-- BUKU -->
+            <div style="overflow-x: auto;">
+                        
+                <table id="example1" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th style="text-align: center; width: 50px;"> ID </th>
+                        <th style="text-align: center;"> NIS </th>
+                        <th style="text-align: center;"> NAMA </th>
+                        <th style="text-align: center;"> KELAS </th>
+                        <th style="text-align: center;"> BUKU </th>
+                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center;"> KET BUKU </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
+                        <th style="text-align: center;"> STAMP </th>
+                        <th style="text-align: center;"> DI INPUT OLEH </th>
+                        <th style="text-align: center;"> CETAK </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php $no = 1; ?>
+                        <?php foreach ($ambildata_perhalaman as $data) : ?>
+                            <tr>
+                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
+                                <td style="text-align: center;"> <?= rupiah($data['BUKU']); ?> </td>
+                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['BUKU_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;">
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden"  name="cetak_kuitansi_uang_buku" value="<?= $data['BUKU']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data['KEGIATAN_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
+
+                <?php if ($halamanAktif > 1): ?>
+                
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanSebelumnyaFilterBuku" value="<?= $halamanAktif - 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="previousPageFilterBuku">
+                            &laquo;
+                            Previous
+                        </button>
+                    </form>
+
+                <?php endif; ?>
+
+                <?php for ($i = $start_number; $i <= $end_number; $i++): ?>
+
+                    <?php if ($jumlahPagination == 1): ?>
+                        
+                    <?php elseif ($halamanAktif == $i): ?>
+
+                        <form action="checkpembayarandaninputdata" method="post">
+                            <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                            <button name="currentPage" style="color: black; font-weight: bold; background-color: lightgreen;">
+                                <?= $i; ?>
+                            </button>
+                        </form>
+
+                    <?php else: ?>
+
+                        <form action="checkpembayarandaninputdata" method="post">
+                            <input type="hidden" name="halamanKeFilterBuku" value="<?= $i; ?>">
+                            <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                            <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                            <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                            <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                            <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                            <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                            <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                            <button name="toPageFilterBuku">
+                                <?= $i; ?>
+                            </button>
+                        </form>
+                    <?php endif; ?>
+
+                <?php endfor; ?>
+
+                <?php if ($halamanAktif < $jumlahPagination): ?>
+                    
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanLanjutFilterBuku" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="nextPageFilterBuku" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
+                            next
+                            &raquo;
+                        </button>
+                    </form>
+
+                <?php endif; ?>
+
+            </div>
+
+            <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
+
+                <?php if ($halamanAktif > 1): ?>
+
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanPertamaFilterBuku" value="<?= $halamanAktif - 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="firstPageFilterBuku">
+                            &laquo;
+                            First Page
+                        </button>
+                    </form>
+
+                <?php endif; ?>
+
+                <?php if ($halamanAktif == $jumlahPagination): ?>
+                    
+                <?php else: ?>
+                    
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanTerakhirFilterBuku" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="lastPageFilterBuku">
+                            Last Page
+                            &raquo;
+                        </button>
+                    </form>
+
+                <?php endif; ?>
+
+            </div>
+
+            <br>
+
+        <?php elseif(isset($_POST['previousPageFilterBuku'])): ?>
+
+            <!-- BUKU -->
+            <div style="overflow-x: auto;">
+                        
+                <table id="example1" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th style="text-align: center; width: 50px;"> ID </th>
+                        <th style="text-align: center;"> NIS </th>
+                        <th style="text-align: center;"> NAMA </th>
+                        <th style="text-align: center;"> KELAS </th>
+                        <th style="text-align: center;"> BUKU </th>
+                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center;"> KET BUKU </th>
+                        <th style="text-align: center;"> TRANSAKSI </th>
+                        <th style="text-align: center;"> STAMP </th>
+                        <th style="text-align: center;"> DI INPUT OLEH </th>
+                        <th style="text-align: center;"> CETAK </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php $no = 1; ?>
+                        <?php foreach ($ambildata_perhalaman as $data) : ?>
+                            <tr>
+                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
+                                <td style="text-align: center;"> <?= rupiah($data['BUKU']); ?> </td>
+                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['BUKU_txt']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;">
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden"  name="cetak_kuitansi_uang_buku" value="<?= $data['BUKU']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data['KEGIATAN_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
+
+                <?php if ($halamanAktif > 1): ?>
+
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanSebelumnyaFilterBuku" value="<?= $halamanAktif - 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="previousPageFilterBuku">
+                            &laquo;
+                            Previous
+                        </button>
+                    </form>
+
+                <?php endif; ?>
+
+                <?php for ($i = $start_number; $i <= $end_number; $i++): ?>
+
+                    <?php if ($jumlahPagination == 1): ?>
+                        
+                    <?php elseif ($halamanAktif == $i): ?>
+
+                        <form action="checkpembayarandaninputdata" method="post">
+                            <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                            <button name="currentPage" style="color: black; font-weight: bold; background-color: lightgreen;">
+                                <?= $i; ?>
+                            </button>
+                        </form>
+
+                    <?php else: ?>
+
+                        <form action="checkpembayarandaninputdata" method="post">
+                            <input type="hidden" name="halamanKeFilterBuku" value="<?= $i; ?>">
+                            <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                            <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                            <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                            <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                            <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                            <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                            <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                            <button name="toPageFilterBuku">
+                                <?= $i; ?>
+                            </button>
+                        </form>
+                    <?php endif; ?>
+
+                <?php endfor; ?>
+
+                <?php if ($halamanAktif < $jumlahPagination): ?>
+                    
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanLanjutFilterBuku" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="nextPageFilterBuku" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
+                            next
+                            &raquo;
+                        </button>
+                    </form>
+
+                <?php endif; ?>
+
+            </div>
+
+            <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
+
+                <?php if ($halamanAktif > 1): ?>
+
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanPertamaFilterBuku" value="<?= $halamanAktif - 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="firstPageFilterBuku">
+                            &laquo;
+                            First Page
+                        </button>
+                    </form>
+                <?php endif; ?>
+
+                <?php if ($halamanAktif == $jumlahPagination): ?>
+                    
+                <?php else: ?>
+                    
+                    <form action="checkpembayarandaninputdata" method="post">
+                        <input type="hidden" name="halamanTerakhirFilterBuku" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="iniFilterBuku" value="<?= $isifilby; ?>">
+                        <input type="hidden" name="idSiswaFilterBuku" value="<?= $id; ?>">
+                        <input type="hidden" name="namaSiswaFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="nisFormFilterBuku" value="<?= $nis; ?>">
+                        <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
+                        <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
+                        <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                        <button name="lastPageFilterBuku">
                             Last Page
                             &raquo;
                         </button>
