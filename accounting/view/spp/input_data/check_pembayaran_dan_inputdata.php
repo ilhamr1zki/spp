@@ -924,12 +924,13 @@
                             SELECT * FROM input_data_sd 
                             WHERE
                             NAMA LIKE '%$namaMurid%'
-                            AND STAMP = '$dariTanggal' <= '$sampaiTanggal'
+                            AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                         ";
 
                         $execQueryDataFilterSemuaWithDate    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
                         // $hitungDataFilterSPP = mysqli_num_rows($execQueryDataFilterSemuaWithDate);
                         $hitungDataFilterSemuaWithDate = mysqli_num_rows($execQueryDataFilterSemuaWithDate);
+                        echo $hitungDataFilterSemuaWithDate;
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -937,7 +938,8 @@
                             SELECT * FROM input_data_sd
                             WHERE
                             NAMA LIKE '%$namaMurid%'
-                            AND STAMP = '$dariTanggal' <= '$sampaiTanggal'
+                            AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                            ORDER BY STAMP ASC
                             LIMIT $dataAwal, $jumlahData
                         ");
 
@@ -1287,11 +1289,12 @@
             $nis        = $_POST['nisFormFilterSemuaWithDate'];
             $namaSiswa  = $_POST['namaFormFilterSemuaWithDate'];
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'] . " 23:59:59";
 
             $queryGetDataFilterSemuaWithDate = "
-                SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                SELECT * FROM input_data_sd 
+                WHERE NAMA LIKE '%$namaMurid%' AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
             ";
 
             $execQueryDataFilterSemuaWithDate    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
@@ -1302,7 +1305,8 @@
                 FROM input_data_sd
                 WHERE
                 NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                ORDER BY STAMP ASC
                 LIMIT $dataAwal, $jumlahData
             ");
             // print_r($ambildata_perhalaman->num_rows);
@@ -1339,13 +1343,13 @@
             $panggilan = $_POST['panggilanFormFilterSemuaWithDate'];
             $kelas     = $_POST['kelasFormFilterSemuaWithDate'];
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'] . " 23:59:59";
 
             $queryGetDataFilterSemuaWithDate = "
                 SELECT * FROM input_data_sd
                 WHERE
-                STAMP = '$tanggalDari' <= '$tanggalSampai'
+                STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
             $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
@@ -1355,7 +1359,8 @@
                 SELECT * FROM input_data_sd
                 WHERE
                 NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
+                ORDER By STAMP ASC
                 LIMIT $dataAwal, $jumlahData");
 
             $jumlahPagination = ceil($hitungDataFilterSemuaWithDate / $jumlahData);
@@ -1388,13 +1393,13 @@
             $panggilan = $_POST['panggilanFormFilterSemuaWithDate'];
             $kelas     = $_POST['kelasFormFilterSemuaWithDate'];
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'] . " 23:59:59";
 
             $queryGetDataFilterSemuaWithDate = "
                 SELECT * FROM input_data_sd
                 WHERE
-                STAMP = '$tanggalDari' <= '$tanggalSampai'
+                STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
             $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
@@ -1407,7 +1412,8 @@
                 SELECT * FROM input_data_sd
                 WHERE
                 NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                ORDER by STAMP ASC
                 LIMIT $dataAwal, $jumlahData");
 
             $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
@@ -1440,13 +1446,13 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'] . " 23:59:59";
 
             $execQueryGetAllDataHistoriFilterSemua = mysqli_query($con, "
                 SELECT * FROM input_data_sd
                 WHERE
-                STAMP = '$tanggalDari' <= '$tanggalSampai'
+                STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -1465,7 +1471,8 @@
                 SELECT * FROM input_data_sd
                 WHERE
                 NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                ORDER BY STAMP ASC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -1496,13 +1503,13 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSemuaWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSemuaWithDate'] . " 23:59:59";
 
             $execQueryGetAllDataHistoriFilterSemua = mysqli_query($con, "
                 SELECT * FROM input_data_sd
                 WHERE
-                STAMP = '$tanggalDari' <= '$tanggalSampai'
+                STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -1522,7 +1529,8 @@
                 SELECT * FROM input_data_sd
                 WHERE
                 NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                ORDER BY STAMP ASC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -5657,6 +5665,13 @@
 <!-- Filter Semua With Date -->
 <?php elseif(isset($_POST['nextPageFilterSemuaWithDate'])): ?>
 
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
 
         <div class="box-header with-border">
@@ -5686,7 +5701,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" readonly name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -5696,13 +5711,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
+                            <input type="text" readonly name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" readonly class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -5780,6 +5795,13 @@
 
 <?php elseif(isset($_POST['previousPageFilterSemuaWithDate'])): ?>
 
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -5807,7 +5829,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" readonly name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -5817,13 +5839,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
+                            <input type="text" readonly name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" readonly class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -5901,6 +5923,13 @@
 
 <?php elseif(isset($_POST['toPageFilterSemuaWithDate'])): ?>
 
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -5928,7 +5957,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" readonly name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -5938,13 +5967,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
+                            <input type="text" readonly name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" readonly class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -6022,6 +6051,13 @@
 
 <?php elseif(isset($_POST['firstPageFilterSemuaWithDate'])): ?>
 
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -6049,7 +6085,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" readonly name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -6059,13 +6095,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
+                            <input type="text" readonly name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" readonly class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     
@@ -6143,6 +6179,13 @@
 
 <?php elseif(isset($_POST['lastPageFilterSemuaWithDate'])): ?>
 
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
     <div class="box box-info">
         <div class="box-header with-border">
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
@@ -6170,7 +6213,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Nama Siswa</label>
-                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
+                            <input type="text" readonly name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" />
                         </div>
                     </div>
 
@@ -6180,13 +6223,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
+                            <input type="text" readonly name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" value="MUHAMMAD ELVARO RAFARDHAN" id="kelas_siswa" />
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label>Panggilan</label>
-                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            <input type="text" readonly class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" />
                         </div>
                     </div>
                     

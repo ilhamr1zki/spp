@@ -1311,7 +1311,7 @@
                                      <!-- <th style="text-align: center;"> DATE </th> -->
                                      <th style="text-align: center;"> BULAN </th>
                                      <th style="text-align: center;"> KELAS </th>
-                                     <th style="text-align: center;"> NAMA KELAS</th>
+                                     <!-- <th style="text-align: center;"> NAMA KELAS</th> -->
                                      <th style="text-align: center;"> NAMA </th>
                                      <th style="text-align: center;"> PANGGILAN </th>
                                      <th style="text-align: center;"> TRANSAKSI </th>
@@ -1345,7 +1345,7 @@
                                             <!-- <td style="text-align: center;"> <?= $data['DATE']; ?> </td> -->
                                             <td style="text-align: center;"> <?= $data['BULAN']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['NAMA_KELAS']; ?> </td>
+                                            <!-- <td style="text-align: center;"> <?= $data['NAMA_KELAS']; ?> </td> -->
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -1521,7 +1521,7 @@
                                      <!-- <th style="text-align: center;"> DATE </th> -->
                                      <th style="text-align: center;"> BULAN </th>
                                      <th style="text-align: center;"> KELAS </th>
-                                     <th style="text-align: center;"> NAMA KELAS</th>
+                                     <!-- <th style="text-align: center;"> NAMA KELAS</th> -->
                                      <th style="text-align: center;"> NAMA </th>
                                      <th style="text-align: center;"> PANGGILAN </th>
                                      <th style="text-align: center;"> TRANSAKSI </th>
@@ -1555,7 +1555,7 @@
                                             <!-- <td style="text-align: center;"> <?= $data['DATE']; ?> </td> -->
                                             <td style="text-align: center;"> <?= $data['BULAN']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['NAMA_KELAS']; ?> </td>
+                                            <!-- <td style="text-align: center;"> <?= $data['NAMA_KELAS']; ?> </td> -->
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
