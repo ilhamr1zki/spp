@@ -653,7 +653,6 @@
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         // $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         $hitungDataFilterSPPDate = mysqli_num_rows($execQueryDataSPP);
-                        echo $hitungDataFilterSPPDate;
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -2038,7 +2037,6 @@
 
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
-            echo $hitungDataFilterSPP;
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
