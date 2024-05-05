@@ -653,6 +653,7 @@
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         // $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         $hitungDataFilterSPPDate = mysqli_num_rows($execQueryDataSPP);
+                        echo $hitungDataFilterSPPDate;
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -2023,19 +2024,21 @@
             $panggilan = $_POST['panggilanFormFilterSPPWithDate'];
             $kelas     = $_POST['kelasFormFilterSPPWithDate'];
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSPPWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSPPWithDate'] . " 23:59:59";
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
-                AND NAMA LIKE '%$namaMurid%' 
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
             ";
+
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+            echo $hitungDataFilterSPP;
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -2043,7 +2046,7 @@
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 

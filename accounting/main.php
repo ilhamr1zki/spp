@@ -156,7 +156,7 @@
     }
 
     #example1 th {
-      background-color: yellow;
+      background-color: lightblue;
       border: 2px solid black;
     }
 
@@ -391,7 +391,7 @@
       }
 
       #example1 th {
-        background-color: yellow;
+        background-color: lightblue;
         border: 2px solid black;
         width: 127%;
       }

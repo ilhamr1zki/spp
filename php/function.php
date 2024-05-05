@@ -25,6 +25,18 @@ function tgl($date){
   $result = $tanggal ." ". $bulan ." ". $tahun;       
   return($result);  
 }
+
+function tglIndo($date){  
+  $array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember');
+  $date = strtotime($date);
+  $tanggal = date ('d', $date);
+  $bulan = $array_bulan[date('n',$date)];
+  $tahun = date('Y',$date); 
+  $jamIndo = date("h:i:s", $date);
+  $result = $tanggal ." ". $bulan ." ". $tahun . " " . date($jamIndo);       
+  return($result);  
+}
+
 function bulan($bulan){
   if($bulan=='01'){$namabulan="Januari";}
   elseif($bulan=='01'){$namabulan="Januari";}
