@@ -280,7 +280,7 @@
                             <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa">
                             <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf">
                             <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp">
-                            <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
+                            <button id="cetak_kuitansi_web" name="cetak_kuitansi" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
                         </div>
                         
                     </form>

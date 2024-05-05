@@ -141,6 +141,16 @@
       text-align: end;
     }
 
+    #tombol-cetak {
+      display: flex; 
+      gap: 5px; 
+    }
+
+    #example1 {
+      width: 167% !important;
+      max-width: 200% !important;
+    }
+
     #example1_info {
       display: none;
     }
@@ -148,7 +158,6 @@
     #example1 th {
       background-color: yellow;
       border: 2px solid black;
-      width: 100px;
     }
 
     #example1 tbody tr:hover {
@@ -272,6 +281,17 @@
         text-align: end;
       }
 
+      #tombol-cetak {
+        display: flex; 
+        gap: 5px; 
+        flex-direction: column;
+      }
+
+      #example1 {
+        width: 167% !important;
+        max-width: 200% !important;
+      }
+
       .tombol {
         display: flex;
         flex-direction: column;
@@ -302,7 +322,7 @@
         margin-left: 29px;
       }
 
-      #cetak_kuitansi {
+      #cetak_kuitansi_web {
         width: 100%;
         margin-left: 29px;
       }
@@ -351,7 +371,7 @@
       }
 
       .flex-containers > div {
-        background-color: #f1f1f1;
+        background-color: white;
         border: 1px solid black;
         margin: 10px;
         width: 100%;
@@ -368,6 +388,12 @@
 
       #seqketsurahedit {
         width: 16%;
+      }
+
+      #example1 th {
+        background-color: yellow;
+        border: 2px solid black;
+        width: 127%;
       }
 
     }

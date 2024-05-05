@@ -46,22 +46,21 @@
                         ?>
 
                         <!-- SPP -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th style="text-align: center; width: 50px;"> ID </th>
-                                    <th style="text-align: center;"> NIS </th>
-                                    <th style="text-align: center;"> NAMA </th>
-                                    <th style="text-align: center;"> KELAS </th>
-                                    <th style="text-align: center;"> SPP </th>
-                                    <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                                    <th style="text-align: center;"> KET SPP </th>
-                                    <th style="text-align: center;"> TRANSAKSI </th>
-                                    <th style="text-align: center;"> STAMP </th>
-                                    <th style="text-align: center;"> DI INPUT OLEH </th>
-                                    <th style="text-align: center;"> CETAK </th>
+                                    <th style="text-align: center; width: 1%;"> NIS </th>
+                                    <th style="text-align: center; width: 10%;"> NAMA </th>
+                                    <th style="text-align: center; width: 3%;"> KELAS </th>
+                                    <th style="text-align: center; width: 5%;"> SPP </th>
+                                    <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                                    <th style="text-align: center; width: 7%;"> KET SPP </th>
+                                    <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
+                                    <th style="text-align: center; width: 5%;"> STAMP </th>
+                                    <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                                    <th style="text-align: center; width: 1%;"> CETAK </th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -69,7 +68,6 @@
                                     <?php $no = 1; ?>
                                     <?php foreach ($ambildata_perhalaman as $data) : ?>
                                         <tr>
-                                            <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -79,7 +77,7 @@
                                             <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                            <td style="text-align: center;">
+                                            <td style="text-align: center; justify-content: center;" id="tombol-cetak">
                                                 <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
@@ -102,7 +100,34 @@
                                                     <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
                                                     <input type="hidden" name="cetak_kuitansi_filter" value="spp">
                                                     <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
-                                                        Kuitansi 
+                                                        Kuitansi
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Slip Kuitansi 
                                                         <span class="glyphicon glyphicon-print"> 
                                                     </button>
                                                 </form>
@@ -222,7 +247,7 @@
 
                     <?php elseif($dariTanggal != ' 00:00:00' && $sampaiTanggal == ' 23:59:59'): ?>
 
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                             
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -419,7 +444,7 @@
 
                         <!-- <?php echo "Filter Tanggal dari tidak boleh lebih besar dari filter tanggal sampai " . $dariTanggal . " " . $sampaiTanggal; ?> -->
 
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                             
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -615,7 +640,7 @@
                     <?php elseif($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59'): ?>
 
                         <!-- SPP Filter Date -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -798,7 +823,7 @@
                         ?>
 
                         <!-- SPP -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -974,7 +999,7 @@
                         ?>
 
                         <!-- PANGKAL -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -1140,7 +1165,7 @@
                     <?php elseif($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59'): ?>
 
                         <!-- PANGKAL Filter Date -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -1301,7 +1326,7 @@
                     <?php if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") : ?>
 
                         <!-- SEMUA -->                 
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                 
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -1511,7 +1536,7 @@
                     <?php elseif($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59'): ?>
 
                         <!-- SEMUA with Date -->                 
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                 
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -1735,7 +1760,7 @@
                         <?php var_dump(mysqli_num_rows($ambildata_perhalaman)); ?>
 
                         <!-- KEGIATAN -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -1912,7 +1937,7 @@
                     <?php elseif($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59'): ?>
 
                         <!-- KEGIATAN -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -2102,7 +2127,7 @@
                     <?php if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") : ?>
 
                         <!-- KEGIATAN -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -2282,7 +2307,7 @@
             
             <?php else: ?>
 
-                <div style="overflow-x: auto;">
+                <div style="overflow-x: auto; margin: 10px;">
                             
                     <table id="example1" class="table table-bordered">
                         <thead>
@@ -2490,7 +2515,7 @@
 
         <?php elseif(isset($_POST['nextPageFilterSemua'])): ?>
 
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -2715,7 +2740,7 @@
         <?php elseif(isset($_POST['previousPageFilterSemua'])): ?>
 
             <!-- SEMUA -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -2936,7 +2961,7 @@
         <?php elseif(isset($_POST['toPageFilterSemua'])): ?>
 
             <!-- SEMUA -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -3165,7 +3190,7 @@
 
         <?php elseif(isset($_POST['firstPageFilterSemua'])): ?>
 
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -3383,7 +3408,7 @@
 
         <?php elseif(isset($_POST['lastPageFilterSemua'])): ?>
 
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -3603,7 +3628,7 @@
         <?php elseif(isset($_POST['nextPageFilterSemuaWithDate'])): ?>
 
             <!-- FILTER SEMUA WITH DATE -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -3838,7 +3863,7 @@
         <?php elseif(isset($_POST['previousPageFilterSemuaWithDate'])): ?>
 
             <!-- FILTER SEMUA WITH DATE -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -4072,7 +4097,7 @@
         <?php elseif(isset($_POST['toPageFilterSemuaWithDate'])): ?>
 
             <!-- FILTER SEMUA WITH DATE -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -4306,7 +4331,7 @@
         <?php elseif(isset($_POST['firstPageFilterSemuaWithDate'])): ?>
 
             <!-- FILTER SEMUA WITH DATE -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -4535,7 +4560,7 @@
         <?php elseif(isset($_POST['lastPageFilterSemuaWithDate'])): ?>
 
             <!-- FILTER SEMUA WITH DATE -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                                 
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -4770,7 +4795,7 @@
         <?php elseif(isset($_POST['nextPageJustFilterSPP'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -4959,7 +4984,7 @@
         <?php elseif(isset($_POST['previousPageJustFilterSPP'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -5147,7 +5172,7 @@
         <?php elseif(isset($_POST['toPageFilterSPP'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -5335,7 +5360,7 @@
         <?php elseif(isset($_POST['firstPageFilterSPP'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -5514,7 +5539,7 @@
         <?php elseif(isset($_POST['lastPageFilterSPP'])) : ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -5698,7 +5723,7 @@
         <?php elseif(isset($_POST['nextPageFilterSPPWithDate'])): ?>
 
             <!-- SPP With Date -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -5873,7 +5898,7 @@
         <?php elseif(isset($_POST['previousPageFilterSPPWithDate'])): ?>
 
             <!-- SPP with filter date-->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -6049,7 +6074,7 @@
         <?php elseif(isset($_POST['firstPageFilterSPPWithDate'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -6218,7 +6243,7 @@
         <?php elseif(isset($_POST['lastPageFilterSPPWithDate'])): ?>
 
             <!-- SPP With Date -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -6393,7 +6418,7 @@
         <?php elseif(isset($_POST['toPageFilterSPPWithDate'])) : ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -6572,7 +6597,7 @@
         <?php elseif(isset($_POST['nextPageJustFilterPANGKAL'])): ?>
 
             <!-- PANGKAL -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -6752,7 +6777,7 @@
         <?php elseif(isset($_POST['previousPageJustFilterPANGKAL'])): ?>
 
             <!-- PANGKAL -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -6933,7 +6958,7 @@
         <?php elseif(isset($_POST['toPageFilterPANGKAL'])): ?>
 
             <!-- PANGKAL -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -7117,7 +7142,7 @@
         <?php elseif(isset($_POST['firstPageFilterPANGKAL'])): ?>
 
             <!-- PANGKAL -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -7293,7 +7318,7 @@
         <?php elseif(isset($_POST['lastPageFilterPANGKAL'])) : ?>
 
             <!-- PANGKAL -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -7470,7 +7495,7 @@
         <?php elseif(isset($_POST['nextPageFilterPangkalWithDate'])): ?>
 
             <!-- PANGKAL With Date -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -7660,7 +7685,7 @@
         <?php elseif(isset($_POST['previousPageFilterPangkalWithDate'])): ?>
 
             <!-- PANGKAL With Date -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -7851,7 +7876,7 @@
         <?php elseif(isset($_POST['toPageFilterPangkalWithDate'])): ?>
 
             <!-- PANGKAL With Date -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -8040,7 +8065,7 @@
         <?php elseif(isset($_POST['firstPageFilterPangkalWithDate'])): ?>
 
             <!-- PANGKAL With Date -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -8224,7 +8249,7 @@
         <?php elseif(isset($_POST['lastPageFilterPangkalWithDate'])): ?>
 
             <!-- PANGKAL With Date -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -8414,7 +8439,7 @@
         <?php elseif(isset($_POST['nextPageFilterKegiatan'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -8594,7 +8619,7 @@
         <?php elseif(isset($_POST['previousPageFilterKegiatan'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -8775,7 +8800,7 @@
         <?php elseif(isset($_POST['toPageFilterKegiatan'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -8954,7 +8979,7 @@
         <?php elseif(isset($_POST['firstPageFilterKegiatan'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -9128,7 +9153,7 @@
         <?php elseif(isset($_POST['lastPageFilterKegiatan'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -9303,7 +9328,7 @@
         <?php elseif(isset($_POST['nextPageFilterKegiatanWithDate'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -9493,7 +9518,7 @@
         <?php elseif(isset($_POST['previousPageFilterKegiatanWithDate'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -9684,7 +9709,7 @@
         <?php elseif(isset($_POST['toPageFilterKegiatanWithDate'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -9873,7 +9898,7 @@
         <?php elseif(isset($_POST['firstPageFilterKegiatanWithDate'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -10057,7 +10082,7 @@
         <?php elseif(isset($_POST['lastPageFilterKegiatanWithDate'])): ?>
 
             <!-- KEGIATAN -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -10247,7 +10272,7 @@
         <?php elseif(isset($_POST['nextPageFilterBuku'])): ?>
 
             <!-- BUKU -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -10427,7 +10452,7 @@
         <?php elseif(isset($_POST['previousPageFilterBuku'])): ?>
 
             <!-- BUKU -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -10605,7 +10630,7 @@
 
         <?php else: ?>
 
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                             
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -10943,7 +10968,7 @@
 
                         <?php if ($hitungDataFilterSPP == 0): ?>
 
-                            <div style="overflow-x: auto;">
+                            <div style="overflow-x: auto; margin: 10px;">
                             
                                 <table id="example1" class="table table-bordered">
                                     <thead>
@@ -11162,7 +11187,7 @@
                         <?php else: ?>
 
                             <!-- SPP -->
-                            <div style="overflow-x: auto;">
+                            <div style="overflow-x: auto; margin: 10px;">
                                         
                                 <table id="example1" class="table table-bordered">
                                     <thead>
@@ -11322,7 +11347,7 @@
                         <?php echo "<script> alert('Filter Sampai Tanggal Juga Harus di isi') </script>"; ?>
 
                         <!-- SPP -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                             
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -11527,7 +11552,7 @@
 
                     <?php elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59"): ?>
 
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                             
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -11751,7 +11776,7 @@
                         ?>
 
                         <!-- SPP -->
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; margin: 10px;">
                                     
                             <table id="example1" class="table table-bordered">
                                 <thead>
@@ -11906,7 +11931,7 @@
             
             <?php else: ?>
 
-                <div style="overflow-x: auto;">
+                <div style="overflow-x: auto; margin: 10px;">
                             
                     <table id="example1" class="table table-bordered">
                         <thead>
@@ -12109,7 +12134,7 @@
         <?php elseif(isset($_POST['nextPageJustFilterSPP'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -12281,7 +12306,7 @@
         <?php elseif(isset($_POST['previousPageJustFilterSPP'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -12452,7 +12477,7 @@
         <?php elseif(isset($_POST['toPageFilterSPP'])): ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -12624,7 +12649,7 @@
 
             <?php echo "First Page " . $halamanAktif . $hitungDataFilterSPP; ?>
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -12790,7 +12815,7 @@
         <?php elseif(isset($_POST['lastPageFilterSPP'])) : ?>
 
             <!-- SPP -->
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                         
                 <table id="example1" class="table table-bordered">
                     <thead>
@@ -12956,7 +12981,7 @@
 
         <?php else: ?>
 
-            <div style="overflow-x: auto;">
+            <div style="overflow-x: auto; margin: 10px;">
                             
                 <table id="example1" class="table table-bordered">
                     <thead>
