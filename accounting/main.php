@@ -146,9 +146,21 @@
       gap: 5px; 
     }
 
+    #tombol-cetak-pangkal {
+      display: flex; 
+      gap: 12px; 
+      justify-content: center;
+      margin-right: -4px;
+    }
+
     #example1 {
       width: 167% !important;
       max-width: 200% !important;
+    }
+
+    #example_semua {
+      width: 230% !important;
+      max-width: 250% !important;
     }
 
     #example1_info {
@@ -161,6 +173,15 @@
     }
 
     #example1 tbody tr:hover {
+      background-color: aqua;
+    }
+
+    #example_semua th {
+      background-color: lightblue;
+      border: 2px solid black;
+    }
+
+    #example_semua tbody tr:hover {
       background-color: aqua;
     }
 
@@ -284,6 +305,13 @@
       #tombol-cetak {
         display: flex; 
         gap: 5px; 
+        flex-direction: column;
+      }
+
+      #tombol-cetak-pangkal {
+        display: flex; 
+        gap: 5px; 
+        justify-content: center;
         flex-direction: column;
       }
 

@@ -930,7 +930,6 @@
                         $execQueryDataFilterSemuaWithDate    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
                         // $hitungDataFilterSPP = mysqli_num_rows($execQueryDataFilterSemuaWithDate);
                         $hitungDataFilterSemuaWithDate = mysqli_num_rows($execQueryDataFilterSemuaWithDate);
-                        echo $hitungDataFilterSemuaWithDate;
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 

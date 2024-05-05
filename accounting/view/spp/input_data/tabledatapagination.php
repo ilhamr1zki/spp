@@ -1057,17 +1057,17 @@
                             <table id="example1" class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th style="text-align: center; width: 50px;"> ID </th>
-                                    <th style="text-align: center;"> NIS </th>
-                                    <th style="text-align: center;"> NAMA </th>
-                                    <th style="text-align: center;"> KELAS </th>
-                                    <th style="text-align: center;"> PANGKAL </th>
-                                    <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                                    <th style="text-align: center;"> KET PANGKAL </th>
-                                    <th style="text-align: center;"> TRANSAKSI </th>
-                                    <th style="text-align: center;"> STAMP </th>
-                                    <th style="text-align: center;"> DI INPUT OLEH </th>
-                                    <th style="text-align: center;"> CETAK </th>
+                                    <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                                    <th style="text-align: center; width: 1%;"> NIS </th>
+                                    <th style="text-align: center; width: 7%;"> NAMA </th>
+                                    <th style="text-align: center; width: 1%;"> KELAS </th>
+                                    <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                                    <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                                    <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                                    <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                                    <th style="text-align: center; width: 7%;"> STAMP </th>
+                                    <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                                    <th style="text-align: center; width: 1%;"> CETAK </th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -1075,7 +1075,7 @@
                                     <?php $no = 1; ?>
                                     <?php foreach ($ambildata_perhalaman as $data) : ?>
                                         <tr>
-                                            <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                            <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                             <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -1083,9 +1083,10 @@
                                             <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                            <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                            <td style="text-align: center;">
+                                            <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                                
                                                 <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                                     <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -1101,6 +1102,23 @@
                                                         <span class="glyphicon glyphicon-print"> 
                                                     </button>
                                                 </form>
+
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                                    <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Slip Kuitansi 
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -1223,17 +1241,17 @@
                             <table id="example1" class="table table-bordered">
                                 <thead>
                                   <tr>
-                                    <th style="text-align: center; width: 50px;"> ID </th>
-                                    <th style="text-align: center;"> NIS </th>
-                                    <th style="text-align: center;"> NAMA </th>
-                                    <th style="text-align: center;"> KELAS </th>
-                                    <th style="text-align: center;"> PANGKAL </th>
-                                    <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                                    <th style="text-align: center;"> KET PANGKAL </th>
-                                    <th style="text-align: center;"> TRANSAKSI </th>
-                                    <th style="text-align: center;"> STAMP </th>
-                                    <th style="text-align: center;"> DI INPUT OLEH </th>
-
+                                    <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                                    <th style="text-align: center; width: 1%;"> NIS </th>
+                                    <th style="text-align: center; width: 7%;"> NAMA </th>
+                                    <th style="text-align: center; width: 1%;"> KELAS </th>
+                                    <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                                    <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                                    <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                                    <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                                    <th style="text-align: center; width: 7%;"> STAMP </th>
+                                    <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                                    <th style="text-align: center; width: 1%;"> CETAK </th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -1241,7 +1259,7 @@
                                     <?php $no = 1; ?>
                                     <?php foreach ($ambildata_perhalaman as $data) : ?>
                                         <tr>
-                                            <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                            <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                             <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -1249,8 +1267,43 @@
                                             <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                            <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                            <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                                
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                                    <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Kuitansi 
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                                    <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Slip Kuitansi 
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
 
@@ -1381,10 +1434,9 @@
                         <!-- SEMUA -->                 
                         <div style="overflow-x: auto; margin: 10px;">
                                 
-                            <table id="example1" class="table table-bordered">
+                            <table id="example_semua" class="table table-bordered">
                                 <thead>
                                   <tr>
-                                     <th style="text-align: center; width: 100px;"> ID </th>
                                      <th style="text-align: center;"> NIS </th>
                                      <!-- <th style="text-align: center;"> DATE </th> -->
                                      <th style="text-align: center;"> NAMA </th>
@@ -1410,7 +1462,7 @@
                                      <th style="text-align: center;"> LAIN </th>
                                      <th style="text-align: center;"> KET LAIN </th>
                                      <th style="text-align: center;"> DI INPUT OLEH </th>
-                                     <th style="text-align: center;"> STAMP </th>
+                                     <th style="text-align: center; width: 7%;"> STAMP </th>
                                      <th style="text-align: center;"> CETAK </th>
                                   </tr>
                                 </thead>
@@ -1418,7 +1470,6 @@
 
                                     <?php foreach ($ambildata_perhalaman as $data) : ?>
                                         <tr>
-                                            <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -1444,8 +1495,8 @@
                                             <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                            <td style="text-align: center;">
+                                            <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                            <td style="text-align: center;" id="tombol-cetak">
                                                 <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -1468,6 +1519,32 @@
                                                     <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                                     <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                                         Kuitansi 
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Slip Kuitansi 
                                                         <span class="glyphicon glyphicon-print"> 
                                                     </button>
                                                 </form>
@@ -1591,10 +1668,9 @@
                         <!-- SEMUA with Date -->                 
                         <div style="overflow-x: auto; margin: 10px;">
                                 
-                            <table id="example1" class="table table-bordered">
+                            <table id="example_semua" class="table table-bordered">
                                 <thead>
                                   <tr>
-                                     <th style="text-align: center; width: 100px;"> ID </th>
                                      <th style="text-align: center;"> NIS </th>
                                      <!-- <th style="text-align: center;"> DATE </th> -->
                                      <th style="text-align: center;"> NAMA </th>
@@ -1628,7 +1704,6 @@
 
                                     <?php foreach ($ambildata_perhalaman as $data) : ?>
                                         <tr>
-                                            <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -1654,8 +1729,8 @@
                                             <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                            <td style="text-align: center;">
+                                            <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                            <td style="text-align: center;" id="tombol-cetak">
                                                 <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -1678,6 +1753,32 @@
                                                     <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                                     <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                                         Kuitansi 
+                                                        <span class="glyphicon glyphicon-print"> 
+                                                    </button>
+                                                </form>
+                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                    <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                                    <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                                    <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                                    <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                                        Slip Kuitansi 
                                                         <span class="glyphicon glyphicon-print"> 
                                                     </button>
                                                 </form>
@@ -2570,10 +2671,9 @@
 
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -2599,7 +2699,7 @@
                          <th style="text-align: center;"> LAIN </th>
                          <th style="text-align: center;"> KET LAIN </th>
                          <th style="text-align: center;"> DI INPUT OLEH </th>
-                         <th style="text-align: center;"> STAMP </th>
+                         <th style="text-align: center; width: 9%;"> STAMP </th>
                          <th style="text-align: center;"> CETAK </th>
                       </tr>
                     </thead>
@@ -2607,7 +2707,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -2633,8 +2732,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -2657,6 +2756,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -2795,10 +2920,9 @@
             <!-- SEMUA -->
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -2832,7 +2956,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -2858,8 +2981,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -2882,6 +3005,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -3016,10 +3165,9 @@
             <!-- SEMUA -->
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -3053,7 +3201,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -3079,8 +3226,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -3103,6 +3250,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -3245,10 +3418,9 @@
 
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -3282,7 +3454,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -3308,8 +3479,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -3332,6 +3503,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -3463,10 +3660,9 @@
 
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -3500,7 +3696,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -3526,8 +3721,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -3550,6 +3745,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -3683,10 +3904,9 @@
             <!-- FILTER SEMUA WITH DATE -->
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -3720,7 +3940,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -3746,8 +3965,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -3770,6 +3989,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -3918,10 +4163,9 @@
             <!-- FILTER SEMUA WITH DATE -->
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -3955,7 +4199,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -3981,8 +4224,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -4005,6 +4248,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -4152,10 +4421,9 @@
             <!-- FILTER SEMUA WITH DATE -->
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -4189,7 +4457,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -4215,8 +4482,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -4239,6 +4506,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -4386,10 +4679,9 @@
             <!-- FILTER SEMUA WITH DATE -->
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -4423,7 +4715,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -4449,8 +4740,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -4473,6 +4764,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -4615,10 +4932,9 @@
             <!-- FILTER SEMUA WITH DATE -->
             <div style="overflow-x: auto; margin: 10px;">
                                 
-                <table id="example1" class="table table-bordered">
+                <table id="example_semua" class="table table-bordered">
                     <thead>
                       <tr>
-                         <th style="text-align: center; width: 100px;"> ID </th>
                          <th style="text-align: center;"> NIS </th>
                          <!-- <th style="text-align: center;"> DATE </th> -->
                          <th style="text-align: center;"> NAMA </th>
@@ -4652,7 +4968,6 @@
 
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGGILAN']; ?> </td>
@@ -4678,8 +4993,8 @@
                                 <td style="text-align: center;"> <?= rupiah($data['LAIN']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['LAIN_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['INPUTER']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['STAMP']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
+                                <td style="text-align: center;" id="tombol-cetak">
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
@@ -4702,6 +5017,32 @@
                                         <input type="hidden" name="cetak_kuitansi_filter" value="semua">
                                         <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
                                             Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value=">">
+                                        <input type="hidden" name="cetak_kuitansi_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="">
+                                        <input type="hidden" name="cetak_kuitansi_uang_lain" value="">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="">
+                                        <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
+                                        <input type="hidden" name="cetak_kuitansi_filter" value="spp">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
@@ -7087,21 +7428,21 @@
 
             <!-- PANGKAL -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -7109,7 +7450,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -7117,14 +7458,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -7133,6 +7477,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -7267,21 +7628,21 @@
 
             <!-- PANGKAL -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -7289,7 +7650,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -7297,14 +7658,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -7313,6 +7677,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -7448,21 +7829,21 @@
 
             <!-- PANGKAL -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -7470,7 +7851,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -7478,14 +7859,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -7494,6 +7878,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -7632,21 +8033,21 @@
 
             <!-- PANGKAL -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -7654,7 +8055,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -7662,14 +8063,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -7678,6 +8082,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -7808,21 +8229,21 @@
 
             <!-- PANGKAL -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -7830,7 +8251,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -7838,14 +8259,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -7854,6 +8278,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -7985,21 +8426,21 @@
 
             <!-- PANGKAL With Date -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -8007,7 +8448,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -8015,14 +8456,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -8031,6 +8475,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -8175,21 +8636,21 @@
 
             <!-- PANGKAL With Date -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -8197,7 +8658,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -8205,14 +8666,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -8221,6 +8685,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -8366,21 +8847,21 @@
 
             <!-- PANGKAL With Date -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -8388,7 +8869,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -8396,14 +8877,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -8412,6 +8896,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -8555,21 +9056,21 @@
 
             <!-- PANGKAL With Date -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -8577,7 +9078,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -8585,14 +9086,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -8601,6 +9105,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -8739,21 +9260,21 @@
 
             <!-- PANGKAL With Date -->
             <div style="overflow-x: auto; margin: 10px;">
-                        
+                                    
                 <table id="example1" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th style="text-align: center; width: 50px;"> ID </th>
-                        <th style="text-align: center;"> NIS </th>
-                        <th style="text-align: center;"> NAMA </th>
-                        <th style="text-align: center;"> KELAS </th>
-                        <th style="text-align: center;"> PANGKAL </th>
-                        <th style="text-align: center;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center;"> KET PANGKAL </th>
-                        <th style="text-align: center;"> TRANSAKSI </th>
-                        <th style="text-align: center;"> STAMP </th>
-                        <th style="text-align: center;"> DI INPUT OLEH </th>
-                        <th style="text-align: center;"> CETAK </th>
+                        <!-- <th style="text-align: center; width: 50px;"> ID </th> -->
+                        <th style="text-align: center; width: 1%;"> NIS </th>
+                        <th style="text-align: center; width: 7%;"> NAMA </th>
+                        <th style="text-align: center; width: 1%;"> KELAS </th>
+                        <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                        <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                        <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
+                        <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -8761,7 +9282,7 @@
                         <?php $no = 1; ?>
                         <?php foreach ($ambildata_perhalaman as $data) : ?>
                             <tr>
-                                <td style="text-align: center;"> <?= $data['ID']; ?> </td>
+                                <!-- <td style="text-align: center;"> <?= $data['ID']; ?> </td> -->
                                 <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
@@ -8769,14 +9290,17 @@
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['tanggal_diupdate']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
-                                <td style="text-align: center;">
+                                <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
+                                    
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
                                         <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -8785,6 +9309,23 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
+
+                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <input type="hidden" name="cetak_kuitansi_uang_spp" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_uang_pangkal" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa" value="<?= $data['ID']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
+                                        <input type="hidden" name="cetak_kuitansi_pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                        <input type="hidden" id="cetakKuitansi_ket_uang_pangkal" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
+                                        <button id="cetak_kuitansi" name="cetak_kuitansi" class="btn btn-sm btn-success btn-circle"> 
+                                            Slip Kuitansi 
+                                            <span class="glyphicon glyphicon-print"> 
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>
