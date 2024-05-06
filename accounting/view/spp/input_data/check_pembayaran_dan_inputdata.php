@@ -1262,6 +1262,105 @@
 
                 }
 
+                // REGISTRASI
+                else if ($_POST['isi_filter'] == 'REGISTRASI') {
+
+                    if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") { 
+
+                        $namaMurid = $namaSiswa;
+                        $queryGetDataRegistrasi = "
+                        SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                        FROM input_data_sd
+                        WHERE
+                        REGISTRASI != 0
+                        AND NAMA LIKE '%$namaMurid%' ";
+
+                        $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+                        $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+                        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                        // echo $dataAwal . "<br>";
+                        $ambildata_perhalaman = mysqli_query($con, "
+                            SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            FROM input_data_sd
+                            WHERE
+                            REGISTRASI != 0
+                            AND NAMA LIKE '%$namaMurid%' 
+                            ORDER BY STAMP DESC
+                            LIMIT $dataAwal, $jumlahData");
+                        // print_r($ambildata_perhalaman->num_rows);
+                        $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+                        $jumlahLink = 2;
+
+                        if ($halamanAktif > $jumlahLink) {
+                            $start_number = $halamanAktif - $jumlahLink;
+                        } else {
+                            $start_number = 1;
+                        }
+
+                        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                            $end_number = $halamanAktif + $jumlahLink;
+                        } else {
+                            $end_number = $jumlahPagination;
+                        }
+
+                    } else if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+
+                        $namaMurid = $namaSiswa;
+
+                        $tanggalDari    = $_POST['tanggal1'];
+                        $tanggalSampai  = $_POST['tanggal2']; 
+
+                        $queryGetDataFilterRegistrasiWithDate = "
+                            SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            FROM input_data_sd
+                            WHERE
+                            REGISTRASI != 0
+                            AND NAMA LIKE '%$namaMurid%'
+                            AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                        ";
+
+                        $execQueryDataFilterRegistrasiWithDate    = mysqli_query($con, $queryGetDataFilterRegistrasiWithDate);
+                        // $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataFilterRegistrasiWithDate);
+                        $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataFilterRegistrasiWithDate);
+                        // echo $hitungDataFilterRegistrasiWithDate . "<br>";
+
+                        // echo "Dari tanggal : " . $dariTanggal . "<br> ". "Sampai Tanggal : " . $sampaiTanggal . "<br> Jumlah Data : ". $hitungDataFilterRegistrasiWithDate;
+                        // echo $hitungDataFilterPANGKAL;exit;
+
+                        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+                        $ambildata_perhalaman = mysqli_query($con, "
+                            SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            FROM input_data_sd
+                            WHERE
+                            REGISTRASI != 0
+                            AND NAMA LIKE '%$namaMurid%'
+                            AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                            LIMIT $dataAwal, $jumlahData
+                        ");
+
+                        $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+
+                        $jumlahLink = 2;
+
+                        if ($halamanAktif > $jumlahLink) {
+                            $start_number = $halamanAktif - $jumlahLink;
+                        } else {
+                            $start_number = 1;
+                        }
+
+                        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                            $end_number = $halamanAktif + $jumlahLink;
+                        } else {
+                            $end_number = $jumlahPagination;
+                        }
+
+                    }
+
+                }
+
             } else {
                 // Jika tidak ada filter yang di pilih (kosong)
                 $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
@@ -4212,8 +4311,8 @@
                 AND NAMA LIKE '%$namaMurid%' 
             ";
 
-            $execQueryDataBSeragam    = mysqli_query($con, $queryGetDataSeragam);
-            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataBSeragam);
+            $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
+            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -4630,6 +4729,571 @@
                 FROM input_data_sd
                 WHERE
                 SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['nextPageFilterRegistrasi'])) {
+
+            $halamanAktif       = $_POST['halamanLanjutFilterRegistrasi'];
+            $iniScrollNextPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid  = $_POST['namaSiswaFilterRegistrasi'];
+            $isifilby   = $_POST['iniFilterRegistrasi'];
+
+            $id         = $_POST['idSiswaFilterRegistrasi'];
+            $kelas      = $_POST['kelasFormFilterRegistrasi'];
+            $panggilan  = $_POST['panggilanFormFilterRegistrasi'];
+            $nis        = $_POST['nisFormFilterRegistrasi'];
+            $namaSiswa  = $_POST['namaFormFilterRegistrasi'];
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['previousPageFilterRegistrasi'])) {
+
+            $halamanAktif           = $_POST['halamanSebelumnyaFilterRegistrasi'];
+            $iniScrollPreviousPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid = $_POST['namaSiswaFilterRegistrasi'];
+            $isifilby  = $_POST['iniFilterRegistrasi'];
+
+            $id        = $_POST['idSiswaFilterRegistrasi'];
+            $nis       = $_POST['nisFormFilterRegistrasi'];
+            $namaSiswa = $_POST['namaFormFilterRegistrasi'];
+            $panggilan = $_POST['panggilanFormFilterRegistrasi'];
+            $kelas     = $_POST['kelasFormFilterRegistrasi'];
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku     = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi  = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['toPageFilterRegistrasi'])) {
+
+            $halamanAktif = $_POST['halamanKeFilterRegistrasi'];
+            $iniScrollNextPage = "ada";
+
+            $namaMurid = $_POST['namaSiswaFilterRegistrasi'];
+            $isifilby  = $_POST['iniFilterRegistrasi'];
+
+            $namaSiswa = $namaMurid;
+            $id        = $_POST['idSiswaFilterRegistrasi'];
+            $nis       = $_POST['nisFormFilterRegistrasi'];
+            $panggilan = $_POST['panggilanFormFilterRegistrasi'];
+            $kelas     = $_POST['kelasFormFilterRegistrasi'];
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['firstPageFilterRegistrasi'])) {
+
+            $namaMurid      = $_POST['namaFormFilterRegistrasi'];
+
+            $id             = $_POST['idSiswaFilterRegistrasi'];
+            $nis            = $_POST['nisFormFilterRegistrasi'];
+            $kelas          = $_POST['kelasFormFilterRegistrasi'];
+            $panggilan      = $_POST['panggilanFormFilterRegistrasi'];
+            $namaSiswa      = $namaMurid;
+
+            $isifilby       = $_POST['iniFilterRegistrasi'];
+
+            $iniScrollPreviousPage  = "ada";
+
+            $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasi = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['lastPageFilterRegistrasi'])) {
+
+            $namaMurid      = $_POST['namaSiswaFilterRegistrasi'];
+            $isifilby       = $_POST['iniFilterRegistrasi'];
+
+            $id             = $_POST['idSiswaFilterRegistrasi'];
+            $namaSiswa      = $namaMurid;
+            $kelas          = $_POST['kelasFormFilterRegistrasi'];
+            $panggilan      = $_POST['panggilanFormFilterRegistrasi'];
+            $nis            = $_POST['nisFormFilterRegistrasi'];
+
+            $iniScrollPreviousPage  = "ada";
+
+            $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasi = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['nextPageFilterRegistrasiWithDate'])) {
+
+            $halamanAktif       = $_POST['halamanLanjutFilterRegistrasiWithDate'];
+            $iniScrollNextPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid  = $_POST['namaSiswaFilterRegistrasiWithDate'];
+            $isifilby   = $_POST['iniFilterRegistrasiWithDate'];
+
+            $id         = $_POST['idSiswaFilterRegistrasiWithDate'];
+            $kelas      = $_POST['kelasFormFilterRegistrasiWithDate'];
+            $panggilan  = $_POST['panggilanFormFilterRegistrasiWithDate'];
+            $nis        = $_POST['nisFormFilterRegistrasiWithDate'];
+            $namaSiswa  = $_POST['namaFormFilterRegistrasiWithDate'];
+
+            $tanggalDari    = $_POST['tanggalDariFormFilterRegistrasiWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterRegistrasiWithDate'] . " 23:59:59";
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['previousPageFilterRegistrasiWithDate'])) {
+
+            $halamanAktif           = $_POST['halamanSebelumnyaFilterRegistrasiWithDate'];
+            $iniScrollPreviousPage  = "ada";
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $namaMurid = $_POST['namaSiswaFilterRegistrasiWithDate'];
+            $isifilby  = $_POST['iniFilterRegistrasiWithDate'];
+
+            $id        = $_POST['idSiswaFilterRegistrasiWithDate'];
+            $nis       = $_POST['nisFormFilterRegistrasiWithDate'];
+            $namaSiswa = $_POST['namaFormFilterRegistrasiWithDate'];
+            $panggilan = $_POST['panggilanFormFilterRegistrasiWithDate'];
+            $kelas     = $_POST['kelasFormFilterRegistrasiWithDate'];
+
+            $tanggalDari    = $_POST['tanggalDariFormFilterRegistrasiWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterRegistrasiWithDate'] . " 23:59:59";
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['toPageFilterRegistrasiWithDate'])) {
+
+            $halamanAktif = $_POST['halamanKeFilterRegistrasiWithDate'];
+            $iniScrollNextPage = "ada";
+
+            $namaMurid = $_POST['namaSiswaFilterRegistrasiWithDate'];
+            $isifilby  = $_POST['iniFilterRegistrasiWithDate'];
+
+            $namaSiswa = $namaMurid;
+            $id        = $_POST['idSiswaFilterRegistrasiWithDate'];
+            $nis       = $_POST['nisFormFilterRegistrasiWithDate'];
+            $panggilan = $_POST['panggilanFormFilterRegistrasiWithDate'];
+            $kelas     = $_POST['kelasFormFilterRegistrasiWithDate'];
+
+            $tanggalDari    = $_POST['tanggalDariFormFilterRegistrasiWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterRegistrasiWithDate'] . " 23:59:59";
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['firstPageFilterRegistrasiWithDate'])) {
+
+            $namaMurid      = $_POST['namaFormFilterRegistrasiWithDate'];
+
+            $id             = $_POST['idSiswaFilterRegistrasiWithDate'];
+            $nis            = $_POST['nisFormFilterRegistrasiWithDate'];
+            $kelas          = $_POST['kelasFormFilterRegistrasiWithDate'];
+            $panggilan      = $_POST['panggilanFormFilterRegistrasiWithDate'];
+            $namaSiswa      = $namaMurid;
+
+            $isifilby       = $_POST['iniFilterRegistrasiWithDate'];
+
+            $iniScrollPreviousPage  = "ada";
+
+            $tanggalDari    = $_POST['tanggalDariFormFilterRegistrasiWithDate'];
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterRegistrasiWithDate'];
+
+            $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasiWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if (isset($_POST['lastPageFilterRegistrasiWithDate'])) {
+
+            $namaMurid      = $_POST['namaSiswaFilterRegistrasiWithDate'];
+            $isifilby       = $_POST['iniFilterRegistrasiWithDate'];
+
+            $id             = $_POST['idSiswaFilterRegistrasiWithDate'];
+            $namaSiswa      = $namaMurid;
+            $kelas          = $_POST['kelasFormFilterRegistrasiWithDate'];
+            $panggilan      = $_POST['panggilanFormFilterRegistrasiWithDate'];
+            $nis            = $_POST['nisFormFilterRegistrasiWithDate'];
+
+            $iniScrollPreviousPage  = "ada";
+
+            $tanggalDari    = $_POST['tanggalDariFormFilterRegistrasiWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterRegistrasiWithDate'] . " 23:59:59";
+
+            $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasiWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
@@ -13047,6 +13711,1290 @@
         
     </div>
 <!-- End Filter Seragam With Date -->
+
+<!-- Filter Registrasi -->
+<?php elseif(isset($_POST['nextPageFilterRegistrasi'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['previousPageFilterRegistrasi'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['toPageFilterRegistrasi'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['firstPageFilterRegistrasi'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['lastPageFilterRegistrasi'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+<!-- End Filter Registrasi -->
+
+<!-- Filter Registrasi With Date -->
+<?php elseif(isset($_POST['nextPageFilterRegistrasiWithDate'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['previousPageFilterRegistrasiWithDate'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['toPageFilterRegistrasiWithDate'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['firstPageFilterRegistrasiWithDate'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+
+<?php elseif(isset($_POST['lastPageFilterRegistrasiWithDate'])): ?>
+
+    <?php 
+
+        $tanggalDari   = str_replace([' 00:00:00'], "", $tanggalDari);
+        $tanggalSampai = str_replace([' 23:59:59'], "", $tanggalSampai);
+
+    ?>
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+        <form action="checkpembayarandaninputdata" method="post">
+            <div class="box-body">
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>ID Siswa</label>
+                            <input type="text" class="form-control" value="<?= $id; ?>" name="id_siswa" id="id_siswa" readonly="">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" value="<?= $nis; ?>" name="nis_siswa" id="nis_siswa" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Nama Siswa</label>
+                            <input type="text" name="nama_siswa" class="form-control" value="<?= $namaSiswa; ?>" id="nama_siswa" readonly/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" name="kelas_siswa" value="<?= $kelas; ?>" class="form-control" id="kelas_siswa" readonly/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Panggilan</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" value="<?= $panggilan; ?>" name="panggilan_siswa" readonly/>
+                        </div>
+                    </div>
+                    
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Filter By</label>
+                            <select class="form-control" name="isi_filter">  
+                                <option value="kosong"> -- PILIH -- </option>
+                                <?php foreach ($filter_by['isifilter_by'] as $filby): ?>
+                                    <?php if ($filby == $isifilby): ?>
+
+                                        <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                    
+                                    
+                                    <?php else: ?>
+
+                                        <?php if ($filby == 'LAIN'): ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > LAIN - LAIN </option>
+
+                                        <?php else: ?>
+
+                                            <option value="<?= $filby; ?>" <?=($filby == $isifilby )?'selected="selected"':''?> > <?= $filby; ?> </option>
+                                            
+                                        <?php endif; ?>
+                                    
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date From </label>
+                            <?php if ($tanggalDari == 'kosong_tgl1'): ?>
+                                <input type="date" class="form-control" name="tanggal1">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal1" value="<?= $tanggalDari; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label> Filter Date To </label>
+                            <?php if ($tanggalSampai == 'kosong_tgl2'): ?>
+                                <input type="date" class="form-control" name="tanggal2">
+                            <?php else: ?>
+                                <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label style="color: white;"> Filter </label>
+                            <button type="submit" name="filter_by" class="form-control btn-primary"> Filter </button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="new1" />
+
+            </div>
+        </form>
+
+        <?php require 'tabledatapagination.php'; ?>
+        
+    </div>
+<!-- End Filter Registrasi With Date  -->
 
 <?php else: ?>
 
