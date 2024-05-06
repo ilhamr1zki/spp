@@ -27,13 +27,16 @@ function tgl($date){
 }
 
 function tglIndo($date){  
+  $tanggal_indo = date_create($date);
+  date_timezone_set($tanggal_indo,timezone_open("Asia/Jakarta"));
   $array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember');
   $date = strtotime($date);
   $tanggal = date ('d', $date);
   $bulan = $array_bulan[date('n',$date)];
   $tahun = date('Y',$date); 
-  $jamIndo = date("h:i:s", $date);
-  $result = $tanggal ." ". $bulan ." ". $tahun . " " . date($jamIndo);       
+  // $jamIndo = date("h:i:s", $date);
+  $jamIndo = date_format($tanggal_indo, "H:i:s");
+  $result = $tanggal ." ". $bulan ." ". $tahun . " " . $jamIndo;       
   return($result);  
 }
 
