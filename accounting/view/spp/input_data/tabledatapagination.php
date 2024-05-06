@@ -16593,17 +16593,17 @@
                     <?php else: ?>
 
                         <form action="checkpembayarandaninputdata" method="post">
-                            <input type="hidden" name="halamanKeFilterBukuWithDate" value="<?= $i; ?>">
-                            <input type="hidden" name="iniFilterBukuWithDate" value="<?= $isifilby; ?>">
-                            <input type="hidden" name="idSiswaFilterBukuWithDate" value="<?= $id; ?>">
-                            <input type="hidden" name="namaSiswaFilterBukuWithDate" value="<?= $namaMurid; ?>">
-                            <input type="hidden" name="nisFormFilterBukuWithDate" value="<?= $nis; ?>">
-                            <input type="hidden" name="kelasFormFilterBukuWithDate" value="<?= $kelas; ?>">
-                            <input type="hidden" name="namaFormFilterBukuWithDate" value="<?= $namaMurid; ?>">
-                            <input type="hidden" name="panggilanFormFilterBukuWithDate" value="<?= $panggilan; ?>">
-                            <input type="hidden" name="tanggalDariFormFilterBukuWithDate" value="<?= $tanggalDari; ?>">
-                            <input type="hidden" name="tanggalSampaiFormFilterBukuWithDate" value="<?= $tanggalSampai; ?>">
-                            <button name="toPageFilterBukuWithDate">
+                            <input type="hidden" name="halamanKeFilterSeragamWithDate" value="<?= $i; ?>">
+                            <input type="hidden" name="iniFilterSeragamWithDate" value="<?= $isifilby; ?>">
+                            <input type="hidden" name="idSiswaFilterSeragamWithDate" value="<?= $id; ?>">
+                            <input type="hidden" name="namaSiswaFilterSeragamWithDate" value="<?= $namaMurid; ?>">
+                            <input type="hidden" name="nisFormFilterSeragamWithDate" value="<?= $nis; ?>">
+                            <input type="hidden" name="kelasFormFilterSeragamWithDate" value="<?= $kelas; ?>">
+                            <input type="hidden" name="namaFormFilterSeragamWithDate" value="<?= $namaMurid; ?>">
+                            <input type="hidden" name="panggilanFormFilterSeragamWithDate" value="<?= $panggilan; ?>">
+                            <input type="hidden" name="tanggalDariFormFilterSeragamWithDate" value="<?= $tanggalDari; ?>">
+                            <input type="hidden" name="tanggalSampaiFormFilterSeragamWithDate" value="<?= $tanggalSampai; ?>">
+                            <button name="toPageFilterSeragamWithDate">
                                 <?= $i; ?>
                             </button>
                         </form>
