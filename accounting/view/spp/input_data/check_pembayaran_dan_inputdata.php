@@ -1424,7 +1424,6 @@
                         $execQueryDataFilterRegistrasiWithDate    = mysqli_query($con, $queryGetDataFilterLainWithDate);
                         // $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataFilterRegistrasiWithDate);
                         $hitungDataFilterLainWithDate = mysqli_num_rows($execQueryDataFilterRegistrasiWithDate);
-                        echo $hitungDataFilterLainWithDate . "<br>";
 
                         // echo "Dari tanggal : " . $dariTanggal . "<br> ". "Sampai Tanggal : " . $sampaiTanggal . "<br> Jumlah Data : ". $hitungDataFilterLainWithDate;
                         // echo $hitungDataFilterPANGKAL;exit;

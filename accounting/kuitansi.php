@@ -53,7 +53,8 @@
      
     }
 
-    $cetak_kuitansi_filter = "";
+    $cetak_kuitansi_filter      = "";
+    $terbilang_nominal_uang_spp = "";
 
     $uangSPP            = 0;
     $uangPangkal        = 0;
@@ -75,6 +76,10 @@
     $ketUangSPP         = "";
     $ketUangPANGKAL     = "";
     $ketUangKegiatan    = "";
+    $ketUangBuku        = "";
+    $ketUangSeragam     = "";
+    $ketUangRegistrasi  = "";
+    $ketUangLain        = "";
 
     $terbilang_nominal  = 0; 
 
@@ -84,60 +89,89 @@
     $kelasSiswa     = "";
     $tglTf          = "";
     $bayarBulan     = "";
+    $idInvoice      = "";
 
     $rupiah_terbilang = "";
 
     if (isset($_POST['cetak_kuitansi'])) {
 
-        $isiUangSPP      = $_POST['cetak_kuitansi_uang_spp'];
-        $isiUangPangkal  = $_POST['cetak_kuitansi_uang_pangkal'];
-        $isiUangKegiatan = $_POST['cetak_kuitansi_uang_kegiatan'];
-        $isiUangBuku     = $_POST['cetak_kuitansi_uang_buku'];
-        $isiUangSeragam  = $_POST['cetak_kuitansi_uang_seragam'];
-        $isiUangLain     = $_POST['cetak_kuitansi_uang_lain'];
-        $isiUangRegis    = $_POST['cetak_kuitansi_uang_registrasi'];
+        $nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];
+        $namaSiswa         = $_POST['cetak_kuitansi_nama_siswa'];
+        $kelasSiswa        = $_POST['cetak_kuitansi_kelas_siswa'];
+        $idInvoice         = $_POST['cetak_kuitansi_id_invoice'];
+        $tglTf             = $_POST['cetak_kuitansi_bukti_tf'];
+        $bayarBulan        = $_POST['cetak_kuitansi_bulan_pembayaran'];
+
+        $isiUangSPP        = $_POST['cetak_kuitansi_uang_spp'];
+        $isiUangPangkal    = $_POST['cetak_kuitansi_uang_pangkal'];
+        $isiUangKegiatan   = $_POST['cetak_kuitansi_uang_kegiatan'];
+        $isiUangBuku       = $_POST['cetak_kuitansi_uang_buku'];
+        $isiUangSeragam    = $_POST['cetak_kuitansi_uang_seragam'];
+        $isiUangRegis      = $_POST['cetak_kuitansi_uang_registrasi'];
+        $isiUangLain       = $_POST['cetak_kuitansi_uang_lain'];
+
+        $ketUangSPP        = $_POST['cetak_kuitansi_ket_uang_spp'];
+        $ketUangPANGKAL    = $_POST['cetak_kuitansi_ket_uang_pangkal'];
+        $ketUangKegiatan   = $_POST['cetak_kuitansi_ket_uang_kegiatan'];
+        $ketUangBuku       = $_POST['cetak_kuitansi_ket_uang_buku'];
+        $ketUangSeragam    = $_POST['cetak_kuitansi_ket_uang_seragam'];
+        $ketUangRegistrasi = $_POST['cetak_kuitansi_ket_uang_registrasi'];
+        $ketUangLain       = $_POST['cetak_kuitansi_ket_uang_lain'];
 
         $cetak_kuitansi_filter = $_POST['cetak_kuitansi_filter'];
 
-        if ($cetak_kuitansi_filter == 'semua') {
-            echo "semua";exit;
-        } elseif ($cetak_kuitansi_filter == 'spp') {
+        // Bagian Data Siswa
+        $nisSiswa        = $_POST['cetak_kuitansi_nis_siswa'];
+        $namaSiswa       = $_POST['cetak_kuitansi_nama_siswa'];
+        $kelasSiswa      = $_POST['cetak_kuitansi_kelas_siswa'];
+        $idInvoice       = $_POST['cetak_kuitansi_id_invoice'];
+        $tglTf           = date_create($_POST['cetak_kuitansi_bukti_tf']);
+        $tglTf           = date_format($tglTf, "d-M-y");
+        $bayarBulan      = $_POST['cetak_kuitansi_bulan_pembayaran'];        
 
-            // Data Form
-            $terbilang_nominal_uang_spp   = str_replace(["Rp. ", '"'], "", $_POST['cetak_kuitansi_uang_spp']);
+        // echo $isiUangKegiatan;exit;
 
-            if ($terbilang_nominal_uang_spp == '') {
-                echo "Tidak ada data apapun yang dikirim";exit; 
-            }
+        // Bagian Keterangan Data Uang yang di bayarkan Siswa
+        $uangSPP            = str_replace(["Rp. ",'"', ",", "."],"", $isiUangSPP);
+        $formatUangSPP      = rupiahFormat($uangSPP);
+        $isiUangSPP         = str_replace(["Rp "], "", $formatUangSPP);
+        $ketUangSPP         = $_POST['cetak_kuitansi_ket_uang_spp'];
 
-            $idSiswa         = $_POST['cetak_kuitansi_id_siswa'];
-            $namaSiswa       = $_POST['cetak_kuitansi_nama_siswa'];
-            $nisSiswa        = $_POST['cetak_kuitansi_nis_siswa'];
-            $kelasSiswa      = $_POST['cetak_kuitansi_kelas_siswa'];
-            $tglTf           = date_create($_POST['cetak_kuitansi_bukti_tf']);
-            $tglTf           = date_format($tglTf, "d-M-y");
-            $ketUangSPP      = $_POST['cetak_kuitansi_ket_uang_spp'];
-            $bayarBulan      = $_POST['cetak_kuitansi_pembayaran_bulan'];        
+        $uangPangkal        = str_replace(["Rp. ",'"', ",", "."],"", $isiUangPangkal);
+        $formatUangPangkal  = rupiahFormat($uangPangkal);
+        $isiUangPangkal     = str_replace(["Rp "], "", $formatUangPangkal);
+        $ketUangPANGKAL;
 
-            $uangSPP        = str_replace(["Rp. ",'"', ",", "."],"", $_POST['cetak_kuitansi_uang_spp']);
-            $formatUangSPP  = rupiahFormat($uangSPP);
-            $isiUangSPP     = str_replace(["Rp "], "", $formatUangSPP);
-            $uangPangkal;
-            $uangRegis;
-            $uangSeragam;
-            $uangBuku;
-            $uangKegiatan;
-            $uangLain2;
-            $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
-            $formatUangKeseluruhan = rupiah($totalKeseluruhan);
-            $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
-            // echo $formatUangKeseluruhan;
+        $uangKegiatan        = str_replace(["Rp. ",'"', ",", "."],"", $isiUangKegiatan);
+        $formatUangKegiatan  = rupiahFormat($uangKegiatan);
+        $isiUangKegiatan     = str_replace(["Rp "], "", $formatUangKegiatan);
+        $ketUangKegiatan;        
 
-            $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal_uang_spp);
+        $uangBuku           = str_replace(["Rp. ",'"', ",", "."],"", $isiUangBuku);
+        $formatUangBuku     = rupiahFormat($uangBuku);
+        $isiUangBuku        = str_replace(["Rp "], "", $formatUangBuku);
+        $ketUangBuku;
 
-            $rupiah_terbilang = terbilang($terbilang);
+        $uangSeragam        = str_replace(["Rp. ",'"', ",", "."],"", $isiUangSeragam);
+        $formatUangSeragam  = rupiahFormat($uangSeragam);
+        $isiUangSeragam     = str_replace(["Rp "], "", $formatUangSeragam);
+        $ketUangSeragam;
 
-        }
+        $uangRegis          = str_replace(["Rp. ",'"', ",", "."],"", $isiUangRegis);
+        $formatUangRegis    = rupiahFormat($uangRegis);
+        $isiUangRegis       = str_replace(["Rp "], "", $formatUangRegis);  
+        $ketUangRegistrasi;
+
+        $uangLain2          = str_replace(["Rp. ",'"', ",", "."],"", $isiUangLain);
+        $formatUangLain     = rupiahFormat($uangLain2);
+        $isiUangLain        = str_replace(["Rp "], "", $formatUangLain);  
+        $ketUangLain;
+
+        $totalKeseluruhan = $uangSPP + $uangPangkal + $uangRegis + $uangSeragam + $uangBuku + $uangKegiatan + $uangLain2;
+        $formatUangKeseluruhan = rupiah($totalKeseluruhan);
+        $formatUangKeseluruhan = str_replace(["Rp "], "", $formatUangKeseluruhan);
+        // $terbilang = str_replace(["Rp. ",'"', "."],"", $terbilang_nominal_uang_spp);
+        $rupiah_terbilang = terbilang($totalKeseluruhan);
 
         // if ($_POST['cetak_kuitansi_uang_spp'] = 'kosong') {
 
@@ -195,7 +229,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kwitansi</title>
+    <title>Kuitansi</title>
     <style>
 
         body {
@@ -330,7 +364,7 @@
                 <div>
 
                     <div class="details">
-                        <p> <strong> TAHUN AJARAN </strong> <span style="margin-left: 30px;"></span> : <span style="margin-left: 15px;"> 2024/2025  </span>  </p>
+                        <p> <strong> TAHUN AJARAN </strong> <span style="margin-left: 30px;"></span> : <span style="margin-left: 15px;">  </span>  </p>
                     </div> 
                     
                 </div>
@@ -342,7 +376,7 @@
                 <div>
 
                     <div class="details">
-                        <p> NO <span style="margin-left: 42px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $idSiswa; ?> </strong> </p>
+                        <p> NO <span style="margin-left: 42px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $idInvoice; ?> </strong> </p>
                         <!-- <p> ID Siswa <span style="margin-left: 3px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $idSiswa; ?> </strong> </p> -->
                         <p> Tanggal  <span style="margin-left: 10px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $tglTf; ?> </strong> </p>
                         <p> Bulan  <span style="margin-left: 25px;"></span> : <span style="margin-left: 20px;"> </span> <strong> <?= $bayarBulan; ?> </strong> </p>
@@ -361,7 +395,7 @@
                 <div>
 
                     <div class="details">
-                        <p> <strong> Terbilang </strong> <span style="margin-left: 3px;"></span> : <input type="text" style="text-align: center; width: 90%; font-weight: bold; font-style: italic;" value='<?=  '"' . $rupiah_terbilang . '"'; ?>' name=""> </p>
+                        <p> <strong> Terbilang </strong> <span style="margin-left: 3px;"></span> : <input type="text" readonly style="text-align: center; width: 90%; font-weight: bold; font-style: italic;" value='<?= '"'. terbilang($totalKeseluruhan) . '"'; ?>' name=""> </p>
                     </div>
                     
                 </div>
@@ -392,49 +426,49 @@
                         <strong> 
                             1. Uang SPP
                         </strong> 
-                        <span style="margin-left: 59px;"> </span> <strong> Rp. </strong> <span style="margin-left: 4px;"></span> <input type="text" value="<?= $isiUangSPP; ?>" style="text-align: end; font-weight: bold; width: 25%;" name="">
+                        <span style="margin-left: 59px;"> </span> <strong> Rp. </strong> <span style="margin-left: 4px;"></span> <input type="text" readonly value="<?= $isiUangSPP; ?>" style="text-align: end; font-weight: bold; width: 25%;" name="">
                     </div>
 
                     <div class="details">
                         <strong>
                             2. Uang Pangkal 
                         </strong>
-                        <span style="margin-left: 28px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="<?= $isiUangPangkal; ?>" style="font-weight: bold; text-align: end; width: 25%;" name="">
+                        <span style="margin-left: 28px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" readonly value="<?= $isiUangPangkal; ?>" style="font-weight: bold; text-align: end; width: 25%;" name="">
                     </div>
 
                     <div class="details">
                         <strong>
                             3. Uang Kegiatan 
                         </strong>
-                        <span style="margin-left: 22px;">  </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="0" style="font-weight: bold; text-align: end; width: 25%;" name="">
+                        <span style="margin-left: 22px;">  </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" readonly value="<?= $isiUangKegiatan; ?>" style="font-weight: bold; text-align: end; width: 25%;" name="">
                     </div>
 
                     <div class="details">
                         <strong> 
                             4. Uang Buku 
                         </strong>
-                        <span style="margin-left: 49px;">  </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="0" style="text-align: end; font-weight: bold; width: 25%;" name="">
+                        <span style="margin-left: 49px;">  </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" readonly value="<?= $isiUangBuku; ?>" style="text-align: end; font-weight: bold; width: 25%;" name="">
                     </div>
 
                     <div class="details">
                         <strong> 
                             5. Uang Seragam 
                         </strong>
-                        <span style="margin-left: 21px;">  </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="0" style="font-weight: bold; text-align: end; width: 25%;" name="">
+                        <span style="margin-left: 21px;">  </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" readonly value="<?= $isiUangSeragam; ?>" style="font-weight: bold; text-align: end; width: 25%;" name="">
                     </div>
 
                     <div class="details">
                         <strong> 
                             6. Uang Registrasi 
                         </strong>
-                        <span style="margin-left: 11px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="0" style="font-weight: bold; text-align: end; width: 25%;" name="">
+                        <span style="margin-left: 11px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" readonly value="<?= $isiUangRegis; ?>" style="font-weight: bold; text-align: end; width: 25%;" name="">
                     </div>
 
                     <div class="details">
                         <strong> 
                             7. Uang Lain-lain 
                         </strong>
-                        <span style="margin-left: 23px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" value="0" style="font-weight: bold; text-align: end; width: 25%;" name="">
+                        <span style="margin-left: 23px;"> </span> <strong> Rp. </strong> <span style="margin-left: 5px;"></span> <input type="text" readonly value="<?= $isiUangLain; ?>" style="font-weight: bold; text-align: end; width: 25%;" name="">
                     </div> 
                     
                 </div>
@@ -446,31 +480,31 @@
                 <div>
 
                     <div class="details">
-                        <input type="text" value="<?= $ketUangSPP; ?>" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" readonly value="<?= $ketUangSPP; ?>" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div>
 
                     <div class="details">
-                        <input type="text" value="<?= $ketUangPANGKAL; ?>" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" readonly value="<?= $ketUangPANGKAL; ?>" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div>
 
                     <div class="details">
-                        <input type="text" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" readonly value="<?= $ketUangKegiatan; ?>" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div>
 
                     <div class="details">
-                        <input type="text" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" readonly="" value="<?= $ketUangBuku; ?>" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div>
 
                     <div class="details">
-                        <input type="text" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" readonly="" value="<?= $ketUangSeragam; ?>" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div>
 
                     <div class="details">
-                        <input type="text" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" readonly value="<?= $ketUangRegistrasi; ?>" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div>
 
                     <div class="details">
-                        <input type="text" name="" style="margin-left: -110px; width: 131%; font-weight: bold;">
+                        <input type="text" readonly="" value="<?= $ketUangLain; ?>" style="margin-left: -110px; width: 131%; font-weight: bold;">
                     </div> 
                     
                 </div>
@@ -501,7 +535,7 @@
                 <div>
 
                     <div class="details">
-                        <input type="text" value="<?= $formatUangKeseluruhan; ?>" name="" style="height: 30px; font-size: 20px; margin-top: 5px; text-align: end; margin-left: -100px; font-weight: bold; width: 200px;">
+                        <input type="text" readonly value="<?= $formatUangKeseluruhan; ?>" name="" style="height: 30px; font-size: 20px; margin-top: 5px; text-align: end; margin-left: -100px; font-weight: bold; width: 200px;">
                     </div> 
                     
                 </div>

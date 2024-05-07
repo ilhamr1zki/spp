@@ -63,7 +63,9 @@
 						},
 						success:function(data){
 							console.log(data)
-							window.location.href = `<?= $baseac; ?>kuitansi.php`
+							setInterval({
+								
+							},1000)
 						}
 					})
 

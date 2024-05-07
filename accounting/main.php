@@ -481,7 +481,7 @@ oncontextmenu="return false">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>AKH</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin AIIS-APPS</b></span>
+      <span class="logo-lg"><b>Admin AIIS-SPP</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -506,25 +506,7 @@ oncontextmenu="return false">
             <a href="<?php echo $basecon; ?>grafik"><i class="glyphicon glyphicon-stats"></i> Grafik</a>
           </li>
         <?php }*/ ?>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="glyphicon glyphicon-search"></i> Cari Siswa
-            </a>
-            <ul class="dropdown-menu" style="border-bottom: 2px solid#aaa;">
-              <li class="header text-center">Masukkan NISN Atau NAMA Siswa</li>
-              <li>
-              <form action="<?php echo $basead; ?>kesearch" method="get">
-                <ul class="menu">
-                  <li>
-                    <input autofocus="" autocomplete="off" required="" type="text" name="search" class="form-control" style="margin-left:5%;width:90%;">
-                  </li>
-                </ul>
-              </li>
-              <li class="footer text-center" style="padding:10px;"><button class="btn btn-success btn-sm btn-flat" style="width:96%;">Mulai Mencari...</button></li>
-              </form>
-            </ul>
-          </li>
+          
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
