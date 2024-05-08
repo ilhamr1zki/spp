@@ -1,9 +1,9 @@
 <?php
 $dbhost ='localhost';
-$dbuser ='u415776667_apps';
-$dbpass ='apps123';
+$dbuser ='u415776667_spp';
+$dbpass ='spp4ii5123';
 // $dbpass ='Admin@2023';
-$dbname ='u415776667_apps';
+$dbname ='u415776667_spp';
 $db_dsn = "mysql:dbname=$dbname;host=$dbhost";
 try {
   $db = new PDO($db_dsn, $dbuser, $dbpass);
@@ -30,6 +30,6 @@ $basewam='http://localhost/apps/walimurid/';
 /* $basewam='https://apps.aiis.sch.id/walimurid/'; */
 
 $aplikasi=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM aplikasi limit 1"));
-$ata=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM tahunakademik where status='aktif' ")); 
-$c_ta=$ata['c_ta'];
+$ata=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM tahun_ajaran where status='aktif' ")); 
+$c_ta = $ata['id_tahun_ajaran'];
 ?>

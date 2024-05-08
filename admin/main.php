@@ -8,11 +8,11 @@
   
   session_start(); 
 
-  if(empty($_SESSION['c_accounting'])) {
+  if(empty($_SESSION['c_admin'])) {
     header('location:../login');
   } 
 
-  $na = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM accounting where c_accounting = '$_SESSION[c_accounting]' ")); 
+  $na = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM admin where c_admin = '$_SESSION[c_admin]' ")); 
   //$setting=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM setting limit 1 "));*/ 
   if (isset($_GET['nextPage'])) {
     echo $_GET['nextPage'];exit;
@@ -185,26 +185,6 @@
       background-color: aqua;
     }
 
-    #isi_tahun_ajaran {
-      margin-left: -80px;
-      top: -5px;
-      z-index: 1;
-    }
-
-    #pilih_tahun_ajaran {
-      width: 70%;
-    }
-
-    #isi_tahun_ajaran_2 {
-      margin-left: -367px;
-      top: -5px;
-    }
-
-    #div_slash {
-      margin-left: -38px;
-      top: -5px;
-    }
-
     .uang_spp, 
     .uang_pangkal, 
     .uang_regis,
@@ -291,36 +271,6 @@
       margin-left: -30px;
     }
 
-    #kontainer, #kontainer_2 {
-      margin: 25px;
-    }
-
-    #div_semester {
-      margin-left: -15px;
-    }
-
-    #isi_semester {
-      margin-left: 54px;
-      margin-top: -6px;
-    }
-
-    #isi_status {
-      margin-left: 54px;
-      margin-top: -3px;
-    }
-
-    #semester {
-      width: 55px;
-    }
-
-    #status_aktif {
-      width: 125%;
-    }
-
-    #kontainer_2 {
-      margin-top: 2%;
-    }
-
     @media only screen and (max-width: 600px) {
 
       .cobasidebar {
@@ -350,83 +300,6 @@
         width: 40%;
         margin-right: 10px; 
         text-align: end;
-      }
-
-      #status_aktif {
-        width: 48%;
-      }
-
-      #pilih_tahun_ajaran {
-        width: 100%;
-      }
-
-      #isi_status {
-        margin-left: 1px;
-        margin-top: -3px;
-      }
-
-      #isi_semester {
-        margin-left: 2px;
-        margin-top: 0px;
-      }
-
-      #div_tahun_ajaran {
-        display: flex;
-        flex-direction: column;
-      }
-
-      #input_tahun_ajaran {
-        display: flex;
-      }
-
-      #kontainer {
-        margin: 25px;
-        margin-top: -10px;
-      }
-
-      #kontainer_2 {
-        margin: 25px;
-        margin-top: 10px;
-      }
-
-      #isi_tahun_ajaran {
-        margin-left: 0px;
-        top: 0px;
-      }
-
-      #isi_tahun_ajaran_2 {
-        margin-left: -318px;
-        top: 0px;
-        z-index: 1;
-      }
-
-      #box_header {
-        top: -22px;
-      }
-
-      #tahun_ajaran {
-        width: 31%;
-      }
-
-      #tahun_ajaran_2 {
-        width: 31%;
-      }
-
-      #div_slash {
-        margin-left: -172px;
-        top: 0;
-      }
-
-      #container_maintenance {
-        margin-top: -35px;
-      }
-
-      #container_maintenance_2 {
-        margin-top: -35px;
-      }
-
-      #box_header_2 {
-        top: 2px;
       }
 
       #tombol-cetak {
@@ -636,38 +509,16 @@ oncontextmenu="return false">
           
 
           <li class="dropdown user user-menu">
-            <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
-
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo $base; ?>imgstatis/avatar3.png" class="user-image" alt="User Image">
-                <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
-              </a>
-
-            <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
-
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo $base; ?>imgstatis/avatar3.png" class="user-image" alt="User Image">
-                <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
-              </a>
-
-            <?php else: ?>
-
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="user-image" alt="User Image">
-                <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
-              </a>
-
-            <?php endif ?>
+            
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
+            </a>
+            
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
-                  <img src="<?php echo $base; ?>imgstatis/avatar3.png" class="img-circle" alt="User Image">
-                <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
-                  <img src="<?php echo $base; ?>imgstatis/avatar3.png" class="img-circle" alt="User Image">
-                <?php else: ?>
-                  <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="img-circle" alt="User Image">
-                <?php endif ?>
+                <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="img-circle" alt="User Image">
                 <p>
                   <?php echo ucfirst($na['username']); ?>
                   <small></small>
@@ -678,7 +529,7 @@ oncontextmenu="return false">
               <li class="user-footer">
                 <div class="pull-right">
                   <a href="<?php echo $basead; ?>a-control/<?php echo md5('logout'); ?>/access" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-pencil"></i> Ganti Password </a>
-                  <a href="<?php echo $baseac; ?>a-control/<?php echo md5('logout'); ?>/access" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-off"></i> Sign out</a>
+                  <a href="<?php echo $basead; ?>a-control/<?php echo md5('logout'); ?>/access" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-off"></i> Sign out</a>
                 </div>
               </li>
             </ul>
@@ -695,13 +546,7 @@ oncontextmenu="return false">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
-            <img src="<?php echo $base; ?>imgstatis/avatar3.png" class="img-circle" alt="User Image">
-          <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
-            <img src="<?php echo $base; ?>imgstatis/avatar3.png" class="img-circle" alt="User Image">
-          <?php else: ?>
             <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="img-circle" alt="User Image">
-          <?php endif ?>
         </div>
         <div class="pull-left info">
           <p><?php echo ucfirst($na['username']); ?></p>
@@ -727,7 +572,7 @@ oncontextmenu="return false">
               <a href="#"><i class="glyphicon glyphicon-plus text-primary"></i> Input Data </a>
               <ul class="treeview-menu">
                 
-                <li> <small> <a href="<?php echo $baseac; ?>checkpembayarandaninputdata"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
+                <li> <small> <a href="<?php echo $basead; ?>checkpembayarandaninputdata"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
                 <li> <small> <a href=""><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
 
               </ul>
@@ -794,8 +639,8 @@ oncontextmenu="return false">
               <a href="#"><i class="glyphicon glyphicon-plus text-primary"></i> Input Data </a>
               <ul class="treeview-menu">
                 
-                <li> <small> <a href="<?php echo $baseac; ?>trylayout"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
-                <li> <small> <a href="<?php echo $baseac; ?>checkinputdata"><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
+                <li> <small> <a href="<?php echo $basead; ?>trylayout"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
+                <li> <small> <a href="<?php echo $basead; ?>checkinputdata"><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
 
               </ul>
             </li>
@@ -811,7 +656,7 @@ oncontextmenu="return false">
           <ul class="treeview-menu">
             
             <li>
-              <a href="<?= $baseac; ?>maintenance"><i class="glyphicon glyphicon-list-alt text-primary"></i> Form Data </a>
+              <a href="<?= $basead; ?>maintenance"><i class="glyphicon glyphicon-list-alt text-primary"></i> Form Data </a>
             </li>
 
           </ul>

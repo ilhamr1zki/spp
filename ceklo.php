@@ -1,19 +1,42 @@
 <?php require 'php/config.php';
-if(isset($_POST['username']) and isset($_POST['password'])){
-  if($_POST['sebagai']=='admin'){
 
-    $passencryp=crypt($_POST['password'],'1427');
-    $cek1=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM admin where username='$_POST[username]' and password='$passencryp' "));
-    if($cek1==NULL){
-      session_start();
-      $_SESSION['pesan']='gagal';
-      header('location:login');
+
+if(isset($_POST['username']) and isset($_POST['password'])) {
+
+  if($_POST['sebagai'] == 'admin'){
+
+    $usernamenya = strtolower($_POST['username']);
+
+     // Cek Data User Accounting
+    $sqlGetUser         = "SELECT * FROM admin WHERE username = '$usernamenya' ";
+    $execQueryGetUser   = mysqli_query($con, $sqlGetUser);
+
+    $countData          = mysqli_num_rows($execQueryGetUser);
+
+    if ($countData == 1) {
+
+      $getData      = mysqli_fetch_array($execQueryGetUser);
+
+      $dataPassword = $getData['password'];
+
+      if (password_verify($_POST['password'], $dataPassword)) {
+
+          session_start();
+          $_SESSION['c_admin'] = $getData['c_admin'];
+          // echo $_SESSION['c_admin'];exit;
+          header('location:admin/');
+          exit;
+
+      } else {
+
+        session_start();
+        $_SESSION['pesan'] = 'gagal';
+        header('location:login');
+        exit;
+      }
+
     }
-    else{
-      session_start();
-      $_SESSION['c_admin']=$cek1['c_admin'];
-      header('location:admin/');
-    }
+
   } elseif ($_POST['sebagai'] == 'accounting') {
 
     $usernamenya = strtolower($_POST['username']);
@@ -34,7 +57,7 @@ if(isset($_POST['username']) and isset($_POST['password'])){
 
           session_start();
           $_SESSION['c_accounting'] = $getData['c_accounting'];
-
+          // echo $_SESSION['c_accounting'];exit;
           header('location:accounting/');
           exit;
 
