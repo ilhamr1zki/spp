@@ -2,6 +2,16 @@
 
     $nominal = "";
 
+    $localhost = "localhost";
+    $username  = "root";
+    $password  = "";
+    $database  = "u415776667_spp";
+
+    $con = mysqli_connect($localhost, $username, $password, $database);
+
+    $tahunAjaran = mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' ");
+    $tahunAjaran = mysqli_fetch_assoc($tahunAjaran)['tahun'];
+
     function penyebut($nilai) {
         $nilai = abs($nilai);
         $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
@@ -364,7 +374,7 @@
                 <div>
 
                     <div class="details">
-                        <p> <strong> TAHUN AJARAN </strong> <span style="margin-left: 30px;"></span> : <span style="margin-left: 15px;">  </span>  </p>
+                        <p> <strong> TAHUN AJARAN </strong> <span style="margin-left: 30px;"></span> : <span style="margin-left: 15px;">  </span> <strong> <?= $tahunAjaran; ?> </strong> </p>
                     </div> 
                     
                 </div>

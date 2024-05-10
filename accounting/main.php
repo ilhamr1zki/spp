@@ -291,34 +291,28 @@
       margin-left: -30px;
     }
 
-    #kontainer, #kontainer_2 {
-      margin: 25px;
+    #tahun_ajaran {
+      width: 70px;
+      margin-left: 10px;
+      text-align: center;
+      padding: 1px;
     }
 
-    #div_semester {
-      margin-left: -15px;
+    #slashx {
+      width: 10px;
+      font-size: 17px;
     }
 
-    #isi_semester {
-      margin-left: 54px;
-      margin-top: -6px;
+    #tahun_ajaran_2 {
+      width: 70px;
+      text-align: center;
+      padding: 1px;
     }
 
-    #isi_status {
-      margin-left: 54px;
-      margin-top: -3px;
-    }
-
-    #semester {
-      width: 55px;
-    }
-
-    #status_aktif {
-      width: 125%;
-    }
-
-    #kontainer_2 {
-      margin-top: 2%;
+    #semesterx {
+      margin-left: 35px;
+      width: 71px;
+      height: 25px;
     }
 
     @media only screen and (max-width: 600px) {
@@ -329,7 +323,6 @@
 
       #cobacontent {
         min-height: 250px !important;
-        padding: 50px !important;
         margin-right: auto !important;
         margin-left: auto !important;
         padding-left: 15px !important;
@@ -352,81 +345,28 @@
         text-align: end;
       }
 
-      #status_aktif {
-        width: 48%;
-      }
-
-      #pilih_tahun_ajaran {
-        width: 100%;
-      }
-
-      #isi_status {
-        margin-left: 1px;
-        margin-top: -3px;
-      }
-
-      #isi_semester {
-        margin-left: 2px;
-        margin-top: 0px;
-      }
-
-      #div_tahun_ajaran {
-        display: flex;
-        flex-direction: column;
-      }
-
-      #input_tahun_ajaran {
-        display: flex;
-      }
-
-      #kontainer {
-        margin: 25px;
-        margin-top: -10px;
-      }
-
-      #kontainer_2 {
-        margin: 25px;
-        margin-top: 10px;
-      }
-
-      #isi_tahun_ajaran {
-        margin-left: 0px;
-        top: 0px;
-      }
-
-      #isi_tahun_ajaran_2 {
-        margin-left: -318px;
-        top: 0px;
-        z-index: 1;
-      }
-
-      #box_header {
-        top: -22px;
-      }
-
       #tahun_ajaran {
-        width: 31%;
+        width: 50px;
+        margin-left: 9px;
+        text-align: center;
+        padding: 1px;
+      }
+
+      #slashx {
+        width: 20px;
+        font-size: 17px;
       }
 
       #tahun_ajaran_2 {
-        width: 31%;
+        width: 50px;
+        margin-left: -8px;
+        text-align: center;
+        padding: 1px;
       }
 
-      #div_slash {
-        margin-left: -172px;
-        top: 0;
-      }
-
-      #container_maintenance {
-        margin-top: -35px;
-      }
-
-      #container_maintenance_2 {
-        margin-top: -35px;
-      }
-
-      #box_header_2 {
-        top: 2px;
+      #semesterx {
+        margin-left: 30px;
+        width: 41px;
       }
 
       #tombol-cetak {
@@ -834,7 +774,6 @@ oncontextmenu="return false">
     if($act=='kelas'){
       require 'view/a-kelas.php';
     }
-
 
     #region checkpembayaraninputdata
     else if ($act == 'checkpembayarandaninputdata') {
