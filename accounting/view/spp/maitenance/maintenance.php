@@ -9,7 +9,7 @@
     $checkTypeData2 = "";
     $reloadPage = 0;
 
-    $dataSemester = [1, 2];
+    $isiSemester = [1, 2];
 
     if (isset($_POST['simpan_form'])) {
         $tahunAjaran1 = $_POST['tahun_ajaran'];
@@ -70,16 +70,25 @@
                 $semester    = $_POST['isi_semester'];
                 $status      = "aktif";
 
-                $query = "
-                        INSERT INTO tahun_ajaran (id_tahun_ajaran, tahun, semester, status)
-                        VALUES ('', '$tahunAjaran', '$semester')
-                ";
+                $queryGetDataAktif = mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
 
-                mysqli_query($con, "UPDATE `u415776667_spp`.`tahun_ajaran` SET `tahun`='$tahunAjaran', `semester`='$semester', `status`='$status' WHERE  `c_role`='$c_role'");
+                $checkData = mysqli_num_rows($queryGetDataAktif);
 
-                $reloadPage = 1;
+                if ($checkData != 0) {
 
-                $_SESSION['form_success'] = 'berhasil';
+                    mysqli_query($con, "UPDATE `u415776667_spp`.`tahun_ajaran` SET `tahun`='$tahunAjaran', `semester`='$semester', `status`='$status' WHERE  `c_role`='$c_role'");
+
+                    $reloadPage = 1;
+
+                    $_SESSION['form_success'] = 'berhasil';
+
+                } else {
+                    // echo $countData;
+                    mysqli_query($con, "INSERT INTO tahun_ajaran (`id_tahun_ajaran`, `c_role`, `tahun`, `semester`, `status`) VALUES ('', '$c_role', '$tahunAjaran', '$semester', '$status')");
+                    $reloadPage = 1;
+
+                    $_SESSION['form_success'] = 'berhasil';
+                }
 
             } else if (strlen($_POST['tahun_ajaran']) != 4) {
 
@@ -101,22 +110,30 @@
 
     }
 
-    if (isset($_POST['coba'])) {
-        echo $_POST['coba'];
+    $dataTahun = mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+
+    $countData = mysqli_num_rows($dataTahun);
+
+    if ($countData != 0) {
+
+        $queryDataTahun     = mysqli_query($con, "SELECT tahun FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+        $queryDataSemester  = mysqli_query($con, "SELECT semester FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+        $queryDataStatus    = mysqli_query($con, "SELECT status FROM tahun_ajaran WHERE status = 'aktif'");
+
+        $getDataTahun       = mysqli_fetch_assoc($queryDataTahun)['tahun'];
+        $getDataSemester    = mysqli_fetch_assoc($queryDataSemester)['semester'];
+        $getDataStatus      = mysqli_fetch_assoc($queryDataStatus)['status'];
+
+        $tahunAjaran1  = substr($getDataTahun,0,4);
+        $tahunAjaran2  = substr($getDataTahun,5,4);
+
+        $getDataSemester;
+    } else {
+        // echo $countData;
+        $tahunAjaran1  = "";
+        $tahunAjaran2  = "";
+        $getDataSemester = "";
     }
-
-    $queryDataTahun     = mysqli_query($con, "SELECT tahun FROM tahun_ajaran WHERE status = 'aktif'");
-    $queryDataSemester  = mysqli_query($con, "SELECT semester FROM tahun_ajaran WHERE status = 'aktif'");
-    $queryDataStatus    = mysqli_query($con, "SELECT status FROM tahun_ajaran WHERE status = 'aktif'");
-
-    $getDataTahun       = mysqli_fetch_assoc($queryDataTahun)['tahun'];
-    $getDataSemester    = mysqli_fetch_assoc($queryDataSemester)['semester'];
-    $getDataStatus      = mysqli_fetch_assoc($queryDataStatus)['status'];
-    
-    $tahunAjaran1  = substr($getDataTahun,0,4);
-    $tahunAjaran2  = substr($getDataTahun,5,4);
-
-    $dataTahunAjaran    = mysqli_query($con, "SELECT * FROM tahun_ajaran GROUP BY tahun");
 
 ?>
 
@@ -202,7 +219,7 @@
                     <div class="form-group">
                         <label> Semester </label>
                         <select id="semesterx" style="text-align: center;" name="isi_semester">
-                            <?php foreach ($dataSemester as $semester): ?>
+                            <?php foreach ($isiSemester as $semester): ?>
                                 <option value="<?= $semester; ?>" <?=($semester == $getDataSemester )?'selected="selected"':''?> > <?= $semester; ?> </option>
                             <?php endforeach ?>
                         </select>
@@ -229,7 +246,6 @@
 
 <hr class="new1"></hr>
 
-
 <script type="text/javascript">
         
     let dataFocus = `<?= $focus; ?>`
@@ -242,7 +258,7 @@
     }
 
     if (reloadPage == 1) {
-        setTimeout(refreshPage, 2000);
+        setTimeout(refreshPage, 1000);
     }
 
     function refreshPage() {

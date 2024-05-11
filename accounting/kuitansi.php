@@ -1,4 +1,6 @@
 <?php
+    
+    session_start();
 
     $nominal = "";
 
@@ -9,8 +11,16 @@
 
     $con = mysqli_connect($localhost, $username, $password, $database);
 
-    $tahunAjaran = mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' ");
-    $tahunAjaran = mysqli_fetch_assoc($tahunAjaran)['tahun'];
+    $queryGetTahunAjaran = mysqli_query($con, "SELECT tahun FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+
+    $countTahunAjaran = mysqli_num_rows($queryGetTahunAjaran);
+
+    if ($countTahunAjaran != 0) {
+        $tahunAjaran = mysqli_fetch_assoc($queryGetTahunAjaran)['tahun'];
+    } else {
+        $tahunAjaran = "";
+    }
+
 
     function penyebut($nilai) {
         $nilai = abs($nilai);

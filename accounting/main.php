@@ -12,6 +12,26 @@
     header('location:../login');
   } 
 
+  $currTahun    = "";
+  $currSemester = "";
+
+  $check = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' "));
+
+  if ($check != 0) {
+
+    $currTahun = mysqli_query($con, "SELECT tahun FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+    $currTahun = mysqli_fetch_assoc($currTahun)['tahun'];
+    // echo $currTahun;exit;
+    $currSemester = mysqli_query($con, "SELECT semester FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+    $currSemester = mysqli_fetch_assoc($currSemester)['semester'];
+
+  } else {
+
+    $currTahun    = "";
+    $currSemester = "";
+
+  }
+
   $na = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM accounting where c_accounting = '$_SESSION[c_accounting]' ")); 
   //$setting=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM setting limit 1 "));*/ 
   if (isset($_GET['nextPage'])) {
@@ -559,7 +579,8 @@ oncontextmenu="return false">
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="active">
-            <a><i class="glyphicon glyphicon-stats"></i> <?php echo $ata['tahun']; ?> Semester <?php echo $ata['semester']; ?></a>
+            <!-- <a><i class="glyphicon glyphicon-stats"></i> <?php echo $ata['tahun']; ?> Semester <?php echo $ata['semester']; ?></a> -->
+            <a><i class="glyphicon glyphicon-stats"></i> <?= $currTahun; ?> Semester <?= $currSemester; ?></a>
           </li>
         <?php /*if(empty($_GET['thisaction']) or $_GET['thisaction']!='grafik'){ ?>
           <li>

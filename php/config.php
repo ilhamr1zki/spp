@@ -15,10 +15,10 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 /* css.plugin.hancon <?php echo $base; ?> */
 /* $base='https://apps.aiis.sch.id/'; */
 // $base='http://localhost/spp/';
-$base='http://192.168.0.163/spp/';
+$base='http://localhost/spp/';
 /* control(link.redirect) <?php echo $basecon; ?> */
 $basead='http://localhost/spp/admin/';
-$baseac='http://192.168.0.163/spp/accounting/';
+$baseac='http://localhost/spp/accounting/';
 /* $basead='https://apps.aiis.sch.id/admin/'; */
 /*kelas(link.redirect) <?php echo $basekel; ?>*/
 /* $basegu='https://apps.aiis.sch.id/guru/'; */
@@ -30,6 +30,6 @@ $basewam='http://localhost/apps/walimurid/';
 /* $basewam='https://apps.aiis.sch.id/walimurid/'; */
 
 $aplikasi=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM aplikasi limit 1"));
-$ata=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM tahun_ajaran where status='aktif' ")); 
-$c_ta = $ata['id_tahun_ajaran'];
+// $ata=mysqli_fetch_array(mysqli_query($con,"SELECT * FROM tahun_ajaran where status='aktif' ")); 
+// $c_ta = $ata['id_tahun_ajaran'];
 ?>
