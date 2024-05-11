@@ -568,7 +568,7 @@ oncontextmenu="return false">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>AKH</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin AIIS-SPP</b></span>
+      <span class="logo-lg"> <b> AIIS - SPP</b> </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -631,9 +631,9 @@ oncontextmenu="return false">
                 <?php endif ?>
                 <p>
                   <?php echo ucfirst($na['username']); ?>
-                  <small></small>
+                  <small>(<?= ucfirst($na['nama']); ?>)</small>
                 </p>
-                <p><?php echo $aplikasi['namasek']; ?></p>
+                <p style="font-size: 11px;"><?php echo $aplikasi['namasek']; ?></p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -665,7 +665,7 @@ oncontextmenu="return false">
           <?php endif ?>
         </div>
         <div class="pull-left info">
-          <p><?php echo ucfirst($na['username']); ?></p>
+          <p><?php echo ucfirst($na['username']); ?> (<?= ucfirst($na['nama']); ?>) </p>
           <i class="glyphicon glyphicon-time"></i> <?php echo tgl(date('d-m-Y')); ?>
         </div>
       </div>

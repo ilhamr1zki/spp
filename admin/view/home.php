@@ -1,33 +1,31 @@
 <?php
-$jsi=mysqli_query($con,"SELECT * FROM siswa ");$hsi=mysqli_num_rows($jsi);
-$jgu=mysqli_query($con,"SELECT * FROM guru ");$hgu=mysqli_num_rows($jgu);
-$jwam=mysqli_query($con,"SELECT * FROM walimurid ");$hwam=mysqli_num_rows($jwam);
-$jmapel=mysqli_query($con,"SELECT * FROM mapel ");$hmapel=mysqli_num_rows($jmapel);
-$dnil=mysqli_query($con,"SELECT * FROM nilai ");$jdnil=mysqli_num_rows($dnil);
-$kelkel=mysqli_query($con,"SELECT * FROM kelas ");$jkelkel=mysqli_num_rows($kelkel);
 
+    $jsiSD=mysqli_query($con,"SELECT * FROM siswa WHERE c_kelas LIKE '%SD%' ");
+    $hsiSD=mysqli_num_rows($jsiSD);
 
-// $generatePw = password_hash($passAdm, PASSWORD_DEFAULT);
-// echo $generatePw;
+    $jsiTK=mysqli_query($con,"SELECT * FROM siswa WHERE c_kelas LIKE '%KB%' OR c_kelas LIKE '%TKA%' OR c_kelas LIKE '%TKB%' ");
+    $hsiTK=mysqli_num_rows($jsiTK);
 
 ?>
 
 <div class="row">
+
   <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
     <a href="<?php echo $basead; ?>siswa"><div class="info-box bg-blue">
       <span class="info-box-icon"><i class="glyphicon glyphicon-education"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text"> siswa SD </span>
-          <span class="info-box-number"><?php echo $hsi; ?></span>
+            <span class="info-box-text"> siswa SD </span>
+          <span class="info-box-number"><?php echo $hsiSD; ?></span>
           <div class="progress">
             <div class="progress-bar" style="width: 100%"></div>
           </div>
           <span class="progress-description">
-            AIIS-APPS
+            AIIS-SPP
           </span>
         </div>
     </div></a>
   </div>
+
   <div class="col-xs-12 col-md-9 col-lg-9">
     <div class="box">
       <div class="box-header with-border bg-maroon">
@@ -56,9 +54,7 @@ $kelkel=mysqli_query($con,"SELECT * FROM kelas ");$jkelkel=mysqli_num_rows($kelk
     </div>
     </div>
   </div>
+
 </div>
-
-
-
 
 

@@ -1,14 +1,11 @@
 <?php
-$jsi=mysqli_query($con,"SELECT * FROM siswa ");$hsi=mysqli_num_rows($jsi);
-$jgu=mysqli_query($con,"SELECT * FROM guru ");$hgu=mysqli_num_rows($jgu);
-$jwam=mysqli_query($con,"SELECT * FROM walimurid ");$hwam=mysqli_num_rows($jwam);
-$jmapel=mysqli_query($con,"SELECT * FROM mapel ");$hmapel=mysqli_num_rows($jmapel);
-$dnil=mysqli_query($con,"SELECT * FROM nilai ");$jdnil=mysqli_num_rows($dnil);
-$kelkel=mysqli_query($con,"SELECT * FROM kelas ");$jkelkel=mysqli_num_rows($kelkel);
 
+  if ($_SESSION['c_accounting'] == 'accounting1') {
+    $jsi=mysqli_query($con,"SELECT * FROM siswa WHERE c_kelas LIKE '%SD%' ");$hsi=mysqli_num_rows($jsi);
+  } else if ($_SESSION['c_accounting'] == 'accounting2') {
+    $jsi=mysqli_query($con,"SELECT * FROM siswa WHERE c_kelas LIKE '%KB%' OR c_kelas LIKE '%TKA%' OR c_kelas LIKE '%TKB%' ");$hsi=mysqli_num_rows($jsi);
+  }
 
-// $generatePw = password_hash($passAdm, PASSWORD_DEFAULT);
-// echo $generatePw;
 
 ?>
 
@@ -17,22 +14,32 @@ $kelkel=mysqli_query($con,"SELECT * FROM kelas ");$jkelkel=mysqli_num_rows($kelk
     <a href="<?php echo $basead; ?>siswa"><div class="info-box bg-blue">
       <span class="info-box-icon"><i class="glyphicon glyphicon-education"></i></span>
         <div class="info-box-content">
-          <span class="info-box-text"> siswa SD </span>
+          <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+            <span class="info-box-text"> siswa SD </span>
+          <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+            <span class="info-box-text"> siswa KB TKA TKB </span>
+          <?php endif ?>
           <span class="info-box-number"><?php echo $hsi; ?></span>
           <div class="progress">
             <div class="progress-bar" style="width: 100%"></div>
           </div>
           <span class="progress-description">
-            AIIS-APPS
+            AIIS-SPP
           </span>
         </div>
     </div></a>
   </div>
   <div class="col-xs-12 col-md-9 col-lg-9">
     <div class="box">
-      <div class="box-header with-border bg-maroon">
-        <h3 class="box-title"> Daftar Nama Siswa SD </h3>
-      </div>
+      <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+        <div class="box-header with-border bg-maroon">
+          <h3 class="box-title"> Daftar Nama Siswa SD </h3>
+        </div>
+      <?php else: ?>
+        <div class="box-header with-border bg-maroon">
+          <h3 class="box-title"> Daftar Nama Siswa KB TKA TKB </h3>
+        </div>
+      <?php endif; ?>
       <div class="box-body table-responsive">
         <table id="" class="table table-bordered table-hover">
           <thead>
