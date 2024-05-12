@@ -1210,6 +1210,8 @@
 
                         $namaMurid = $namaSiswa;
 
+                        echo "masuk sini";
+
                         $tanggalDari    = $_POST['tanggal1'];
                         $tanggalSampai  = $_POST['tanggal2']; 
 
@@ -1225,7 +1227,7 @@
                         $execQueryDataFilterSeragamWithDate    = mysqli_query($con, $queryGetDataFilterSeragamWithDate);
                         // $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataFilterSeragamWithDate);
                         $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataFilterSeragamWithDate);
-                        // echo $hitungDataFilterSeragamWithDate . "<br>";
+                        echo $hitungDataFilterSeragamWithDate . "<br>";
 
                         // echo "Dari tanggal : " . $dariTanggal . "<br> ". "Sampai Tanggal : " . $sampaiTanggal . "<br> Jumlah Data : ". $hitungDataFilterSeragamWithDate;
                         // echo $hitungDataFilterPANGKAL;exit;
@@ -5201,7 +5203,7 @@
                 FROM input_data_sd
                 WHERE
                 REGISTRASI != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
 
@@ -5214,7 +5216,7 @@
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 LIMIT $dataAwal, $jumlahData");
 
             $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
@@ -5312,7 +5314,7 @@
                 FROM input_data_sd
                 WHERE
                 REGISTRASI != 0
-                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -5333,7 +5335,7 @@
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 

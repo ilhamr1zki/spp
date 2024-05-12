@@ -21,7 +21,6 @@
         $tahunAjaran = "";
     }
 
-
     function penyebut($nilai) {
         $nilai = abs($nilai);
         $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
@@ -111,9 +110,19 @@
     $bayarBulan     = "";
     $idInvoice      = "";
 
+    $jenjangPendidikan  = ""; 
+
     $rupiah_terbilang = "";
 
     if (isset($_POST['cetak_kuitansi'])) {
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+            $jenjangPendidikan = "SD";
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            $jenjangPendidikan = "TK";
+        } else {
+            $jenjangPendidikan = "";
+        }
 
         $nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];
         $namaSiswa         = $_POST['cetak_kuitansi_nama_siswa'];
@@ -352,7 +361,7 @@
                 </strong>
                 <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 80px;"> Komplek Green View, Jl. Green View Blok E No.3-4-5, <br></p>
                 <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 43px;"> Kel. Jaka Setia, Kec. Bekasi Selatan, Kota Bekasi, Jawa Barat 17147 <br></p>
-                <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 141px; margin-top: -10px;"> Telp. 021-82772882 <span id="kw"> <strong> KWITANSI PEMBAYARAN </strong> </span> <span style="color: red; font-size: 20px;"> <strong> <b> SD </b> </strong> </span> </p>
+                <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 141px; margin-top: -10px;"> Telp. 021-82772882 <span id="kw"> <strong> KUITANSI PEMBAYARAN </strong> </span> <span style="color: red; font-size: 20px;"> <strong> <b> <?= $jenjangPendidikan; ?> </b> </strong> </span> </p>
             </div>
         </div>
 
