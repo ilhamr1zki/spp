@@ -1378,7 +1378,7 @@
 
                         $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
                         $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
-                        echo $hitungDataFilterLain;
+                        // echo $hitungDataFilterLain;
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
@@ -3047,15 +3047,15 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterPangkalWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterPangkalWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterPangkalWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterPangkalWithDate'] . " 23:59:59";
 
             $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 PANGKAL != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -3076,7 +3076,7 @@
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -3611,19 +3611,19 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterKegiatanWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterKegiatanWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterKegiatanWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterKegiatanWithDate'] . " 23:59:59";
 
-            $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
+            $execQueryGetAllDataHistoriFilterKegitanWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
-            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatanWithDate);
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegitanWithDate);
             // echo $totalData;
 
             $jumlahPagination = ceil($totalData / $jumlahData);
@@ -3640,7 +3640,7 @@
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -5872,8 +5872,8 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterLainWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterLainWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterLainWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterLainWithDate'] . " 23:59:59";
 
             $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
