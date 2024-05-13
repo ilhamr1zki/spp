@@ -1210,8 +1210,6 @@
 
                         $namaMurid = $namaSiswa;
 
-                        echo "masuk sini";
-
                         $tanggalDari    = $_POST['tanggal1'];
                         $tanggalSampai  = $_POST['tanggal2']; 
 
@@ -1227,7 +1225,7 @@
                         $execQueryDataFilterSeragamWithDate    = mysqli_query($con, $queryGetDataFilterSeragamWithDate);
                         // $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataFilterSeragamWithDate);
                         $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataFilterSeragamWithDate);
-                        echo $hitungDataFilterSeragamWithDate . "<br>";
+                        // echo $hitungDataFilterSeragamWithDate . "<br>";
 
                         // echo "Dari tanggal : " . $dariTanggal . "<br> ". "Sampai Tanggal : " . $sampaiTanggal . "<br> Jumlah Data : ". $hitungDataFilterSeragamWithDate;
                         // echo $hitungDataFilterPANGKAL;exit;
@@ -2944,12 +2942,13 @@
                 FROM input_data_sd
                 WHERE
                 PANGKAL != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '.' '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
 
             $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
             $hitungDataFilterPangkalWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+            // echo $hitungDataFilterPangkalWithDate;
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -2957,7 +2956,7 @@
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 LIMIT $dataAwal, $jumlahData");
 
             $jumlahPagination = ceil($hitungDataFilterPangkalWithDate / $jumlahData);
@@ -3508,7 +3507,7 @@
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
 
@@ -3521,7 +3520,7 @@
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 LIMIT $dataAwal, $jumlahData");
 
             $jumlahPagination = ceil($hitungDataFilterKegiatanWithDate / $jumlahData);
@@ -4073,7 +4072,7 @@
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
 
@@ -4086,7 +4085,7 @@
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 LIMIT $dataAwal, $jumlahData");
 
             $jumlahPagination = ceil($hitungDataFilterBukuWithDate / $jumlahData);
@@ -4176,15 +4175,15 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterBukuWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterBukuWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterBukuWithDate'] . " 00:00:00";
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterBukuWithDate'] . " 23:59:59";
 
             $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -4205,7 +4204,7 @@
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -4638,7 +4637,7 @@
                 FROM input_data_sd
                 WHERE
                 SERAGAM != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
 
@@ -4651,7 +4650,7 @@
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 LIMIT $dataAwal, $jumlahData");
 
             $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
@@ -4741,15 +4740,15 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterSeragamWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSeragamWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterSeragamWithDate'] . ' 00:00:00';
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterSeragamWithDate'] . ' 23:59:59';
 
             $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 SERAGAM != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -4770,7 +4769,7 @@
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -5306,15 +5305,15 @@
 
             $iniScrollPreviousPage  = "ada";
 
-            $tanggalDari    = $_POST['tanggalDariFormFilterRegistrasiWithDate'];
-            $tanggalSampai  = $_POST['tanggalSampaiFormFilterRegistrasiWithDate'];
+            $tanggalDari    = $_POST['tanggalDariFormFilterRegistrasiWithDate'] . ' 00:00:00';
+            $tanggalSampai  = $_POST['tanggalSampaiFormFilterRegistrasiWithDate'] . ' 23:59:59';
 
             $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 REGISTRASI != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%'
             ");
 
@@ -5335,7 +5334,7 @@
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -5768,7 +5767,7 @@
                 FROM input_data_sd
                 WHERE
                 LAIN != 0
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 AND NAMA LIKE '%$namaMurid%' 
             ";
 
@@ -5781,7 +5780,7 @@
                 WHERE
                 LAIN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                AND STAMP = '$tanggalDari' <= '$tanggalSampai' 
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 ORDER BY STAMP ASC
                 LIMIT $dataAwal, $jumlahData");
 
