@@ -119,189 +119,340 @@
 </div>
 
 <div class="box box-info">
+
     <div class="box-header with-border">
         <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
        
     </div>
-    <form action="<?= $baseac; ?>checkinputdata" method="post" target="_blank">
-        <div class="box-body table-responsive">
 
-            <div class="row">
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <label>ID</label>
-                        <input type="text" name="" readonly="" class="form-control" id="id_siswa" name="id_siswa" />
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label>NIS</label>
-                        <input type="text" class="form-control" id="nis_siswa" name="nis_siswa" readonly="" />
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="form-group">
-                        <label>NAMA</label>
-                        <input type="text" class="form-control" id="nama_siswa" readonly="" name="nama_siswa" />
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>PANGGILAN</label>
-                        <input type="text" class="form-control" id="panggilan_siswa" readonly="" name="panggilan_siswa" />
-                    </div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <label>Kelas</label>
-                        <input type="text" class="form-control" readonly="" id="kelas_siswa" name="kelas_siswa" />
-                    </div>
-                </div>
-            </div> 
+    <?php if (isset($_POST['simpan_data'])): ?>
+        
+        <form action="<?= $baseac; ?>checkinputdata" method="post">
+            <div class="box-body table-responsive">
 
-            <div class="row">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <label>ID SISWA</label>
+                            <input type="text" name="" readonly="" class="form-control" id="id_siswa" name="id_siswa" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" id="nis_siswa" name="nis_siswa" readonly="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>NAMA</label>
+                            <input type="text" class="form-control" id="nama_siswa" readonly="" name="nama_siswa" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>PANGGILAN</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" readonly="" name="panggilan_siswa" />
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" class="form-control" readonly="" id="kelas_siswa" name="kelas_siswa" />
+                        </div>
+                    </div>
+                </div> 
 
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label>TANGGAL</label>
-                        <input type="date" class="form-control" name="tanggal_bukti_tf" id="tanggal_bukti_tf">
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TANGGAL</label>
+                            <input type="date" class="form-control" name="tanggal_bukti_tf" id="tanggal_bukti_tf">
+                        </div>
                     </div>
-                </div>
-                
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label>BULAN</label>
-                        <select class="form-control">
-                            <option> -- PILIH -- </option>
-                            <?php foreach ($dataBulan as $bln) : ?>
-                                <option value="<?= $bln; ?>"> <?= $bln; ?> </option>
-                            <?php endforeach; ?>
-                        </select>
+                    
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>BULAN</label>
+                            <select class="form-control">
+                                <option> -- PILIH -- </option>
+                                <?php foreach ($dataBulan as $bln) : ?>
+                                    <option value="<?= $bln; ?>"> <?= $bln; ?> </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TAHUN</label>
+                            <input type="text" name="isi_tahun" id="isi_tahun" placeholder="2024" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TX</label>
+                            <select class="form-control">
+                                <option> -- PILIH -- </option>
+                                <?php foreach ($opsiTx as $tx): ?>
+                                    <option value="<?= $tx; ?>"> <?= $tx; ?> </option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label>TAHUN</label>
-                        <input type="text" name="isi_tahun" class="form-control">
-                    </div>
-                </div>
+                <hr class="new1" />
 
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label>TX</label>
-                        <select class="form-control">
-                            <option> -- PILIH -- </option>
-                            <?php foreach ($opsiTx as $tx): ?>
-                                <option value="<?= $tx; ?>"> <?= $tx; ?> </option>
-                            <?php endforeach ?>
-                        </select>
+                <div class="flex-containers">
+
+                    <!-- SPP -->
+                    <div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 213px;"> UANG SPP </label>
+                                <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="nominal_spp">
+                                <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 174px;"> UANG PANGKAL </label>
+                                <input type="text" id="rupiah_pangkal" class="uang_pangkal" value="0" name="">
+                                <input type="text" class="ket_uang_pangkal" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                                <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="">
+                                <input type="text" class="ket_uang_regis" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                                <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="">
+                                <input type="text" class="ket_uang_seragam" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 203px;"> UANG BUKU </label>
+                                <input type="text" id="rupiah_buku" class="uang_buku" value="0" name="">
+                                <input type="text" class="ket_uang_buku" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                                <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="">
+                                <input type="text" class="ket_uang_kegiatan" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 22px;"> LAIN2/INFAQ/Sumbangan/Antar Jemput </label>
+                                <input type="text" id="rupiah_lain" class="lain2" value="0" name="">
+                                <input type="text" class="ket_lain2" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="tombols">
+
+                            <div class="form-group">
+                                <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-warning btn-circle"> Input </a>
+                                <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
+                            </div>
+
+                            <div class="form-group">
+                                <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </a>
+                                <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
+                            </div>
+
+                            <div class="form-group">
+                                <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </span> </a>
+                                <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
+                            </div>
+
+                            <div class="form-group">
+                                <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </span> </a>
+                                <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
+                            </div>
+
+                        </div>
+
                     </div>
-                </div>
 
             </div>
+        </form>
 
-            <hr class="new1" />
+    <?php else: ?>
 
-            <div class="flex-containers">
+        <form action="<?= $baseac; ?>checkinputdata" method="post">
+            <div class="box-body table-responsive">
 
-                <!-- SPP -->
-                <div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 213px;"> UANG SPP </label>
-                            <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="nominal_spp">
-                            <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp" placeholder="Keterangan">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 174px;"> UANG PANGKAL </label>
-                            <input type="text" id="rupiah_pangkal" class="uang_pangkal" value="0" name="">
-                            <input type="text" class="ket_uang_pangkal" name="" placeholder="Keterangan">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
-                            <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="">
-                            <input type="text" class="ket_uang_regis" name="" placeholder="Keterangan">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 171px;"> UANG SERAGAM </label>
-                            <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="">
-                            <input type="text" class="ket_uang_seragam" name="" placeholder="Keterangan">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 203px;"> UANG BUKU </label>
-                            <input type="text" id="rupiah_buku" class="uang_buku" value="0" name="">
-                            <input type="text" class="ket_uang_buku" name="" placeholder="Keterangan">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 172px;"> UANG KEGIATAN </label>
-                            <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="">
-                            <input type="text" class="ket_uang_kegiatan" name="" placeholder="Keterangan">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 22px;"> LAIN2/INFAQ/Sumbangan/Antar Jemput </label>
-                            <input type="text" id="rupiah_lain" class="lain2" value="0" name="">
-                            <input type="text" class="ket_lain2" name="" placeholder="Keterangan">
-                        </div>
-                    </div>
-
-                    <div class="tombol">
+                <div class="row">
+                    <div class="col-sm-1">
                         <div class="form-group">
-                            <button id="save_record" name="simpan_data" class="btn btn-warning btn-circle"> Save Record </button>
+                            <label>ID SISWA</label>
+                            <input type="text" name="" readonly="" class="form-control" id="id_siswa" name="id_siswa" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" id="nis_siswa" name="nis_siswa" readonly="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>NAMA</label>
+                            <input type="text" class="form-control" id="nama_siswa" readonly="" name="nama_siswa" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>PANGGILAN</label>
+                            <input type="text" class="form-control" id="panggilan_siswa" readonly="" name="panggilan_siswa" />
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" class="form-control" readonly="" id="kelas_siswa" name="kelas_siswa" />
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TANGGAL</label>
+                            <input type="date" class="form-control" name="tanggal_bukti_tf" id="tanggal_bukti_tf">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>BULAN</label>
+                            <select class="form-control">
+                                <option> -- PILIH -- </option>
+                                <?php foreach ($dataBulan as $bln) : ?>
+                                    <option value="<?= $bln; ?>"> <?= $bln; ?> </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TAHUN</label>
+                            <input type="text" name="isi_tahun" id="isi_tahun" placeholder="2024" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TX</label>
+                            <select class="form-control">
+                                <option> -- PILIH -- </option>
+                                <?php foreach ($opsiTx as $tx): ?>
+                                    <option value="<?= $tx; ?>"> <?= $tx; ?> </option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="new1" />
+
+                <div class="flex-containers">
+
+                    <!-- SPP -->
+                    <div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 213px;"> UANG SPP </label>
+                                <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="nominal_spp" required="">
+                                <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp" required="" placeholder="Keterangan">
+                            </div>
                         </div>
 
-    </form>
-                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
-                        
-                        <div class="form-group">
-                            <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp">
-                            <input type="hidden" id="cetakKuitansi_id_siswa" name="cetak_kuitansi_id_siswa">
-                            <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa">
-                            <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa">
-                            <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa">
-                            <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf">
-                            <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp">
-                            <button id="cetak_kuitansi_web" name="cetak_kuitansi" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </button>
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 174px;"> UANG PANGKAL </label>
+                                <input type="text" id="rupiah_pangkal" class="uang_pangkal" value="0" name="">
+                                <input type="text" class="ket_uang_pangkal" name="" placeholder="Keterangan">
+                            </div>
                         </div>
-                        
-                    </form>
 
-                        <div class="form-group">
-                            <button id="cetak_slip_kuitansi" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </button>
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                                <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="">
+                                <input type="text" class="ket_uang_regis" name="" placeholder="Keterangan">
+                            </div>
                         </div>
-                    <!-- <form> -->
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                                <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="">
+                                <input type="text" class="ket_uang_seragam" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 203px;"> UANG BUKU </label>
+                                <input type="text" id="rupiah_buku" class="uang_buku" value="0" name="">
+                                <input type="text" class="ket_uang_buku" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                                <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="">
+                                <input type="text" class="ket_uang_kegiatan" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 22px;"> LAIN2/INFAQ/Sumbangan/Antar Jemput </label>
+                                <input type="text" id="rupiah_lain" class="lain2" value="0" name="">
+                                <input type="text" class="ket_lain2" name="" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="tombol">
+                            <div class="form-group">
+                                <button id="save_record" name="simpan_data" class="btn btn-warning btn-circle"> Save Record </button>
+                            </div>
+
                         <div class="form-group">
                             <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </a>
                             <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
                         </div>
-                    <!-- </form> -->
 
-                    </div>
+        </form>
 
-                </div>  
-
-            </div>
-            
-        </div>
+    <?php endif ?>
     
 </div>
 
@@ -382,6 +533,10 @@
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
 
 <script language="javascript" type="text/javascript">
+
+    $('#isi_tahun').keypress(function (e) {
+        if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+    });
 
     /* Format Rupiah SPP */
     let rupiah_spp                  = document.getElementById('rupiah_spp')

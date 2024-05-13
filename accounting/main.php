@@ -335,6 +335,12 @@
       height: 25px;
     }
 
+    .tombols {
+      display: flex;
+      gap: 5px;
+      flex-direction: row;
+    }
+
     @media only screen and (max-width: 600px) {
 
       .cobasidebar {
@@ -347,6 +353,12 @@
         margin-left: auto !important;
         padding-left: 15px !important;
         padding-right: 15px !important;
+      }
+
+      .tombols {
+        display: flex;
+        flex-direction: column;
+        margin-left: 29px;
       }
 
     }
@@ -363,6 +375,13 @@
         width: 40%;
         margin-right: 10px; 
         text-align: end;
+      }
+
+      .tombols {
+        display: flex;
+        flex-direction: column;
+        margin-left: -20px;
+        width: 95%;
       }
 
       #tahun_ajaran {
@@ -761,6 +780,10 @@ oncontextmenu="return false">
               </ul>
             </li>
 
+            <li>
+              <a href="<?= $baseac; ?>slipkuitansi"><i class="glyphicon glyphicon-plus text-primary"></i> Slip Kuitansi </a>
+            </li>
+
           </ul>
         </li>
         
@@ -806,6 +829,8 @@ oncontextmenu="return false">
       require 'view/spp/input_data/trylayout.php';
     } else if ($act == 'checkinputdata') {
       require 'view/spp/input_data/checkinputdata.php';
+    } else if ($act == 'slipkuitansi') {
+      require 'view/spp/input_data/slipkuitansi.php';
     }
 
     else if ($act == 'datacheckpayment') {

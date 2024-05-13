@@ -21,6 +21,8 @@
         $tahunAjaran = "";
     }
 
+    echo $_SESSION['c_accounting'];
+
     function penyebut($nilai) {
         $nilai = abs($nilai);
         $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
