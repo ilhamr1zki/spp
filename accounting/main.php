@@ -174,7 +174,7 @@
     }
 
     #example1 {
-      width: 167% !important;
+      width: 200% !important;
       max-width: 200% !important;
     }
 
