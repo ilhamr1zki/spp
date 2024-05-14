@@ -21,8 +21,6 @@
         $tahunAjaran = "";
     }
 
-    echo $_SESSION['c_accounting'];
-
     function penyebut($nilai) {
         $nilai = abs($nilai);
         $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
@@ -149,7 +147,7 @@
         $ketUangRegistrasi = $_POST['cetak_kuitansi_ket_uang_registrasi'];
         $ketUangLain       = $_POST['cetak_kuitansi_ket_uang_lain'];
 
-        $cetak_kuitansi_filter = $_POST['cetak_kuitansi_filter'];
+        // $cetak_kuitansi_filter = $_POST['cetak_kuitansi_filter'];
 
         // Bagian Data Siswa
         $nisSiswa        = $_POST['cetak_kuitansi_nis_siswa'];

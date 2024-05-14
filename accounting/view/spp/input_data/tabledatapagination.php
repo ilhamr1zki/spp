@@ -69,7 +69,11 @@
                                             <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                                <td style="text-align: center;"> <strong> - </strong> </td>
+                                            <?php else: ?>
+                                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <?php endif ?>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
@@ -784,8 +788,8 @@
                                     <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                                     <th style="text-align: center; width: 7%;"> KET SPP </th>
                                     <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                                    <th style="text-align: center; width: 6%;"> STAMP </th>
                                     <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                                    <th style="text-align: center; width: 6%;"> STAMP </th>
                                     <th style="text-align: center; width: 1%;"> CETAK </th>
                                   </tr>
                                 </thead>
@@ -801,10 +805,15 @@
                                             <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                            <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                            <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                                <td style="text-align: center;"> <strong> - </strong> </td>
+                                            <?php else: ?>
+                                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <?php endif ?>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                            <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                                 <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -2107,10 +2116,10 @@
                                     <th style="text-align: center; width: 13%;"> NAMA </th>
                                     <th style="text-align: center; width: 5%"> KELAS </th>
                                     <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                                    <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                                    <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                                    <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                                    <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                                     <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                                    <th style="text-align: center; width: 10%;"> STAMP </th>
+                                    <th style="text-align: center; width: 7%;"> STAMP </th>
                                     <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                                     <th style="text-align: center; width: 1%;"> CETAK </th>
                                   </tr>
@@ -2125,9 +2134,17 @@
                                             <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                             <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                            <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                            <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                                <td style="text-align: center;"> <strong> - </strong> </td>
+                                            <?php else: ?>
+                                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                            <?php endif ?>
                                             <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                                <td style="text-align: center;"> <strong> - </strong> </td>
+                                            <?php else: ?>
+                                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <?php endif ?>
                                             <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
@@ -2333,7 +2350,11 @@
                                             <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                             <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                                <td style="text-align: center;"> <strong> - </strong> </td>
+                                            <?php else: ?>
+                                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                            <?php endif ?>
                                             <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
@@ -2392,7 +2413,6 @@
                                                         <span class="glyphicon glyphicon-print"> 
                                                     </button>
                                                 </form>
-                                                
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -7164,8 +7184,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -7181,10 +7201,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -7390,8 +7415,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -7407,10 +7432,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -7615,8 +7645,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -7632,10 +7662,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -7840,8 +7875,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -7857,10 +7892,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -8057,8 +8097,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -8074,10 +8114,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -8278,8 +8323,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -8295,10 +8340,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -8509,8 +8559,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -8526,10 +8576,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -8741,8 +8796,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -8758,10 +8813,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -8966,8 +9026,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -8983,10 +9043,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -9197,8 +9262,8 @@
                         <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                         <th style="text-align: center; width: 7%;"> KET SPP </th>
                         <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
+                        <th style="text-align: center; width: 6%;"> STAMP </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
                     </thead>
@@ -9214,10 +9279,15 @@
                                 <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['SPP_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
-                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
+                                <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
+
                                     <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
@@ -11591,10 +11661,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -11609,9 +11679,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -11670,7 +11748,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -11814,10 +11891,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -11832,9 +11909,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -11893,7 +11978,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -12038,10 +12122,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -12056,9 +12140,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -12117,7 +12209,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -12260,10 +12351,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -12278,9 +12369,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -12339,7 +12438,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -12477,10 +12575,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -12495,9 +12593,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -12556,7 +12662,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -12695,10 +12800,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -12713,9 +12818,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -12774,7 +12887,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -12928,10 +13040,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -12946,9 +13058,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -13007,7 +13127,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -13162,10 +13281,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -13180,9 +13299,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -13241,7 +13368,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -13394,10 +13520,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -13412,9 +13538,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -13473,7 +13607,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -13621,10 +13754,10 @@
                         <th style="text-align: center; width: 13%;"> NAMA </th>
                         <th style="text-align: center; width: 5%"> KELAS </th>
                         <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
-                        <th style="text-align: center; width: 9%;"> PEMBAYARAN BULAN </th>
-                        <th style="text-align: center; width: 13%;"> KET KEGIATAN </th>
+                        <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                        <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                         <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                        <th style="text-align: center; width: 10%;"> STAMP </th>
+                        <th style="text-align: center; width: 7%;"> STAMP </th>
                         <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                         <th style="text-align: center; width: 1%;"> CETAK </th>
                       </tr>
@@ -13639,9 +13772,17 @@
                                 <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                 <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                 <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
-                                <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                                <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                                    <td style="text-align: center;"> <strong> - </strong> </td>
+                                <?php else: ?>
+                                    <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                                <?php endif ?>
                                 <td style="text-align: center;"> <?=  tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
@@ -13700,7 +13841,6 @@
                                             <span class="glyphicon glyphicon-print"> 
                                         </button>
                                     </form>
-                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>
