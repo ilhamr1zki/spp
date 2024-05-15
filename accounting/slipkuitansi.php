@@ -34,7 +34,7 @@
         }
 
         #bulan {
-        	margin-left: 10px;
+        	margin-left: 5px;
         }
 
         .logo {
@@ -70,44 +70,54 @@
             box-sizing: border-box;
         }
 
+        #span_number_invoice {
+        	margin-left: 20px;
+        }
+
         #span_nama {
         	margin-left: 20px;
         }
 
         #span_nis {
-        	margin-left: 39px;
+        	margin-left: 40px;
         }
 
         #span_kelas {
-        	margin-left: 14px;
+        	margin-left: 13px;
         }
 
         #span_pembayaran {
         	margin-left: 1px;
         }
 
+        #num_invoice {
+        	width: 15%;
+        	margin-left: 1%;
+        }
+
         #nama {
-        	width: 89%;
+        	width: 88.5%;
         	margin-left: 1%;
         }
 
         #nis {
-        	width: 89%;
+        	width: 88.5%;
         	margin-left: 1%;
         }
 
         #kelas {
-        	width: 89%;
+        	width: 88.5%;
         	margin-left: 1%;
         }
 
         #pembayaran {
-        	width: 16.3%;
-        	margin-left: 10px;
+        	width: 37.4%;
+        	margin-left: 5px;
         }
 
         #pembayaran_bulan {
-        	width: 38.6%;
+        	width: 16.6%;
+        	margin-left: 5px;
         }
 
         .receipt {
@@ -190,6 +200,7 @@
 	        #pembayaran_bulan {
 	        	width: 100%;
 	        	margin-top: 10px;
+	        	margin-left: 0px;
 	        }
 
 	        /*#terbilang {
@@ -208,6 +219,20 @@
 				padding-bottom: 10px;
 				padding-left: 10px;
 				width: 93%;
+	        }
+
+	        #terima_pembayaran {
+	        	border: 1px solid #ccc;
+	        	border-radius: 4px;
+	        	width: 100%;
+	        	padding-top: 10px;
+				padding-right: 10px;
+				padding-bottom: 10px;
+				padding-left: 10px;
+				width: 93%;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				font-weight: bold;
 	        }
 
 	        #nis {
@@ -298,8 +323,12 @@
 	        	font-size: 10px;
 	        }
 
-	        #isi_terbilang {
+	        #isi_menerima_pembayaran {
 	        	font-size: 14px
+	        }
+
+	        #num_invoice {
+	        	width: 25%;
 	        }
 
         }
@@ -318,8 +347,9 @@
         </div>
 
         <div class="user-details">
-        	<label> NUMBER INVOICE <span id="span_nama"> : </span> </label>
-            <input id="nama" type="text" placeholder="Name" readonly="" value="23123">
+        	<label> NUMBER INVOICE <span id="span_number_invoice"> : </span> </label>
+            <input id="num_invoice" type="text" placeholder="Name" readonly="" value="23123">
+            <br>
         	<label> NAMA <span id="span_nama"> : </span> </label>
             <input id="nama" type="text" placeholder="Name" readonly="" value="MUHAMMAD JANOKO ASMAYODHA CAHYONO">
         	<label> NIS <span id="span_nis"> : </span> </label>
@@ -327,7 +357,12 @@
         	<label> KELAS <span id="span_kelas"> : </span> </label>
             <input id="kelas" type="text" placeholder="Email" readonly="" value="1 SD">
             <label id="menerima_pembayaran"> TELAH MENERIMA PEMBAYARAN <span id="span_pembayaran"> : </span> </label>
-            <input id="pembayaran" type="text" placeholder="Email" readonly="" value="Registrasi">
+            <!-- <input id="pembayaran" type="text" placeholder="Email" readonly="" value=""> -->
+            <div id="terima_pembayaran"> 
+            	<center>
+            		<span id="isi_menerima_pembayaran"> SPP, Registrasi, Pangkal, Kegiatan, Buku, Seragam, Lain - Lain </span>
+            	</center>
+            </div>
             <label id="bulan">
              BULAN <span id="span_pembayaran_bulan"> : </span> </label>
             <input id="pembayaran_bulan" type="text" placeholder="Email" readonly="" value="DESEMBER 2024">
@@ -364,7 +399,7 @@
                     <td id="isi_bayar">Rp 1.000.000</td>
                 </tr>
                 <tr>
-                    <td colspan="2">Total: <span id="total_rp"> Rp. </span> </td>
+                    <td colspan="2" style="font-weight: bold;">Total: <span id="total_rp"> Rp. </span> </td>
                     <td id="total_bayar">14.981.379</td>
                 </tr>
             </tbody>
