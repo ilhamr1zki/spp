@@ -1,6 +1,7 @@
 <?php
     
     session_start();
+    require '../php/config.php';
 
     $nominal = "";
 
@@ -259,6 +260,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuitansi</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo $base; ?>imgstatis/favicon.jpg">
     <style>
 
         body {
