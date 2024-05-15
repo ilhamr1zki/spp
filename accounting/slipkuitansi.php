@@ -116,7 +116,7 @@
         }
 
         #pembayaran_bulan {
-        	width: 16.6%;
+        	width: 88.9%;
         	margin-left: 5px;
         }
 
@@ -149,12 +149,30 @@
 			font-style: italic;
         }
 
+        #terima_pembayaran {
+        	border: 1px solid #ccc;
+        	border-radius: 4px;
+        	width: 100%;
+        	padding-top: 10px;
+			padding-right: 10px;
+			padding-bottom: 10px;
+			padding-left: 10px;
+			width: 97%;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-weight: bold;
+        }
+
         #total_rp {
         	float: right;
         }
 
         label {
         	font-weight: bold;
+        }
+
+        #span_pembayaran_bulan {
+        	margin-left: 7px;
         }
 
         #total_bayar {
