@@ -45,7 +45,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Accouting AIIS-APPS</title>
+  <title>Accouting AIIS-SPP</title>
   <link rel="icon" href="favicon.ico">
   
   <!-- Favicon -->
@@ -640,7 +640,7 @@ oncontextmenu="return false">
             <?php endif ?>
             <ul class="dropdown-menu">
               <!-- User image -->
-              <li class="user-header">
+              <li class="user-header" style="height: 185px;">
                 <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
                   <img src="<?php echo $base; ?>imgstatis/avatar3.png" class="img-circle" alt="User Image">
                 <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>

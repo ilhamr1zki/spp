@@ -2,6 +2,146 @@
 
 	require '../php/config.php';
 
+	// ['pangkal'] => ['PANGKAL', 'UANG PANGKAL', 3000000], 
+	// ['regis'] => ['Registrasi', 'DAFTAR ULANG KELAS 1 SD', 10000000]
+	// ['spp'] => ['SPP', 'SPP MEI', 1000000]
+
+	// "jenis_pembayaran" 	=> ["SPP", "PANGKAL", "Registrasi"], 
+	// 	"keterangan" 		=> ["SPP BULAN MEI", "UANG PANGKAL 1", "DAFTAR ulang kelas 1 sd"], 
+	// 	"bayar" 			=> [1000000, 3500000, 10000000],
+
+	$nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];
+    $namaSiswa         = $_POST['cetak_kuitansi_nama_siswa'];
+    $kelasSiswa        = $_POST['cetak_kuitansi_kelas_siswa'];
+    $idInvoice         = $_POST['cetak_kuitansi_id_invoice'];
+    $tglTf             = $_POST['cetak_kuitansi_bukti_tf'];
+    $bayarBulan        = $_POST['cetak_kuitansi_bulan_pembayaran'];
+
+    $isiUangSPP        = $_POST['cetak_kuitansi_uang_spp'];
+    $isiUangPangkal    = $_POST['cetak_kuitansi_uang_pangkal'];
+    $isiUangKegiatan   = $_POST['cetak_kuitansi_uang_kegiatan'];
+    $isiUangBuku       = $_POST['cetak_kuitansi_uang_buku'];
+    $isiUangSeragam    = $_POST['cetak_kuitansi_uang_seragam'];
+    $isiUangRegis      = $_POST['cetak_kuitansi_uang_registrasi'];
+    $isiUangLain       = $_POST['cetak_kuitansi_uang_lain'];
+
+	$arrIsiJenisPembayaran = [];
+	$arrIsiJumlahBayar 	   = [];
+
+	$jenisPembayaranSPP       = $_POST['jenisPembayaranSPP'];
+	$jenisPembayaranPangkal   = $_POST['jenisPembayaranPangkal'];
+	$jenisPembayaranKegiatan  = $_POST['jenisPembayaranKegiatan'];
+	$jenisPembayaranBuku  	  = $_POST['jenisPembayaranBuku'];
+	$jenisPembayaranSeragam   = $_POST['jenisPembayaranSeragam'];
+	$jenisPembayaranRegis  	  = $_POST['jenisPembayaranRegistrasi'];
+	$jenisPembayaranLain  	  = $_POST['jenisPembayaranLain'];
+
+	// echo $jenisPembayaranPangkal;exit;
+
+	if ($jenisPembayaranSPP != 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
+    	$jenisPembayaranSPP = "SPP";
+    	$jenisPembayaranPangkal = "";
+		$jenisPembayaranKegiatan = "";
+		$jenisPembayaranBuku = "";
+		$jenisPembayaranSeragam = "";
+		$jenisPembayaranRegis = "";
+		$jenisPembayaranLain = "";
+    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal != 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
+    	$jenisPembayaranSPP = "";
+    	$jenisPembayaranPangkal = "PANGKAL";
+    	$jenisPembayaranKegiatan = "";
+		$jenisPembayaranBuku = "";
+		$jenisPembayaranSeragam = "";
+		$jenisPembayaranRegis = "";
+		$jenisPembayaranLain = "";
+    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan != 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
+    	$jenisPembayaranSPP = "";
+    	$jenisPembayaranPangkal = "";
+		$jenisPembayaranKegiatan  = "KEGIATAN";
+		$jenisPembayaranBuku = "";
+		$jenisPembayaranSeragam = "";
+		$jenisPembayaranRegis = "";
+		$jenisPembayaranLain = "";
+    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku != 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
+    	$jenisPembayaranSPP = "";
+    	$jenisPembayaranPangkal = "";
+		$jenisPembayaranKegiatan  = "";
+		$jenisPembayaranBuku  	  = "BUKU";
+		$jenisPembayaranSeragam = "";
+		$jenisPembayaranRegis = "";
+		$jenisPembayaranLain = "";
+    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam != 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
+		$jenisPembayaranSeragam   = "SERAGAM";
+    } else if ($jenisPembayaranRegis != 0) {
+		$jenisPembayaranRegis  	  = "REGISTRASI";
+    } else if ($jenisPembayaranLain != 0) {
+    	$jenisPembayaranLain  	  = "LAIN2/INFAQ/SUMBANGAN/ANTAR JEMPUT";
+    } else {
+
+    	$jenisPembayaranSPP = "";
+		$jenisPembayaranPangkal = "";
+		$jenisPembayaranKegiatan = "";
+		$jenisPembayaranBuku = "";
+		$jenisPembayaranSeragam = "";
+		$jenisPembayaranRegis = "";
+		$jenisPembayaranLain = "";
+
+    }
+
+    if ($isiUangSPP != '') {
+    	$isiUangSPP; 
+    } else if ($isiUangPangkal != "") {
+    	$isiUangPangkal;
+    } else if ($isiUangKegiatan != "") {
+    	$isiUangKegiatan;
+    } else if ($isiUangBuku != "") {
+    	$isiUangBuku;
+    } else if ($isiUangSeragam != "") {
+    	$isiUangSeragam;
+    } else if ($isiUangRegis != "") {
+    	$isiUangRegis;
+    } else if ($isiUangLain != "") {
+    	$isiUangLain;
+    } else {
+
+    	$isiUangSPP 		= "";
+    	$isiUangPangkal 	= "";
+    	$isiUangKegiatan 	= "";
+    	$isiUangBuku 		= "";
+    	$isiUangSeragam 	= "";
+    	$isiUangRegis 		= "";
+    	$isiUangLain 		= "";
+
+    }
+
+    $arrIsiJenisPembayaran[] = $jenisPembayaranSPP;
+    $arrIsiJenisPembayaran[] = $jenisPembayaranPangkal;
+    $arrIsiJenisPembayaran[] = $jenisPembayaranKegiatan;
+    $arrIsiJenisPembayaran[] = $jenisPembayaranBuku;
+    $arrIsiJenisPembayaran[] = $jenisPembayaranSeragam;
+    $arrIsiJenisPembayaran[] = $jenisPembayaranRegis;
+    $arrIsiJenisPembayaran[] = $jenisPembayaranLain;
+
+	$arrIsiJumlahBayar[] = $isiUangSPP;
+	$arrIsiJumlahBayar[] = $isiUangPangkal;
+	$arrIsiJumlahBayar[] = $isiUangKegiatan;
+	$arrIsiJumlahBayar[] = $isiUangBuku;
+	$arrIsiJumlahBayar[] = $isiUangSeragam;
+	$arrIsiJumlahBayar[] = $isiUangRegis;
+	$arrIsiJumlahBayar[] = $isiUangLain;
+
+	var_dump($arrIsiJenisPembayaran);exit;
+
+	$dbJenisPembayaran = [
+		'data' => [
+			'jenis_pembayaran' => $arrIsiJenisPembayaran,
+			'keterangan' 	   => ["spp mei", "pangkal mei", "daftar ulang"],
+			'bayar' 		   => $arrIsiJumlahBayar
+		],
+	];
+
+	// exit;
+
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +256,7 @@
         }
 
         #pembayaran_bulan {
-        	width: 88.9%;
+        	width: 85.6%;
         	margin-left: 5px;
         }
 
@@ -172,11 +312,15 @@
         }
 
         #span_pembayaran_bulan {
-        	margin-left: 7px;
+        	margin-left: 12px;
         }
 
         #total_bayar {
         	font-weight: bold;
+        }
+
+        #jns_byr {
+        	width: 25%;
         }
 
         @media only screen and (max-width: 600px) {
@@ -382,8 +526,8 @@
             	</center>
             </div>
             <label id="bulan">
-             BULAN <span id="span_pembayaran_bulan"> : </span> </label>
-            <input id="pembayaran_bulan" type="text" placeholder="Email" readonly="" value="DESEMBER 2024">
+             TANGGAL <span id="span_pembayaran_bulan"> : </span> </label>
+            <input id="pembayaran_bulan" type="text" placeholder="Email" readonly="" value="31 DESEMBER 2024">
             <label id="menerima_pembayaran"> TERBILANG <span id="span_pembayaran"> : </span> </label>
             <div id="terbilang"> 
             	<center>
@@ -400,7 +544,9 @@
                     <th id="nominal_bayar"> BAYAR </th>
                 </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
+
+
                 <tr>
                     <td id="isi_jenis_pembayaran"> SPP </td>
                     <td id="isi_keterangan">SPP Bulan Mei</td>
@@ -420,6 +566,33 @@
                     <td colspan="2" style="font-weight: bold;">Total: <span id="total_rp"> Rp. </span> </td>
                     <td id="total_bayar">14.981.379</td>
                 </tr>
+            </tbody> -->
+            <tbody>
+            	<?php  
+            		for ($i=0; $i < count($dbJenisPembayaran['data']); $i++) { 
+            			echo "
+            			<tr>
+            				<td id = 'isi_jenis_pembayaran' >" . $dbJenisPembayaran['data']['jenis_pembayaran'][$i] . "</td>
+            				<td id = 'isi_jenis_pembayaran' >" . $dbJenisPembayaran['data']['keterangan'][$i] . "</td>
+            				<td id = 'isi_jenis_pembayaran' >" . $dbJenisPembayaran['data']['bayar'][$i] . "</td>
+            			</tr>
+            			";
+            	?>
+
+            	<?php  
+            		}
+            	?>
+            	<tr>
+                    <td colspan="2" style="font-weight: bold;">Total: <span id="total_rp"> Rp. </span> </td>
+                    <td id="total_bayar">14.981.379</td>
+                </tr>
+        		<!-- <?php foreach ($dbJenisPembayaran['jenis_pembayaran'] as $data => $Y): ?>
+        		<tr>
+        			<td id="isi_jenis_pembayaran"> <?= $Y; ?> </td>
+        			<td id="isi_jenis_pembayaran"> <?= $Y; ?> </td>
+        			<td id="isi_jenis_pembayaran"> <?= $Y; ?> </td>
+        		</tr>
+        		<?php endforeach ?> -->
             </tbody>
         </table>
 

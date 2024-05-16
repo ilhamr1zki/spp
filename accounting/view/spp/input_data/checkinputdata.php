@@ -233,6 +233,93 @@
 
 ?>
 
+<style type="text/css">
+
+    .flex_container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+      margin-left: -12px;
+    }
+
+    .flex_container > div {
+      width: 100px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+    }
+
+    #check_pembayaran {
+        margin-left: -2px;
+    }
+
+    #div_cetak_kuitansi {
+        margin-left: 42px;
+    }
+
+    #div_slip_kuitansi {
+        margin-left: 24px;
+    }
+
+    @media (max-width: 600px) {
+        .flex_container {
+            flex-direction: column;
+            gap: 0px;
+            flex-wrap: nowrap;
+        }
+
+        .flex_container > div {
+            width: auto;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        #div_input_data {
+            line-height: 30px;
+            margin-left: 25px;
+        }
+
+        #div_input_data > #input_data {
+            width: 100%;
+        }
+
+        #check_pembayaran {
+            margin-left: -4px;
+            line-height: 30px;
+            width: 72.5%;
+        }
+
+        #check_pembayaran > #cek_pembayaran {
+            width: 119%;
+        }
+
+        #div_cetak_kuitansi {
+            margin-left: 23px;
+            line-height: 30px;
+            width: 88%;
+        }
+
+        #btn_cetak_kuitansi {
+            width: 98%;
+        }
+
+        #div_slip_kuitansi {
+            margin-left: 25px;
+            line-height: 30px;
+            width: 70%;
+        }
+
+        #slip_kuitansi {
+            width: 123.5%;
+        }
+
+    }
+
+</style>
+
 <div class="row">
     <div class="col-xs-12 col-md-12 col-lg-12">
 
@@ -386,17 +473,9 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
-                            <input type="text" id="rupiah_regis" readonly class="uang_regis" value="<?= rupiahFormat($data_uang_registrasi); ?>">
-                            <input type="text" class="ket_uang_regis" readonly="" placeholder="Keterangan" value="<?= $data_ket_registrasi; ?>">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 171px;"> UANG SERAGAM </label>
-                            <input type="text" id="rupiah_seragam" readonly="" class="uang_seragam" value="<?= rupiahFormat($data_uang_seragam); ?>">
-                            <input type="text" class="ket_uang_seragam" readonly="" placeholder="Keterangan" value="<?= $data_ket_seragam; ?>">
+                            <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                            <input type="text" id="rupiah_kegiatan" readonly="" class="uang_kegiatan" value="<?= rupiahFormat($data_uang_kegiatan); ?>">
+                            <input type="text" class="ket_uang_kegiatan" readonly="" placeholder="Keterangan" value="<?= $data_ket_kegiatan; ?>">
                         </div>
                     </div>
 
@@ -410,9 +489,17 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 172px;"> UANG KEGIATAN </label>
-                            <input type="text" id="rupiah_kegiatan" readonly="" class="uang_kegiatan" value="<?= rupiahFormat($data_uang_kegiatan); ?>">
-                            <input type="text" class="ket_uang_kegiatan" readonly="" placeholder="Keterangan" value="<?= $data_ket_kegiatan; ?>">
+                            <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                            <input type="text" id="rupiah_seragam" readonly="" class="uang_seragam" value="<?= rupiahFormat($data_uang_seragam); ?>">
+                            <input type="text" class="ket_uang_seragam" readonly="" placeholder="Keterangan" value="<?= $data_ket_seragam; ?>">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group" style="margin-left: 15px;">
+                            <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                            <input type="text" id="rupiah_regis" readonly class="uang_regis" value="<?= rupiahFormat($data_uang_registrasi); ?>">
+                            <input type="text" class="ket_uang_regis" readonly="" placeholder="Keterangan" value="<?= $data_ket_registrasi; ?>">
                         </div>
                     </div>
 
@@ -424,57 +511,91 @@
                         </div>
                     </div>
 
+                    <div class="flex_container">
+                        <div id="div_input_data">
+                            <a href="javascript:void(0);" id="input_data" class="btn btn-warning btn-circle"> <span class="glyphicon glyphicon-pencil"> </span> Input Data </a>
+                            <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
+                        </div>
 
-                    <form action="<?= $baseac; ?>Kuitansi.php" method="post" target="blank">
-                        <div class="tombols">
+                        <div id="check_pembayaran">
+                            <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-primary btn-circle"> <span class="glyphicon glyphicon-list"> </span> Cek Pembayaran </a>
+                            <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
+                        </div>
 
-                            <div class="form-group">
-                                <a href="javascript:void(0);" id="input_data" class="btn btn-warning btn-circle"> Input </a>
-                                <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
-                            </div>
+                        <div id="div_cetak_kuitansi">
+                            <!-- <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </span> </a> -->
+                            <form action="<?= $baseac; ?>Kuitansi.php" method="post" target="blank">
+                                <input type="hidden" name="cetak_kuitansi_nis_siswa" value="<?= $data_nis; ?>">
+                                <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data_nama; ?>">
+                                <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data_kelas; ?>">
+                                <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= end($simpanDataID); ?>">
+                                <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data_tanggal_input; ?>">
+                                <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data_bulan; ?>">
 
-                            <div class="form-group">
-                                <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </a>
-                                <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
-                            </div>
+                                <input type="hidden" name="cetak_kuitansi_uang_spp" value="<?= $data_uang_spp; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data_uang_pangkal; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data_uang_kegiatan; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_buku" value="<?= $data_uang_buku; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_seragam" value="<?= $data_uang_seragam; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data_uang_registrasi; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data_uang_lain; ?>">
 
-                                <div class="form-group">
-                                    <!-- <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </span> </a> -->
-                                    <input type="hidden" name="cetak_kuitansi_nis_siswa" value="<?= $data_nis; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data_nama; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data_kelas; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= end($simpanDataID); ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data_tanggal_input; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data_bulan; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= $data_ket_spp; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data_ket_pangkal; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data_ket_kegiatan; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= $data_ket_buku; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data_ket_seragam; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data_ket_registrasi; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="<?= $data_ket_lain; ?>">
 
-                                    <input type="hidden" name="cetak_kuitansi_uang_spp" value="<?= $data_uang_spp; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data_uang_pangkal; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data_uang_kegiatan; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_uang_buku" value="<?= $data_uang_buku; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_uang_seragam" value="<?= $data_uang_seragam; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data_uang_registrasi; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data_uang_lain; ?>">
+                                <button type="submit" name="cetak_kuitansi" id="btn_cetak_kuitansi" class="btn btn-success btn-circle"> <span class="glyphicon glyphicon-print"> </span> Cetak Kuitansi </button>
+                            </form>
 
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= $data_ket_spp; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data_ket_pangkal; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data_ket_kegiatan; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= $data_ket_buku; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data_ket_seragam; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data_ket_registrasi; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="<?= $data_ket_lain; ?>">
+                        </div>
 
-                                    <button type="submit" name="cetak_kuitansi" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </span> </button>
-                                </div>
+                        <div id="div_slip_kuitansi">
+                            <form action="<?= $baseac; ?>slipkuitansi.php" method="post" target="blank">
+                                <input type="hidden" name="cetak_kuitansi_nis_siswa" value="<?= $data_nis; ?>">
+                                <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data_nama; ?>">
+                                <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data_kelas; ?>">
+                                <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= end($simpanDataID); ?>">
+                                <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data_tanggal_input; ?>">
+                                <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data_bulan; ?>">
 
-                            <div class="form-group">
-                                <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-success btn-circle"> Slip Kuitansi <span class="glyphicon glyphicon-print"> </span> </a>
-                                <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
-                            </div>
-                    </form>
+                                <input type="hidden" name="cetak_kuitansi_uang_spp" value="<?= $data_uang_spp; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data_uang_pangkal; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data_uang_kegiatan; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_buku" value="<?= $data_uang_buku; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_seragam" value="<?= $data_uang_seragam; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data_uang_registrasi; ?>">
+                                <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data_uang_lain; ?>">
+
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= $data_ket_spp; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data_ket_pangkal; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data_ket_kegiatan; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= $data_ket_buku; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data_ket_seragam; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data_ket_registrasi; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="<?= $data_ket_lain; ?>">
+
+                                <input type="hidden" name="jenisPembayaranSPP" value="<?= $data_uang_spp; ?>">
+                                <input type="hidden" name="jenisPembayaranPangkal" value="<?= $data_uang_pangkal; ?>">
+                                <input type="hidden" name="jenisPembayaranKegiatan" value="<?= $data_uang_kegiatan; ?>">
+                                <input type="hidden" name="jenisPembayaranBuku" value="<?= $data_uang_buku; ?>">
+                                <input type="hidden" name="jenisPembayaranSeragam" value="<?= $data_uang_seragam; ?>">
+                                <input type="hidden" name="jenisPembayaranRegistrasi" value="<?= $data_uang_registrasi; ?>">
+                                <input type="hidden" name="jenisPembayaranLain" value="<?= $data_uang_lain; ?>">
+
+                                <button type="submit" name="slip_kuitansi" id="slip_kuitansi" class="btn btn-success btn-circle"> <span class="glyphicon glyphicon-print"> </span> Slip Kuitansi </button>
+                            </form>
+
+                        </div>
 
                     </div>
 
                 </div>
+
+            </div>
 
         </div>
 
@@ -583,17 +704,9 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
-                                <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="nominal_regis">
-                                <input type="text" class="ket_uang_regis" name="ket_uang_regis" placeholder="Keterangan">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
-                                <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="nominal_seragam">
-                                <input type="text" class="ket_uang_seragam" name="ket_uang_seragam" placeholder="Keterangan">
+                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                                <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="nominal_kegiatan">
+                                <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan" placeholder="Keterangan">
                             </div>
                         </div>
 
@@ -607,9 +720,17 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
-                                <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="nominal_kegiatan">
-                                <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan" placeholder="Keterangan">
+                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                                <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="nominal_seragam">
+                                <input type="text" class="ket_uang_seragam" name="ket_uang_seragam" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                                <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="nominal_regis">
+                                <input type="text" class="ket_uang_regis" name="ket_uang_regis" placeholder="Keterangan">
                             </div>
                         </div>
 
@@ -738,17 +859,9 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
-                                <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="nominal_regis">
-                                <input type="text" class="ket_uang_regis" name="ket_uang_regis" placeholder="Keterangan">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
-                                <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="nominal_seragam">
-                                <input type="text" class="ket_uang_seragam" name="ket_uang_seragam" placeholder="Keterangan">
+                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                                <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="nominal_kegiatan">
+                                <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan" placeholder="Keterangan">
                             </div>
                         </div>
 
@@ -762,9 +875,17 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
-                                <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="nominal_kegiatan">
-                                <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan" placeholder="Keterangan">
+                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                                <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="nominal_seragam">
+                                <input type="text" class="ket_uang_seragam" name="ket_uang_seragam" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                                <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="nominal_regis">
+                                <input type="text" class="ket_uang_regis" name="ket_uang_regis" placeholder="Keterangan">
                             </div>
                         </div>
 
