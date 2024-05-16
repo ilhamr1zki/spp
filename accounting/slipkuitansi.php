@@ -10,6 +10,20 @@
 	// 	"keterangan" 		=> ["SPP BULAN MEI", "UANG PANGKAL 1", "DAFTAR ulang kelas 1 sd"], 
 	// 	"bayar" 			=> [1000000, 3500000, 10000000],
 
+	function rupiahFormat($angkax){
+    
+        $hasil_rupiahx = "Rp " . number_format($angkax,0,'.',',');
+        return $hasil_rupiahx;
+     
+    }
+
+    function rupiah($angka){
+    
+        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+        return $hasil_rupiah;
+     
+    }
+
 	$nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];
     $namaSiswa         = $_POST['cetak_kuitansi_nama_siswa'];
     $kelasSiswa        = $_POST['cetak_kuitansi_kelas_siswa'];
@@ -28,6 +42,9 @@
 	$arrIsiJenisPembayaran = [];
 	$arrIsiJumlahBayar 	   = [];
 
+	$arrDataBaruJenisPembayaran	= [];
+	$arrDataBaruJumlahBayar		= []; 
+
 	$jenisPembayaranSPP       = $_POST['jenisPembayaranSPP'];
 	$jenisPembayaranPangkal   = $_POST['jenisPembayaranPangkal'];
 	$jenisPembayaranKegiatan  = $_POST['jenisPembayaranKegiatan'];
@@ -36,91 +53,174 @@
 	$jenisPembayaranRegis  	  = $_POST['jenisPembayaranRegistrasi'];
 	$jenisPembayaranLain  	  = $_POST['jenisPembayaranLain'];
 
-	// echo $jenisPembayaranPangkal;exit;
+	$dataSPP 		= "";
+	$dataPangkal 	= "";
+	$dataKegiatan 	= "";
+	$dataBuku 		= "";
+	$dataSeragam 	= "";
+	$dataRegis 		= "";
+	$dataLain 		= "";
 
-	if ($jenisPembayaranSPP != 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
-    	$jenisPembayaranSPP = "SPP";
-    	$jenisPembayaranPangkal = "";
-		$jenisPembayaranKegiatan = "";
-		$jenisPembayaranBuku = "";
-		$jenisPembayaranSeragam = "";
-		$jenisPembayaranRegis = "";
-		$jenisPembayaranLain = "";
-    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal != 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
-    	$jenisPembayaranSPP = "";
-    	$jenisPembayaranPangkal = "PANGKAL";
-    	$jenisPembayaranKegiatan = "";
-		$jenisPembayaranBuku = "";
-		$jenisPembayaranSeragam = "";
-		$jenisPembayaranRegis = "";
-		$jenisPembayaranLain = "";
-    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan != 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
-    	$jenisPembayaranSPP = "";
-    	$jenisPembayaranPangkal = "";
-		$jenisPembayaranKegiatan  = "KEGIATAN";
-		$jenisPembayaranBuku = "";
-		$jenisPembayaranSeragam = "";
-		$jenisPembayaranRegis = "";
-		$jenisPembayaranLain = "";
-    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku != 0 && $jenisPembayaranSeragam == 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
-    	$jenisPembayaranSPP = "";
-    	$jenisPembayaranPangkal = "";
-		$jenisPembayaranKegiatan  = "";
-		$jenisPembayaranBuku  	  = "BUKU";
-		$jenisPembayaranSeragam = "";
-		$jenisPembayaranRegis = "";
-		$jenisPembayaranLain = "";
-    } else if ($jenisPembayaranSPP == 0 && $jenisPembayaranPangkal == 0 && $jenisPembayaranKegiatan == 0 && $jenisPembayaranBuku == 0 && $jenisPembayaranSeragam != 0 && $jenisPembayaranRegis == 0 && $jenisPembayaranLain == 0) {
-		$jenisPembayaranSeragam   = "SERAGAM";
-    } else if ($jenisPembayaranRegis != 0) {
-		$jenisPembayaranRegis  	  = "REGISTRASI";
-    } else if ($jenisPembayaranLain != 0) {
-    	$jenisPembayaranLain  	  = "LAIN2/INFAQ/SUMBANGAN/ANTAR JEMPUT";
-    } else {
+	$totalNominalJumlahBayar = $isiUangSPP + $isiUangPangkal + $isiUangKegiatan + $isiUangBuku + $isiUangSeragam + $isiUangRegis + $isiUangLain;
+	$totalNominalJumlahBayar = rupiah($totalNominalJumlahBayar);
+	$totalNominalJumlahBayar = str_replace(["Rp "], "", $totalNominalJumlahBayar);
 
-    	$jenisPembayaranSPP = "";
-		$jenisPembayaranPangkal = "";
-		$jenisPembayaranKegiatan = "";
-		$jenisPembayaranBuku = "";
-		$jenisPembayaranSeragam = "";
-		$jenisPembayaranRegis = "";
-		$jenisPembayaranLain = "";
+	// Nominal Bayar
+    switch ($isiUangSPP) {
+	  case 0 :
+	  	$isiUangSPP = 0;
+	    break;
+	  default:
+	  	$isiUangSPP = rupiahFormat($isiUangSPP);
+	}
 
-    }
+	switch ($isiUangPangkal) {
+	  case 0 :
+	  	$isiUangPangkal = 0;
+	    break;
+	  default:
+	  	$isiUangPangkal = rupiahFormat($isiUangPangkal);
+	}
 
-    if ($isiUangSPP != '') {
-    	$isiUangSPP; 
-    } else if ($isiUangPangkal != "") {
-    	$isiUangPangkal;
-    } else if ($isiUangKegiatan != "") {
-    	$isiUangKegiatan;
-    } else if ($isiUangBuku != "") {
-    	$isiUangBuku;
-    } else if ($isiUangSeragam != "") {
-    	$isiUangSeragam;
-    } else if ($isiUangRegis != "") {
-    	$isiUangRegis;
-    } else if ($isiUangLain != "") {
-    	$isiUangLain;
-    } else {
+	switch ($isiUangKegiatan) {
+	  case 0 :
+	  	$isiUangKegiatan = 0;
+	    break;
+	  default:
+	  	$isiUangKegiatan = rupiahFormat($isiUangKegiatan);
+	}
 
-    	$isiUangSPP 		= "";
-    	$isiUangPangkal 	= "";
-    	$isiUangKegiatan 	= "";
-    	$isiUangBuku 		= "";
-    	$isiUangSeragam 	= "";
-    	$isiUangRegis 		= "";
-    	$isiUangLain 		= "";
+	switch ($isiUangBuku) {
+	  case 0 :
+	  	$isiUangBuku = 0;
+	    break;
+	  default:
+	  	$isiUangBuku = rupiahFormat($isiUangBuku);
+	}
 
-    }
+	switch ($isiUangSeragam) {
+	  case 0 :
+	  	$isiUangSeragam = 0;
+	    break;
+	  default:
+	  	$isiUangSeragam = rupiahFormat($isiUangSeragam);
+	}
 
-    $arrIsiJenisPembayaran[] = $jenisPembayaranSPP;
-    $arrIsiJenisPembayaran[] = $jenisPembayaranPangkal;
-    $arrIsiJenisPembayaran[] = $jenisPembayaranKegiatan;
-    $arrIsiJenisPembayaran[] = $jenisPembayaranBuku;
-    $arrIsiJenisPembayaran[] = $jenisPembayaranSeragam;
-    $arrIsiJenisPembayaran[] = $jenisPembayaranRegis;
-    $arrIsiJenisPembayaran[] = $jenisPembayaranLain;
+	switch ($isiUangRegis) {
+	  case 0 :
+	  	$isiUangRegis = 0;
+	    break;
+	  default:
+	  	$isiUangRegis = rupiahFormat($isiUangRegis);
+	}
+
+	switch ($isiUangLain) {
+	  case 0 :
+	  	$isiUangLain = 0;
+	    break;
+	  default:
+	  	$isiUangLain = rupiahFormat($isiUangLain);
+	}
+	// Akhir Nominal Bayar
+
+
+
+	// Jenis Pembayaran
+    switch ($jenisPembayaranSPP) {
+	  case 0 :
+	  	$dataSPP = "";
+	    break;
+	  default:
+	  	$dataSPP = "SPP";
+	}
+
+	switch ($jenisPembayaranPangkal) {
+	  case 0 :
+	  	$dataPangkal = "";
+	    break;
+	  default:
+	  	$dataPangkal = "PANGKAL";
+	}
+
+	switch ($jenisPembayaranKegiatan) {
+	  case 0 :
+	  	$dataKegiatan = "";
+	    break;
+	  default:
+	  	$dataKegiatan = "KEGIATAN";
+	}
+
+    switch ($jenisPembayaranBuku) {
+	  case 0 :
+	  	$dataBuku = "";
+	    break;
+	  default:
+	  	$dataBuku = "BUKU";
+	}
+
+	switch ($jenisPembayaranSeragam) {
+	  case 0 :
+	  	$dataSeragam = "";
+	    break;
+	  default:
+	  	$dataSeragam = "SERAGAM";
+	}
+
+	switch ($jenisPembayaranRegis) {
+	  case 0 :
+	  	$dataRegis = "";
+	    break;
+	  default:
+	  	$dataRegis = "REGISTRASI";
+	}
+
+	$pangkat2 = "<sup style='font-size: 10px;'>2</sup>";
+
+	switch ($jenisPembayaranLain) {
+	  case 0 :
+	  	$dataLain = "";
+	    break;
+	  default:
+	  	$dataLain = "LAIN". $pangkat2 ."/INFAQ/SUMBANGAN/ANTAR JEMPUT";
+	}
+	// Akhir Jenis Pembayaran
+
+    // if ($jenisPembayaranSPP != 0 ) {
+    // 	$dataSPP = "SPP";
+    // } else if ($jenisPembayaranPangkal != 0) {
+    // 	$dataPangkal = "PANGKAL";
+    // } else if ($jenisPembayaranKegiatan != 0) {
+	// 	$dataKegiatan  = "KEGIATAN";
+    // } else if ($jenisPembayaranBuku != 0) {
+	// 	$dataBuku  	  = "BUKU";
+    // } else if ($jenisPembayaranSeragam != 0) {
+	// 	$dataSeragam   = "SERAGAM";
+    // } else if ($jenisPembayaranRegis != 0) {
+	// 	$dataRegis  	  = "REGISTRASI";
+    // } else if ($jenisPembayaranLain != 0) {
+    // 	$dataLain  	  = "LAIN2/INFAQ/SUMBANGAN/ANTAR JEMPUT";
+    // } else {
+    // 	$dataSPP = "";
+	// 	$dataPangkal = "";
+	// 	$dataKegiatan = "";
+	// 	$dataBuku = "";
+	// 	$dataSeragam = "";
+	// 	$dataRegis = "";
+	// 	$dataLain = "";
+    // }
+
+	// if ($dataKegiatan == 'kosong') {
+	// 	echo "kosonglg";
+	// }
+    // echo $dataKegiatan;exit;
+
+    $arrIsiJenisPembayaran[] = $dataSPP;
+    $arrIsiJenisPembayaran[] = $dataPangkal;
+    $arrIsiJenisPembayaran[] = $dataKegiatan;
+    $arrIsiJenisPembayaran[] = $dataBuku;
+    $arrIsiJenisPembayaran[] = $dataSeragam;
+    $arrIsiJenisPembayaran[] = $dataRegis;
+    $arrIsiJenisPembayaran[] = $dataLain;
 
 	$arrIsiJumlahBayar[] = $isiUangSPP;
 	$arrIsiJumlahBayar[] = $isiUangPangkal;
@@ -130,15 +230,32 @@
 	$arrIsiJumlahBayar[] = $isiUangRegis;
 	$arrIsiJumlahBayar[] = $isiUangLain;
 
-	var_dump($arrIsiJenisPembayaran);exit;
+	// var_dump($arrIsiJumlahBayar);exit;
+
+    // Mencari dan Menghapus Data Yang Mengandung Data String yang Kosong atau mengandung angka 0
+	$arrIsiJenisPembayaran 	= array_diff($arrIsiJenisPembayaran, [""]);
+	$arrIsiJumlahBayar		= array_diff($arrIsiJumlahBayar, [0]);
+
+	// Membuat Data Array Baru dari hasil menghapus data array yang kosong
+	$arrDataBaruJenisPembayaran = array_values($arrIsiJenisPembayaran);
+	$arrDataBaruJumlahBayar 	= array_values($arrIsiJumlahBayar);
 
 	$dbJenisPembayaran = [
 		'data' => [
-			'jenis_pembayaran' => $arrIsiJenisPembayaran,
+			'jenis_pembayaran' => $arrDataBaruJenisPembayaran,
 			'keterangan' 	   => ["spp mei", "pangkal mei", "daftar ulang"],
-			'bayar' 		   => $arrIsiJumlahBayar
+			'bayar' 		   => $arrDataBaruJumlahBayar
 		],
 	];
+
+	// var_dump($dbJenisPembayaran['data']['jenis_pembayaran']);
+	// foreach ($dbJenisPembayaran['data']['jenis_pembayaran'] as $key) {
+	// 	echo $key;
+	// }
+
+	// for ($i=0; $i < count($dbJenisPembayaran['data']['jenis_pembayaran']); $i++) { 
+	// 	echo $dbJenisPembayaran['data']['jenis_pembayaran'][$i] . "<br>";
+	// }
 
 	// exit;
 
@@ -583,8 +700,8 @@
             		}
             	?>
             	<tr>
-                    <td colspan="2" style="font-weight: bold;">Total: <span id="total_rp"> Rp. </span> </td>
-                    <td id="total_bayar">14.981.379</td>
+                    <td colspan="2" style="font-weight: bold;">Total: <span id="total_rp"> Rp </span> </td>
+                    <td id="total_bayar"> <?= $totalNominalJumlahBayar; ?> </td>
                 </tr>
         		<!-- <?php foreach ($dbJenisPembayaran['jenis_pembayaran'] as $data => $Y): ?>
         		<tr>

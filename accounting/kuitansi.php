@@ -1,7 +1,13 @@
 <?php
     
     session_start();
-    require '../php/config.php';
+    require '../php/config.php'; 
+    require '../php/function.php'; 
+      // require 'view/spp/input_data/Model/Pagination.php';
+
+    if(empty($_SESSION['c_accounting'])) {
+        header('location:../login');
+    }
 
     $nominal = "";
 
@@ -299,7 +305,8 @@
         }
 
         hr.new1 {
-            width: 400px;
+/*            width: 400px;*/
+            width: 377px;
             margin-left: 10px;
             border-top: 3px solid black;
         }
@@ -442,7 +449,8 @@
                 <div>
 
                     <div class="details">
-                        <p> <strong> Untuk Pembayaran </strong> <span style="margin-left: 30px;"></span> :  </p>
+                        <!-- <p> <strong> Untuk Pembayaran </strong> <span style="margin-left: 30px;"></span> :  </p> -->
+                        <p> <strong> Untuk Pembayaran </strong> <span style="margin-left: 10px;"></span> :  </p>
                     </div>
                     
                 </div>
@@ -451,7 +459,8 @@
 
             <div style="margin-top: 16px;">
 
-                <div>
+                <!-- <div> -->
+                <div style="margin-left: -32px;">
 
                     <div class="details">
                         <strong> 
