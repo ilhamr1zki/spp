@@ -211,7 +211,7 @@
         $rupiah_terbilang = terbilang($totalKeseluruhan);
          
     } else {
-        echo "Tidak ada data yang dikirim";
+        echo "<center> <h1 style='margin-top: 280px;'>Tidak Ada Data Yang Di Kirim!</h1> </center>";
         exit;
     }
 

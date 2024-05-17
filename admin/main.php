@@ -600,14 +600,14 @@ oncontextmenu="return false">
           <li class="dropdown user user-menu">
 
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="user-image" alt="User Image">
+              <img src="<?php echo $base; ?>imgstatis/default.jpg" class="user-image" alt="User Image">
                 <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
               </a>
 
             <ul class="dropdown-menu">
               <!-- User image -->
-              <li class="user-header">
-                  <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="img-circle" alt="User Image">
+              <li class="user-header" style="height: 185px;">
+                  <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
                 <p>
                   <?php echo ucfirst($na['username']); ?>
                   <small>(<?= ucfirst($na['nama']); ?>)</small>
@@ -635,7 +635,7 @@ oncontextmenu="return false">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-            <img src="<?php echo $base; ?>imgstatis/avatar1.png" class="img-circle" alt="User Image">
+            <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo ucfirst($na['username']); ?> (<?= ucfirst($na['nama']); ?>) </p>

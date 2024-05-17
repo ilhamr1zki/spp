@@ -421,7 +421,7 @@
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label>TANGGAL</label>
-                        <input type="text" id='tanggal_bukti_tf' class="form-control" readonly value="<?= $data_tanggal_input; ?>">
+                        <input type="text" id='tanggal_bukti_tf' class="form-control" readonly value="<?= format_tanggal_indo($data_tanggal_input); ?>">
                     </div>
                 </div>
                 
@@ -457,7 +457,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 213px;"> UANG SPP </label>
+                            <label style="margin-right: 215px;"> UANG SPP </label>
                             <input type="text" id="rupiah_spp" class="uang_spp" value="<?= rupiahFormat($data_uang_spp); ?>" readonly>
                             <input type="text" class="ket_uang_spp" id="ket_uang_spp" readonly value="<?= $data_ket_spp; ?>" placeholder="Keterangan">
                         </div>
@@ -465,7 +465,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 174px;"> UANG PANGKAL </label>
+                            <label style="margin-right: 175px;"> UANG PANGKAL </label>
                             <input type="text" id="rupiah_pangkal" readonly class="uang_pangkal" value="<?= rupiahFormat($data_uang_pangkal); ?>">
                             <input type="text" class="ket_uang_pangkal" readonly value="<?= $data_ket_pangkal; ?>" placeholder="Keterangan">
                         </div>
@@ -473,7 +473,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                            <label style="margin-right: 173px;"> UANG KEGIATAN </label>
                             <input type="text" id="rupiah_kegiatan" readonly="" class="uang_kegiatan" value="<?= rupiahFormat($data_uang_kegiatan); ?>">
                             <input type="text" class="ket_uang_kegiatan" readonly="" placeholder="Keterangan" value="<?= $data_ket_kegiatan; ?>">
                         </div>
@@ -481,7 +481,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 203px;"> UANG BUKU </label>
+                            <label style="margin-right: 204px;"> UANG BUKU </label>
                             <input type="text" id="rupiah_buku" class="uang_buku" readonly="" value="<?= rupiahFormat($data_uang_buku); ?>">
                             <input type="text" class="ket_uang_buku" readonly="" placeholder="Keterangan" value="<?= $data_ket_buku; ?>">
                         </div>
@@ -489,7 +489,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                            <label style="margin-right: 172px;"> UANG SERAGAM </label>
                             <input type="text" id="rupiah_seragam" readonly="" class="uang_seragam" value="<?= rupiahFormat($data_uang_seragam); ?>">
                             <input type="text" class="ket_uang_seragam" readonly="" placeholder="Keterangan" value="<?= $data_ket_seragam; ?>">
                         </div>
@@ -497,7 +497,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                            <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
                             <input type="text" id="rupiah_regis" readonly class="uang_regis" value="<?= rupiahFormat($data_uang_registrasi); ?>">
                             <input type="text" class="ket_uang_regis" readonly="" placeholder="Keterangan" value="<?= $data_ket_registrasi; ?>">
                         </div>
@@ -505,7 +505,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-left: 15px;">
-                            <label style="margin-right: 22px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+                            <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
                             <input type="text" id="rupiah_lain" class="lain2" readonly="" value="<?= rupiahFormat($data_uang_lain); ?>">
                             <input type="text" class="ket_lain2" placeholder="Keterangan" readonly="" value="<?= $data_ket_lain; ?>">
                         </div>
@@ -555,6 +555,7 @@
 
                         <div id="div_slip_kuitansi">
                             <form action="<?= $baseac; ?>slipkuitansi.php" method="post" target="blank">
+                                
                                 <input type="hidden" name="cetak_kuitansi_nis_siswa" value="<?= $data_nis; ?>">
                                 <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data_nama; ?>">
                                 <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data_kelas; ?>">
@@ -688,7 +689,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 213px;"> UANG SPP </label>
+                                <label style="margin-right: 215px;"> UANG SPP </label>
                                 <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="nominal_spp" required="">
                                 <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp" placeholder="Keterangan">
                             </div>
@@ -696,7 +697,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 174px;"> UANG PANGKAL </label>
+                                <label style="margin-right: 175px;"> UANG PANGKAL </label>
                                 <input type="text" id="rupiah_pangkal" class="uang_pangkal" value="0" name="nominal_pangkal">
                                 <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal" placeholder="Keterangan">
                             </div>
@@ -704,7 +705,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                                <label style="margin-right: 173px;"> UANG KEGIATAN </label>
                                 <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="nominal_kegiatan">
                                 <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan" placeholder="Keterangan">
                             </div>
@@ -712,7 +713,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 203px;"> UANG BUKU </label>
+                                <label style="margin-right: 204px;"> UANG BUKU </label>
                                 <input type="text" id="rupiah_buku" class="uang_buku" value="0" name="nominal_buku">
                                 <input type="text" class="ket_uang_buku" name="ket_uang_buku" placeholder="Keterangan">
                             </div>
@@ -720,7 +721,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                                <label style="margin-right: 172px;"> UANG SERAGAM </label>
                                 <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="nominal_seragam">
                                 <input type="text" class="ket_uang_seragam" name="ket_uang_seragam" placeholder="Keterangan">
                             </div>
@@ -728,7 +729,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                                <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
                                 <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="nominal_regis">
                                 <input type="text" class="ket_uang_regis" name="ket_uang_regis" placeholder="Keterangan">
                             </div>
@@ -736,7 +737,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 22px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+                                <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
                                 <input type="text" id="rupiah_lain" class="lain2" value="0" name="nominal_lain">
                                 <input type="text" class="ket_lain2" name="ket_uang_lain2" placeholder="Keterangan">
                             </div>
@@ -843,7 +844,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 213px;"> UANG SPP </label>
+                                <label style="margin-right: 215px;"> UANG SPP </label>
                                 <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="nominal_spp" required="">
                                 <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp" placeholder="Keterangan">
                             </div>
@@ -851,7 +852,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 174px;"> UANG PANGKAL </label>
+                                <label style="margin-right: 175px;"> UANG PANGKAL </label>
                                 <input type="text" id="rupiah_pangkal" class="uang_pangkal" value="0" name="nominal_pangkal">
                                 <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal" placeholder="Keterangan">
                             </div>
@@ -859,7 +860,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 172px;"> UANG KEGIATAN </label>
+                                <label style="margin-right: 173px;"> UANG KEGIATAN </label>
                                 <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="nominal_kegiatan">
                                 <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan" placeholder="Keterangan">
                             </div>
@@ -867,7 +868,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 203px;"> UANG BUKU </label>
+                                <label style="margin-right: 204px;"> UANG BUKU </label>
                                 <input type="text" id="rupiah_buku" class="uang_buku" value="0" name="nominal_buku">
                                 <input type="text" class="ket_uang_buku" name="ket_uang_buku" placeholder="Keterangan">
                             </div>
@@ -875,7 +876,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 171px;"> UANG SERAGAM </label>
+                                <label style="margin-right: 172px;"> UANG SERAGAM </label>
                                 <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="nominal_seragam">
                                 <input type="text" class="ket_uang_seragam" name="ket_uang_seragam" placeholder="Keterangan">
                             </div>
@@ -883,7 +884,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 69px;"> UANG REGISTRASI/Daftar Ulang </label>
+                                <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
                                 <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="nominal_regis">
                                 <input type="text" class="ket_uang_regis" name="ket_uang_regis" placeholder="Keterangan">
                             </div>
@@ -891,7 +892,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 22px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+                                <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
                                 <input type="text" id="rupiah_lain" class="lain2" value="0" name="nominal_lain">
                                 <input type="text" class="ket_lain2" name="ket_uang_lain2" placeholder="Keterangan">
                             </div>
