@@ -1,14 +1,13 @@
 <?php  
 
+	session_start();
+
 	require '../php/config.php';
+	require '../php/function.php'; 
 
-	// ['pangkal'] => ['PANGKAL', 'UANG PANGKAL', 3000000], 
-	// ['regis'] => ['Registrasi', 'DAFTAR ULANG KELAS 1 SD', 10000000]
-	// ['spp'] => ['SPP', 'SPP MEI', 1000000]
-
-	// "jenis_pembayaran" 	=> ["SPP", "PANGKAL", "Registrasi"], 
-	// 	"keterangan" 		=> ["SPP BULAN MEI", "UANG PANGKAL 1", "DAFTAR ulang kelas 1 sd"], 
-	// 	"bayar" 			=> [1000000, 3500000, 10000000],
+    if(empty($_SESSION['c_accounting'])) {
+        header('location:../login');
+    }
 
 	function rupiahFormat($angkax){
     
@@ -22,6 +21,43 @@
         $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
         return $hasil_rupiah;
      
+    }
+
+    function penyebut($nilai) {
+        $nilai = abs($nilai);
+        $huruf = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+        $temp = "";
+        if ($nilai < 12) {
+            $temp = " ". $huruf[$nilai];
+        } else if ($nilai <20) {
+            $temp = penyebut($nilai - 10). " belas";
+        } else if ($nilai < 100) {
+            $temp = penyebut($nilai/10)." puluh". penyebut($nilai % 10);
+        } else if ($nilai < 200) {
+            $temp = " seratus" . penyebut($nilai - 100);
+        } else if ($nilai < 1000) {
+            $temp = penyebut($nilai/100) . " ratus" . penyebut($nilai % 100);
+        } else if ($nilai < 2000) {
+            $temp = " seribu" . penyebut($nilai - 1000);
+        } else if ($nilai < 1000000) {
+            $temp = penyebut($nilai/1000) . " ribu" . penyebut($nilai % 1000);
+        } else if ($nilai < 1000000000) {
+            $temp = penyebut($nilai/1000000) . " juta" . penyebut($nilai % 1000000);
+        } else if ($nilai < 1000000000000) {
+            $temp = penyebut($nilai/1000000000) . " milyar" . penyebut(fmod($nilai,1000000000));
+        } else if ($nilai < 1000000000000000) {
+            $temp = penyebut($nilai/1000000000000) . " trilyun" . penyebut(fmod($nilai,1000000000000));
+        }     
+        return $temp;
+    }
+
+    function terbilang($nilai) {
+        if($nilai<0) {
+            $hasil = "minus ". trim(penyebut($nilai));
+        } else {
+            $hasil = trim(penyebut($nilai));
+        }           
+        return ucwords($hasil) . " Rupiah";
     }
 
 	$nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];
@@ -39,11 +75,30 @@
     $isiUangRegis      = $_POST['cetak_kuitansi_uang_registrasi'];
     $isiUangLain       = $_POST['cetak_kuitansi_uang_lain'];
 
-	$arrIsiJenisPembayaran = [];
-	$arrIsiJumlahBayar 	   = [];
+    $ketUangSPP        = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_spp']);
+    $ketUangPANGKAL    = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_pangkal']);
+    $ketUangKegiatan   = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_kegiatan']);
+    $ketUangBuku       = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_buku']);
+    $ketUangSeragam    = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_seragam']);
+    $ketUangRegistrasi = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_registrasi']);
+    $ketUangLain       = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_lain']);
+
+    $isiKetUangSpp 			= "";
+    $isiKetUangPangkal 		= "";
+    $isiKetUangKegiatan 	= "";
+    $isiKetUangBuku 		= "";
+    $isiKetUangSeragam 		= "";
+    $isiKetUangRegistrasi 	= "";
+    $isiKetUangLain 		= "";
+
+	$arrIsiJenisPembayaran 		= [];
+	$arrIsiKeteranganPembayaran = [];
+	$arrIsiKetPembayaran 		= [];
+	$arrIsiJumlahBayar 	   		= [];
 
 	$arrDataBaruJenisPembayaran	= [];
-	$arrDataBaruJumlahBayar		= []; 
+	$arrDataBaruIsiKetPembyrn   = [];
+	$arrDataBaruJumlahBayar		= [];
 
 	$jenisPembayaranSPP       = $_POST['jenisPembayaranSPP'];
 	$jenisPembayaranPangkal   = $_POST['jenisPembayaranPangkal'];
@@ -62,8 +117,11 @@
 	$dataLain 		= "";
 
 	$totalNominalJumlahBayar = $isiUangSPP + $isiUangPangkal + $isiUangKegiatan + $isiUangBuku + $isiUangSeragam + $isiUangRegis + $isiUangLain;
-	$totalNominalJumlahBayar = rupiah($totalNominalJumlahBayar);
+	// $totalNominalJumlahBayar = rupiah($totalNominalJumlahBayar);
+	$terbilang 				 = terbilang($totalNominalJumlahBayar);
+	$totalNominalJumlahBayar = rupiahFormat($totalNominalJumlahBayar);
 	$totalNominalJumlahBayar = str_replace(["Rp "], "", $totalNominalJumlahBayar);
+
 
 	// Nominal Bayar
     switch ($isiUangSPP) {
@@ -124,6 +182,71 @@
 	// Akhir Nominal Bayar
 
 
+	// Keterangan Pembayaran
+	switch ($ketUangSPP) {
+	  case "" :
+	  	$ketUangSPP = "";
+	    break;
+	  default:
+	  	$ketUangSPP;
+	  	$isiKetUangSpp = $ketUangSPP . ", ";
+	}
+
+	switch ($ketUangPANGKAL) {
+	  case "" :
+	  	$ketUangPANGKAL = "";
+	    break;
+	  default:
+	  	$ketUangPANGKAL;
+	  	$isiKetUangPangkal = $ketUangPANGKAL . ", ";
+	}
+
+	switch ($ketUangKegiatan) {
+	  case "" :
+	  	$ketUangKegiatan = "";
+	    break;
+	  default:
+	  	$ketUangKegiatan;
+	  	$isiKetUangKegiatan = $ketUangKegiatan . ", ";
+	}
+
+	switch ($ketUangBuku) {
+	  case "" :
+	  	$ketUangBuku = "";
+	    break;
+	  default:
+	  	$ketUangBuku;
+	  	$isiKetUangBuku = $ketUangBuku . ", ";
+	}
+
+	switch ($ketUangSeragam) {
+	  case "" :
+	  	$ketUangSeragam = "";
+	    break;
+	  default:
+	  	$ketUangSeragam;
+	  	$isiKetUangSeragam = $ketUangSeragam . ", ";
+	}
+
+	switch ($ketUangRegistrasi) {
+	  case "" :
+	  	$ketUangRegistrasi = "";
+	    break;
+	  default:
+	  	$ketUangRegistrasi;
+	  	$isiKetUangRegistrasi = $ketUangRegistrasi . ", ";
+	}
+
+	switch ($ketUangLain) {
+	  case "" :
+	  	$ketUangLain = "";
+	    break;
+	  default:
+	  	$ketUangLain;
+	  	$isiKetUangLain = $ketUangLain . ", ";
+	}
+	// Akhir Keterangan Pembayaran
+
 
 	// Jenis Pembayaran
     switch ($jenisPembayaranSPP) {
@@ -171,90 +294,82 @@
 	  	$dataRegis = "";
 	    break;
 	  default:
-	  	$dataRegis = "REGISTRASI";
+	  	$dataRegis = "REGISTRASI/Daftar Ulang";
 	}
 
-	$pangkat2 = "<sup style='font-size: 10px;'>2</sup>";
+	$pangkat2 = "<sup id='pangkat_2' >2</sup>";
 
 	switch ($jenisPembayaranLain) {
 	  case 0 :
 	  	$dataLain = "";
 	    break;
 	  default:
-	  	$dataLain = "LAIN". $pangkat2 ."/INFAQ/SUMBANGAN/ANTAR JEMPUT";
+	  	$dataLain =  "<p id = 'isi_lain'>LAIN". $pangkat2 ."/INFAQ/SUMBANGAN/ANTAR JEMPUT</p>";
 	}
 	// Akhir Jenis Pembayaran
 
-    // if ($jenisPembayaranSPP != 0 ) {
-    // 	$dataSPP = "SPP";
-    // } else if ($jenisPembayaranPangkal != 0) {
-    // 	$dataPangkal = "PANGKAL";
-    // } else if ($jenisPembayaranKegiatan != 0) {
-	// 	$dataKegiatan  = "KEGIATAN";
-    // } else if ($jenisPembayaranBuku != 0) {
-	// 	$dataBuku  	  = "BUKU";
-    // } else if ($jenisPembayaranSeragam != 0) {
-	// 	$dataSeragam   = "SERAGAM";
-    // } else if ($jenisPembayaranRegis != 0) {
-	// 	$dataRegis  	  = "REGISTRASI";
-    // } else if ($jenisPembayaranLain != 0) {
-    // 	$dataLain  	  = "LAIN2/INFAQ/SUMBANGAN/ANTAR JEMPUT";
-    // } else {
-    // 	$dataSPP = "";
-	// 	$dataPangkal = "";
-	// 	$dataKegiatan = "";
-	// 	$dataBuku = "";
-	// 	$dataSeragam = "";
-	// 	$dataRegis = "";
-	// 	$dataLain = "";
-    // }
+    $arrIsiJenisPembayaran[] 		= $dataSPP;
+    $arrIsiJenisPembayaran[] 		= $dataPangkal;
+    $arrIsiJenisPembayaran[] 		= $dataKegiatan;
+    $arrIsiJenisPembayaran[] 		= $dataBuku;
+    $arrIsiJenisPembayaran[] 		= $dataSeragam;
+    $arrIsiJenisPembayaran[] 		= $dataRegis;
+    $arrIsiJenisPembayaran[] 		= $dataLain;
 
-	// if ($dataKegiatan == 'kosong') {
-	// 	echo "kosonglg";
-	// }
-    // echo $dataKegiatan;exit;
+    $arrIsiKeteranganPembayaran[]	= $ketUangSPP;
+    $arrIsiKeteranganPembayaran[]	= $ketUangPANGKAL;
+    $arrIsiKeteranganPembayaran[]	= $ketUangKegiatan;
+    $arrIsiKeteranganPembayaran[]	= $ketUangBuku;
+    $arrIsiKeteranganPembayaran[]	= $ketUangSeragam;
+    $arrIsiKeteranganPembayaran[]	= $ketUangRegistrasi;
+    $arrIsiKeteranganPembayaran[]	= $ketUangLain;
 
-    $arrIsiJenisPembayaran[] = $dataSPP;
-    $arrIsiJenisPembayaran[] = $dataPangkal;
-    $arrIsiJenisPembayaran[] = $dataKegiatan;
-    $arrIsiJenisPembayaran[] = $dataBuku;
-    $arrIsiJenisPembayaran[] = $dataSeragam;
-    $arrIsiJenisPembayaran[] = $dataRegis;
-    $arrIsiJenisPembayaran[] = $dataLain;
+    $arrIsiKetPembayaran[]			= $isiKetUangSpp;
+    $arrIsiKetPembayaran[]			= $isiKetUangPangkal;
+    $arrIsiKetPembayaran[]			= $isiKetUangKegiatan;
+    $arrIsiKetPembayaran[]			= $isiKetUangBuku;
+    $arrIsiKetPembayaran[]			= $isiKetUangSeragam;
+    $arrIsiKetPembayaran[]			= $isiKetUangRegistrasi;
+    $arrIsiKetPembayaran[]			= $isiKetUangLain;
 
-	$arrIsiJumlahBayar[] = $isiUangSPP;
-	$arrIsiJumlahBayar[] = $isiUangPangkal;
-	$arrIsiJumlahBayar[] = $isiUangKegiatan;
-	$arrIsiJumlahBayar[] = $isiUangBuku;
-	$arrIsiJumlahBayar[] = $isiUangSeragam;
-	$arrIsiJumlahBayar[] = $isiUangRegis;
-	$arrIsiJumlahBayar[] = $isiUangLain;
+	$arrIsiJumlahBayar[] 			= $isiUangSPP;
+	$arrIsiJumlahBayar[] 			= $isiUangPangkal;
+	$arrIsiJumlahBayar[] 			= $isiUangKegiatan;
+	$arrIsiJumlahBayar[] 			= $isiUangBuku;
+	$arrIsiJumlahBayar[] 			= $isiUangSeragam;
+	$arrIsiJumlahBayar[] 			= $isiUangRegis;
+	$arrIsiJumlahBayar[]	 		= $isiUangLain;
 
-	// var_dump($arrIsiJumlahBayar);exit;
+	$convertString = implode($arrIsiKetPembayaran);
+	// echo substr($convertString, 0, -2);exit;
 
     // Mencari dan Menghapus Data Yang Mengandung Data String yang Kosong atau mengandung angka 0
-	$arrIsiJenisPembayaran 	= array_diff($arrIsiJenisPembayaran, [""]);
-	$arrIsiJumlahBayar		= array_diff($arrIsiJumlahBayar, [0]);
+	$arrIsiJenisPembayaran 		= array_diff($arrIsiJenisPembayaran, [""]);
+	$arrIsiKeteranganPembayaran = array_diff($arrIsiKeteranganPembayaran, [""]);
+	$arrIsiKetPembayaran 		= array_diff($arrIsiKetPembayaran, [""]);
+	$arrIsiJumlahBayar			= array_diff($arrIsiJumlahBayar, [0]);
 
 	// Membuat Data Array Baru dari hasil menghapus data array yang kosong
 	$arrDataBaruJenisPembayaran = array_values($arrIsiJenisPembayaran);
+	$arrDataBaruKetPembayaran   = array_values($arrIsiKeteranganPembayaran);
+	$arrDataBaruIsiKetPembyrn   = array_values($arrIsiKetPembayaran);
 	$arrDataBaruJumlahBayar 	= array_values($arrIsiJumlahBayar);
+
+	// var_dump($arrDataBaruIsiKetPembyrn);exit;
 
 	$dbJenisPembayaran = [
 		'data' => [
 			'jenis_pembayaran' => $arrDataBaruJenisPembayaran,
-			'keterangan' 	   => ["spp mei", "pangkal mei", "daftar ulang"],
-			'bayar' 		   => $arrDataBaruJumlahBayar
+			'keterangan' 	   => $arrDataBaruKetPembayaran,
+			'bayar' 		   => $arrDataBaruJumlahBayar,
+			'isi_jenis'        => substr($convertString, 0, -2),
 		],
 	];
 
-	// var_dump($dbJenisPembayaran['data']['jenis_pembayaran']);
-	// foreach ($dbJenisPembayaran['data']['jenis_pembayaran'] as $key) {
-	// 	echo $key;
-	// }
+	// echo $dbJenisPembayaran['data']['isi_jenis'];
 
-	// for ($i=0; $i < count($dbJenisPembayaran['data']['jenis_pembayaran']); $i++) { 
-	// 	echo $dbJenisPembayaran['data']['jenis_pembayaran'][$i] . "<br>";
+	// foreach ($dbJenisPembayaran['data']['isi_jenis'] as $key) {
+	// 	echo substr($key, 0, -2) . "<br>";
 	// }
 
 	// exit;
@@ -288,6 +403,14 @@
         .header {
             text-align: center;
             margin-bottom: 20px;
+        }
+
+        #pangkat_2 {
+        	font-size: 9px;
+        }
+
+        #isi_lain {
+        	font-size: 13px;
         }
 
         #bulan {
@@ -444,6 +567,14 @@
 
         	#bulan {
         		margin-left: 0px;
+        	}
+
+        	#pangkat_2 {
+        		font-size: 5px;
+        	}
+
+        	#isi_lain {
+        		font-size: 8px;
         	}
 
             .container {
@@ -610,6 +741,10 @@
 	        	width: 25%;
 	        }
 
+	        #total_id {
+	        	font-size: 15px;
+	        }
+
         }
     </style>
 </head>
@@ -639,7 +774,9 @@
             <!-- <input id="pembayaran" type="text" placeholder="Email" readonly="" value=""> -->
             <div id="terima_pembayaran"> 
             	<center>
-            		<span id="isi_menerima_pembayaran"> SPP, Registrasi, Pangkal, Kegiatan, Buku, Seragam, Lain - Lain </span>
+            		<span id="isi_menerima_pembayaran"> 
+            			<?= $dbJenisPembayaran['data']['isi_jenis']; ?>
+            		</span>
             	</center>
             </div>
             <label id="bulan">
@@ -648,7 +785,7 @@
             <label id="menerima_pembayaran"> TERBILANG <span id="span_pembayaran"> : </span> </label>
             <div id="terbilang"> 
             	<center>
-            		<span id="isi_terbilang"> "Delapan Ratus Tiga Puluh Tujuh Ribu Enam Ratus Delapan Puluh Satu Rupiah" </span>
+            		<span id="isi_terbilang"> "<?= $terbilang; ?>" </span>
             	</center>
             </div>
         </div>
@@ -661,32 +798,10 @@
                     <th id="nominal_bayar"> BAYAR </th>
                 </tr>
             </thead>
-            <!-- <tbody>
 
-
-                <tr>
-                    <td id="isi_jenis_pembayaran"> SPP </td>
-                    <td id="isi_keterangan">SPP Bulan Mei</td>
-                    <td id="isi_bayar">Rp 1.000.000</td>
-                </tr>
-                <tr>
-                    <td id="isi_jenis_pembayaran">Registrasi/Daftar Ulang</td>
-                    <td id="isi_keterangan">Daftar Ulang Kelas 2</td>
-                    <td id="isi_bayar">Rp 2.000.000</td>
-                </tr>
-                <tr>
-                    <td id="isi_jenis_pembayaran">Pangkal</td>
-                    <td id="isi_keterangan">uang Pangkal jsdnaskdsa</td>
-                    <td id="isi_bayar">Rp 1.000.000</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="font-weight: bold;">Total: <span id="total_rp"> Rp. </span> </td>
-                    <td id="total_bayar">14.981.379</td>
-                </tr>
-            </tbody> -->
             <tbody>
             	<?php  
-            		for ($i=0; $i < count($dbJenisPembayaran['data']); $i++) { 
+            		for ($i=0; $i < count($dbJenisPembayaran['data']['jenis_pembayaran']); $i++) { 
             			echo "
             			<tr>
             				<td id = 'isi_jenis_pembayaran' >" . $dbJenisPembayaran['data']['jenis_pembayaran'][$i] . "</td>
@@ -700,16 +815,10 @@
             		}
             	?>
             	<tr>
-                    <td colspan="2" style="font-weight: bold;">Total: <span id="total_rp"> Rp </span> </td>
+                    <td colspan="2" style="font-weight: bold;"> <span id="total_id"> Total : <span id="total_rp"> Rp </span> </td>
                     <td id="total_bayar"> <?= $totalNominalJumlahBayar; ?> </td>
                 </tr>
-        		<!-- <?php foreach ($dbJenisPembayaran['jenis_pembayaran'] as $data => $Y): ?>
-        		<tr>
-        			<td id="isi_jenis_pembayaran"> <?= $Y; ?> </td>
-        			<td id="isi_jenis_pembayaran"> <?= $Y; ?> </td>
-        			<td id="isi_jenis_pembayaran"> <?= $Y; ?> </td>
-        		</tr>
-        		<?php endforeach ?> -->
+
             </tbody>
         </table>
 

@@ -736,7 +736,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 22px;"> LAIN2/INFAQ/Sumbangan/Antar Jemput </label>
+                                <label style="margin-right: 22px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
                                 <input type="text" id="rupiah_lain" class="lain2" value="0" name="nominal_lain">
                                 <input type="text" class="ket_lain2" name="ket_uang_lain2" placeholder="Keterangan">
                             </div>
@@ -891,7 +891,7 @@
 
                         <div class="row">
                             <div class="form-group" style="margin-left: 15px;">
-                                <label style="margin-right: 22px;"> LAIN2/INFAQ/Sumbangan/Antar Jemput </label>
+                                <label style="margin-right: 22px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
                                 <input type="text" id="rupiah_lain" class="lain2" value="0" name="nominal_lain">
                                 <input type="text" class="ket_lain2" name="ket_uang_lain2" placeholder="Keterangan">
                             </div>
