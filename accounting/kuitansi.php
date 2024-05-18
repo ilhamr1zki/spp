@@ -161,8 +161,18 @@
         $namaSiswa       = $_POST['cetak_kuitansi_nama_siswa'];
         $kelasSiswa      = $_POST['cetak_kuitansi_kelas_siswa'];
         $idInvoice       = $_POST['cetak_kuitansi_id_invoice'];
-        $tglTf           = date_create($_POST['cetak_kuitansi_bukti_tf']);
-        $tglTf           = date_format($tglTf, "d-M-y");
+
+        if ($tglTf != 'kosong') {
+
+            $tglTf           = date_create($_POST['cetak_kuitansi_bukti_tf']);
+            $tglTf           = date_format($tglTf, "d-M-y");
+
+        } else if ($tglTf == 'kosong') {
+
+            $tglTf = "";
+
+        }
+
         $bayarBulan      = $_POST['cetak_kuitansi_bulan_pembayaran'];        
 
         // echo $isiUangKegiatan;exit;

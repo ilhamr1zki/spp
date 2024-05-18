@@ -145,6 +145,11 @@
       border-top: 1px solid black;
     }
 
+    .treeview-menu li a:hover {
+      background-color: #ccc;
+      color: black !important;
+    }
+
     .tombol {
       display: flex;
       gap: 10px;
@@ -700,22 +705,24 @@ oncontextmenu="return false">
 
         <!-- SPP -->
         <li>
-          <a href="#">
+          <a href="#" id="list_spp">
             <i class="glyphicon glyphicon-usd"></i> <span> SPP </span>
           </a>
           <ul class="treeview-menu">
             
             <li>
-              <a href="#"><i class="glyphicon glyphicon-plus text-primary"></i> Input Data </a>
-              <ul class="treeview-menu">
+              <!-- <a href="#"><i class="glyphicon glyphicon-plus text-primary"></i> Input Data </a> -->
+              <a href="<?php echo $baseac; ?>checkpembayaran" id="check_pembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran</a>
+              <a href="<?php echo $baseac; ?>inputdata" id="input_data"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Input Data </a>
+              <!-- <ul class="treeview-menu">
                 
-                <li> <small> <a href="<?php echo $baseac; ?>checkpembayarandaninputdata"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
+                <li> <small> <a href="<?php echo $baseac; ?>checkpembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
                 <li> <small> <a href=""><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
 
-              </ul>
+              </ul> -->
             </li>
 
-            <li>
+            <!-- <li>
               <a href="<?php echo $basead; ?>setting"><i class="glyphicon glyphicon-bullhorn text-primary"></i> Laporan 2 </a>
               <ul class="treeview-menu">
                 <li>
@@ -760,13 +767,13 @@ oncontextmenu="return false">
                   </small>
                 </li>
               </ul>
-            </li>
+            </li> -->
 
           </ul>
         </li>
 
         <!-- Try Layout -->
-        <li>
+        <!-- <li>
           <a href="#">
             <i class="glyphicon glyphicon-usd"></i> <span> Try Layout </span>
           </a>
@@ -777,7 +784,7 @@ oncontextmenu="return false">
               <ul class="treeview-menu">
                 
                 <li> <small> <a href="<?php echo $baseac; ?>trylayout"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
-                <li> <small> <a href="<?php echo $baseac; ?>checkinputdata"><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
+                <li> <small> <a href="<?php echo $baseac; ?>inputdata"><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
 
               </ul>
             </li>
@@ -787,17 +794,17 @@ oncontextmenu="return false">
             </li>
 
           </ul>
-        </li>
+        </li> -->
         
         <!-- Maintenance -->
         <li>
-          <a href="#">
+          <a href="#" id="list_maintenance">
             <i class="glyphicon glyphicon-cog"></i> <span> MAINTENANCE </span>
           </a>
           <ul class="treeview-menu">
             
             <li>
-              <a href="<?= $baseac; ?>maintenance"><i class="glyphicon glyphicon-list-alt text-primary"></i> Form Data </a>
+              <a href="<?= $baseac; ?>maintenance" id="maintenance"><i class="glyphicon glyphicon-list-alt text-primary"></i> Form Data </a>
             </li>
 
           </ul>
@@ -822,14 +829,14 @@ oncontextmenu="return false">
     }
 
     #region checkpembayaraninputdata
-    else if ($act == 'checkpembayarandaninputdata') {
+    else if ($act == 'checkpembayaran') {
       require 'view/spp/input_data/check_pembayaran_dan_inputdata.php';
     }
 
     #region try layout
     else if ($act == 'trylayout') {
       require 'view/spp/input_data/trylayout.php';
-    } else if ($act == 'checkinputdata') {
+    } else if ($act == 'inputdata') {
       require 'view/spp/input_data/checkinputdata.php';
     } else if ($act == 'slipkuitansi') {
       require 'view/spp/input_data/slipkuitansi.php';

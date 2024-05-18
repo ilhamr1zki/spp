@@ -132,7 +132,7 @@
             } else {
                 // Jika ID & NIS pada form kosong maka kembalikan pada halaman awal
                 $_SESSION['form_kosong'] = "empty_form";
-                // header("Location:/checkpembayarandaninputdata");
+                // header("Location:/checkpembayaran");
             }
         }
 
@@ -219,7 +219,7 @@
             } else {
                 // Jika ID & NIS pada form kosong maka kembalikan pada halaman awal
                 $_SESSION['form_kosong'] = "empty_form";
-                // header("Location:/checkpembayarandaninputdata");
+                // header("Location:/checkpembayaran");
             }
         }        
 
@@ -11887,7 +11887,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12008,7 +12008,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12129,7 +12129,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12250,7 +12250,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12372,7 +12372,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12504,7 +12504,7 @@
            
         </div>
 
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12632,7 +12632,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12760,7 +12760,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -12888,7 +12888,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13016,7 +13016,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13139,7 +13139,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13260,7 +13260,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13381,7 +13381,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13502,7 +13502,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13623,7 +13623,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13755,7 +13755,7 @@
            
         </div>
 
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -13883,7 +13883,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14011,7 +14011,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14139,7 +14139,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14267,7 +14267,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14390,7 +14390,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14511,7 +14511,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14632,7 +14632,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14753,7 +14753,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -14874,7 +14874,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15005,7 +15005,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15133,7 +15133,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15261,7 +15261,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15389,7 +15389,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15517,7 +15517,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15640,7 +15640,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15761,7 +15761,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -15882,7 +15882,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16003,7 +16003,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16124,7 +16124,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16254,7 +16254,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16382,7 +16382,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16510,7 +16510,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16638,7 +16638,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16766,7 +16766,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -16896,7 +16896,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17024,7 +17024,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17152,7 +17152,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17280,7 +17280,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17408,7 +17408,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17538,7 +17538,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17666,7 +17666,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17794,7 +17794,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -17922,7 +17922,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18050,7 +18050,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18180,7 +18180,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18308,7 +18308,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18436,7 +18436,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18564,7 +18564,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18692,7 +18692,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18822,7 +18822,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -18950,7 +18950,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19078,7 +19078,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19206,7 +19206,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19334,7 +19334,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19464,7 +19464,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19592,7 +19592,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19720,7 +19720,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19848,7 +19848,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -19976,7 +19976,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -20106,7 +20106,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -20234,7 +20234,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -20362,7 +20362,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -20490,7 +20490,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -20618,7 +20618,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -20748,7 +20748,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -20883,7 +20883,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21018,7 +21018,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21153,7 +21153,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21288,7 +21288,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21425,7 +21425,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21560,7 +21560,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21695,7 +21695,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21830,7 +21830,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -21965,7 +21965,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -22096,7 +22096,7 @@
             <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
            
         </div>
-        <form action="checkpembayarandaninputdata" method="post">
+        <form action="checkpembayaran" method="post">
             <div class="box-body">
 
                 <div class="row">
@@ -22299,6 +22299,12 @@
 
 $(document).ready(function() {
 
+    $("#list_spp").click();
+    $("#check_pembayaran").css({
+        "background-color" : "#ccc",
+        "color" : "black"
+    });
+
     let scrollNextPage        = `<?= $iniScrollNextPage; ?>`
     let scrollPreviousPage    = `<?= $iniScrollPreviousPage; ?>`
     let scrollFilterPage      = `<?= $iniScrollFilterPage; ?>`
@@ -22345,7 +22351,7 @@ $(document).ready(function() {
             // This is where you handle errors.
         });
         $("html, body").animate({ scrollTop: 0 }, "slow");
-        location.replace("/checkpembayarandaninputdata");
+        location.replace("/checkpembayaran");
         return false;
     })
 

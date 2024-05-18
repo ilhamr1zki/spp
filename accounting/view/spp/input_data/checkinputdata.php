@@ -602,7 +602,7 @@
 
     <?php elseif($sesi == 3): ?>
 
-        <form action="<?= $baseac; ?>checkinputdata" method="post">
+        <form action="<?= $baseac; ?>inputdata" method="post">
             <div class="box-body table-responsive">
 
                 <div class="row">
@@ -757,7 +757,7 @@
 
     <?php else: ?>
 
-        <form action="<?= $baseac; ?>checkinputdata" method="post">
+        <form action="<?= $baseac; ?>inputdata" method="post">
             <div class="box-body table-responsive">
 
                 <div class="row">
@@ -1033,7 +1033,7 @@
     let buttonCheckPayment = document.getElementById('cek_pembayaran')
 
     buttonCheckPayment.addEventListener('click', function() {
-        window.open(`<?= $baseac; ?>checkpembayarandaninputdata`)
+        window.open(`<?= $baseac; ?>checkpembayaran`)
     })
 
     let namaSiswa = document.getElementById('nama_siswa')
@@ -1075,7 +1075,7 @@
         let replaceInputData = document.getElementById('input_data');
 
         replaceInputData.addEventListener('click', function(e) {
-            document.location.href = `<?= $baseac; ?>checkinputdata`
+            document.location.href = `<?= $baseac; ?>inputdata`
         })
 
     }
@@ -1251,6 +1251,12 @@
     /* Akhir Format Rupiah Lain */
 
 $(document).ready(function() {
+
+    $("#list_spp").click();
+    $("#input_data").css({
+        "background-color" : "#ccc",
+        "color" : "black"
+    });
 
     $('#_idsiswa').val("");
     $('#_nmsiswa').val("");

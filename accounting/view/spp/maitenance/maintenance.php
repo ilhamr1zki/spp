@@ -282,4 +282,13 @@
         if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
     });
 
+    $(document).ready( function () {
+        $("#list_maintenance").click();
+        $("#maintenance").css({
+            "background-color" : "#ccc",
+            "color" : "black"
+        });
+    });
+    
+
 </script>

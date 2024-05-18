@@ -1,6 +1,5 @@
 <?php  
 
-	echo $_SESSION['c_accounting'];
 
 ?>
 
