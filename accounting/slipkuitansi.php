@@ -465,7 +465,7 @@
         }
 
         .company-address {
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             text-align: center;
         }
 
