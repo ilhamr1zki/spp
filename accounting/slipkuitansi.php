@@ -99,6 +99,13 @@
 	    $kelasSiswa        = $_POST['cetak_kuitansi_kelas_siswa'];
 	    $idInvoice         = $_POST['cetak_kuitansi_id_invoice'];
 	    $tglTf             = $_POST['cetak_kuitansi_bukti_tf'];
+
+	    if ($tglTf != 'kosong') {
+	    	$tglTf;
+	    } else if ($tglTf == 'kosong') {
+	    	$tglTf = "-";
+	    }
+
 	    $bayarBulan        = $_POST['cetak_kuitansi_bulan_pembayaran'];
 
 	    $isiUangSPP        = $_POST['cetak_kuitansi_uang_spp'];
@@ -110,6 +117,7 @@
 	    $isiUangLain       = $_POST['cetak_kuitansi_uang_lain'];
 
 	    $ketUangSPP        = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_spp']);
+
 	    $ketUangPANGKAL    = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_pangkal']);
 	    $ketUangKegiatan   = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_kegiatan']);
 	    $ketUangBuku       = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_buku']);
@@ -358,6 +366,8 @@
 	    $arrIsiKeteranganPembayaran[]	= $ketUangRegistrasi;
 	    $arrIsiKeteranganPembayaran[]	= $ketUangLain;
 
+	    // var_dump($arrIsiKeteranganPembayaran);exit;
+
 	    $arrIsiKetPembayaran[]			= $isiKetUangSpp;
 	    $arrIsiKetPembayaran[]			= $isiKetUangPangkal;
 	    $arrIsiKetPembayaran[]			= $isiKetUangKegiatan;
@@ -388,6 +398,8 @@
 		$arrDataBaruKetPembayaran   = array_values($arrIsiKeteranganPembayaran);
 		$arrDataBaruIsiKetPembyrn   = array_values($arrIsiKetPembayaran);
 		$arrDataBaruJumlahBayar 	= array_values($arrIsiJumlahBayar);
+
+		// var_dump($arrDataBaruKetPembayaran);exit;
 
 		// var_dump($arrDataBaruIsiKetPembyrn);exit;
 
@@ -586,7 +598,7 @@
         	float: right;
         }
 
-        label {
+        input {
         	font-weight: bold;
         }
 

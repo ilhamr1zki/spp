@@ -830,7 +830,7 @@
                         // echo "Masuk ke filter tanggal lengkap";
 
                         // Data Filter PANGKAL dan tanggal Filter
-                        // echo "Masuk ke filter tanggal " . $dariTanggal . " & " . $sampaiTanggal;
+                        // echo "Masuk ke filter tanggal " . $dariTanggal . " & " . $sampaiTanggal;exit;
                         $namaMurid = $namaSiswa;
 
                         $tanggalDari    = $_POST['tanggal1'];
@@ -848,7 +848,7 @@
                         $execQueryDataPangkal    = mysqli_query($con, $queryGetDataPangkal);
                         // $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPangkal);
                         $hitungDataFilterPangkalDate = mysqli_num_rows($execQueryDataPangkal);
-                        // echo "Jumlah Data : ". $hitungDataFilterPangkalDate;
+                        // echo "Jumlah Data : ". $hitungDataFilterPangkalDate;exit;
                         // echo $hitungDataFilterPANGKAL;exit;
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;

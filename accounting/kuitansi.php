@@ -169,7 +169,7 @@
 
         } else if ($tglTf == 'kosong') {
 
-            $tglTf = "";
+            $tglTf = "-";
 
         }
 
