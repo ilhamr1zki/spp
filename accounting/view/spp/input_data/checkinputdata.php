@@ -190,36 +190,69 @@
 
             $data_stamp         = $_POST['tanggal_bukti_tf'] . " " . date("H:i:s");
 
-            // Insert Data 
-            $queryInsert = "
-            INSERT INTO `input_data_sd` (
-                `ID`, `NIS`, `DATE`, `BULAN`, 
-                `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
-                `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
-                `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
-                `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
-                `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
-                `INPUTER`, `STAMP`) 
-            VALUES (
-                NULL, '$data_nis', '$tanggalInput', '$data_bulan', 
-                '$data_kelas', NULL, '$data_nama', '$data_panggilan',
-                 '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
-                 '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
-                 '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
-                 '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
-                 '$getDataNamaInputer', '$data_stamp'
-            )";
+            $dataIDInvoice = "";
 
-            mysqli_query($con, $queryInsert);
-            $_SESSION['form_success'] = "insert";
+            if ($_SESSION['c_accounting'] == 'accounting1') {
 
-            $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd WHERE NIS = '$data_nis' ");
+                // Insert Data 
+                $queryInsert = "
+                INSERT INTO `input_data_sd` (
+                    `ID`, `NIS`, `DATE`, `BULAN`, 
+                    `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
+                    `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                    `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                    `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                    `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                    `INPUTER`, `STAMP`) 
+                VALUES (
+                    NULL, '$data_nis', '$tanggalInput', '$data_bulan', 
+                    '$data_kelas', NULL, '$data_nama', '$data_panggilan',
+                     '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                     '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                     '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                     '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                     '$getDataNamaInputer', '$data_stamp'
+                )";
+
+                mysqli_query($con, $queryInsert);
+                $_SESSION['form_success'] = "insert";
+
+                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd WHERE NIS = '$data_nis' ");
+
+            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+                // Insert Data 
+                $queryInsert = "
+                INSERT INTO `input_data_tk` (
+                    `ID`, `NIS`, `DATE`, `BULAN`, 
+                    `KELAS`, `NAMA`, `PANGGILAN`, 
+                    `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                    `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                    `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                    `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                    `INPUTER`, `STAMP`, `F27`) 
+                VALUES (
+                    NULL, '$data_nis', '$tanggalInput', '$data_bulan', 
+                    '$data_kelas', '$data_nama', '$data_panggilan',
+                     '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                     '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                     '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                     '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                     '$getDataNamaInputer', '$data_stamp', NULL
+                )";
+
+                mysqli_query($con, $queryInsert);
+                $_SESSION['form_success'] = "insert";
+
+                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk WHERE NIS = '$data_nis' ");
+
+            }
 
             foreach ($dataIDInvoice as $idInvoice) {
                 array_push($simpanDataID, $idInvoice['ID']);
             }
 
-            // var_dump($simpanDataID);
+            // var_dump($simpanDataID);exit;
 
         }
 

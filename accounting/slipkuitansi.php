@@ -84,7 +84,15 @@
         return ucwords($hasil) . " Rupiah";
     }
 
+    $jenjangPendidikan = "";
+
     if (isset($_POST['slip_kuitansi'])) {
+
+    	if ($_SESSION['c_accounting'] == 'accounting1') {
+    		$jenjangPendidikan = 'SD';
+    	} else if ($_SESSION['c_accounting'] == 'accounting2') {
+    		$jenjangPendidikan = 'TK';
+    	}
 
 		$nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];
 	    $namaSiswa         = $_POST['cetak_kuitansi_nama_siswa'];
@@ -788,7 +796,7 @@
             <p id="alamat" style="color: rgba(26, 18, 136, 1);">Telp. 021-82772882</p>
         </div>
         <div class="company-address">
-            <h1 id="title_payment" style="color: rgba(26, 18, 136, 1);"> SLIP PEMBAYARAN <span style="color: red;"> SD </span> </h1>
+            <h1 id="title_payment" style="color: rgba(26, 18, 136, 1);"> SLIP PEMBAYARAN <span style="color: red;"> <?= $jenjangPendidikan; ?> </span> </h1>
         </div>
 
         <div class="user-details">
