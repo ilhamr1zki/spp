@@ -1382,7 +1382,7 @@
 
                         $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
                         $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
-                        // echo $hitungDataFilterLain;
+                        // echo $hitungDataFilterLain;exit;
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
