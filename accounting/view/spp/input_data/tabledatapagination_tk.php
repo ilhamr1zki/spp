@@ -26420,7 +26420,7 @@
                                 <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= ($data['tanggal_diupdate'] == NULL || $data['tanggal_diupdate'] == '0000-00-00 00:00:00') ? ("kosong") : ($data['tanggal_diupdate']); ?>">
                                 <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
-                                <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
+                                <input type="hidden" name="cetak_kuitansi_uang_spp" value="0" >
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_buku" value="0">
