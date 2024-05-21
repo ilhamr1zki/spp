@@ -947,7 +947,7 @@
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
-                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY STAMP DESC LIMIT $dataAwal, $jumlahData");
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
 
                         $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
                         // echo $jumlahPagination;
@@ -1572,7 +1572,7 @@
             $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY STAMP DESC LIMIT $dataAwal, $jumlahData
+                SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData
             ");
 
             $check = mysqli_fetch_assoc($ambildata_perhalaman);
@@ -1617,7 +1617,7 @@
             $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY STAMP DESC LIMIT $dataAwal, $jumlahData");
+                SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
@@ -1661,7 +1661,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -1711,7 +1711,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -1758,7 +1758,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
