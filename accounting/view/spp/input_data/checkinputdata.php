@@ -76,8 +76,6 @@
         return $tanggal . ' ' . $bulan . ' '. $tahun;  
     }
 
-    $tanggalInput = date('Y-m-d') . " 00:00:00";
-
     $data_uang_spp        = 0;
     $data_uang_pangkal    = 0;
     $data_uang_kegiatan   = 0;
@@ -107,7 +105,8 @@
 
         $data_id            = htmlspecialchars($_POST['id_siswa']);
         $data_nis           = htmlspecialchars($_POST['nis_siswa']);
-        $data_tanggal_input = htmlspecialchars($_POST['tanggal_bukti_tf']);
+        $data_tanggal_input = htmlspecialchars($_POST['tanggal_bukti_tf'] . " 00:00:00");
+
         if ($_POST['isi_bulan'] != '') {
             # code...
             $data_bulan         = htmlspecialchars(strtoupper($_POST['isi_bulan']) . " " . $_POST['isi_tahun']);
@@ -188,7 +187,8 @@
             }
             // $data_inputer           = ucfirst(str)
 
-            $data_stamp         = $_POST['tanggal_bukti_tf'] . " " . date("H:i:s");
+            $data_stamp         = date("Y-m-d H:i:s");
+            // echo $data_stamp;exit;
 
             $dataIDInvoice = "";
 
@@ -205,7 +205,7 @@
                     `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
                     `INPUTER`, `STAMP`) 
                 VALUES (
-                    NULL, '$data_nis', '$tanggalInput', '$data_bulan', 
+                    NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
                     '$data_kelas', NULL, '$data_nama', '$data_panggilan',
                      '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
                      '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
@@ -232,7 +232,7 @@
                     `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
                     `INPUTER`, `STAMP`, `F27`) 
                 VALUES (
-                    NULL, '$data_nis', '$tanggalInput', '$data_bulan', 
+                    NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
                     '$data_kelas', '$data_nama', '$data_panggilan',
                      '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
                      '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
@@ -546,7 +546,7 @@
 
                     <div class="flex_container">
                         <div id="div_input_data">
-                            <a href="javascript:void(0);" id="input_data" class="btn btn-warning btn-circle"> <span class="glyphicon glyphicon-pencil"> </span> Input Data </a>
+                            <a href="javascript:void(0);" id="input_datax" class="btn btn-warning btn-circle"> <span class="glyphicon glyphicon-pencil"> </span> Input Data </a>
                             <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
                         </div>
 
@@ -1105,7 +1105,7 @@
 
     if (hrefInputData == 1) {
 
-        let replaceInputData = document.getElementById('input_data');
+        let replaceInputData = document.getElementById('input_datax');
 
         replaceInputData.addEventListener('click', function(e) {
             document.location.href = `<?= $baseac; ?>inputdata`

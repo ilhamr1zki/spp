@@ -714,6 +714,7 @@ oncontextmenu="return false">
               <!-- <a href="#"><i class="glyphicon glyphicon-plus text-primary"></i> Input Data </a> -->
               <a href="<?php echo $baseac; ?>checkpembayaran" id="check_pembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran</a>
               <a href="<?php echo $baseac; ?>inputdata" id="input_data"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Input Data </a>
+              <a href="<?php echo $baseac; ?>editdata" id="edit_data"><i class="glyphicon glyphicon-pencil text-primary"></i> <span style="margin-left: 5px;"> </span> Edit Data </a>
               <!-- <ul class="treeview-menu">
                 
                 <li> <small> <a href="<?php echo $baseac; ?>checkpembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
@@ -828,18 +829,17 @@ oncontextmenu="return false">
       require 'view/a-kelas.php';
     }
 
-    #region checkpembayaraninputdata
+    #region spp
     else if ($act == 'checkpembayaran') {
       require 'view/spp/input_data/check_pembayaran_dan_inputdata.php';
-    }
-
-    #region try layout
-    else if ($act == 'trylayout') {
+    } else if ($act == 'trylayout') {
       require 'view/spp/input_data/trylayout.php';
     } else if ($act == 'inputdata') {
       require 'view/spp/input_data/checkinputdata.php';
     } else if ($act == 'slipkuitansi') {
       require 'view/spp/input_data/slipkuitansi.php';
+    } else if ($act == 'editdata') {
+      require 'view/spp/input_data/editdata.php';
     }
 
     else if ($act == 'datacheckpayment') {

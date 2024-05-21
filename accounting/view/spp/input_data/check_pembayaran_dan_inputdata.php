@@ -70,6 +70,8 @@
 
                     if ($tanggalDari != ' dari' && $tanggalSampai == " sampai") {
                         $_SESSION['form_kosong']    = "hanya_tanggal_dari";
+                    } else if ($tanggalDari == ' dari' && $tanggalSampai != " sampai") {
+                        $_SESSION['form_kosong']    = "hanya_tanggal_sampai";
                     } else if ($_POST['tanggal1'] > $_POST['tanggal2']) {
                         $_SESSION['form_kosong']    = "tanggal_awal_lebih_besar";
                     } else {
@@ -157,6 +159,8 @@
 
                     if ($tanggalDari != ' dari' && $tanggalSampai == " sampai") {
                         $_SESSION['form_kosong']    = "hanya_tanggal_dari";
+                    } else if ($tanggalDari == ' dari' && $tanggalSampai != " sampai") {
+                        $_SESSION['form_kosong']    = "hanya_tanggal_sampai";
                     } else if ($_POST['tanggal1'] > $_POST['tanggal2']) {
                         $_SESSION['form_kosong']    = "tanggal_awal_lebih_besar";
                     } else {
@@ -274,7 +278,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -306,7 +310,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -338,7 +342,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -370,7 +374,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -404,7 +408,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -439,7 +443,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -463,7 +467,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -491,6 +495,8 @@
             } else if($_SESSION['form_kosong'] == 'empty_form') {
                 $iniScrollFilterPage;
             } else if ($_SESSION['form_kosong'] == 'hanya_tanggal_dari') {         
+                $iniScrollFilterPage;
+            } else if ($_SESSION['form_kosong'] == 'hanya_tanggal_sampai') {         
                 $iniScrollFilterPage;
             } else if($_SESSION['form_kosong'] == 'tanggal_awal_lebih_besar') {
                 $iniScrollFilterPage;
@@ -576,7 +582,7 @@
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
-                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
                         // print_r($ambildata_perhalaman->num_rows);
 
                         $jumlahLink = 2;
@@ -619,7 +625,7 @@
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
-                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
                         // print_r($ambildata_perhalaman->num_rows);
 
                         $jumlahLink = 2;
@@ -673,6 +679,49 @@
                         ");
 
                         $jumlahPagination = ceil($hitungDataFilterSPPDate / $jumlahData);
+
+                        $jumlahLink = 2;
+
+                        if ($halamanAktif > $jumlahLink) {
+                            $start_number = $halamanAktif - $jumlahLink;
+                        } else {
+                            $start_number = 1;
+                        }
+
+                        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                            $end_number = $halamanAktif + $jumlahLink;
+                        } else {
+                            $end_number = $jumlahPagination;
+                        }
+
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+
+                        $id                 = "";
+                        $nis                = "";
+                        $namaSiswa          = "";
+                        $kelas              = "";
+                        $panggilan          = "";
+
+                        $isifilby           = "kosong";
+
+                        $halamanAktif = 1;
+
+                        $totalHalamanTambah100 = $halamanAktif;
+
+                        $showAddPage100 = "";
+
+                        $totalHalamanTambah100 = $halamanAktif + 100;
+
+                        if ($totalHalamanTambah100 <= $jumlahPagination) {
+                            $showAddPage100 = "muncul";
+                        } else {
+                            $showAddPage100 = "tidak_muncul";
+                        }            
+
+                        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                        // echo $dataAwal . "<br>";
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+                        // print_r($ambildata_perhalaman->num_rows);
 
                         $jumlahLink = 2;
 
@@ -1470,7 +1519,7 @@
                 // Jika tidak ada filter yang di pilih (kosong)
                 $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                 // echo $dataAwal . "<br>";
-                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY STAMP DESC LIMIT $dataAwal, $jumlahData  ");
+                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
                 // print_r($ambildata_perhalaman->num_rows);
 
                 $jumlahLink = 2;
@@ -6003,7 +6052,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6051,7 +6100,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6083,7 +6132,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6115,7 +6164,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6147,7 +6196,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6181,7 +6230,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6216,7 +6265,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6240,7 +6289,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6268,6 +6317,8 @@
             } else if($_SESSION['form_kosong'] == 'empty_form') {
                 $iniScrollFilterPage;
             } else if ($_SESSION['form_kosong'] == 'hanya_tanggal_dari') {         
+                $iniScrollFilterPage;
+            } else if ($_SESSION['form_kosong'] == 'hanya_tanggal_sampai') {         
                 $iniScrollFilterPage;
             } else if($_SESSION['form_kosong'] == 'tanggal_awal_lebih_besar') {
                 $iniScrollFilterPage;
@@ -6353,7 +6404,7 @@
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
-                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
                         // print_r($ambildata_perhalaman->num_rows);
 
                         $jumlahLink = 2;
@@ -6396,7 +6447,7 @@
 
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
-                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
                         // print_r($ambildata_perhalaman->num_rows);
 
                         $jumlahLink = 2;
@@ -6465,6 +6516,47 @@
                             $end_number = $jumlahPagination;
                         }
 
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $id                 = "";
+                        $nis                = "";
+                        $namaSiswa          = "";
+                        $kelas              = "";
+                        $panggilan          = "";
+
+                        $isifilby           = "kosong";
+
+                        $halamanAktif = 1;
+
+                        $totalHalamanTambah100 = $halamanAktif;
+
+                        $showAddPage100 = "";
+
+                        $totalHalamanTambah100 = $halamanAktif + 100;
+
+                        if ($totalHalamanTambah100 <= $jumlahPagination) {
+                            $showAddPage100 = "muncul";
+                        } else {
+                            $showAddPage100 = "tidak_muncul";
+                        }            
+
+                        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+                        // echo $dataAwal . "<br>";
+                        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+                        // print_r($ambildata_perhalaman->num_rows);
+
+                        $jumlahLink = 2;
+
+                        if ($halamanAktif > $jumlahLink) {
+                            $start_number = $halamanAktif - $jumlahLink;
+                        } else {
+                            $start_number = 1;
+                        }
+
+                        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                            $end_number = $halamanAktif + $jumlahLink;
+                        } else {
+                            $end_number = $jumlahPagination;
+                        }
                     }
                 }
 
@@ -11780,7 +11872,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -11822,6 +11914,13 @@
 
         <?php if(isset($_SESSION['form_kosong']) && $_SESSION['form_kosong'] == 'hanya_tanggal_dari'){?>
           <div style="display: none;" class="alert alert-danger alert-dismissable"> Filter Date to juga harus di isi
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <?php unset($_SESSION['form_kosong']); ?>
+          </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['form_kosong']) && $_SESSION['form_kosong'] == 'hanya_tanggal_sampai'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Filter Date From juga harus di isi
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_kosong']); ?>
           </div>
