@@ -3117,7 +3117,7 @@
                                                 <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                                <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                                <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -3598,7 +3598,7 @@
                                                 <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                                <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                                <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -7099,7 +7099,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -7595,7 +7595,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -8095,7 +8095,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -8595,7 +8595,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -9084,7 +9084,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -9575,7 +9575,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -10081,7 +10081,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -10586,7 +10586,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -11091,7 +11091,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
@@ -11591,7 +11591,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">
