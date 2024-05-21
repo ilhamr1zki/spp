@@ -664,7 +664,7 @@ oncontextmenu="return false">
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="<?php echo $basead; ?>a-control/<?php echo md5('logout'); ?>/access" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-pencil"></i> Ganti Password </a>
+                  <button id="changePassword" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-wrench"></i> Ganti Password </button>
                   <a href="<?php echo $baseac; ?>a-control/<?php echo md5('logout'); ?>/access" class="btn btn-default btn-flat"><i class="glyphicon glyphicon-off"></i> Sign out</a>
                 </div>
               </li>
@@ -805,7 +805,10 @@ oncontextmenu="return false">
           <ul class="treeview-menu">
             
             <li>
-              <a href="<?= $baseac; ?>maintenance" id="maintenance"><i class="glyphicon glyphicon-list-alt text-primary"></i> Form Data </a>
+              <a href="<?= $baseac; ?>maintenance" id="form_data"><i class="glyphicon glyphicon-list-alt text-primary"></i> Form Data </a>
+            </li>
+            <li>
+              <a href="<?= $baseac; ?>changepassword" id="ubah_password"><i class="glyphicon glyphicon-wrench text-primary"></i> Ubah Password </a>
             </li>
 
           </ul>
@@ -856,6 +859,11 @@ oncontextmenu="return false">
       require 'view/spp/maitenance/maintenance.php';
     }
 
+    #region change password
+    else if ($act == 'changepassword') {
+      require 'view/spp/maitenance/changepassword.php';
+    }
+
     else{
       require 'view/404.php';
     }
@@ -873,6 +881,40 @@ oncontextmenu="return false">
     <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#"><?php echo $aplikasi['namasek']; ?></a></strong> by ATH
  
 </div>
+
+<div id="datamassiswa" class="modal"  data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"> <i class="glyphicon glyphicon-calendar"></i> Data Siswa</h4>
+            </div>
+            <div class="modal-body"> 
+                <div class="box-body table-responsive">
+                    <table id="example1x" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                              <th style="text-align: center;" width="5%">NO</th>
+                              <th style="text-align: center;">NIS</th>
+                              <th style="text-align: center;">NAMA</th>
+                              <th style="text-align: center;">GENDER</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              <td style="text-align: center;"> 1 </td>
+                              <td style="text-align: center;"> 238711 </td>
+                              <td style="text-align: center;"> GATHAN REVANZHA </td>
+                              <td style="text-align: center;"> LAKI - LAKI </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
@@ -959,6 +1001,9 @@ oncontextmenu="return false">
 <script src="<?php echo $base; ?>theme/plugins/select2/select2.full.min.js"></script>
 <script>
   $(function () {
+    $("#changePassword").click(function() {
+      document.location.href = `<?= $baseac; ?>changepassword`
+    })
     //Initialize Select2 Elements
     $("#select2").select2();
   });
@@ -973,7 +1018,11 @@ oncontextmenu="return false">
 </script>
 <script>
 //angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
-$(document).ready(function(){setTimeout(function(){$(".alert").fadeIn('fast');}, 100);});
+$(document).ready(function(){
+  alert(`Welcome <?= ucfirst($_SESSION['start_name']); unset($_SESSION['start_name']); ?>`)
+  setTimeout(function(){
+    $(".alert").fadeIn('fast');}, 100);
+  });
 //angka 3000 dibawah ini artinya pesan akan hilang dalam 3 detik setelah muncul
 setTimeout(function(){$(".alert").fadeOut('fast');}, 3000);
 </script>

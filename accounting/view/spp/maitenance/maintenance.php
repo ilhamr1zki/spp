@@ -284,7 +284,7 @@
 
     $(document).ready( function () {
         $("#list_maintenance").click();
-        $("#maintenance").css({
+        $("#form_data").css({
             "background-color" : "#ccc",
             "color" : "black"
         });

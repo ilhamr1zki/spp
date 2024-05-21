@@ -57,6 +57,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
 
           session_start();
           $_SESSION['c_accounting'] = $getData['c_accounting'];
+          $_SESSION['start_name']   = $getData['username'];
           // echo $_SESSION['c_accounting'];exit;
           header('location:accounting/');
           exit;
