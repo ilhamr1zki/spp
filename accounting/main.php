@@ -145,6 +145,11 @@
       border-top: 1px solid black;
     }
 
+    hr.new2 {
+      border-top: 1px solid black;
+      width: 97%;
+    }
+
     .treeview-menu li a:hover {
       background-color: #ccc;
       color: black !important;
@@ -876,7 +881,7 @@ oncontextmenu="return false">
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
+      <b>Version</b> 1.0
     </div>
     <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#"><?php echo $aplikasi['namasek']; ?></a></strong> by ATH
  

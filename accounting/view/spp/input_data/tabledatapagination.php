@@ -32643,7 +32643,7 @@
 
                             <?php endif ?>
 
-                            <?php if ($data['STAMP'] == NULL) : ?>
+                            <?php if ($data['STAMP'] == NULL || $data['STAMP'] == '0000-00-00 00:00:00') : ?>
 
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;">

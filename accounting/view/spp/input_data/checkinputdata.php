@@ -113,6 +113,7 @@
         } else {
             $data_bulan = '';
         }
+        
         $data_kelas         = htmlspecialchars($_POST['kelas_siswa']);
         $data_nama          = htmlspecialchars($_POST['nama_siswa']);
         $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
