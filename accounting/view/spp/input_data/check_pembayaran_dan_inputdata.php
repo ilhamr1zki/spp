@@ -1038,12 +1038,12 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_sd
                             WHERE
                             KEGIATAN != 0
                             AND NAMA LIKE '%$namaMurid%' 
-                            ORDER BY STAMP DESC
+                            ORDER BY ID DESC
                             LIMIT $dataAwal, $jumlahData");
                         // print_r($ambildata_perhalaman->num_rows);
                         $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
@@ -1090,7 +1090,7 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_sd
                             WHERE
                             KEGIATAN != 0
@@ -3237,12 +3237,12 @@
             $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -3290,12 +3290,12 @@
             $hitungDataFilterKegiatan  = mysqli_num_rows($execQueryDataKegiatan);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -3342,12 +3342,12 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -3400,12 +3400,12 @@
             $hitungDataFilterKegiatan = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -3456,12 +3456,12 @@
             $hitungDataFilterKegiatan = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -3511,7 +3511,7 @@
             $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
@@ -3570,7 +3570,7 @@
             $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
@@ -3626,7 +3626,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
@@ -3689,7 +3689,7 @@
             $hitungDataFilterPangkalWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
@@ -3750,7 +3750,7 @@
             $hitungDataFilterKegiatanWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 KEGIATAN != 0
@@ -6858,12 +6858,12 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_tk
                             WHERE
                             KEGIATAN != 0
                             AND NAMA LIKE '%$namaMurid%' 
-                            ORDER BY STAMP DESC
+                            ORDER BY ID DESC
                             LIMIT $dataAwal, $jumlahData");
                         // print_r($ambildata_perhalaman->num_rows);
                         $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
@@ -6910,7 +6910,7 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_tk
                             WHERE
                             KEGIATAN != 0
@@ -9057,12 +9057,12 @@
             $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -9110,12 +9110,12 @@
             $hitungDataFilterKegiatan  = mysqli_num_rows($execQueryDataKegiatan);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -9162,12 +9162,12 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -9220,12 +9220,12 @@
             $hitungDataFilterKegiatan = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -9276,12 +9276,12 @@
             $hitungDataFilterKegiatan = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -9331,7 +9331,7 @@
             $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
@@ -9390,7 +9390,7 @@
             $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
@@ -9446,7 +9446,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
@@ -9509,7 +9509,7 @@
             $hitungDataFilterPangkalWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0
@@ -9570,7 +9570,7 @@
             $hitungDataFilterKegiatanWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 KEGIATAN != 0

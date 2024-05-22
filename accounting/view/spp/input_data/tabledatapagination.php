@@ -2216,7 +2216,7 @@
                                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -2238,7 +2238,7 @@
                                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -2522,7 +2522,7 @@
                                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -2544,7 +2544,7 @@
                                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -3766,6 +3766,7 @@
                                 <th style="text-align: center; width: 13%;"> NAMA </th>
                                 <th style="text-align: center; width: 5%"> KELAS </th>
                                 <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
+                                <th style="text-align: center; width: 6%;"> TANGGAL BAYAR </th>
                                 <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
                                 <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -3784,6 +3785,7 @@
                                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                         <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
+                                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])) ; ?> </td>
 
                                         <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
                                             <td style="text-align: center;"> <strong> - </strong> </td>
@@ -15134,7 +15136,7 @@
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                         <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -15156,7 +15158,7 @@
                                         <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                         <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -15456,7 +15458,7 @@
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                         <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -15478,7 +15480,7 @@
                                         <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                         <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -15779,7 +15781,7 @@
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                         <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -15801,7 +15803,7 @@
                                         <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                         <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -16105,7 +16107,7 @@
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                         <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -16127,7 +16129,7 @@
                                         <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                         <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -16423,7 +16425,7 @@
                                         <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                         <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                         <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                         <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -16445,7 +16447,7 @@
                                         <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="kosong">
+                                        <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                         <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
