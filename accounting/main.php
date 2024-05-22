@@ -839,7 +839,7 @@ oncontextmenu="return false">
 
     #region spp
     else if ($act == 'checkpembayaran') {
-      require 'view/spp/input_data/check_pembayaran_dan_inputdata.php';
+      require 'view/spp/check_pembayaran/check_pembayaran_dan_inputdata.php';
     } else if ($act == 'trylayout') {
       require 'view/spp/input_data/trylayout.php';
     } else if ($act == 'inputdata') {
@@ -847,7 +847,9 @@ oncontextmenu="return false">
     } else if ($act == 'slipkuitansi') {
       require 'view/spp/input_data/slipkuitansi.php';
     } else if ($act == 'editdata') {
-      require 'view/spp/input_data/editdata.php';
+      require 'view/spp/edit_data/editdata.php';
+    } else if ($act == 'editdata/form') {
+      require 'view/spp/edit_data/formdata.php';
     }
 
     else if ($act == 'datacheckpayment') {
