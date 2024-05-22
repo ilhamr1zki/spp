@@ -1019,7 +1019,7 @@ oncontextmenu="return false">
 <script>
 //angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
 $(document).ready(function(){
-  alert(`Welcome <?= ucfirst($_SESSION['start_name']); unset($_SESSION['start_name']); ?>`)
+ 
   setTimeout(function(){
     $(".alert").fadeIn('fast');}, 100);
   });

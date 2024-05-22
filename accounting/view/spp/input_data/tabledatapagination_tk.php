@@ -2168,6 +2168,7 @@
                             <th style="text-align: center; width: 7%;"> NAMA </th>
                             <th style="text-align: center; width: 1%;"> KELAS </th>
                             <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                            <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                             <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                             <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                             <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -2186,6 +2187,7 @@
                                     <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                     <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                                    <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                                     <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -2287,7 +2289,7 @@
                                                 <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                                 <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                 <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                                <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                                 <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -2309,7 +2311,7 @@
                                                 <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                                <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                                 <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -2472,6 +2474,7 @@
                             <th style="text-align: center; width: 7%;"> NAMA </th>
                             <th style="text-align: center; width: 1%;"> KELAS </th>
                             <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                            <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                             <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                             <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                             <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -2490,6 +2493,7 @@
                                     <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                                     <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                                    <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                                     <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                                     <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -2591,7 +2595,7 @@
                                                 <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                                 <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                 <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                                <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                                 <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -2613,7 +2617,7 @@
                                                 <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                                <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                                <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                                 <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -15135,6 +15139,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -15153,6 +15158,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -15254,7 +15260,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -15276,7 +15282,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -15455,6 +15461,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -15473,6 +15480,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -15574,7 +15582,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -15596,7 +15604,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -15776,6 +15784,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -15794,6 +15803,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -15895,7 +15905,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -15917,7 +15927,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -16100,6 +16110,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -16118,6 +16129,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -16219,7 +16231,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -16241,7 +16253,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -16416,6 +16428,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -16434,6 +16447,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -16535,7 +16549,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -16557,7 +16571,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -16733,6 +16747,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -16751,6 +16766,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -16852,7 +16868,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -16874,7 +16890,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -17063,6 +17079,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -17081,6 +17098,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -17182,7 +17200,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -17204,7 +17222,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -17394,6 +17412,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -17412,6 +17431,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -17513,7 +17533,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -17535,7 +17555,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -17723,6 +17743,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -17741,6 +17762,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -17842,7 +17864,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -17864,7 +17886,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">
@@ -18047,6 +18069,7 @@
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
                 <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
@@ -18065,6 +18088,7 @@
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
                         <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
+                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
                         <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
                         <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
                         <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
@@ -18166,7 +18190,7 @@
                                     <input type="hidden" id="cetakKuitansi_nis_siswa" name="cetak_kuitansi_nis_siswa" value="<?= $data['NIS']; ?>">
                                     <input type="hidden" id="cetakKuitansi_nama_siswa" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" id="cetakKuitansi_kelas_siswa" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
-                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" id="cetakKuitansi_bukti_tf" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
                                     <input type="hidden" id="cetakKuitansi_ket_uang_spp" name="cetak_kuitansi_ket_uang_spp" value="">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data['PANGKAL_txt']; ?>">
@@ -18188,7 +18212,7 @@
                                     <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data['NAMA']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data['kelas']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= $data['ID']; ?>">
-                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['tanggal_diupdate']; ?>">
+                                    <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data['DATE']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_bulan_pembayaran" value="<?= $data['pembayaran_bulan']; ?>">
 
                                     <input type="hidden" name="cetak_kuitansi_uang_spp" value="0">

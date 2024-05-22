@@ -19,20 +19,29 @@
 
         $dataInputPasswordLama       = htmlspecialchars($_POST['password_lama']);
         $dataInputPasswordBaru       = htmlspecialchars(strtolower($_POST['password_baru']));
+        // echo strlen($dataInputPasswordBaru);exit;
         $dataInputKonfirmasiPassword = htmlspecialchars(strtolower($_POST['konfirmasi_password_baru']));
 
         if (password_verify($dataInputPasswordLama, $getPassword)) {
 
-            if ($dataInputPasswordBaru == $dataInputKonfirmasiPassword) {
+            if (strlen($dataInputPasswordBaru) < 5 || strlen($dataInputKonfirmasiPassword) < 5) {
 
-                $generatePassword = password_hash($dataInputPasswordBaru, PASSWORD_DEFAULT);
-
-                mysqli_query($con, "UPDATE accounting SET password = '$generatePassword' WHERE c_accounting = '$_SESSION[c_accounting]' ");
-
-                $_SESSION['form_success'] = "change_password_success";
+                $_SESSION['form_success'] = "change_password_too_short";
 
             } else {
-                $_SESSION['form_success'] = "new_password_error";
+
+                if ($dataInputPasswordBaru == $dataInputKonfirmasiPassword) {
+
+                    $generatePassword = password_hash($dataInputPasswordBaru, PASSWORD_DEFAULT);
+
+                    mysqli_query($con, "UPDATE accounting SET password = '$generatePassword' WHERE c_accounting = '$_SESSION[c_accounting]' ");
+
+                    $_SESSION['form_success'] = "change_password_success";
+
+                } else {
+                    $_SESSION['form_success'] = "new_password_error";
+                }
+
             }
 
 
@@ -68,6 +77,13 @@
           </div>
         <?php } ?>
 
+        <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'change_password_too_short'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Panjang Password Baru Minimal 5 Karakter
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <!-- <?php unset($_SESSION['form_success']); ?> -->
+          </div>
+        <?php } ?>
+
     </div>
 </div>
 
@@ -83,22 +99,22 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label> Password Lama </label>
-                        <input type="password" class="form-control" name="password_lama" placeholder="password lama" value="<?= $tahunAjaran1; ?>" id="password_lama">
+                        <label> Password Sekarang </label>
+                        <input type="password" class="form-control" name="password_lama" placeholder="password sekarang" value="<?= $tahunAjaran1; ?>" id="password_lama">
                     </div>
                 </div>
 
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label> Password Baru </label>
-                        <input type="password" class="form-control" name="password_baru" placeholder="password baru" value="<?= $tahunAjaran1; ?>" id="password_baru">
+                        <input type="password" class="form-control" name="password_baru" placeholder="Minimal 5 Karakter" value="<?= $tahunAjaran1; ?>" id="password_baru">
                     </div>
                 </div>
 
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label> Konfirmasi Password Baru </label>
-                        <input type="password" class="form-control" name="konfirmasi_password_baru" placeholder="masukan ulang password baru" value="<?= $tahunAjaran1; ?>" id="password_baru">
+                        <input type="password" class="form-control" name="konfirmasi_password_baru" placeholder="Minimal 5 Karakter" value="<?= $tahunAjaran1; ?>" id="password_baru">
                     </div>
                 </div>
 
