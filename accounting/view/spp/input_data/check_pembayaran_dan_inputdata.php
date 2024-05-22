@@ -1138,12 +1138,12 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_sd
                             WHERE
                             BUKU != 0
                             AND NAMA LIKE '%$namaMurid%' 
-                            ORDER BY STAMP DESC
+                            ORDER BY ID DESC
                             LIMIT $dataAwal, $jumlahData");
                         // print_r($ambildata_perhalaman->num_rows);
                         $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
@@ -1189,7 +1189,7 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_sd
                             WHERE
                             BUKU != 0
@@ -3801,12 +3801,12 @@
             $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, kelas, DATE, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -3854,12 +3854,12 @@
             $hitungDataFilterBuku  = mysqli_num_rows($execQueryDataBuku);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -3907,12 +3907,12 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -3965,12 +3965,12 @@
             $hitungDataFilterBuku = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -4021,12 +4021,12 @@
             $hitungDataFilterBuku = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -4076,7 +4076,7 @@
             $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
@@ -4135,7 +4135,7 @@
             $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
@@ -4191,7 +4191,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
@@ -4254,7 +4254,7 @@
             $hitungDataFilterBukuWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
@@ -4315,7 +4315,7 @@
             $hitungDataFilterBukuWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
                 BUKU != 0
@@ -6958,12 +6958,12 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                         // echo $dataAwal . "<br>";
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_tk
                             WHERE
                             BUKU != 0
                             AND NAMA LIKE '%$namaMurid%' 
-                            ORDER BY STAMP DESC
+                            ORDER BY ID DESC
                             LIMIT $dataAwal, $jumlahData");
                         // print_r($ambildata_perhalaman->num_rows);
                         $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
@@ -7009,7 +7009,7 @@
                         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
                         $ambildata_perhalaman = mysqli_query($con, "
-                            SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                            SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_tk
                             WHERE
                             BUKU != 0
@@ -9621,12 +9621,12 @@
             $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -9674,12 +9674,12 @@
             $hitungDataFilterBuku  = mysqli_num_rows($execQueryDataBuku);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -9727,12 +9727,12 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
 
@@ -9785,12 +9785,12 @@
             $hitungDataFilterBuku = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -9841,12 +9841,12 @@
             $hitungDataFilterBuku = $totalData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
-                ORDER BY STAMP DESC
+                ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -9896,7 +9896,7 @@
             $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
@@ -9955,7 +9955,7 @@
             $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
@@ -10011,7 +10011,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
@@ -10074,7 +10074,7 @@
             $hitungDataFilterBukuWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
@@ -10135,7 +10135,7 @@
             $hitungDataFilterBukuWithDate = $jumlahPagination;
 
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
                 BUKU != 0
