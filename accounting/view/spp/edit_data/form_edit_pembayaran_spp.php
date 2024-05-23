@@ -4,43 +4,88 @@
     if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
     	// echo "Tidak tanggal SPP";
 
-    	$namaMurid = $namaSiswa;
-        $queryGetDataSPP = "
-        SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-        FROM input_data_sd
-        WHERE
-        SPP != 0
-        AND NAMA LIKE '%$namaMurid%' ";
-        $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
-        $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
-        // echo $hitungDataFilterSPP;
+        if ($_SESSION['c_accounting'] == 'accounting1') {
 
-        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-        // echo $dataAwal . "<br>";
-        $ambildata_perhalaman = mysqli_query($con, "
-            SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+            $namaMurid = $namaSiswa;
+            $queryGetDataSPP = "
+            SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
             SPP != 0
-            AND NAMA LIKE '%$namaMurid%' 
-            ORDER BY STAMP DESC
-            LIMIT $dataAwal, $jumlahData");
-        // print_r($ambildata_perhalaman->num_rows);
+            AND NAMA LIKE '%$namaMurid%' ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+            // echo $hitungDataFilterSPP;
 
-        $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
 
-        $jumlahLink = 2;
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
 
-        if ($halamanAktif > $jumlahLink) {
-            $start_number = $halamanAktif - $jumlahLink;
-        } else {
-            $start_number = 1;
-        }
+            $jumlahLink = 2;
 
-        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-            $end_number = $halamanAktif + $jumlahLink;
-        } else {
-            $end_number = $jumlahPagination;
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $namaMurid = $namaSiswa;
+            $queryGetDataSPP = "
+            SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+            FROM input_data_tk
+            WHERE
+            SPP != 0
+            AND NAMA LIKE '%$namaMurid%' ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+            // echo $hitungDataFilterSPP;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+            // echo $dataAwal . "<br>";
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
         }
 
     } else {
@@ -77,7 +122,7 @@
                         <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
-                        <td style="text-align: center;"> <?= rupiah($data['SPP']); ?> </td>
+                        <td style="text-align: center;"> <?= rupiahFormat($data['SPP']); ?> </td>
 
                         <?php if ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00'): ?>
 
@@ -113,7 +158,7 @@
                             <td style="text-align: center;"> <strong> - </strong> </td>
                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>editdata" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>editdata" method="POST" target="blank">
 
                                     <input type="hidden" name="id_siswa" value="<?= $id; ?>">
                                     <input type="hidden" name="nis_siswa" value="<?= $nis; ?>">
@@ -124,9 +169,10 @@
                                     <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                     <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                     <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                    <input type="hidden" name="uang_spp" value="<?= $data['SPP']; ?>">
-                                    <input type="hidden" name="ket_uang_spp" value="<?= $data['SPP_txt']; ?>">
+                                    <input type="hidden" name="nominal_bayar" value="<?= $data['SPP']; ?>">
+                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['SPP_txt']; ?>">
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
+                                    <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                     <input type="hidden" name="isi_filter" value="SPP">
 
@@ -142,7 +188,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                            	<form action="<?= $baseac; ?>editdata" method="POST" target="_blank">
+                            	<form action="<?= $baseac; ?>editdata" method="POST" target="blank">
 
                                     <input type="hidden" name="id_siswa" value="<?= $id; ?>">
                                     <input type="hidden" name="nis_siswa" value="<?= $nis; ?>">
@@ -156,6 +202,7 @@
                                     <input type="hidden" name="nominal_bayar" value="<?= $data['SPP']; ?>">
                                     <input type="hidden" name="ket_pembayaran" value="<?= $data['SPP_txt']; ?>">
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
+                                    <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                     <input type="hidden" name="isi_filter" value="SPP">
                                     
@@ -181,9 +228,16 @@
 
         <?php if ($halamanAktif > 1): ?>
 
-            <form action="checkpembayaran" method="post">
-                <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
-                <button name="previousPage">
+            <form action="<?= $baseac; ?>editdata" method="post">
+                <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
+                <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
+                <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
+                <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
+                <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                <input type="hidden" name="halamanSebelumnyaFilterSPP" value="<?= $halamanAktif - 1; ?>">
+                <button name="previousPageFilterSPP">
                     &laquo;
                     Previous
                 </button>
@@ -225,16 +279,16 @@
 
         <?php if ($halamanAktif < $jumlahPagination): ?>
             
-            <form action="checkpembayaran" method="post">
+            <form action="<?= $baseac; ?>editdata" method="post">
                 <input type="hidden" name="halamanLanjutFilterSPP" value="<?= $halamanAktif + 1; ?>">
-                <input type="hidden" name="iniFilterSPP" value="<?= $_POST['isi_filter']; ?>">
+                <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
                 <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
                 <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
                 <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
-                <button name="nextPageJustFilterSPP" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
+                <button name="nextPageFilterSPP" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
                 </button>

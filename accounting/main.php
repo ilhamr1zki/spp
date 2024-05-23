@@ -147,7 +147,7 @@
 
     hr.new2 {
       border-top: 1px solid black;
-      width: 97%;
+      width: 100%;
     }
 
     .treeview-menu li a:hover {
@@ -848,7 +848,7 @@ oncontextmenu="return false">
       require 'view/spp/input_data/slipkuitansi.php';
     } else if ($act == 'editdata') {
       require 'view/spp/edit_data/editdata.php';
-    } else if ($act == 'editdata/form') {
+    } else if ($act == 'editform') {
       require 'view/spp/edit_data/formdata.php';
     }
 
