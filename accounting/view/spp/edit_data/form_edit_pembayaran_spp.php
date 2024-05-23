@@ -260,9 +260,9 @@
 
             <?php else: ?>
 
-                <form action="checkpembayaran" method="post">
+                <form action="editdata" method="post">
                     <input type="hidden" name="halamanKeFilterSPP" value="<?= $i; ?>">
-                    <input type="hidden" name="iniFilterSPP" value="<?= $_POST['isi_filter']; ?>">
+                    <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
                     <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
                     <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
@@ -311,10 +311,10 @@
             </form>
         <?php endif; ?>        
 
-        <?php if ($hitungDataFilterSPP <= 5): ?>
+        <?php if ($halamanAktif == $jumlahPagination): ?>
         <?php else: ?>
             
-            <form action="checkpembayaran" method="post">
+            <form action="editdata" method="post">
                 <input type="hidden" name="halamanTerakhirFilterSPP" value="<?= $halamanAktif + 1; ?>">
                 <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
                 <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
