@@ -1,7 +1,7 @@
 <?php
 $dbhost ='localhost';
 $dbuser ='u415776667_spp';
-$dbpass ='spp4ii5123';
+$dbpass ='Akhyar@2024';
 // $dbpass ='Admin@2023';
 $dbname ='u415776667_spp';
 $db_dsn = "mysql:dbname=$dbname;host=$dbhost";
