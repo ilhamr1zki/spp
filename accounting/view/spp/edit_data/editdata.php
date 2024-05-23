@@ -48,6 +48,13 @@
      
     }
 
+    function rupiahFormatInput($angkax){
+    
+        $hasil_rupiahx = "Rp " . number_format($angkax,0,'.','.');
+        return $hasil_rupiahx;
+     
+    }
+
     $setSesiPageFilterBy = 0; 
     $setSesiFormEdit     = 0;
 
@@ -156,8 +163,8 @@
 
             if ($_POST['isi_filter_edit'] != 'kosong') {
 
-                $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-                $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+                // $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+                // $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
 
                 // Data SPP
                 if ($_POST['isi_filter_edit'] == 'SPP') {
@@ -173,44 +180,6 @@
 
                     $setSesiPageFilterBy = 2;
                     $isifilby = $_POST['isi_filter_edit'];
-
-                    $namaMurid = $namaSiswa;
-                    $queryGetDataPANGKAL = "
-                    SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd
-                    WHERE
-                    PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' ";
-                    $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
-                    $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
-                    // echo $hitungDataFilterPANGKAL;
-
-                    $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-                    // echo $dataAwal . "<br>";
-                    $ambildata_perhalaman = mysqli_query($con, "
-                        SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                        FROM input_data_sd
-                        WHERE
-                        PANGKAL != 0
-                        AND NAMA LIKE '%$namaMurid%' 
-                        ORDER BY ID DESC
-                        LIMIT $dataAwal, $jumlahData");
-                    // print_r($ambildata_perhalaman->num_rows);
-                    $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
-
-                    $jumlahLink = 2;
-
-                    if ($halamanAktif > $jumlahLink) {
-                        $start_number = $halamanAktif - $jumlahLink;
-                    } else {
-                        $start_number = 1;
-                    }
-
-                    if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                        $end_number = $halamanAktif + $jumlahLink;
-                    } else {
-                        $end_number = $jumlahPagination;
-                    }
 
                 }
                 // Akhir Data Pangkal
@@ -256,6 +225,7 @@
 
         $currentPage        = $_POST['currentPage'];
 
+        // EDIT SPP
         if ($typeFilter == 'SPP') {
 
             $setSesiFormEdit    = 1;
@@ -273,9 +243,28 @@
             $isifilby = $typeFilter;
 
         }
+        // AKhir EDIT SPP
 
+        // EDIT PANGKAL
+        elseif ($typeFilter == 'PANGKAL') {
 
-        // echo "Ada edit";exit;
+            $setSesiFormEdit    = 1;
+
+            $idInvoice          = $_POST['id_invoice'];
+            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
+            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
+
+            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
+            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
+            $nominalBayar       = $_POST['nominal_bayar'];
+            $ketPembayaran      = $_POST['ket_pembayaran'];
+            $pembayaranVIA      = $_POST['tipe_transaksi'];
+
+            $isifilby = $typeFilter;
+
+        }
+        // AKHIR EDIT PANGKAL
+
     }
 
     // Jika Ada Tombol Simpan Edit Data
@@ -308,6 +297,7 @@
         $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
 
         $pembayaranVIA   = htmlspecialchars($_POST['payment_via']);
+        // echo $pembayaranVIA;exit;
         $data_stamp      = date("Y-m-d H:i:s");
 
         $tanggalDari;
@@ -317,7 +307,7 @@
 
             switch ($typeFilter) {
                 case "SPP" :
-                    $nominalBayarSPP        = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarSPP        = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranSPP       = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarPangkal;
@@ -364,11 +354,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarSPP);
                     $ketPembayaran      = $ketPembayaranSPP;
@@ -378,7 +377,8 @@
                     $nominalBayarSPP;
                     $ketPembayaranSPP;
 
-                    $nominalBayarPangkal    = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarPangkal    = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
+                    // echo $nominalBayarPangkal;exit;
                     $ketPembayaranPangkal   = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarKegiatan;
@@ -422,12 +422,23 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarPangkal);
                     $ketPembayaran      = $ketPembayaranPangkal;
                     break;
@@ -438,7 +449,7 @@
                     $nominalBayarPangkal;
                     $ketPembayaranPangkal;
 
-                    $nominalBayarKegiatan   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarKegiatan   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranKegiatan  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarBuku;
@@ -479,11 +490,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarKegiatan);
                     $ketPembayaran      = $ketPembayaranKegiatan;
@@ -498,7 +518,7 @@
                     $nominalBayarKegiatan;
                     $ketPembayaranKegiatan;
 
-                    $nominalBayarBuku   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarBuku   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranBuku  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarSeragam;
@@ -536,11 +556,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarBuku);
                     $ketPembayaran      = $ketPembayaranBuku;
@@ -558,7 +587,7 @@
                     $nominalBayarBuku;
                     $ketPembayaranBuku;
 
-                    $nominalBayarSeragam   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarSeragam   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranSeragam  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarRegistrasi;
@@ -593,11 +622,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarSeragam);
                     $ketPembayaran      = $ketPembayaranSeragam;
@@ -618,7 +656,7 @@
                     $nominalBayarSeragam;
                     $ketPembayaranSeragam;
 
-                    $nominalBayarRegistrasi   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarRegistrasi   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranRegistrasi  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarLain;
@@ -650,11 +688,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarRegistrasi);
                     $ketPembayaran      = $ketPembayaranRegistrasi;
@@ -678,7 +725,7 @@
                     $nominalBayarRegistrasi;
                     $ketPembayaranRegistrasi;
 
-                    $nominalBayarLain   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarLain   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $queryUpdate = "
@@ -707,11 +754,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarLain);
                     $ketPembayaran      = $ketPembayaranLain;
@@ -722,7 +778,7 @@
 
             switch ($typeFilter) {
                 case "SPP" :
-                    $nominalBayarSPP        = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarSPP        = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranSPP       = htmlspecialchars($_POST['ketPembayaran']);
                     $nominalBayarPangkal;
                     $ketPembayaranPangkal;
@@ -768,11 +824,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = $nominalBayarSPP;
                     $ketPembayaran      = $ketPembayaranSPP;
@@ -781,7 +846,7 @@
                     $nominalBayarSPP;
                     $ketPembayaranSPP;
 
-                    $nominalBayarPangkal    = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarPangkal    = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranPangkal   = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarKegiatan;
@@ -825,11 +890,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarPangkal);
                     $ketPembayaran      = $ketPembayaranPangkal;
@@ -841,7 +915,7 @@
                     $nominalBayarPangkal;
                     $ketPembayaranPangkal;
 
-                    $nominalBayarKegiatan   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarKegiatan   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranKegiatan  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarBuku;
@@ -882,11 +956,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarKegiatan);
                     $ketPembayaran      = $ketPembayaranKegiatan;
@@ -901,7 +984,7 @@
                     $nominalBayarKegiatan;
                     $ketPembayaranKegiatan;
 
-                    $nominalBayarBuku   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarBuku   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranBuku  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarSeragam;
@@ -939,12 +1022,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarBuku);
                     $ketPembayaran      = $ketPembayaranBuku;
@@ -962,7 +1053,7 @@
                     $nominalBayarBuku;
                     $ketPembayaranBuku;
 
-                    $nominalBayarSeragam   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarSeragam   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranSeragam  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarRegistrasi;
@@ -997,11 +1088,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarSeragam);
                     $ketPembayaran      = $ketPembayaranSeragam;
@@ -1022,7 +1122,7 @@
                     $nominalBayarSeragam;
                     $ketPembayaranSeragam;
 
-                    $nominalBayarRegistrasi   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarRegistrasi   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranRegistrasi  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $nominalBayarLain;
@@ -1054,11 +1154,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarRegistrasi);
                     $ketPembayaran      = $ketPembayaranRegistrasi;
@@ -1082,7 +1191,7 @@
                     $nominalBayarRegistrasi;
                     $ketPembayaranRegistrasi;
 
-                    $nominalBayarLain   = str_replace(["Rp. ", "."], "", $_POST['nominalBayar']);
+                    $nominalBayarLain   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $queryUpdate = "
@@ -1111,11 +1220,20 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
-                    $setSesiPageFilterBy = 1;
-                    if ($currentFilter != $typeFilter) {
-                        $isifilby = $currentFilter;
-                    } else if ($currentFilter == $typeFilter) {
-                        $isifilby = $typeFilter;
+                    if ($currentFilter == 'SPP') {
+                        $setSesiPageFilterBy = 1;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'PANGKAL') {
+                        $setSesiPageFilterBy = 2;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
                     $nominalBayar       = rupiahFormat($nominalBayarLain);
                     $ketPembayaran      = $ketPembayaranLain;
@@ -1446,6 +1564,113 @@
 
     }
 
+    elseif (isset($_POST['firstPageFilterSPP'])) {
+
+        $namaMurid      = $_POST['namaFormFilterSPP'];
+
+        $id             = $_POST['idSiswaFilterSPP'];
+        $nis            = $_POST['nisFormFilterSPP'];
+        $kelas          = $_POST['kelasFormFilterSPP'];
+        $panggilan      = $_POST['panggilanFormFilterSPP'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterSPP'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 1;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') { 
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else {
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+            }
+
+    }
+
     elseif(isset($_POST['lastPageFilterSPP'])) {
 
         $namaMurid      = $_POST['namaSiswaFilterSPP'];
@@ -1554,6 +1779,306 @@
             }
 
         }
+
+    }
+
+    elseif (isset($_POST['nextPageFilterPANGKAL'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterPANGKAL'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterPANGKAL'];
+        $isifilby   = $_POST['iniFilterPANGKAL'];
+
+        $id         = $_POST['idSiswaFilterPANGKAL'];
+        $kelas      = $_POST['kelasFormFilterPANGKAL'];
+        $panggilan  = $_POST['panggilanFormFilterPANGKAL'];
+        $nis        = $_POST['nisFormFilterPANGKAL'];
+        $namaSiswa  = $_POST['namaFormFilterPANGKAL'];
+
+        $setSesiPageFilterBy = 2;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataPangkal = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataPangkal    = mysqli_query($con, $queryGetDataPangkal);
+            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPangkal);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else {
+
+            $queryGetDataPangkal = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataPangkal    = mysqli_query($con, $queryGetDataPangkal);
+            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPangkal);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+            }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterPANGKAL'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterPANGKAL'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterPANGKAL'];
+        $isifilby  = $_POST['iniFilterPANGKAL'];
+
+        $id        = $_POST['idSiswaFilterPANGKAL'];
+        $nis       = $_POST['nisFormFilterPANGKAL'];
+        $namaSiswa = $_POST['namaFormFilterPANGKAL'];
+        $panggilan = $_POST['panggilanFormFilterPANGKAL'];
+        $kelas     = $_POST['kelasFormFilterPANGKAL'];
+
+        $dariTanggal    = " 00:00:00";
+        $sampaiTanggal  = " 23:59:59";
+
+        $iniScrollPreviousPage = "ada";
+        $setSesiPageFilterBy = 2;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataPANGKAL = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
+            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else {
+
+            $queryGetDataPANGKAL = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
+            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['toPageFilterPANGKAL'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterPANGKAL'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterPANGKAL'];
+        $isifilby  = $_POST['iniFilterPANGKAL'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterPANGKAL'];
+        $nis       = $_POST['nisFormFilterPANGKAL'];
+        $panggilan = $_POST['panggilanFormFilterPANGKAL'];
+        $kelas     = $_POST['kelasFormFilterPANGKAL'];
+
+        $setSesiPageFilterBy = 2;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataPANGKAL = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
+            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            } 
+
+        } else {
+
+            $queryGetDataPANGKAL = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
+            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            } 
+
+        }     
 
     }
     // Akhir Bagian Pagination
@@ -1727,7 +2252,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <label>NOMINAL BAYAR</label>
-                                <input type="text" name="nominalBayar" id="nominalBayar" class="form-control" value="<?= rupiah($nominalBayar); ?>">
+                                <input type="text" name="nominalBayar" id="nominalBayar" class="form-control" value="<?= rupiahFormatInput($nominalBayar); ?>">
                             </div>
                         </div>
 
@@ -1848,7 +2373,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <!-- <div class="col-sm-3">
                                 <div class="form-group">
                                     <label> Filter Date From </label>
                                     <?php if ($tanggalDari == 'kosong_tgl1'): ?>
@@ -1868,7 +2393,7 @@
                                         <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
                                     <?php endif; ?>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-sm-2">
                                 <div class="form-group">
@@ -1949,7 +2474,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <!-- <div class="col-sm-3">
                                 <div class="form-group">
                                     <label> Filter Date From </label>
                                     <?php if ($tanggalDari == 'kosong_tgl1'): ?>
@@ -1969,7 +2494,7 @@
                                         <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
                                     <?php endif; ?>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-sm-2">
                                 <div class="form-group">
@@ -2059,6 +2584,7 @@
         let scrollNextPage        = `<?= $iniScrollNextPage; ?>`
         let scrollPreviousPage    = `<?= $iniScrollPreviousPage; ?>`
         let scrollToPage          = `<?= $iniScrollToPage; ?>`
+        let scrollFirstPage        = `<?= $iniScrollFirstPage; ?>`
         let scrollLastPage        = `<?= $iniScrollLastPage; ?>`
         let scrollBackSave        = `<?= $iniScrollBackSave; ?>`
 
@@ -2087,6 +2613,13 @@
 
         if (scrollBackSave == 'ada') {
             alert('Data Berhasil Di Update');
+            window.scroll({
+              top: 550,
+              behavior: 'smooth'
+            });
+        }
+
+        if (scrollFirstPage == 'ada') {
             window.scroll({
               top: 550,
               behavior: 'smooth'

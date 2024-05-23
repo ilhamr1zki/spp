@@ -1,7 +1,7 @@
 <?php  
 
 	// Jika filter by SPP sedangkan filter tanggal dari dan tanggal sampai tidak di isi 
-    if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+    // if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
     	// echo "Tidak tanggal SPP";
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
@@ -88,9 +88,9 @@
 
         }
 
-    } else {
-    	echo "Ada tanggal SPP";
-    }
+    // } else {
+    	// echo "Ada tanggal SPP";
+    // }
 
 ?>
 	
@@ -302,13 +302,21 @@
 
         <?php if ($halamanAktif > 1): ?>
 
-            <form action="checkpembayaran" method="post">
-                <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
-                <button name="previousPage">
+            <form action="editdata" method="post">
+                <input type="hidden" name="halamanPertamaFilterSPP" value="<?= $halamanAktif - 1; ?>">
+                <input type="hidden" name="iniFilterSPP" value="<?= $isifilby; ?>">
+                <input type="hidden" name="idSiswaFilterSPP" value="<?= $id; ?>">
+                <input type="hidden" name="namaSiswaFilterSPP" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="nisFormFilterSPP" value="<?= $nis; ?>">
+                <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
+                <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                <button name="firstPageFilterSPP">
                     &laquo;
                     First Page
                 </button>
             </form>
+
         <?php endif; ?>        
 
         <?php if ($halamanAktif == $jumlahPagination): ?>
