@@ -97,7 +97,7 @@
 
         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
         // echo $dataAwal . "<br>";
-        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd_lama ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
         // echo mysqli_num_rows($ambildata_perhalaman);
         // print_r($ambildata_perhalaman->num_rows);
 
@@ -130,7 +130,7 @@
 
         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
         // echo $dataAwal . "<br>";
-        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+        $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk_lama ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
         // echo mysqli_num_rows($ambildata_perhalaman);
         // print_r($ambildata_perhalaman->num_rows);
 
@@ -329,7 +329,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd` 
+                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -378,8 +378,8 @@
                     $ketPembayaranSPP;
 
                     $nominalBayarPangkal    = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    // echo $nominalBayarPangkal;exit;
                     $ketPembayaranPangkal   = htmlspecialchars($_POST['ketPembayaran']);
+                    // echo $nominalBayarPangkal . " ". $ketPembayaranPangkal;exit;
 
                     $nominalBayarKegiatan;
                     $ketPembayaranKegiatan;
@@ -397,7 +397,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd` 
+                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -465,7 +465,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd` 
+                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -531,7 +531,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd` 
+                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -597,7 +597,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd` 
+                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -663,7 +663,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd` 
+                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -729,7 +729,7 @@
                     $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd` 
+                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -799,7 +799,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk` 
+                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -865,7 +865,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk` 
+                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -931,7 +931,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk` 
+                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -997,7 +997,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk` 
+                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -1063,7 +1063,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk` 
+                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -1129,7 +1129,7 @@
                     $ketPembayaranLain;
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk` 
+                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -1195,7 +1195,7 @@
                     $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk` 
+                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -1271,7 +1271,7 @@
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1281,7 +1281,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1311,7 +1311,7 @@
 
              $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1321,7 +1321,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1376,7 +1376,7 @@
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1386,7 +1386,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1416,7 +1416,7 @@
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1429,7 +1429,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1482,7 +1482,7 @@
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1494,7 +1494,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1524,7 +1524,7 @@
             
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1536,7 +1536,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1583,7 +1583,7 @@
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1601,7 +1601,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1627,7 +1627,7 @@
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1645,7 +1645,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1692,7 +1692,7 @@
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1711,7 +1711,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1737,7 +1737,7 @@
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1756,7 +1756,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1804,7 +1804,7 @@
 
             $queryGetDataPangkal = "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1814,7 +1814,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1842,7 +1842,7 @@
 
             $queryGetDataPangkal = "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1852,7 +1852,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1906,7 +1906,7 @@
 
             $queryGetDataPANGKAL = "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1916,7 +1916,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -1944,7 +1944,7 @@
 
             $queryGetDataPANGKAL = "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -1954,7 +1954,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -2002,7 +2002,7 @@
 
             $queryGetDataPANGKAL = "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -2014,7 +2014,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -2042,7 +2042,7 @@
 
             $queryGetDataPANGKAL = "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -2054,7 +2054,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -2079,6 +2079,221 @@
             } 
 
         }     
+
+    }
+
+    elseif (isset($_POST['firstPageFilterPANGKAL'])) {
+
+        $namaMurid      = $_POST['namaFormFilterPANGKAL'];
+
+        $id             = $_POST['idSiswaFilterPANGKAL'];
+        $nis            = $_POST['nisFormFilterPANGKAL'];
+        $kelas          = $_POST['kelasFormFilterPANGKAL'];
+        $panggilan      = $_POST['panggilanFormFilterPANGKAL'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterPANGKAL'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 2;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPANGKAL = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPANGKAL = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterPANGKAL'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterPANGKAL'];
+        $isifilby       = $_POST['iniFilterPANGKAL'];
+
+        $id             = $_POST['idSiswaFilterPANGKAL'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterPANGKAL'];
+        $panggilan      = $_POST['panggilanFormFilterPANGKAL'];
+        $nis            = $_POST['nisFormFilterPANGKAL'];
+
+        $iniScrollLastPage  = "ada";
+        $setSesiPageFilterBy = 2;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPANGKAL = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else {
+
+            $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPANGKAL = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
 
     }
     // Akhir Bagian Pagination
