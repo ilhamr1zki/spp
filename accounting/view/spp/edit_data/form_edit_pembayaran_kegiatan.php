@@ -7,28 +7,28 @@
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
             $namaMurid = $namaSiswa;
-            $queryGetDataPANGKAL = "
-            SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        	$queryGetDataKegiatan = "
+            SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd_lama
             WHERE
-            PANGKAL != 0
+            KEGIATAN != 0
             AND NAMA LIKE '%$namaMurid%' ";
-            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
-            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
-            // echo $hitungDataFilterPANGKAL;
+
+            $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd_lama
                 WHERE
-                PANGKAL != 0
+                KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 
                 ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
-            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
 
             $jumlahLink = 2;
 
@@ -47,28 +47,28 @@
         } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
             $namaMurid = $namaSiswa;
-            $queryGetDataPANGKAL = "
-            SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+            $queryGetDataKegiatan = "
+            SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk_lama
             WHERE
-            PANGKAL != 0
+            KEGIATAN != 0
             AND NAMA LIKE '%$namaMurid%' ";
-            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
-            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
-            // echo $hitungDataFilterPANGKAL;
+
+            $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk_lama
                 WHERE
-                PANGKAL != 0
+                KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 
                 ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
-            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
 
             $jumlahLink = 2;
 
@@ -97,16 +97,16 @@
         <table id="example1" class="table table-bordered">
             <thead>
               <tr>
-                <th style="text-align: center; width: 3%;"> NUMBER INVOICE </th>
-                <th style="text-align: center; width: 1%;"> NIS </th>
-                <th style="text-align: center; width: 7%;"> NAMA </th>
-                <th style="text-align: center; width: 1%;"> KELAS </th>
-                <th style="text-align: center; width: 3%;"> PANGKAL </th>
-                <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
-                <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
-                <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
+                <th style="text-align: center; width: 7%;"> NUMBER INVOICE </th>
+                <th style="text-align: center; width: 5%;"> NIS </th>
+                <th style="text-align: center; width: 13%;"> NAMA </th>
+                <th style="text-align: center; width: 5%"> KELAS </th>
+                <th style="text-align: center; width: 9%;"> UANG KEGIATAN </th>
+                <th style="text-align: center; width: 6%;"> TANGGAL BAYAR </th>
+                <th style="text-align: center; width: 6%;"> PEMBAYARAN BULAN </th>
+                <th style="text-align: center; width: 10%;"> KET KEGIATAN </th>
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
-                <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
+                <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                 <th style="text-align: center; width: 7%;"> STAMP </th>
                 <th style="text-align: center; width: 1%;"> ACTION </th>
               </tr>
@@ -120,11 +120,30 @@
                         <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                         <td style="text-align: center;"> <?= $data['NAMA']; ?> </td>
                         <td style="text-align: center;"> <?= $data['kelas']; ?> </td>
-                        <td style="text-align: center;"> <?= rupiah($data['PANGKAL']); ?> </td>
-                        <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])); ?> </td>
-                        <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
-                        <td style="text-align: center;"> <?= $data['PANGKAL_txt']; ?> </td>
-                        <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                        <td style="text-align: center;"> <?= rupiah($data['KEGIATAN']); ?> </td>
+
+                        <?php if ($data['DATE'] == NULL): ?>
+
+                            <td style="text-align: center;"> <strong> - </strong> </td>
+                        
+                        <?php else: ?> 
+
+                            <td style="text-align: center;"> <?= str_replace([" 00:00:00"], "", tglIndo($data['DATE'])) ; ?> </td>
+                        
+                        <?php endif ?>
+
+                        <?php if ($data['pembayaran_bulan'] == '' || $data['pembayaran_bulan'] == NULL): ?>
+                            <td style="text-align: center;"> <strong> - </strong> </td>
+                        <?php else: ?>
+                            <td style="text-align: center;"> <?= $data['pembayaran_bulan']; ?> </td>
+                        <?php endif ?>
+
+                        <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
+                        <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                            <td style="text-align: center;"> <strong> - </strong> </td>
+                        <?php else: ?>
+                            <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>
+                        <?php endif ?>
 
                         <?php if ($data['di_input_oleh'] == NULL): ?>
                             <td style="text-align: center;"> <strong> - </strong> </td>
@@ -147,12 +166,12 @@
                                     <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                     <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                     <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                    <input type="hidden" name="nominal_bayar" value="<?= $data['PANGKAL']; ?>">
-                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['PANGKAL_txt']; ?>">
+                                    <input type="hidden" name="nominal_bayar" value="<?= $data['KEGIATAN']; ?>">
+                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['KEGIATAN_txt']; ?>">
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
-                                    <input type="hidden" name="isi_filter" value="PANGKAL">
+                                    <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
 
                                     <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                         EDIT 
@@ -179,12 +198,12 @@
                                     <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                     <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                     <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                    <input type="hidden" name="nominal_bayar" value="<?= $data['PANGKAL']; ?>">
-                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['PANGKAL_txt']; ?>">
+                                    <input type="hidden" name="nominal_bayar" value="<?= $data['KEGIATAN']; ?>">
+                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['KEGIATAN_txt']; ?>">
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
-                                    <input type="hidden" name="isi_filter" value="PANGKAL">
+                                    <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
 
                                     <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                         EDIT 
@@ -205,20 +224,20 @@
 
     </div>
 
-    <div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
+	<div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
 
         <?php if ($halamanAktif > 1): ?>
 
-            <form action="editdata" method="post">
-                <input type="hidden" name="halamanSebelumnyaFilterPANGKAL" value="<?= $halamanAktif - 1; ?>">
-                <input type="hidden" name="iniFilterPANGKAL" value="<?= $isifilby; ?>">
-                <input type="hidden" name="idSiswaFilterPANGKAL" value="<?= $id; ?>">
-                <input type="hidden" name="namaSiswaFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="nisFormFilterPANGKAL" value="<?= $nis; ?>">
-                <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
-                <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
-                <button name="previousPageFilterPANGKAL">
+            <form action="<?= $baseac; ?>editdata" method="post">
+                <input type="hidden" name="halamanSebelumnyaFilterKegiatan" value="<?= $halamanAktif - 1; ?>">
+                <input type="hidden" name="iniFilterKegiatan" value="<?= $isifilby; ?>">
+                <input type="hidden" name="idSiswaFilterKegiatan" value="<?= $id; ?>">
+                <input type="hidden" name="namaSiswaFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="nisFormFilterKegiatan" value="<?= $nis; ?>">
+                <input type="hidden" name="kelasFormFilterKegiatan" value="<?= $kelas; ?>">
+                <input type="hidden" name="namaFormFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="panggilanFormFilterKegiatan" value="<?= $panggilan; ?>">
+                <button name="previousPageFilterKegiatan">
                     &laquo;
                     Previous
                 </button>
@@ -232,7 +251,7 @@
                 
             <?php elseif ($halamanAktif == $i): ?>
 
-                <form action="checkpembayaran" method="post">
+                <form action="<?= $baseac; ?>editdata" method="post">
                     <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
                     <button name="currentPage" style="color: black; font-weight: bold; background-color: lightgreen;">
                         <?= $i; ?>
@@ -241,35 +260,36 @@
 
             <?php else: ?>
 
-                <form action="editdata" method="post">
-                    <input type="hidden" name="halamanKeFilterPANGKAL" value="<?= $i; ?>">
-                    <input type="hidden" name="iniFilterPANGKAL" value="<?= $isifilby; ?>">
-                    <input type="hidden" name="idSiswaFilterPANGKAL" value="<?= $id; ?>">
-                    <input type="hidden" name="namaSiswaFilterPANGKAL" value="<?= $namaMurid; ?>">
-                    <input type="hidden" name="nisFormFilterPANGKAL" value="<?= $nis; ?>">
-                    <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
-                    <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
-                    <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
-                    <button name="toPageFilterPANGKAL">
+                <form action="<?= $baseac; ?>editdata" method="post">
+                    <input type="hidden" name="halamanKeFilterKegiatan" value="<?= $i; ?>">
+                    <input type="hidden" name="iniFilterKegiatan" value="<?= $isifilby; ?>">
+                    <input type="hidden" name="idSiswaFilterKegiatan" value="<?= $id; ?>">
+                    <input type="hidden" name="namaSiswaFilterKegiatan" value="<?= $namaMurid; ?>">
+                    <input type="hidden" name="nisFormFilterKegiatan" value="<?= $nis; ?>">
+                    <input type="hidden" name="kelasFormFilterKegiatan" value="<?= $kelas; ?>">
+                    <input type="hidden" name="namaFormFilterKegiatan" value="<?= $namaMurid; ?>">
+                    <input type="hidden" name="panggilanFormFilterKegiatan" value="<?= $panggilan; ?>">
+                    <button name="toPageFilterKegiatan">
                         <?= $i; ?>
                     </button>
                 </form>
+
             <?php endif; ?>
 
         <?php endfor; ?>
 
         <?php if ($halamanAktif < $jumlahPagination): ?>
             
-            <form action="editdata" method="post">
-                <input type="hidden" name="halamanLanjutFilterPANGKAL" value="<?= $halamanAktif + 1; ?>">
-                <input type="hidden" name="iniFilterPANGKAL" value="<?= $isifilby; ?>">
-                <input type="hidden" name="idSiswaFilterPANGKAL" value="<?= $id; ?>">
-                <input type="hidden" name="namaSiswaFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="nisFormFilterPANGKAL" value="<?= $nis; ?>">
-                <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
-                <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
-                <button name="nextPageFilterPANGKAL" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
+            <form action="<?= $baseac; ?>editdata" method="post">
+                <input type="hidden" name="halamanLanjutFilterKegiatan" value="<?= $halamanAktif + 1; ?>">
+                <input type="hidden" name="iniFilterKegiatan" value="<?= $isifilby; ?>">
+                <input type="hidden" name="idSiswaFilterKegiatan" value="<?= $id; ?>">
+                <input type="hidden" name="namaSiswaFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="nisFormFilterKegiatan" value="<?= $nis; ?>">
+                <input type="hidden" name="kelasFormFilterKegiatan" value="<?= $kelas; ?>">
+                <input type="hidden" name="namaFormFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="panggilanFormFilterKegiatan" value="<?= $panggilan; ?>">
+                <button name="nextPageFilterKegiatan" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
                 </button>
@@ -283,16 +303,16 @@
 
         <?php if ($halamanAktif > 1): ?>
 
-            <form action="editdata" method="post">
-                <input type="hidden" name="halamanPertamaFilterPANGKAL" value="<?= $halamanAktif - 1; ?>">
-                <input type="hidden" name="iniFilterPANGKAL" value="<?= $isifilby; ?>">
-                <input type="hidden" name="idSiswaFilterPANGKAL" value="<?= $id; ?>">
-                <input type="hidden" name="namaSiswaFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="nisFormFilterPANGKAL" value="<?= $nis; ?>">
-                <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
-                <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
-                <button name="firstPageFilterPANGKAL">
+            <form action="<?= $baseac; ?>editdata" method="post">
+                <input type="hidden" name="halamanPertamaFilterKegiatan" value="<?= $halamanAktif - 1; ?>">
+                <input type="hidden" name="iniFilterKegiatan" value="<?= $isifilby; ?>">
+                <input type="hidden" name="idSiswaFilterKegiatan" value="<?= $id; ?>">
+                <input type="hidden" name="namaSiswaFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="nisFormFilterKegiatan" value="<?= $nis; ?>">
+                <input type="hidden" name="kelasFormFilterKegiatan" value="<?= $kelas; ?>">
+                <input type="hidden" name="namaFormFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="panggilanFormFilterKegiatan" value="<?= $panggilan; ?>">
+                <button name="firstPageFilterKegiatan">
                     &laquo;
                     First Page
                 </button>
@@ -301,24 +321,25 @@
         <?php endif; ?>        
 
         <?php if ($halamanAktif == $jumlahPagination): ?>
+
         <?php else: ?>
             
-            <form action="editdata" method="post">
-                <input type="hidden" name="halamanTerakhirFilterPANGKAL" value="<?= $halamanAktif + 1; ?>">
-                <input type="hidden" name="iniFilterPANGKAL" value="<?= $isifilby; ?>">
-                <input type="hidden" name="idSiswaFilterPANGKAL" value="<?= $id; ?>">
-                <input type="hidden" name="namaSiswaFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="nisFormFilterPANGKAL" value="<?= $nis; ?>">
-                <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
-                <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
-                <button name="lastPageFilterPANGKAL">
+            <form action="<?= $baseac; ?>editdata" method="post">
+                <input type="hidden" name="halamanTerakhirFilterKegiatan" value="<?= $halamanAktif + 1; ?>">
+                <input type="hidden" name="iniFilterKegiatan" value="<?= $isifilby; ?>">
+                <input type="hidden" name="idSiswaFilterKegiatan" value="<?= $id; ?>">
+                <input type="hidden" name="namaSiswaFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="nisFormFilterKegiatan" value="<?= $nis; ?>">
+                <input type="hidden" name="kelasFormFilterKegiatan" value="<?= $kelas; ?>">
+                <input type="hidden" name="namaFormFilterKegiatan" value="<?= $namaMurid; ?>">
+                <input type="hidden" name="panggilanFormFilterKegiatan" value="<?= $panggilan; ?>">
+                <button name="lastPageFilterKegiatan">
                     Last Page
                     &raquo;
                 </button>
             </form>
 
-        <?php endif ?>
+        <?php endif; ?>
 
     </div>
 

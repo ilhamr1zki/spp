@@ -184,6 +184,15 @@
                 }
                 // Akhir Data Pangkal
 
+                // Data KEGIATAN
+                else if ($_POST['isi_filter_edit'] == 'KEGIATAN') {
+
+                    $setSesiPageFilterBy = 3;
+                    $isifilby = $_POST['isi_filter_edit'];
+
+                }
+                // Akhir DATA KEGIATAN
+
             } else {
 
                 $setSesiPageFilterBy = -1;
@@ -264,6 +273,26 @@
 
         }
         // AKHIR EDIT PANGKAL
+
+        // EDIT KEGIATAN
+        elseif ($typeFilter == 'KEGIATAN') {
+
+            $setSesiFormEdit    = 1;
+
+            $idInvoice          = $_POST['id_invoice'];
+            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
+            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
+
+            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
+            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
+            $nominalBayar       = $_POST['nominal_bayar'];
+            $ketPembayaran      = $_POST['ket_pembayaran'];
+            $pembayaranVIA      = $_POST['tipe_transaksi'];
+
+            $isifilby = $typeFilter;
+
+        }
+        // AKHIR KEGIATAN
 
     }
 
@@ -354,6 +383,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -368,7 +398,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarSPP);
                     $ketPembayaran      = $ketPembayaranSPP;
 
@@ -379,7 +445,6 @@
 
                     $nominalBayarPangkal    = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranPangkal   = htmlspecialchars($_POST['ketPembayaran']);
-                    // echo $nominalBayarPangkal . " ". $ketPembayaranPangkal;exit;
 
                     $nominalBayarKegiatan;
                     $ketPembayaranKegiatan;
@@ -437,6 +502,41 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
 
                     $nominalBayar       = rupiahFormat($nominalBayarPangkal);
@@ -451,6 +551,7 @@
 
                     $nominalBayarKegiatan   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranKegiatan  = htmlspecialchars($_POST['ketPembayaran']);
+                    // echo $ketPembayaranKegiatan;exit;
 
                     $nominalBayarBuku;
                     $ketPembayaranBuku;
@@ -490,6 +591,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -504,7 +606,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarKegiatan);
                     $ketPembayaran      = $ketPembayaranKegiatan;
                     break;
@@ -556,6 +694,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+                    
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -570,7 +709,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarBuku);
                     $ketPembayaran      = $ketPembayaranBuku;
                     break;
@@ -622,6 +797,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+                    
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -636,7 +812,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarSeragam);
                     $ketPembayaran      = $ketPembayaranSeragam;
                     break;
@@ -688,6 +900,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -702,7 +915,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarRegistrasi);
                     $ketPembayaran      = $ketPembayaranRegistrasi;
                     break;
@@ -754,6 +1003,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -768,7 +1018,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarLain);
                     $ketPembayaran      = $ketPembayaranLain;
                     break;
@@ -824,6 +1110,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -838,7 +1125,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = $nominalBayarSPP;
                     $ketPembayaran      = $ketPembayaranSPP;
                     break;
@@ -890,6 +1213,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -904,7 +1228,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarPangkal);
                     $ketPembayaran      = $ketPembayaranPangkal;
                     break;
@@ -956,6 +1316,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -970,7 +1331,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarKegiatan);
                     $ketPembayaran      = $ketPembayaranKegiatan;
                     break;
@@ -1022,6 +1419,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -1036,7 +1434,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarBuku);
                     $ketPembayaran      = $ketPembayaranBuku;
                     break;
@@ -1088,6 +1522,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -1102,7 +1537,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarSeragam);
                     $ketPembayaran      = $ketPembayaranSeragam;
                     break;
@@ -1154,6 +1625,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -1168,7 +1640,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarRegistrasi);
                     $ketPembayaran      = $ketPembayaranRegistrasi;
                     break;
@@ -1220,6 +1728,7 @@
 
                     mysqli_query($con, $queryUpdate);
                     $_SESSION['form_success'] = "data_update";
+
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
                         if ($currentFilter != $typeFilter) {
@@ -1234,7 +1743,43 @@
                         } else if ($currentFilter == $typeFilter) {
                             $isifilby = $typeFilter;
                         }
+                    } elseif ($currentFilter == 'KEGIATAN') {
+                        $setSesiPageFilterBy = 3;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'BUKU') {
+                        $setSesiPageFilterBy = 4;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'SERAGAM') {
+                        $setSesiPageFilterBy = 5;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'REGISTRASI') {
+                        $setSesiPageFilterBy = 6;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
+                    } elseif ($currentFilter == 'LAIN') {
+                        $setSesiPageFilterBy = 7;
+                        if ($currentFilter != $typeFilter) {
+                            $isifilby = $currentFilter;
+                        } else if ($currentFilter == $typeFilter) {
+                            $isifilby = $typeFilter;
+                        }
                     }
+
                     $nominalBayar       = rupiahFormat($nominalBayarLain);
                     $ketPembayaran      = $ketPembayaranLain;
                     break;
@@ -1245,6 +1790,8 @@
     }
 
     // Bagian Pagination
+
+    // SPP
     elseif (isset($_POST['nextPageFilterSPP'])) {
         // echo "next pagefilter spp";exit;
 
@@ -1781,7 +2328,9 @@
         }
 
     }
+    // AKHIR SPP
 
+    // PANGKAL
     elseif (isset($_POST['nextPageFilterPANGKAL'])) {
 
         $halamanAktif       = $_POST['halamanLanjutFilterPANGKAL'];
@@ -2296,6 +2845,524 @@
         }
 
     }
+    //AKHIR PANGKAL 
+
+    // KEGIATAN
+    elseif (isset($_POST['nextPageFilterKegiatan'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterKegiatan'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterKegiatan'];
+        $isifilby   = $_POST['iniFilterKegiatan'];
+
+        $id         = $_POST['idSiswaFilterKegiatan'];
+        $kelas      = $_POST['kelasFormFilterKegiatan'];
+        $panggilan  = $_POST['panggilanFormFilterKegiatan'];
+        $nis        = $_POST['nisFormFilterKegiatan'];
+        $namaSiswa  = $_POST['namaFormFilterKegiatan'];
+
+        $setSesiPageFilterBy = 3;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataKegiatan = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataKegiatan = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterKegiatan'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterKegiatan'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterKegiatan'];
+        $isifilby  = $_POST['iniFilterKegiatan'];
+
+        $id        = $_POST['idSiswaFilterKegiatan'];
+        $nis       = $_POST['nisFormFilterKegiatan'];
+        $namaSiswa = $_POST['namaFormFilterKegiatan'];
+        $panggilan = $_POST['panggilanFormFilterKegiatan'];
+        $kelas     = $_POST['kelasFormFilterKegiatan'];
+
+        $setSesiPageFilterBy = 3;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataKegiatan = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatan     = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan  = mysqli_num_rows($execQueryDataKegiatan);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataKegiatan = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatan     = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan  = mysqli_num_rows($execQueryDataKegiatan);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['toPageFilterKegiatan'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterKegiatan'];
+        $iniScrollNextPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterKegiatan'];
+        $isifilby  = $_POST['iniFilterKegiatan'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterKegiatan'];
+        $nis       = $_POST['nisFormFilterKegiatan'];
+        $panggilan = $_POST['panggilanFormFilterKegiatan'];
+        $kelas     = $_POST['kelasFormFilterKegiatan'];
+
+        $setSesiPageFilterBy = 3;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') { 
+
+            $queryGetDataKegiatan = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDatakegiatan    = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDatakegiatan);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataKegiatan = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDatakegiatan    = mysqli_query($con, $queryGetDataKegiatan);
+            $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDatakegiatan);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatan / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterKegiatan'])) {
+
+        $namaMurid      = $_POST['namaFormFilterKegiatan'];
+
+        $id             = $_POST['idSiswaFilterKegiatan'];
+        $nis            = $_POST['nisFormFilterKegiatan'];
+        $kelas          = $_POST['kelasFormFilterKegiatan'];
+        $panggilan      = $_POST['panggilanFormFilterKegiatan'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterKegiatan'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 3;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') { 
+
+            $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterKegiatan = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterKegiatan = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterKegiatan'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterKegiatan'];
+        $isifilby       = $_POST['iniFilterKegiatan'];
+
+        $id             = $_POST['idSiswaFilterKegiatan'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterKegiatan'];
+        $panggilan      = $_POST['panggilanFormFilterKegiatan'];
+        $nis            = $_POST['nisFormFilterKegiatan'];
+
+        $iniScrollLastPage  = "ada";
+        $setSesiPageFilterBy = 3;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') { 
+
+            $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterKegiatan = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterKegiatan = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+    // AKHIR KEGIATAN
     // Akhir Bagian Pagination
 
 ?>
@@ -2730,6 +3797,8 @@
                 <?php require 'form_edit_pembayaran_spp.php'; ?>
             <?php elseif($setSesiPageFilterBy == 2): ?>
                 <?php require 'form_edit_pembayaran_pangkal.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 3): ?>
+                <?php require 'form_edit_pembayaran_kegiatan.php'; ?>
             <?php endif; ?>  
 
         </div>
