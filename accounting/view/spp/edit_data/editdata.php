@@ -193,6 +193,42 @@
                 }
                 // Akhir DATA KEGIATAN
 
+                // Data BUKU
+                else if ($_POST['isi_filter_edit'] == 'BUKU') {
+
+                    $setSesiPageFilterBy = 4;
+                    $isifilby = $_POST['isi_filter_edit'];
+
+                }
+                // Akhir DATA BUKU
+
+                // Data SERAGAM
+                else if ($_POST['isi_filter_edit'] == 'SERAGAM') {
+
+                    $setSesiPageFilterBy = 5;
+                    $isifilby = $_POST['isi_filter_edit'];
+
+                }
+                // Akhir DATA SERAGAM
+
+                // Data REGISTRASI
+                else if ($_POST['isi_filter_edit'] == 'REGISTRASI') {
+
+                    $setSesiPageFilterBy = 6;
+                    $isifilby = $_POST['isi_filter_edit'];
+
+                }
+                // Akhir DATA REGISTRASI
+
+                // Data LAIN
+                else if ($_POST['isi_filter_edit'] == 'LAIN') {
+
+                    $setSesiPageFilterBy = 7;
+                    $isifilby = $_POST['isi_filter_edit'];
+
+                }
+                // Akhir DATA LAIN
+
             } else {
 
                 $setSesiPageFilterBy = -1;
@@ -293,6 +329,26 @@
 
         }
         // AKHIR KEGIATAN
+
+        // EDIT BUKU
+        elseif ($typeFilter == 'BUKU') {
+
+            $setSesiFormEdit    = 1;
+
+            $idInvoice          = $_POST['id_invoice'];
+            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
+            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
+
+            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
+            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
+            $nominalBayar       = $_POST['nominal_bayar'];
+            $ketPembayaran      = $_POST['ket_pembayaran'];
+            $pembayaranVIA      = $_POST['tipe_transaksi'];
+
+            $isifilby = $typeFilter;
+
+        }
+        // AKHIR BUKU
 
     }
 
@@ -1788,6 +1844,14 @@
         }
 
     }
+
+    // Tombol Kembali 
+    elseif (isset($_POST['back_to_page'])) {
+
+        echo $_POST['currentFilter'];exit;
+
+    }
+    // Akhir Tombol Kembali
 
     // Bagian Pagination
 
@@ -3363,6 +3427,109 @@
 
     }
     // AKHIR KEGIATAN
+
+    // BUKU
+    elseif (isset($_POST['nextPageFilterBuku'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterBuku'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterBuku'];
+        $isifilby   = $_POST['iniFilterBuku'];
+
+        $id         = $_POST['idSiswaFilterBuku'];
+        $kelas      = $_POST['kelasFormFilterBuku'];
+        $panggilan  = $_POST['panggilanFormFilterBuku'];
+        $nis        = $_POST['nisFormFilterBuku'];
+        $namaSiswa  = $_POST['namaFormFilterBuku'];
+
+        $setSesiPageFilterBy = 4;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataBuku = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
+            $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, DATE, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataBuku = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
+            $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, DATE, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+    // AKHIR BUKU
+
     // Akhir Bagian Pagination
 
 ?>
@@ -3551,7 +3718,7 @@
 
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <label style="color: white;"> Filter </label>
+                                <label style="color: white;"> </label>
 
                                 <input type="hidden" name="data_id_siswa" value="<?= $id_siswa; ?>">
                                 <input type="hidden" name="data_nis_siswa" value="<?= $nis; ?>">
@@ -3563,6 +3730,23 @@
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
                                 <button type="submit" name="simpan_edit_data" class="form-control btn-success"> Simpan </button>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label style="color: white;"> </label>
+
+                                <input type="hidden" name="data_id_siswa" value="<?= $id_siswa; ?>">
+                                <input type="hidden" name="data_nis_siswa" value="<?= $nis; ?>">
+                                <input type="hidden" name="data_nama_siswa" value="<?= $namaSiswa; ?>">
+                                <input type="hidden" name="data_kelas_siswa" value="<?= $kelas; ?>">
+                                <input type="hidden" name="data_panggilan_siswa" value="<?= $panggilan; ?>">
+                                
+                                <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
+                                <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
+
+                                <button id="kembali_ke" type="submit" name="back_to_page" class="form-control btn-primary"> Kembali </button>
                             </div>
                         </div>
 
@@ -3799,6 +3983,14 @@
                 <?php require 'form_edit_pembayaran_pangkal.php'; ?>
             <?php elseif($setSesiPageFilterBy == 3): ?>
                 <?php require 'form_edit_pembayaran_kegiatan.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 4): ?>
+                <?php require 'form_edit_pembayaran_buku.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 5): ?>
+                <?php require 'form_edit_pembayaran_seragam.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 6): ?>
+                <?php require 'form_edit_pembayaran_registrasi.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 7): ?>
+                <?php require 'form_edit_pembayaran_lain.php'; ?>
             <?php endif; ?>  
 
         </div>
@@ -3852,6 +4044,7 @@
         </div>    
     </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 
@@ -3860,6 +4053,10 @@
 	        "background-color" : "#ccc",
 	        "color" : "black"
 	    });
+
+        function redirectPage() {
+            document.location.href = `<?= $baseac; ?>editdata`
+        }
 
         $('#isi_tahun').keypress(function (e) {
             if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
@@ -3896,7 +4093,10 @@
         }
 
         if (scrollBackSave == 'ada') {
-            alert('Data Berhasil Di Update');
+            Swal.fire({
+              title: 'Data Berhasil Di Update',
+              icon: "success"
+            });
             window.scroll({
               top: 550,
               behavior: 'smooth'

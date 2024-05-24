@@ -166,6 +166,12 @@
       flex-direction: column;
     }
 
+    .swal2-show {
+      width: 25% !important;
+      font-size: 15px !important;
+      font-weight: bold;
+    }
+
     #spp1 {
       width: 20%;
       margin-right: 10px;
@@ -386,6 +392,12 @@
         width: 40%;
         margin-right: 10px; 
         text-align: end;
+      }
+
+      .swal2-show {
+        width: 70% !important;
+        font-size: 15px !important;
+        font-weight: bold;
       }
 
       .tombols {
@@ -631,21 +643,21 @@ oncontextmenu="return false">
             <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo $base; ?>imgstatis/default.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo $base; ?>imgstatis/logo2.png" class="user-image" alt="User Image">
                 <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
               </a>
 
             <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo $base; ?>imgstatis/default.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo $base; ?>imgstatis/logo2.png" class="user-image" alt="User Image">
                 <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
               </a>
 
             <?php else: ?>
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo $base; ?>imgstatis/default.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo $base; ?>imgstatis/logo2.png" class="user-image" alt="User Image">
                 <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
               </a>
 
@@ -654,11 +666,11 @@ oncontextmenu="return false">
               <!-- User image -->
               <li class="user-header" style="height: 185px;">
                 <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
-                  <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo $base; ?>imgstatis/logo2.png" class="img-circle" alt="User Image">
                 <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
-                  <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo $base; ?>imgstatis/logo2.png" class="img-circle" alt="User Image">
                 <?php else: ?>
-                  <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo $base; ?>imgstatis/logo2.png" class="img-circle" alt="User Image">
                 <?php endif ?>
                 <p>
                   <?php echo ucfirst($na['username']); ?>
@@ -688,11 +700,11 @@ oncontextmenu="return false">
       <div class="user-panel">
         <div class="pull-left image">
           <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
-            <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
+            <img src="<?php echo $base; ?>imgstatis/logo2.png" class="img-circle" alt="User Image">
           <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
-            <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
+            <img src="<?php echo $base; ?>imgstatis/logo2.png" class="img-circle" alt="User Image">
           <?php else: ?>
-            <img src="<?php echo $base; ?>imgstatis/default.jpg" class="img-circle" alt="User Image">
+            <img src="<?php echo $base; ?>imgstatis/logo2.png" class="img-circle" alt="User Image">
           <?php endif ?>
         </div>
         <div class="pull-left info">

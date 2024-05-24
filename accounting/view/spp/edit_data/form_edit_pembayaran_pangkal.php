@@ -300,24 +300,28 @@
 
         <?php endif; ?>        
 
-        <?php if ($halamanAktif == $jumlahPagination): ?>
-        <?php else: ?>
-            
-            <form action="editdata" method="post">
-                <input type="hidden" name="halamanTerakhirFilterPANGKAL" value="<?= $halamanAktif + 1; ?>">
-                <input type="hidden" name="iniFilterPANGKAL" value="<?= $isifilby; ?>">
-                <input type="hidden" name="idSiswaFilterPANGKAL" value="<?= $id; ?>">
-                <input type="hidden" name="namaSiswaFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="nisFormFilterPANGKAL" value="<?= $nis; ?>">
-                <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
-                <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
-                <button name="lastPageFilterPANGKAL">
-                    Last Page
-                    &raquo;
-                </button>
-            </form>
+        <?php if ($hitungDataFilterPANGKAL != 0): ?>
 
+            <?php if ($halamanAktif == $jumlahPagination): ?>
+            <?php else: ?>
+                
+                <form action="editdata" method="post">
+                    <input type="hidden" name="halamanTerakhirFilterPANGKAL" value="<?= $halamanAktif + 1; ?>">
+                    <input type="hidden" name="iniFilterPANGKAL" value="<?= $isifilby; ?>">
+                    <input type="hidden" name="idSiswaFilterPANGKAL" value="<?= $id; ?>">
+                    <input type="hidden" name="namaSiswaFilterPANGKAL" value="<?= $namaMurid; ?>">
+                    <input type="hidden" name="nisFormFilterPANGKAL" value="<?= $nis; ?>">
+                    <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
+                    <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
+                    <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
+                    <button name="lastPageFilterPANGKAL">
+                        Last Page
+                        &raquo;
+                    </button>
+                </form>
+
+            <?php endif ?>
+            
         <?php endif ?>
 
     </div>

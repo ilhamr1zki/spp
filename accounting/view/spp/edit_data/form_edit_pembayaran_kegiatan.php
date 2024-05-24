@@ -56,6 +56,7 @@
 
             $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
             $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
+            // echo $hitungDataFilterKegiatan;exit;
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
@@ -318,28 +319,32 @@
                 </button>
             </form>
 
-        <?php endif; ?>        
-
-        <?php if ($halamanAktif == $jumlahPagination): ?>
-
-        <?php else: ?>
-            
-            <form action="<?= $baseac; ?>editdata" method="post">
-                <input type="hidden" name="halamanTerakhirFilterKegiatan" value="<?= $halamanAktif + 1; ?>">
-                <input type="hidden" name="iniFilterKegiatan" value="<?= $isifilby; ?>">
-                <input type="hidden" name="idSiswaFilterKegiatan" value="<?= $id; ?>">
-                <input type="hidden" name="namaSiswaFilterKegiatan" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="nisFormFilterKegiatan" value="<?= $nis; ?>">
-                <input type="hidden" name="kelasFormFilterKegiatan" value="<?= $kelas; ?>">
-                <input type="hidden" name="namaFormFilterKegiatan" value="<?= $namaMurid; ?>">
-                <input type="hidden" name="panggilanFormFilterKegiatan" value="<?= $panggilan; ?>">
-                <button name="lastPageFilterKegiatan">
-                    Last Page
-                    &raquo;
-                </button>
-            </form>
-
         <?php endif; ?>
+
+        <?php if ($hitungDataFilterKegiatan != 0): ?>
+            
+            <?php if ($halamanAktif == $jumlahPagination): ?>
+
+            <?php else: ?>
+            
+                <form action="<?= $baseac; ?>editdata" method="post">
+                    <input type="hidden" name="halamanTerakhirFilterKegiatan" value="<?= $halamanAktif + 1; ?>">
+                    <input type="hidden" name="iniFilterKegiatan" value="<?= $isifilby; ?>">
+                    <input type="hidden" name="idSiswaFilterKegiatan" value="<?= $id; ?>">
+                    <input type="hidden" name="namaSiswaFilterKegiatan" value="<?= $namaMurid; ?>">
+                    <input type="hidden" name="nisFormFilterKegiatan" value="<?= $nis; ?>">
+                    <input type="hidden" name="kelasFormFilterKegiatan" value="<?= $kelas; ?>">
+                    <input type="hidden" name="namaFormFilterKegiatan" value="<?= $namaMurid; ?>">
+                    <input type="hidden" name="panggilanFormFilterKegiatan" value="<?= $panggilan; ?>">
+                    <button name="lastPageFilterKegiatan">
+                        Last Page
+                        &raquo;
+                    </button>
+                </form>
+
+            <?php endif; ?>
+
+        <?php endif ?>
 
     </div>
 
