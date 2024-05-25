@@ -155,6 +155,10 @@
       color: black !important;
     }
 
+    #cancel {
+      transform: scaleX(-1);
+    }
+
     .tombol {
       display: flex;
       gap: 10px;

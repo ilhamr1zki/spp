@@ -1,9 +1,11 @@
 <?php
 
   if ($_SESSION['c_accounting'] == 'accounting1') {
-    $jsi=mysqli_query($con,"SELECT * FROM siswa WHERE c_kelas LIKE '%SD%' ");$hsi=mysqli_num_rows($jsi);
+    $jsi=mysqli_query($con,"SELECT * FROM data_murid_sd WHERE KELAS LIKE '%SD%' ");
+    $hsi=mysqli_num_rows($jsi);
   } else if ($_SESSION['c_accounting'] == 'accounting2') {
-    $jsi=mysqli_query($con,"SELECT * FROM siswa WHERE c_kelas LIKE '%KB%' OR c_kelas LIKE '%TKA%' OR c_kelas LIKE '%TKB%' ");$hsi=mysqli_num_rows($jsi);
+    $jsi=mysqli_query($con,"SELECT * FROM data_murid_tk WHERE KELAS LIKE '%KB%' OR KELAS LIKE '%TKA%' OR KELAS LIKE '%TKB%' ");
+    $hsi=mysqli_num_rows($jsi);
   }
 
 
@@ -29,7 +31,7 @@
         </div>
     </div></a>
   </div>
-  <div class="col-xs-12 col-md-9 col-lg-9">
+  <!-- <div class="col-xs-12 col-md-9 col-lg-9">
     <div class="box">
       <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
         <div class="box-header with-border bg-maroon">
@@ -62,7 +64,7 @@
       </div>
     </div>
     </div>
-  </div>
+  </div> -->
 </div>
 
 

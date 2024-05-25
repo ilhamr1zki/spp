@@ -80,6 +80,7 @@
     $iniScrollFirstPage     = "kosong";
     $iniScrollLastPage      = "kosong";
     $iniScrollBackSave      = "kosong";
+    $iniScrollBackPage      = "kosong";
 
     $currentPage        = 0;
 
@@ -270,8 +271,8 @@
 
         $currentPage        = $_POST['currentPage'];
 
-        // EDIT SPP
-        if ($typeFilter == 'SPP') {
+        // DATA PEMBAYARAN
+        if ($typeFilter == 'SPP' || $typeFilter == 'PANGKAL' || $typeFilter == 'KEGIATAN' || $typeFilter == 'BUKU' || $typeFilter == 'SERAGAM' || $typeFilter == 'REGISTRASI' || $typeFilter == 'LAIN') {
 
             $setSesiFormEdit    = 1;
 
@@ -288,74 +289,14 @@
             $isifilby = $typeFilter;
 
         }
-        // AKhir EDIT SPP
-
-        // EDIT PANGKAL
-        elseif ($typeFilter == 'PANGKAL') {
-
-            $setSesiFormEdit    = 1;
-
-            $idInvoice          = $_POST['id_invoice'];
-            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
-            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
-
-            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
-            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
-            $nominalBayar       = $_POST['nominal_bayar'];
-            $ketPembayaran      = $_POST['ket_pembayaran'];
-            $pembayaranVIA      = $_POST['tipe_transaksi'];
-
-            $isifilby = $typeFilter;
-
-        }
-        // AKHIR EDIT PANGKAL
-
-        // EDIT KEGIATAN
-        elseif ($typeFilter == 'KEGIATAN') {
-
-            $setSesiFormEdit    = 1;
-
-            $idInvoice          = $_POST['id_invoice'];
-            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
-            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
-
-            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
-            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
-            $nominalBayar       = $_POST['nominal_bayar'];
-            $ketPembayaran      = $_POST['ket_pembayaran'];
-            $pembayaranVIA      = $_POST['tipe_transaksi'];
-
-            $isifilby = $typeFilter;
-
-        }
-        // AKHIR KEGIATAN
-
-        // EDIT BUKU
-        elseif ($typeFilter == 'BUKU') {
-
-            $setSesiFormEdit    = 1;
-
-            $idInvoice          = $_POST['id_invoice'];
-            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
-            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
-
-            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
-            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
-            $nominalBayar       = $_POST['nominal_bayar'];
-            $ketPembayaran      = $_POST['ket_pembayaran'];
-            $pembayaranVIA      = $_POST['tipe_transaksi'];
-
-            $isifilby = $typeFilter;
-
-        }
-        // AKHIR BUKU
+        // AKhir DATA PEMBAYARAN
 
     }
 
     // Jika Ada Tombol Simpan Edit Data
     elseif (isset($_POST['simpan_edit_data'])) {
 
-        $id   = $_POST['data_id_siswa'];
+        $id         = $_POST['data_id_siswa'];
         $nis        = $_POST['data_nis_siswa'];
         $namaSiswa  = $_POST['data_nama_siswa'];
         $kelas      = $_POST['data_kelas_siswa'];
@@ -382,7 +323,7 @@
         $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
 
         $pembayaranVIA   = htmlspecialchars($_POST['payment_via']);
-        // echo $pembayaranVIA;exit;
+
         $data_stamp      = date("Y-m-d H:i:s");
 
         $tanggalDari;
@@ -413,32 +354,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`='$ketPembayaranSPP', 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`='$ketPembayaranSPP', 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`='$ketPembayaranSPP', 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -517,32 +488,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`='$ketPembayaranPangkal',
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`='$ketPembayaranPangkal',
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } else if ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`='$ketPembayaranPangkal',
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -621,32 +622,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`='$ketPembayaranKegiatan',
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`='$ketPembayaranKegiatan',
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`='$ketPembayaranKegiatan',
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -724,32 +755,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`='$ketPembayaranBuku',
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`='$ketPembayaranBuku',
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`='$ketPembayaranBuku',
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
                     
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -827,32 +888,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`='$ketPembayaranSeragam',
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`='$ketPembayaranSeragam',
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } else if ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`='$ketPembayaranSeragam',
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
                     
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -930,32 +1021,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`='$ketPembayaranRegistrasi',
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`='$ketPembayaranRegistrasi',
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } else if ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`='$ketPembayaranRegistrasi',
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1033,32 +1154,62 @@
                     $nominalBayarLain   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`='$ketPembayaranLain',
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`='$ketPembayaranLain',
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_sd_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`='$ketPembayaranLain',
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1116,7 +1267,7 @@
                     break;
             }
 
-        } else {
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
             switch ($typeFilter) {
                 case "SPP" :
@@ -1140,32 +1291,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`='$ketPembayaranSPP', 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`='$ketPembayaranSPP', 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`='$ketPembayaranSPP', 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+                        
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1243,32 +1424,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`='$ketPembayaranPangkal',
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`='$ketPembayaranPangkal',
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } else if ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`='$ketPembayaranPangkal',
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1346,32 +1557,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`='$ketPembayaranKegiatan',
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`='$ketPembayaranKegiatan',
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`='$ketPembayaranKegiatan',
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1449,32 +1690,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`='$ketPembayaranBuku',
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`='$ketPembayaranBuku',
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`='$ketPembayaranBuku',
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1552,32 +1823,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`='$ketPembayaranSeragam',
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`='$ketPembayaranSeragam',
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } else if ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`='$ketPembayaranSeragam',
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1655,32 +1956,62 @@
                     $nominalBayarLain;
                     $ketPembayaranLain;
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`='$ketPembayaranRegistrasi',
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`=NULL,
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`='$ketPembayaranRegistrasi',
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } else if ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`='$ketPembayaranRegistrasi',
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`=NULL,
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1758,32 +2089,62 @@
                     $nominalBayarLain   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
                     $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
 
-                    $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
-                        SET 
-                        `DATE`='$tglPembayaranDB', 
-                        `BULAN`='$pembayaranBulanDB', 
-                        `SPP`='$nominalBayarSPP', 
-                        `SPP_txt`=NULL, 
-                        `PANGKAL`='$nominalBayarPangkal',
-                        `PANGKAL_txt`=NULL,
-                        `KEGIATAN`='$nominalBayarKegiatan', 
-                        `KEGIATAN_txt`=NULL,
-                        `BUKU`='$nominalBayarBuku',
-                        `BUKU_txt`=NULL,
-                        `SERAGAM`='$nominalBayarSeragam',
-                        `SERAGAM_txt`=NULL,
-                        `REGISTRASI`='$nominalBayarRegistrasi',
-                        `REGISTRASI_txt`=NULL,
-                        `LAIN`='$nominalBayarLain',
-                        `LAIN_txt`='$ketPembayaranLain',
-                        `TRANSAKSI`='$pembayaranVIA',
-                        `STAMP`='$data_stamp'
-                        WHERE  `ID`= '$idInvoice'
-                    ";
+                    if ($pembayaranVIA == 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`='$ketPembayaranLain',
+                            `TRANSAKSI`=NULL,
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    } elseif ($pembayaranVIA != 'kosong') {
+
+                        $queryUpdate = "
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                            SET 
+                            `DATE`='$tglPembayaranDB', 
+                            `BULAN`='$pembayaranBulanDB', 
+                            `SPP`='$nominalBayarSPP', 
+                            `SPP_txt`=NULL, 
+                            `PANGKAL`='$nominalBayarPangkal',
+                            `PANGKAL_txt`=NULL,
+                            `KEGIATAN`='$nominalBayarKegiatan', 
+                            `KEGIATAN_txt`=NULL,
+                            `BUKU`='$nominalBayarBuku',
+                            `BUKU_txt`=NULL,
+                            `SERAGAM`='$nominalBayarSeragam',
+                            `SERAGAM_txt`=NULL,
+                            `REGISTRASI`='$nominalBayarRegistrasi',
+                            `REGISTRASI_txt`=NULL,
+                            `LAIN`='$nominalBayarLain',
+                            `LAIN_txt`='$ketPembayaranLain',
+                            `TRANSAKSI`='$pembayaranVIA',
+                            `STAMP`='$data_stamp'
+                            WHERE  `ID`= '$idInvoice'
+                        ";
+
+                    }
 
                     mysqli_query($con, $queryUpdate);
-                    $_SESSION['form_success'] = "data_update";
+                    // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
                         $setSesiPageFilterBy = 1;
@@ -1848,7 +2209,70 @@
     // Tombol Kembali 
     elseif (isset($_POST['back_to_page'])) {
 
-        echo $_POST['currentFilter'];exit;
+        $id   = $_POST['data_id_siswa'];
+        $nis        = $_POST['data_nis_siswa'];
+        $namaSiswa  = $_POST['data_nama_siswa'];
+        $kelas      = $_POST['data_kelas_siswa'];
+        $panggilan  = $_POST['data_panggilan_siswa'];
+
+        $halamanAktif  = $_POST['currentPage'];
+
+        $currentFilter = $_POST['currentFilter'];
+
+        $typeFilter    = htmlspecialchars($_POST['isi_filter_edit']);
+
+        if ($currentFilter == 'SPP') {
+            $setSesiPageFilterBy = 1;
+            if ($currentFilter != $typeFilter) {
+                $isifilby = $currentFilter;
+            } else if ($currentFilter == $typeFilter) {
+                $isifilby = $typeFilter;
+            }
+        } elseif ($currentFilter == 'PANGKAL') {
+            $setSesiPageFilterBy = 2;
+            if ($currentFilter != $typeFilter) {
+                $isifilby = $currentFilter;
+            } else if ($currentFilter == $typeFilter) {
+                $isifilby = $typeFilter;
+            }
+        } elseif ($currentFilter == 'KEGIATAN') {
+            $setSesiPageFilterBy = 3;
+            if ($currentFilter != $typeFilter) {
+                $isifilby = $currentFilter;
+            } else if ($currentFilter == $typeFilter) {
+                $isifilby = $typeFilter;
+            }
+        } elseif ($currentFilter == 'BUKU') {
+            $setSesiPageFilterBy = 4;
+            if ($currentFilter != $typeFilter) {
+                $isifilby = $currentFilter;
+            } else if ($currentFilter == $typeFilter) {
+                $isifilby = $typeFilter;
+            }
+        } elseif ($currentFilter == 'SERAGAM') {
+            $setSesiPageFilterBy = 5;
+            if ($currentFilter != $typeFilter) {
+                $isifilby = $currentFilter;
+            } else if ($currentFilter == $typeFilter) {
+                $isifilby = $typeFilter;
+            }
+        } elseif ($currentFilter == 'REGISTRASI') {
+            $setSesiPageFilterBy = 6;
+            if ($currentFilter != $typeFilter) {
+                $isifilby = $currentFilter;
+            } else if ($currentFilter == $typeFilter) {
+                $isifilby = $typeFilter;
+            }
+        } elseif ($currentFilter == 'LAIN') {
+            $setSesiPageFilterBy = 7;
+            if ($currentFilter != $typeFilter) {
+                $isifilby = $currentFilter;
+            } else if ($currentFilter == $typeFilter) {
+                $isifilby = $typeFilter;
+            }
+        }
+
+        $iniScrollBackPage = "ada";
 
     }
     // Akhir Tombol Kembali
@@ -3528,7 +3952,1983 @@
         }
 
     }
+
+    elseif (isset($_POST['previousPageFilterBuku'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterBuku'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterBuku'];
+        $isifilby  = $_POST['iniFilterBuku'];
+
+        $id        = $_POST['idSiswaFilterBuku'];
+        $nis       = $_POST['nisFormFilterBuku'];
+        $namaSiswa = $_POST['namaFormFilterBuku'];
+        $panggilan = $_POST['panggilanFormFilterBuku'];
+        $kelas     = $_POST['kelasFormFilterBuku'];
+
+        $setSesiPageFilterBy = 4;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataBuku = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku     = mysqli_query($con, $queryGetDataBuku);
+            $hitungDataFilterBuku  = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataBuku = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku     = mysqli_query($con, $queryGetDataBuku);
+            $hitungDataFilterBuku  = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+            }
+
+    }
+
+    elseif (isset($_POST['toPageFilterBuku'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterBuku'];
+        $iniScrollNextPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterBuku'];
+        $isifilby  = $_POST['iniFilterBuku'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterBuku'];
+        $nis       = $_POST['nisFormFilterBuku'];
+        $panggilan = $_POST['panggilanFormFilterBuku'];
+        $kelas     = $_POST['kelasFormFilterBuku'];
+
+        $setSesiPageFilterBy = 4;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataBuku = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
+            $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+                $queryGetDataBuku = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
+            $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterBuku'])) {
+
+        $namaMurid      = $_POST['namaFormFilterBuku'];
+
+        $id             = $_POST['idSiswaFilterBuku'];
+        $nis            = $_POST['nisFormFilterBuku'];
+        $kelas          = $_POST['kelasFormFilterBuku'];
+        $panggilan      = $_POST['panggilanFormFilterBuku'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterBuku'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 4;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBuku = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBuku = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterBuku'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterBuku'];
+        $isifilby       = $_POST['iniFilterBuku'];
+
+        $id             = $_POST['idSiswaFilterBuku'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterBuku'];
+        $panggilan      = $_POST['panggilanFormFilterBuku'];
+        $nis            = $_POST['nisFormFilterBuku'];
+
+        $iniScrollPreviousPage  = "ada";
+        $setSesiPageFilterBy = 4;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBuku = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBuku = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
     // AKHIR BUKU
+
+    // /SERAGAM
+    elseif (isset($_POST['nextPageFilterSeragam'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterSeragam'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterSeragam'];
+        $isifilby   = $_POST['iniFilterSeragam'];
+
+        $id         = $_POST['idSiswaFilterSeragam'];
+        $kelas      = $_POST['kelasFormFilterSeragam'];
+        $panggilan  = $_POST['panggilanFormFilterSeragam'];
+        $nis        = $_POST['nisFormFilterSeragam'];
+        $namaSiswa  = $_POST['namaFormFilterSeragam'];
+
+        $setSesiPageFilterBy = 5;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSeragam = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
+            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSeragam = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
+            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterSeragam'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterSeragam'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterSeragam'];
+        $isifilby  = $_POST['iniFilterSeragam'];
+
+        $id        = $_POST['idSiswaFilterSeragam'];
+        $nis       = $_POST['nisFormFilterSeragam'];
+        $namaSiswa = $_POST['namaFormFilterSeragam'];
+        $panggilan = $_POST['panggilanFormFilterSeragam'];
+        $kelas     = $_POST['kelasFormFilterSeragam'];
+
+        $setSesiPageFilterBy = 5;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSeragam = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku     = mysqli_query($con, $queryGetDataSeragam);
+            $hitungDataFilterSeragam  = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSeragam = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku     = mysqli_query($con, $queryGetDataSeragam);
+            $hitungDataFilterSeragam  = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['toPageFilterSeragam'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterSeragam'];
+        $iniScrollNextPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterSeragam'];
+        $isifilby  = $_POST['iniFilterSeragam'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterSeragam'];
+        $nis       = $_POST['nisFormFilterSeragam'];
+        $panggilan = $_POST['panggilanFormFilterSeragam'];
+        $kelas     = $_POST['kelasFormFilterSeragam'];
+
+        $setSesiPageFilterBy = 5;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSeragam = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
+            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSeragam = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
+            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['firstPageFilterSeragam'])) {
+
+        $namaMurid      = $_POST['namaFormFilterSeragam'];
+
+        $id             = $_POST['idSiswaFilterSeragam'];
+        $nis            = $_POST['nisFormFilterSeragam'];
+        $kelas          = $_POST['kelasFormFilterSeragam'];
+        $panggilan      = $_POST['panggilanFormFilterSeragam'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterSeragam'];
+
+        $iniScrollFirstPage  = "ada";
+
+        $setSesiPageFilterBy = 5;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragam = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragam = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['lastPageFilterSeragam'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterSeragam'];
+        $isifilby       = $_POST['iniFilterSeragam'];
+
+        $id             = $_POST['idSiswaFilterSeragam'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterSeragam'];
+        $panggilan      = $_POST['panggilanFormFilterSeragam'];
+        $nis            = $_POST['nisFormFilterSeragam'];
+
+        $iniScrollPreviousPage  = "ada";
+
+        $setSesiPageFilterBy = 5;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragam = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragam = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+    // AKHIR SERAGAM
+
+    // REGISTRASI
+    else if (isset($_POST['nextPageFilterRegistrasi'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterRegistrasi'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterRegistrasi'];
+        $isifilby   = $_POST['iniFilterRegistrasi'];
+
+        $id         = $_POST['idSiswaFilterRegistrasi'];
+        $kelas      = $_POST['kelasFormFilterRegistrasi'];
+        $panggilan  = $_POST['panggilanFormFilterRegistrasi'];
+        $nis        = $_POST['nisFormFilterRegistrasi'];
+        $namaSiswa  = $_POST['namaFormFilterRegistrasi'];
+
+        $setSesiPageFilterBy = 6;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['previousPageFilterRegistrasi'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterRegistrasi'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterRegistrasi'];
+        $isifilby  = $_POST['iniFilterRegistrasi'];
+
+        $id        = $_POST['idSiswaFilterRegistrasi'];
+        $nis       = $_POST['nisFormFilterRegistrasi'];
+        $namaSiswa = $_POST['namaFormFilterRegistrasi'];
+        $panggilan = $_POST['panggilanFormFilterRegistrasi'];
+        $kelas     = $_POST['kelasFormFilterRegistrasi'];
+
+        $setSesiPageFilterBy = 6;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku     = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi  = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBuku     = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi  = mysqli_num_rows($execQueryDataBuku);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    } 
+
+    else if (isset($_POST['toPageFilterRegistrasi'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterRegistrasi'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterRegistrasi'];
+        $isifilby  = $_POST['iniFilterRegistrasi'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterRegistrasi'];
+        $nis       = $_POST['nisFormFilterRegistrasi'];
+        $panggilan = $_POST['panggilanFormFilterRegistrasi'];
+        $kelas     = $_POST['kelasFormFilterRegistrasi'];
+
+        $setSesiPageFilterBy = 6;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataRegistrasi = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['firstPageFilterRegistrasi'])) {
+
+        $namaMurid      = $_POST['namaFormFilterRegistrasi'];
+
+        $id             = $_POST['idSiswaFilterRegistrasi'];
+        $nis            = $_POST['nisFormFilterRegistrasi'];
+        $kelas          = $_POST['kelasFormFilterRegistrasi'];
+        $panggilan      = $_POST['panggilanFormFilterRegistrasi'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterRegistrasi'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 6;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasi = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasi = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['lastPageFilterRegistrasi'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterRegistrasi'];
+        $isifilby       = $_POST['iniFilterRegistrasi'];
+
+        $id             = $_POST['idSiswaFilterRegistrasi'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterRegistrasi'];
+        $panggilan      = $_POST['panggilanFormFilterRegistrasi'];
+        $nis            = $_POST['nisFormFilterRegistrasi'];
+
+        $iniScrollLastPage  = "ada";
+        $setSesiPageFilterBy = 6;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasi = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasi = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+    // AKHIR REGISTRASI
+
+    // LAIN2
+    else if (isset($_POST['nextPageFilterLain'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterLain'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterLain'];
+        $isifilby   = $_POST['iniFilterLain'];
+
+        $id         = $_POST['idSiswaFilterLain'];
+        $kelas      = $_POST['kelasFormFilterLain'];
+        $panggilan  = $_POST['panggilanFormFilterLain'];
+        $nis        = $_POST['nisFormFilterLain'];
+        $namaSiswa  = $_POST['namaFormFilterLain'];
+
+        $setSesiPageFilterBy = 7;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataLain = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
+            $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataLain = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
+            $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['previousPageFilterLain'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterLain'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterLain'];
+        $isifilby  = $_POST['iniFilterLain'];
+
+        $id        = $_POST['idSiswaFilterLain'];
+        $nis       = $_POST['nisFormFilterLain'];
+        $namaSiswa = $_POST['namaFormFilterLain'];
+        $panggilan = $_POST['panggilanFormFilterLain'];
+        $kelas     = $_POST['kelasFormFilterLain'];
+
+        $setSesiPageFilterBy = 7;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataLain = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLain     = mysqli_query($con, $queryGetDataLain);
+            $hitungDataFilterLain  = mysqli_num_rows($execQueryDataLain);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataLain = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLain     = mysqli_query($con, $queryGetDataLain);
+            $hitungDataFilterLain  = mysqli_num_rows($execQueryDataLain);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    } 
+
+    else if (isset($_POST['toPageFilterLain'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterLain'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterLain'];
+        $isifilby  = $_POST['iniFilterLain'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterLain'];
+        $nis       = $_POST['nisFormFilterLain'];
+        $panggilan = $_POST['panggilanFormFilterLain'];
+        $kelas     = $_POST['kelasFormFilterLain'];
+
+        $setSesiPageFilterBy = 7;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataLain = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
+            $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataLain = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
+            $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%' 
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    } 
+
+    else if (isset($_POST['firstPageFilterLain'])) {
+
+        $namaMurid      = $_POST['namaFormFilterLain'];
+
+        $id             = $_POST['idSiswaFilterLain'];
+        $nis            = $_POST['nisFormFilterLain'];
+        $kelas          = $_POST['kelasFormFilterLain'];
+        $panggilan      = $_POST['panggilanFormFilterLain'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterLain'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 7;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLain = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLain = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['lastPageFilterLain'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterLain'];
+        $isifilby       = $_POST['iniFilterLain'];
+
+        $id             = $_POST['idSiswaFilterLain'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterLain'];
+        $panggilan      = $_POST['panggilanFormFilterLain'];
+        $nis            = $_POST['nisFormFilterLain'];
+
+        $iniScrollLastPage  = "ada";
+        $setSesiPageFilterBy = 7;
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLain = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLain = $totalData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+    // AKHIR LAIN2
 
     // Akhir Bagian Pagination
 
@@ -3729,7 +6129,7 @@
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
-                                <button type="submit" name="simpan_edit_data" class="form-control btn-success"> Simpan </button>
+                                <button type="submit" name="simpan_edit_data" class="form-control btn-success"> <span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
                             </div>
                         </div>
 
@@ -3746,7 +6146,7 @@
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
-                                <button id="kembali_ke" type="submit" name="back_to_page" class="form-control btn-primary"> Kembali </button>
+                                <button id="kembali_ke" type="submit" name="back_to_page" class="form-control btn-primary"> <span class="glyphicon glyphicon-log-out" id="cancel"> </span> Kembali </button>
                             </div>
                         </div>
 
@@ -4065,9 +6465,10 @@
         let scrollNextPage        = `<?= $iniScrollNextPage; ?>`
         let scrollPreviousPage    = `<?= $iniScrollPreviousPage; ?>`
         let scrollToPage          = `<?= $iniScrollToPage; ?>`
-        let scrollFirstPage        = `<?= $iniScrollFirstPage; ?>`
+        let scrollFirstPage       = `<?= $iniScrollFirstPage; ?>`
         let scrollLastPage        = `<?= $iniScrollLastPage; ?>`
         let scrollBackSave        = `<?= $iniScrollBackSave; ?>`
+        let scrollBackPage        = `<?= $iniScrollBackPage; ?>`
 
         if (scrollNextPage == 'ada') {
             // window.scrollTo(0, document.body.scrollHeight);
@@ -4111,6 +6512,13 @@
         }
 
         if (scrollLastPage == 'ada') {
+            window.scroll({
+              top: 550,
+              behavior: 'smooth'
+            });
+        }
+
+        if (scrollBackPage == 'ada') {
             window.scroll({
               top: 550,
               behavior: 'smooth'

@@ -140,7 +140,7 @@
                         <?php endif ?>
 
                         <td style="text-align: center;"> <?= $data['KEGIATAN_txt']; ?> </td>
-                        <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL): ?>
+                        <?php if ($data['TRANSAKSI'] == '' || $data['TRANSAKSI'] == NULL || $data['TRANSAKSI'] == 'kosong'): ?>
                             <td style="text-align: center;"> <strong> - </strong> </td>
                         <?php else: ?>
                             <td style="text-align: center;"> <?= $data['TRANSAKSI']; ?> </td>

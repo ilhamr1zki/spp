@@ -50,7 +50,7 @@
             $namaMurid = $namaSiswa;
             $queryGetDataSPP = "
             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_tk
+            FROM input_data_tk_lama
             WHERE
             SPP != 0
             AND NAMA LIKE '%$namaMurid%' ";
@@ -62,7 +62,7 @@
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
