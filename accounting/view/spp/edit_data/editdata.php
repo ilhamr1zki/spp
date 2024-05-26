@@ -81,8 +81,13 @@
     $iniScrollLastPage      = "kosong";
     $iniScrollBackSave      = "kosong";
     $iniScrollBackPage      = "kosong";
+    $pageActive = 0;
 
     $currentPage        = 0;
+
+    $queryNamaInputer  = "SELECT username FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ";
+    $getNamaInputer    = mysqli_fetch_assoc(mysqli_query($con, $queryNamaInputer))['username'];
+    $getNamaInputer    = ucfirst($getNamaInputer);
 
     if ($_SESSION['c_accounting'] == 'accounting1') {
 
@@ -468,6 +473,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -494,6 +500,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -520,46 +527,100 @@
                             }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -611,6 +672,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -637,6 +699,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -647,53 +710,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -745,6 +871,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -771,6 +898,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -781,53 +909,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -878,6 +1069,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -904,6 +1096,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -914,53 +1107,116 @@
                     // $_SESSION['form_success'] = "data_update";
                     
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1011,6 +1267,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1037,6 +1294,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1047,53 +1305,135 @@
                     // $_SESSION['form_success'] = "data_update";
                     
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            // Cek apakah halaman tersebut ada
+                            $dataAwal = ($halamanAktif * 5) - 5;
+
+                            $ambildata_perhalaman = mysqli_query($con, "
+                                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                                FROM input_data_tk_lama
+                                WHERE
+                                BUKU != 0
+                                AND NAMA LIKE '%$namaSiswa%'
+                                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                                order by STAMP 
+                                LIMIT $dataAwal, $jumlahData
+                            ");
+
+                            $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
+                            echo $hitungJumlahDataHalaman;exit;
+
+                            if ($hitungJumlahDataHalaman == 0) {
+                                $pageActive =  $halamanAktif - 1;
+                            } else if ($hitungJumlahDataHalaman != 0) {
+                                $pageActive =  $halamanAktif;
+                            }
+
+                            $halamanAktif = $pageActive;
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1144,6 +1484,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1170,6 +1511,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1180,53 +1522,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1277,6 +1682,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`='$ketPembayaranLain',
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1303,6 +1709,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`='$ketPembayaranLain',
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1313,53 +1720,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1414,6 +1884,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1440,10 +1911,11 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
-                        
+
                     }
 
                     mysqli_query($con, $queryUpdate);
@@ -1454,6 +1926,7 @@
                             $setSesiPageFilterBy = 8;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
+                                echo $halamanAktif . " SPP";exit;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
@@ -1466,46 +1939,100 @@
                             }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1556,6 +2083,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1582,6 +2110,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1592,53 +2121,141 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+
+                                // Cek apakah halaman tersebut ada
+                                $dataAwal = ($halamanAktif * 5) - 5;
+
+                                $ambildata_perhalaman = mysqli_query($con, "
+                                    SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                                    FROM input_data_tk_lama
+                                    WHERE
+                                    SPP != 0
+                                    AND NAMA LIKE '%$namaSiswa%'
+                                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                                    order by STAMP 
+                                    LIMIT $dataAwal, $jumlahData
+                                ");
+
+                                $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
+
+                                if ($hitungJumlahDataHalaman == 0) {
+                                    $pageActive =  $halamanAktif - 1;
+                                } else if ($hitungJumlahDataHalaman != 0) {
+                                    $pageActive =  $halamanAktif;
+                                }
+
+                                $halamanAktif = $pageActive;
+
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1689,6 +2306,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1715,6 +2333,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1725,53 +2344,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1822,6 +2504,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1848,6 +2531,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1858,53 +2542,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -1955,6 +2702,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1981,6 +2729,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -1991,53 +2740,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -2088,6 +2900,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -2114,6 +2927,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`=NULL,
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -2124,53 +2938,143 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+
+                                // Cek apakah halaman tersebut ada
+                                $dataAwal = ($halamanAktif * 5) - 5;
+
+                                $ambildata_perhalaman = mysqli_query($con, "
+                                    SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                                    FROM input_data_tk_lama
+                                    WHERE
+                                    LAIN != 0
+                                    AND NAMA LIKE '%$namaSiswa%'
+                                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                                    order by STAMP 
+                                    LIMIT $dataAwal, $jumlahData
+                                ");
+
+                                $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
+
+                                if ($hitungJumlahDataHalaman == 0) {
+                                    $pageActive =  $halamanAktif - 1;
+                                } else if ($hitungJumlahDataHalaman != 0) {
+                                    $pageActive =  $halamanAktif;
+                                }
+
+                                $halamanAktif = $pageActive;
+
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -2221,6 +3125,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`='$ketPembayaranLain',
                             `TRANSAKSI`=NULL,
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -2247,6 +3152,7 @@
                             `LAIN`='$nominalBayarLain',
                             `LAIN_txt`='$ketPembayaranLain',
                             `TRANSAKSI`='$pembayaranVIA',
+                            `INPUTER`='$getNamaInputer',
                             `STAMP`='$data_stamp'
                             WHERE  `ID`= '$idInvoice'
                         ";
@@ -2257,53 +3163,116 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        $setSesiPageFilterBy = 2;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 2;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        $setSesiPageFilterBy = 3;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 3;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        $setSesiPageFilterBy = 4;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 4;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        $setSesiPageFilterBy = 5;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 5;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        $setSesiPageFilterBy = 6;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 6;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        $setSesiPageFilterBy = 7;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 7;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     }
 
@@ -2338,6 +3307,7 @@
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         if ($currentFilter == 'SPP') {
+
             if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
                 $setSesiPageFilterBy = 8;
                 if ($currentFilter != $typeFilter) {
@@ -2355,46 +3325,106 @@
             }
             
         } elseif ($currentFilter == 'PANGKAL') {
-            $setSesiPageFilterBy = 2;
-            if ($currentFilter != $typeFilter) {
-                $isifilby = $currentFilter;
-            } else if ($currentFilter == $typeFilter) {
-                $isifilby = $typeFilter;
+
+           if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 9;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                $setSesiPageFilterBy = 2;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
             }
+
         } elseif ($currentFilter == 'KEGIATAN') {
-            $setSesiPageFilterBy = 3;
-            if ($currentFilter != $typeFilter) {
-                $isifilby = $currentFilter;
-            } else if ($currentFilter == $typeFilter) {
-                $isifilby = $typeFilter;
+
+            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 10;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                $setSesiPageFilterBy = 3;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
             }
+
         } elseif ($currentFilter == 'BUKU') {
-            $setSesiPageFilterBy = 4;
-            if ($currentFilter != $typeFilter) {
-                $isifilby = $currentFilter;
-            } else if ($currentFilter == $typeFilter) {
-                $isifilby = $typeFilter;
+
+            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 11;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                $setSesiPageFilterBy = 4;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
             }
+
         } elseif ($currentFilter == 'SERAGAM') {
-            $setSesiPageFilterBy = 5;
-            if ($currentFilter != $typeFilter) {
-                $isifilby = $currentFilter;
-            } else if ($currentFilter == $typeFilter) {
-                $isifilby = $typeFilter;
+            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 12;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                $setSesiPageFilterBy = 5;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
             }
         } elseif ($currentFilter == 'REGISTRASI') {
-            $setSesiPageFilterBy = 6;
-            if ($currentFilter != $typeFilter) {
-                $isifilby = $currentFilter;
-            } else if ($currentFilter == $typeFilter) {
-                $isifilby = $typeFilter;
+            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 13;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                $setSesiPageFilterBy = 6;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
             }
         } elseif ($currentFilter == 'LAIN') {
-            $setSesiPageFilterBy = 7;
-            if ($currentFilter != $typeFilter) {
-                $isifilby = $currentFilter;
-            } else if ($currentFilter == $typeFilter) {
-                $isifilby = $typeFilter;
+            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 14;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                $setSesiPageFilterBy = 7;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
             }
         }
 
@@ -3511,6 +4541,7 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                order by stamp
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -4048,6 +5079,575 @@
         }
 
     }
+
+    elseif (isset($_POST['nextPageFilterPangkalWithDate'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterPangkalWithDate'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterPangkalWithDate'];
+        $isifilby   = $_POST['iniFilterPangkalWithDate'];
+
+        $id         = $_POST['idSiswaFilterPangkalWithDate'];
+        $kelas      = $_POST['kelasFormFilterPangkalWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterPangkalWithDate'];
+        $nis        = $_POST['nisFormFilterPangkalWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterPangkalWithDate'];
+
+        $setSesiPageFilterBy = 9;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataPangkalWithDate = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
+            $hitungDataFilterPangkalWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPangkalWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataPangkalWithDate = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
+            $hitungDataFilterPangkalWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterPangkalWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterPangkalWithDate'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterPangkalWithDate'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal   = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterPangkalWithDate'];
+        $isifilby   = $_POST['iniFilterPangkalWithDate'];
+
+        $id         = $_POST['idSiswaFilterPangkalWithDate'];
+        $nis        = $_POST['nisFormFilterPangkalWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterPangkalWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterPangkalWithDate'];
+        $kelas      = $_POST['kelasFormFilterPangkalWithDate'];
+
+        $iniScrollPreviousPage = "ada";
+        $setSesiPageFilterBy = 9;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataPangkalWithDate = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '.' '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
+            $hitungDataFilterPangkalWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+            // echo $hitungDataFilterPangkalWithDate;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterPangkalWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataPangkalWithDate = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '.' '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
+            $hitungDataFilterPangkalWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+            // echo $hitungDataFilterPangkalWithDate;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterPangkalWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['toPageFilterPangkalWithDate'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterPangkalWithDate'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterPangkalWithDate'];
+        $isifilby  = $_POST['iniFilterPangkalWithDate'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterPangkalWithDate'];
+        $nis       = $_POST['nisFormFilterPangkalWithDate'];
+        $panggilan = $_POST['panggilanFormFilterPangkalWithDate'];
+        $kelas     = $_POST['kelasFormFilterPangkalWithDate'];
+
+        $setSesiPageFilterBy = 9;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataPangkalWithDate = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
+            $hitungDataFilterSemuaWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSemuaWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataPangkalWithDate = "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
+            $hitungDataFilterSemuaWithDate = mysqli_num_rows($execQueryDataPangkalWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSemuaWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterPangkalWithDate'])) {
+
+        $namaMurid      = $_POST['namaFormFilterPangkalWithDate'];
+
+        $id             = $_POST['idSiswaFilterPangkalWithDate'];
+        $nis            = $_POST['nisFormFilterPangkalWithDate'];
+        $kelas          = $_POST['kelasFormFilterPangkalWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterPangkalWithDate'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterPangkalWithDate'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 9;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPangkalWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPangkalWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterPangkalWithDate'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterPangkalWithDate'];
+        $isifilby       = $_POST['iniFilterPangkalWithDate'];
+
+        $id             = $_POST['idSiswaFilterPangkalWithDate'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterPangkalWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterPangkalWithDate'];
+        $nis            = $_POST['nisFormFilterPangkalWithDate'];
+
+        $iniScrollLastPage  = "ada";
+        $setSesiPageFilterBy = 9;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPangkalWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+            // echo "Jumlah Pagination : " . $jumlahPagination;
+
+            $halamanAktif   = $jumlahPagination;
+            // echo "Halaman Aktif : " . $halamanAktif;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPangkalWithDate = $jumlahPagination;
+            // echo "Data Awal : " . $dataAwal;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                PANGKAL != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                ORDER BY STAMP
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
     //AKHIR PANGKAL 
 
     // KEGIATAN
@@ -4545,6 +6145,571 @@
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
                 ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['nextPageFilterKegiatanWithDate'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterKegiatanWithDate'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterKegiatanWithDate'];
+        $isifilby   = $_POST['iniFilterKegiatanWithDate'];
+
+        $id         = $_POST['idSiswaFilterKegiatanWithDate'];
+        $kelas      = $_POST['kelasFormFilterKegiatanWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterKegiatanWithDate'];
+        $nis        = $_POST['nisFormFilterKegiatanWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterKegiatanWithDate'];
+
+        $setSesiPageFilterBy = 10;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataKegiatanWithDate = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
+            $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                ORDER BY STAMP
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatanWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataKegiatanWithDate = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
+            $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                ORDER BY STAMP
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatanWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterKegiatanWithDate'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterKegiatanWithDate'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterKegiatanWithDate'];
+        $isifilby  = $_POST['iniFilterKegiatanWithDate'];
+
+        $id        = $_POST['idSiswaFilterKegiatanWithDate'];
+        $nis       = $_POST['nisFormFilterKegiatanWithDate'];
+        $namaSiswa = $_POST['namaFormFilterKegiatanWithDate'];
+        $panggilan = $_POST['panggilanFormFilterKegiatanWithDate'];
+        $kelas     = $_POST['kelasFormFilterKegiatanWithDate'];
+
+        $setSesiPageFilterBy = 10;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataKegiatanWithDate = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
+            $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatanWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataKegiatanWithDate = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
+            $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatanWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['toPageFilterKegiatanWithDate'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterKegiatanWithDate'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterKegiatanWithDate'];
+        $isifilby  = $_POST['iniFilterKegiatanWithDate'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterKegiatanWithDate'];
+        $nis       = $_POST['nisFormFilterKegiatanWithDate'];
+        $panggilan = $_POST['panggilanFormFilterKegiatanWithDate'];
+        $kelas     = $_POST['kelasFormFilterKegiatanWithDate'];
+
+        $setSesiPageFilterBy = 10;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataKegiatanWithDate = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
+            $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatanWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            
+            $queryGetDataKegiatanWithDate = "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
+            $hitungDataFilterKegiatanWithDate = mysqli_num_rows($execQueryDataKegiatanWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterKegiatanWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterKegiatanWithDate'])) {
+
+        $namaMurid      = $_POST['namaFormFilterKegiatanWithDate'];
+
+        $id             = $_POST['idSiswaFilterKegiatanWithDate'];
+        $nis            = $_POST['nisFormFilterKegiatanWithDate'];
+        $kelas          = $_POST['kelasFormFilterKegiatanWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterKegiatanWithDate'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterKegiatanWithDate'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 10;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterKegitanWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegitanWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPangkalWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterKegitanWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegitanWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterPangkalWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterKegiatanWithDate'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterKegiatanWithDate'];
+        $isifilby       = $_POST['iniFilterKegiatanWithDate'];
+
+        $id             = $_POST['idSiswaFilterKegiatanWithDate'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterKegiatanWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterKegiatanWithDate'];
+        $nis            = $_POST['nisFormFilterKegiatanWithDate'];
+
+        $iniScrollLastPage  = "ada";
+        $setSesiPageFilterBy = 10;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatanWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterKegiatanWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatanWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterKegiatanWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                KEGIATAN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -5064,6 +7229,570 @@
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
                 ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['nextPageFilterBukuWithDate'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterBukuWithDate'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterBukuWithDate'];
+        $isifilby   = $_POST['iniFilterBukuWithDate'];
+
+        $id         = $_POST['idSiswaFilterBukuWithDate'];
+        $kelas      = $_POST['kelasFormFilterBukuWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterBukuWithDate'];
+        $nis        = $_POST['nisFormFilterBukuWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterBukuWithDate'];
+
+        $setSesiPageFilterBy = 11;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataBukuWithDate = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
+            $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBukuWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataBukuWithDate = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
+            $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBukuWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterBukuWithDate'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterBukuWithDate'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterBukuWithDate'];
+        $isifilby  = $_POST['iniFilterBukuWithDate'];
+
+        $id        = $_POST['idSiswaFilterBukuWithDate'];
+        $nis       = $_POST['nisFormFilterBukuWithDate'];
+        $namaSiswa = $_POST['namaFormFilterBukuWithDate'];
+        $panggilan = $_POST['panggilanFormFilterBukuWithDate'];
+        $kelas     = $_POST['kelasFormFilterBukuWithDate'];
+
+        $setSesiPageFilterBy = 11;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataBukuWithDate = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
+            $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterBukuWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataBukuWithDate = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
+            $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterBukuWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+
+    }
+
+    elseif (isset($_POST['toPageFilterBukuWithDate'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterBukuWithDate'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterBukuWithDate'];
+        $isifilby  = $_POST['iniFilterBukuWithDate'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterBukuWithDate'];
+        $nis       = $_POST['nisFormFilterBukuWithDate'];
+        $panggilan = $_POST['panggilanFormFilterBukuWithDate'];
+        $kelas     = $_POST['kelasFormFilterBukuWithDate'];
+
+        $setSesiPageFilterBy = 11;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataBukuWithDate = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
+            $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBukuWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataBukuWithDate = "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
+            $hitungDataFilterBukuWithDate = mysqli_num_rows($execQueryDataBukuWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterBukuWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterBukuWithDate'])) {
+
+        $namaMurid      = $_POST['namaFormFilterBukuWithDate'];
+
+        $id             = $_POST['idSiswaFilterBukuWithDate'];
+        $nis            = $_POST['nisFormFilterBukuWithDate'];
+        $kelas          = $_POST['kelasFormFilterBukuWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterBukuWithDate'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterBukuWithDate'];
+
+        $iniScrollFirstPage  = "ada";
+        $setSesiPageFilterBy = 11;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBukuWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBukuWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterBukuWithDate'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterBukuWithDate'];
+        $isifilby       = $_POST['iniFilterBukuWithDate'];
+
+        $id             = $_POST['idSiswaFilterBukuWithDate'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterBukuWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterBukuWithDate'];
+        $nis            = $_POST['nisFormFilterBukuWithDate'];
+
+        $iniScrollLastPage  = "ada";
+        $setSesiPageFilterBy = 11;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBukuWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterBukuWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                BUKU != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -5605,6 +8334,571 @@
         }
 
     }
+
+    elseif (isset($_POST['nextPageFilterSeragamWithDate'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterSeragamWithDate'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterSeragamWithDate'];
+        $isifilby   = $_POST['iniFilterSeragamWithDate'];
+
+        $id         = $_POST['idSiswaFilterSeragamWithDate'];
+        $kelas      = $_POST['kelasFormFilterSeragamWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterSeragamWithDate'];
+        $nis        = $_POST['nisFormFilterSeragamWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterSeragamWithDate'];
+
+        $setSesiPageFilterBy = 12;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSeragamWithDate = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
+            $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataSeragamWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSeragamWithDate = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
+            $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataSeragamWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterSeragamWithDate'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterSeragamWithDate'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterSeragamWithDate'];
+        $isifilby  = $_POST['iniFilterSeragamWithDate'];
+
+        $id        = $_POST['idSiswaFilterSeragamWithDate'];
+        $nis       = $_POST['nisFormFilterSeragamWithDate'];
+        $namaSiswa = $_POST['namaFormFilterSeragamWithDate'];
+        $panggilan = $_POST['panggilanFormFilterSeragamWithDate'];
+        $kelas     = $_POST['kelasFormFilterSeragamWithDate'];
+
+        $setSesiPageFilterBy = 12;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSeragamWithDate = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
+            $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataSeragamWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSeragamWithDate = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
+            $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataSeragamWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['toPageFilterSeragamWithDate'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterSeragamWithDate'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterSeragamWithDate'];
+        $isifilby  = $_POST['iniFilterSeragamWithDate'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterSeragamWithDate'];
+        $nis       = $_POST['nisFormFilterSeragamWithDate'];
+        $panggilan = $_POST['panggilanFormFilterSeragamWithDate'];
+        $kelas     = $_POST['kelasFormFilterSeragamWithDate'];
+
+        $setSesiPageFilterBy = 12;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSeragamWithDate = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
+            $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataSeragamWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSeragamWithDate = "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
+            $hitungDataFilterSeragamWithDate = mysqli_num_rows($execQueryDataSeragamWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterSeragamWithDate'])) {
+
+        $namaMurid      = $_POST['namaFormFilterSeragamWithDate'];
+
+        $id             = $_POST['idSiswaFilterSeragamWithDate'];
+        $nis            = $_POST['nisFormFilterSeragamWithDate'];
+        $kelas          = $_POST['kelasFormFilterSeragamWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterSeragamWithDate'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterSeragamWithDate'];
+
+        $iniScrollFirstPage  = "ada";
+
+        $setSesiPageFilterBy = 12;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragamWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragamWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterSeragamWithDate'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterSeragamWithDate'];
+        $isifilby       = $_POST['iniFilterSeragamWithDate'];
+
+        $id             = $_POST['idSiswaFilterSeragamWithDate'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterSeragamWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterSeragamWithDate'];
+        $nis            = $_POST['nisFormFilterSeragamWithDate'];
+
+        $iniScrollLastPage  = "ada";
+
+        $setSesiPageFilterBy = 12;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragamWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSeragamWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SERAGAM != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
     // AKHIR SERAGAM
 
     // REGISTRASI
@@ -6104,6 +9398,571 @@
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
                 ORDER BY ID DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['nextPageFilterRegistrasiWithDate'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterRegistrasiWithDate'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterRegistrasiWithDate'];
+        $isifilby   = $_POST['iniFilterRegistrasiWithDate'];
+
+        $id         = $_POST['idSiswaFilterRegistrasiWithDate'];
+        $kelas      = $_POST['kelasFormFilterRegistrasiWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterRegistrasiWithDate'];
+        $nis        = $_POST['nisFormFilterRegistrasiWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterRegistrasiWithDate'];
+
+        $setSesiPageFilterBy = 13;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterRegistrasiWithDate'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterRegistrasiWithDate'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterRegistrasiWithDate'];
+        $isifilby  = $_POST['iniFilterRegistrasiWithDate'];
+
+        $id        = $_POST['idSiswaFilterRegistrasiWithDate'];
+        $nis       = $_POST['nisFormFilterRegistrasiWithDate'];
+        $namaSiswa = $_POST['namaFormFilterRegistrasiWithDate'];
+        $panggilan = $_POST['panggilanFormFilterRegistrasiWithDate'];
+        $kelas     = $_POST['kelasFormFilterRegistrasiWithDate'];
+
+        $setSesiPageFilterBy = 13;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['toPageFilterRegistrasiWithDate'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterRegistrasiWithDate'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterRegistrasiWithDate'];
+        $isifilby  = $_POST['iniFilterRegistrasiWithDate'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterRegistrasiWithDate'];
+        $nis       = $_POST['nisFormFilterRegistrasiWithDate'];
+        $panggilan = $_POST['panggilanFormFilterRegistrasiWithDate'];
+        $kelas     = $_POST['kelasFormFilterRegistrasiWithDate'];
+
+        $setSesiPageFilterBy = 13;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataRegistrasiWithDate = "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
+            $hitungDataFilterRegistrasiWithDate = mysqli_num_rows($execQueryDataRegistrasiWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterRegistrasiWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterRegistrasiWithDate'])) {
+
+        $namaMurid      = $_POST['namaFormFilterRegistrasiWithDate'];
+
+        $id             = $_POST['idSiswaFilterRegistrasiWithDate'];
+        $nis            = $_POST['nisFormFilterRegistrasiWithDate'];
+        $kelas          = $_POST['kelasFormFilterRegistrasiWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterRegistrasiWithDate'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterRegistrasiWithDate'];
+
+        $iniScrollFirstPage  = "ada";
+
+        $setSesiPageFilterBy = 13;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasiWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasiWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterRegistrasiWithDate'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterRegistrasiWithDate'];
+        $isifilby       = $_POST['iniFilterRegistrasiWithDate'];
+
+        $id             = $_POST['idSiswaFilterRegistrasiWithDate'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterRegistrasiWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterRegistrasiWithDate'];
+        $nis            = $_POST['nisFormFilterRegistrasiWithDate'];
+
+        $iniScrollLastPage  = "ada";
+
+        $setSesiPageFilterBy = 13;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasiWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterRegistrasiWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                REGISTRASI != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -6643,6 +10502,571 @@
         }
 
     }
+
+    elseif (isset($_POST['nextPageFilterLainWithDate'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterLainWithDate'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterLainWithDate'];
+        $isifilby   = $_POST['iniFilterLainWithDate'];
+
+        $id         = $_POST['idSiswaFilterLainWithDate'];
+        $kelas      = $_POST['kelasFormFilterLainWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterLainWithDate'];
+        $nis        = $_POST['nisFormFilterLainWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterLainWithDate'];
+
+        $setSesiPageFilterBy = 14;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataLainWithDate = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
+            $hitungDataFilterLainWithDate = mysqli_num_rows($execQueryDataLainWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLainWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataLainWithDate = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
+            $hitungDataFilterLainWithDate = mysqli_num_rows($execQueryDataLainWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLainWithDate / $jumlahData);
+            $hitungLagi = mysqli_num_rows($ambildata_perhalaman);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['previousPageFilterLainWithDate'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterLainWithDate'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterLainWithDate'];
+        $isifilby  = $_POST['iniFilterLainWithDate'];
+
+        $id        = $_POST['idSiswaFilterLainWithDate'];
+        $nis       = $_POST['nisFormFilterLainWithDate'];
+        $namaSiswa = $_POST['namaFormFilterLainWithDate'];
+        $panggilan = $_POST['panggilanFormFilterLainWithDate'];
+        $kelas     = $_POST['kelasFormFilterLainWithDate'];
+
+        $setSesiPageFilterBy = 14;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDatLainWithDate = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDatLainWithDate);
+            $hitungDataFilterLainWithDate = mysqli_num_rows($execQueryDataLainWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterLainWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDatLainWithDate = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDatLainWithDate);
+            $hitungDataFilterLainWithDate = mysqli_num_rows($execQueryDataLainWithDate);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
+                LIMIT $dataAwal, $jumlahData");
+
+            $jumlahPagination = ceil($hitungDataFilterLainWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['toPageFilterLainWithDate'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterLainWithDate'];
+        $iniScrollToPage = "ada";
+
+        $namaMurid = $_POST['namaSiswaFilterLainWithDate'];
+        $isifilby  = $_POST['iniFilterLainWithDate'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterLainWithDate'];
+        $nis       = $_POST['nisFormFilterLainWithDate'];
+        $panggilan = $_POST['panggilanFormFilterLainWithDate'];
+        $kelas     = $_POST['kelasFormFilterLainWithDate'];
+
+        $setSesiPageFilterBy = 14;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataLainWithDate = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
+            $hitungDataFilterLainWithDate = mysqli_num_rows($execQueryDataLainWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLainWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataLainWithDate = "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
+            $hitungDataFilterLainWithDate = mysqli_num_rows($execQueryDataLainWithDate);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterLainWithDate / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterLainWithDate'])) {
+
+        $namaMurid      = $_POST['namaFormFilterLainWithDate'];
+
+        $id             = $_POST['idSiswaFilterLainWithDate'];
+        $nis            = $_POST['nisFormFilterLainWithDate'];
+        $kelas          = $_POST['kelasFormFilterLainWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterLainWithDate'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterLainWithDate'];
+
+        $iniScrollFirstPage  = "ada";
+
+        $setSesiPageFilterBy = 14;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLainWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLainWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterLainWithDate'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterLainWithDate'];
+        $isifilby       = $_POST['iniFilterLainWithDate'];
+
+        $id             = $_POST['idSiswaFilterLainWithDate'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterLainWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterLainWithDate'];
+        $nis            = $_POST['nisFormFilterLainWithDate'];
+
+        $iniScrollLastPage  = "ada";
+
+        $setSesiPageFilterBy = 14;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLainWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterLainWithDate = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                LAIN != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
     // AKHIR LAIN2
 
     // Akhir Bagian Pagination
@@ -7120,6 +11544,14 @@
                 <?php require 'form_edit_pembayaran_pangkal_with_date.php'; ?>
             <?php elseif($setSesiPageFilterBy == 10): ?>
                 <?php require 'form_edit_pembayaran_kegiatan_with_date.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 11): ?>
+                <?php require 'form_edit_pembayaran_buku_with_date.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 12): ?>
+                <?php require 'form_edit_pembayaran_seragam_with_date.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 13): ?>
+                <?php require 'form_edit_pembayaran_registrasi_with_date.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 14): ?>
+                <?php require 'form_edit_pembayaran_lain_with_date.php'; ?>
             <?php endif; ?>  
 
         </div>

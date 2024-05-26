@@ -29,6 +29,7 @@
 	        SPP != 0
 	        AND NAMA LIKE '%$namaMurid%'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+            order by STAMP
 	        LIMIT $dataAwal, $jumlahData
 	    ");
 
@@ -112,7 +113,7 @@
                 <th style="text-align: center; width: 2%;"> TRANSAKSI </th>
                 <th style="text-align: center; width: 4%;"> DI INPUT OLEH </th>
                 <th style="text-align: center; width: 6%;"> STAMP </th>
-                <th style="text-align: center; width: 1%;"> CETAK </th>
+                <th style="text-align: center; width: 1%;"> ACTION </th>
               </tr>
             </thead>
             <tbody>

@@ -32,6 +32,7 @@
             KEGIATAN != 0
             AND NAMA LIKE '%$namaMurid%'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+            ORDER BY STAMP
             LIMIT $dataAwal, $jumlahData
         ");
 
@@ -78,6 +79,7 @@
             KEGIATAN != 0
             AND NAMA LIKE '%$namaMurid%'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+            ORDER BY STAMP
             LIMIT $dataAwal, $jumlahData
         ");
 
@@ -175,8 +177,8 @@
                                     <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                     <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                     <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                    <input type="hidden" name="nominal_bayar" value="<?= $data['PANGKAL']; ?>">
-                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['PANGKAL_txt']; ?>">
+                                    <input type="hidden" name="nominal_bayar" value="<?= $data['KEGIATAN']; ?>">
+                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['KEGIATAN_txt']; ?>">
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
@@ -209,8 +211,8 @@
                                     <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                     <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                     <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                    <input type="hidden" name="nominal_bayar" value="<?= $data['PANGKAL']; ?>">
-                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['PANGKAL_txt']; ?>">
+                                    <input type="hidden" name="nominal_bayar" value="<?= $data['KEGIATAN']; ?>">
+                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['KEGIATAN_txt']; ?>">
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
@@ -284,6 +286,8 @@
                     <input type="hidden" name="kelasFormFilterKegiatanWithDate" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterKegiatanWithDate" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterKegiatanWithDate" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="toPageFilterKegiatanWithDate">
                         <?= $i; ?>
                     </button>
@@ -329,6 +333,8 @@
                 <input type="hidden" name="kelasFormFilterKegiatanWithDate" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterKegiatanWithDate" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterKegiatanWithDate" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="firstPageFilterKegiatanWithDate">
                     &laquo;
                     First Page
@@ -352,6 +358,8 @@
                     <input type="hidden" name="kelasFormFilterKegiatanWithDate" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterKegiatanWithDate" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterKegiatanWithDate" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="lastPageFilterKegiatanWithDate">
                         Last Page
                         &raquo;

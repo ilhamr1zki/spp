@@ -31,6 +31,7 @@
             PANGKAL != 0
             AND NAMA LIKE '%$namaMurid%'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+            order by stamp
             LIMIT $dataAwal, $jumlahData
         ");
 
@@ -62,10 +63,8 @@
         ";
 
         $execQueryDataPangkal    = mysqli_query($con, $queryGetDataPangkal);
-        // $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPangkal);
+
         $hitungDataFilterPangkalDate = mysqli_num_rows($execQueryDataPangkal);
-        // echo "Jumlah Data : ". $hitungDataFilterPangkalDate;exit;
-        // echo $hitungDataFilterPANGKAL;exit;
 
         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -76,6 +75,7 @@
             PANGKAL != 0
             AND NAMA LIKE '%$namaMurid%'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+            ORDER BY STAMP
             LIMIT $dataAwal, $jumlahData
         ");
 
@@ -115,7 +115,7 @@
                 <th style="text-align: center; width: 1%;"> TRANSAKSI </th>
                 <th style="text-align: center; width: 3%;"> DI INPUT OLEH </th>
                 <th style="text-align: center; width: 7%;"> STAMP </th>
-                <th style="text-align: center; width: 1%;"> CETAK </th>
+                <th style="text-align: center; width: 1%;"> ACTION </th>
               </tr>
             </thead>
             <tbody>
@@ -263,6 +263,8 @@
                     <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="toPageFilterPangkalWithDate">
                         <?= $i; ?>
                     </button>
@@ -308,6 +310,8 @@
                 <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="firstPageFilterPangkalWithDate">
                     &laquo;
                     First Page
@@ -323,7 +327,6 @@
 	        <?php else: ?>
 	            
 	            <form action="<?= $baseac; ?>editdata" method="post">
-	                <input type="hidden" name="halamanTerakhirFilterPangkalWithDate" value="<?= $halamanAktif + 1; ?>">
 	                <input type="hidden" name="iniFilterPangkalWithDate" value="<?= $isifilby; ?>">
 	                <input type="hidden" name="idSiswaFilterPangkalWithDate" value="<?= $id; ?>">
 	                <input type="hidden" name="namaSiswaFilterPangkalWithDate" value="<?= $namaMurid; ?>">
@@ -331,6 +334,8 @@
 	                <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
 	                <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
 	                <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
 	                <button name="lastPageFilterPangkalWithDate">
 	                    Last Page
 	                    &raquo;
