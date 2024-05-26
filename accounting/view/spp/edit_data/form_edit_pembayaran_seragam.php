@@ -108,7 +108,7 @@
                 <th style="text-align: center; width: 5%;"> TRANSAKSI </th>
                 <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                 <th style="text-align: center; width: 10%;"> STAMP </th>
-                <th style="text-align: center; width: 1%;"> CETAK </th>
+                <th style="text-align: center; width: 1%;"> ACTION </th>
               </tr>
             </thead>
             <tbody>
@@ -132,7 +132,15 @@
                             <td style="text-align: center;"> <?= $data['di_input_oleh']; ?> </td>
                         <?php endif ?>
 
-                        <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                        <?php if ($data['tanggal_diupdate'] == NULL): ?>
+
+                            <td style="text-align: center;"> - </td>
+
+                        <?php else: ?>
+                            
+                            <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
+                            
+                        <?php endif ?>
                         <td style="text-align: center;" id="tombol-cetak">
 
                             <form action="<?= $baseac; ?>editdata" method="POST" target="blank">

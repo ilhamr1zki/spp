@@ -511,15 +511,15 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 8;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 1;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 1;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -726,15 +726,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 9;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 2;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 2;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -941,15 +941,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 10;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 3;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 3;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -1155,15 +1155,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 11;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 4;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 4;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -1388,15 +1388,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 12;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 5;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 5;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -1602,21 +1602,21 @@
                             }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 13;
-                            if ($currentFilter != $typeFilter) {
-                                $isifilby = $currentFilter;
-                            } else if ($currentFilter == $typeFilter) {
-                                $isifilby = $typeFilter;
-                            }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                             $setSesiPageFilterBy = 6;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        }
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } 
                     } elseif ($currentFilter == 'LAIN') {
                         if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
                             $setSesiPageFilterBy = 14;
@@ -1816,21 +1816,21 @@
                             }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 14;
-                            if ($currentFilter != $typeFilter) {
-                                $isifilby = $currentFilter;
-                            } else if ($currentFilter == $typeFilter) {
-                                $isifilby = $typeFilter;
-                            }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                             $setSesiPageFilterBy = 7;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        }
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } 
                     }
 
                     $nominalBayar       = rupiahFormat($nominalBayarLain);
@@ -1922,16 +1922,15 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 8;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 1;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
-                                echo $halamanAktif . " SPP";exit;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 1;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -2162,15 +2161,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 9;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 2;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 2;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 9;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -2376,15 +2375,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'KEGIATAN') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 10;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 3;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 3;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 10;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -2590,15 +2589,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'BUKU') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 11;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 4;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 4;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 11;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -2804,15 +2803,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'SERAGAM') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 12;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 5;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 5;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 12;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -3018,56 +3017,29 @@
                             }
                         }
                     } elseif ($currentFilter == 'REGISTRASI') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 13;
-                            if ($currentFilter != $typeFilter) {
-                                $isifilby = $currentFilter;
-                            } else if ($currentFilter == $typeFilter) {
-                                $isifilby = $typeFilter;
-                            }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                             $setSesiPageFilterBy = 6;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        }
-                    } elseif ($currentFilter == 'LAIN') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 14;
-
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 13;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
-
-                                // Cek apakah halaman tersebut ada
-                                $dataAwal = ($halamanAktif * 5) - 5;
-
-                                $ambildata_perhalaman = mysqli_query($con, "
-                                    SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                    FROM input_data_tk_lama
-                                    WHERE
-                                    LAIN != 0
-                                    AND NAMA LIKE '%$namaSiswa%'
-                                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
-                                    order by STAMP 
-                                    LIMIT $dataAwal, $jumlahData
-                                ");
-
-                                $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
-
-                                if ($hitungJumlahDataHalaman == 0) {
-                                    $pageActive =  $halamanAktif - 1;
-                                } else if ($hitungJumlahDataHalaman != 0) {
-                                    $pageActive =  $halamanAktif;
-                                }
-
-                                $halamanAktif = $pageActive;
-
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-
+                        } 
+                    } elseif ($currentFilter == 'LAIN') {
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
                             $setSesiPageFilterBy = 7;
                             if ($currentFilter != $typeFilter) {
@@ -3259,15 +3231,15 @@
                             }
                         }
                     } elseif ($currentFilter == 'LAIN') {
-                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                            $setSesiPageFilterBy = 14;
+                        if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                            $setSesiPageFilterBy = 7;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
                                 $isifilby = $typeFilter;
                             }
-                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                            $setSesiPageFilterBy = 7;
+                        } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 14;
                             if ($currentFilter != $typeFilter) {
                                 $isifilby = $currentFilter;
                             } else if ($currentFilter == $typeFilter) {
@@ -3308,15 +3280,15 @@
 
         if ($currentFilter == 'SPP') {
 
-            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                $setSesiPageFilterBy = 8;
+            if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
+                $setSesiPageFilterBy = 1;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                $setSesiPageFilterBy = 1;
+            }else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 8;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
@@ -3325,52 +3297,54 @@
             }
             
         } elseif ($currentFilter == 'PANGKAL') {
+            
+            if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
 
-           if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                $setSesiPageFilterBy = 9;
-                if ($currentFilter != $typeFilter) {
-                    $isifilby = $currentFilter;
-                } else if ($currentFilter == $typeFilter) {
-                    $isifilby = $typeFilter;
-                }
-            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
                 $setSesiPageFilterBy = 2;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            }
 
-        } elseif ($currentFilter == 'KEGIATAN') {
-
-            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                $setSesiPageFilterBy = 10;
+            } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 9;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+            }  
+
+        } elseif ($currentFilter == 'KEGIATAN') {
+
+            if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                 $setSesiPageFilterBy = 3;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            }
-
-        } elseif ($currentFilter == 'BUKU') {
-
-            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                $setSesiPageFilterBy = 11;
+            } elseif ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 10;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+            }  
+
+        } elseif ($currentFilter == 'BUKU') {
+
+            if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                 $setSesiPageFilterBy = 4;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 11;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
@@ -3379,31 +3353,31 @@
             }
 
         } elseif ($currentFilter == 'SERAGAM') {
-            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                $setSesiPageFilterBy = 12;
-                if ($currentFilter != $typeFilter) {
-                    $isifilby = $currentFilter;
-                } else if ($currentFilter == $typeFilter) {
-                    $isifilby = $typeFilter;
-                }
-            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+            if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                 $setSesiPageFilterBy = 5;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            }
-        } elseif ($currentFilter == 'REGISTRASI') {
-            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                $setSesiPageFilterBy = 13;
+            } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 12;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+            } 
+        } elseif ($currentFilter == 'REGISTRASI') {
+            if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                 $setSesiPageFilterBy = 6;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 13;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
@@ -3411,21 +3385,21 @@
                 }
             }
         } elseif ($currentFilter == 'LAIN') {
-            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
-                $setSesiPageFilterBy = 14;
-                if ($currentFilter != $typeFilter) {
-                    $isifilby = $currentFilter;
-                } else if ($currentFilter == $typeFilter) {
-                    $isifilby = $typeFilter;
-                }
-            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+            if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59" || $tanggalDari == "kosong_tgl1" && $tanggalSampai == "kosong_tgl2") {
                 $setSesiPageFilterBy = 7;
                 if ($currentFilter != $typeFilter) {
                     $isifilby = $currentFilter;
                 } else if ($currentFilter == $typeFilter) {
                     $isifilby = $typeFilter;
                 }
-            }
+            } else if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 14;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } 
         }
 
         $iniScrollBackPage = "ada";

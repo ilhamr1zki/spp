@@ -110,7 +110,7 @@
                 <th style="text-align: center; width: 5%;"> TRANSAKSI </th>
                 <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                 <th style="text-align: center; width: 10%;"> STAMP </th>
-                <th style="text-align: center; width: 1%;"> CETAK </th>
+                <th style="text-align: center; width: 1%;"> ACTION </th>
               </tr>
             </thead>
             <tbody>
