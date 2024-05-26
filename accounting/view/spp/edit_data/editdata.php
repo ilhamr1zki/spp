@@ -164,13 +164,21 @@
 
             if ($_POST['isi_filter_edit'] != 'kosong') {
 
-                // $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-                // $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+                $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+                $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+                $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+                $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
                 // Data SPP
                 if ($_POST['isi_filter_edit'] == 'SPP') {
 
-                    $setSesiPageFilterBy = 1;
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 8;
+                    } elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 1;
+                    }
+
                     $isifilby = $_POST['isi_filter_edit'];
 
                 } 
@@ -179,7 +187,12 @@
                 // Data PANGKAL
                 else if ($_POST['isi_filter_edit'] == 'PANGKAL') {
 
-                    $setSesiPageFilterBy = 2;
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 9;
+                    } elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 2;
+                    }
+
                     $isifilby = $_POST['isi_filter_edit'];
 
                 }
@@ -188,7 +201,12 @@
                 // Data KEGIATAN
                 else if ($_POST['isi_filter_edit'] == 'KEGIATAN') {
 
-                    $setSesiPageFilterBy = 3;
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 10;
+                    } elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 3;
+                    }
+
                     $isifilby = $_POST['isi_filter_edit'];
 
                 }
@@ -197,7 +215,11 @@
                 // Data BUKU
                 else if ($_POST['isi_filter_edit'] == 'BUKU') {
 
-                    $setSesiPageFilterBy = 4;
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 11;
+                    } elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 4;
+                    }
                     $isifilby = $_POST['isi_filter_edit'];
 
                 }
@@ -206,7 +228,12 @@
                 // Data SERAGAM
                 else if ($_POST['isi_filter_edit'] == 'SERAGAM') {
 
-                    $setSesiPageFilterBy = 5;
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 12;
+                    } elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 5;
+                    }
+
                     $isifilby = $_POST['isi_filter_edit'];
 
                 }
@@ -215,7 +242,12 @@
                 // Data REGISTRASI
                 else if ($_POST['isi_filter_edit'] == 'REGISTRASI') {
 
-                    $setSesiPageFilterBy = 6;
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 13;
+                    } elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 6;
+                    }
+
                     $isifilby = $_POST['isi_filter_edit'];
 
                 }
@@ -224,7 +256,12 @@
                 // Data LAIN
                 else if ($_POST['isi_filter_edit'] == 'LAIN') {
 
-                    $setSesiPageFilterBy = 7;
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 14;
+                    } elseif($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 7;
+                    }
+
                     $isifilby = $_POST['isi_filter_edit'];
 
                 }
@@ -271,6 +308,58 @@
 
         $currentPage        = $_POST['currentPage'];
 
+        // $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        // $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        // $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        // $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        // DATA PEMBAYARAN
+        if ($typeFilter == 'SPP' || $typeFilter == 'PANGKAL' || $typeFilter == 'KEGIATAN' || $typeFilter == 'BUKU' || $typeFilter == 'SERAGAM' || $typeFilter == 'REGISTRASI' || $typeFilter == 'LAIN') {
+
+            $setSesiFormEdit    = 1;
+
+            $idInvoice          = $_POST['id_invoice'];
+            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
+            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
+
+            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
+            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
+            $nominalBayar       = $_POST['nominal_bayar'];
+            $ketPembayaran      = $_POST['ket_pembayaran'];
+            $pembayaranVIA      = $_POST['tipe_transaksi'];
+
+            $isifilby = $typeFilter;
+
+        }
+        // AKhir DATA PEMBAYARAN
+
+    }
+
+    elseif (isset($_POST['edit_data_with_date'])) {
+
+        $id_siswa   = $_POST['id_siswa'];
+        $nis        = $_POST['nis_siswa'];
+        $namaSiswa  = $_POST['nama_siswa'];
+        $kelas      = $_POST['kelas_siswa'];
+        $panggilan  = $_POST['panggilan_siswa'];
+
+        $typeFilter         = $_POST['isi_filter'];
+        $idInvoice          = "";
+        $tglPembayaran      = "";
+        $pembayaranBulan    = "";
+        $nominalBayar       = "";
+        $ketPembayaran      = "";
+        $pembayaranVIA      = "";
+
+        $currentPage        = $_POST['currentPage'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         // DATA PEMBAYARAN
         if ($typeFilter == 'SPP' || $typeFilter == 'PANGKAL' || $typeFilter == 'KEGIATAN' || $typeFilter == 'BUKU' || $typeFilter == 'SERAGAM' || $typeFilter == 'REGISTRASI' || $typeFilter == 'LAIN') {
 
@@ -306,8 +395,11 @@
         $currentFilter   = $_POST['currentFilter'];
         $typeFilter      = htmlspecialchars($_POST['isi_filter_edit']);
 
-        $dariTanggal    = " 00:00:00";
-        $sampaiTanggal  = " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $halamanAktif   = $_POST['currentPage'];
 
@@ -412,11 +504,20 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
                         $setSesiPageFilterBy = 2;
@@ -1349,11 +1450,20 @@
                     // $_SESSION['form_success'] = "data_update";
 
                     if ($currentFilter == 'SPP') {
-                        $setSesiPageFilterBy = 1;
-                        if ($currentFilter != $typeFilter) {
-                            $isifilby = $currentFilter;
-                        } else if ($currentFilter == $typeFilter) {
-                            $isifilby = $typeFilter;
+                        if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                            $setSesiPageFilterBy = 8;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
+                        } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                            $setSesiPageFilterBy = 1;
+                            if ($currentFilter != $typeFilter) {
+                                $isifilby = $currentFilter;
+                            } else if ($currentFilter == $typeFilter) {
+                                $isifilby = $typeFilter;
+                            }
                         }
                     } elseif ($currentFilter == 'PANGKAL') {
                         $setSesiPageFilterBy = 2;
@@ -2209,7 +2319,7 @@
     // Tombol Kembali 
     elseif (isset($_POST['back_to_page'])) {
 
-        $id   = $_POST['data_id_siswa'];
+        $id         = $_POST['data_id_siswa'];
         $nis        = $_POST['data_nis_siswa'];
         $namaSiswa  = $_POST['data_nama_siswa'];
         $kelas      = $_POST['data_kelas_siswa'];
@@ -2221,13 +2331,29 @@
 
         $typeFilter    = htmlspecialchars($_POST['isi_filter_edit']);
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         if ($currentFilter == 'SPP') {
-            $setSesiPageFilterBy = 1;
-            if ($currentFilter != $typeFilter) {
-                $isifilby = $currentFilter;
-            } else if ($currentFilter == $typeFilter) {
-                $isifilby = $typeFilter;
+            if ($dariTanggal != ' 00:00:00' && $sampaiTanggal != ' 23:59:59') {
+                $setSesiPageFilterBy = 8;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
+            } else if($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                $setSesiPageFilterBy = 1;
+                if ($currentFilter != $typeFilter) {
+                    $isifilby = $currentFilter;
+                } else if ($currentFilter == $typeFilter) {
+                    $isifilby = $typeFilter;
+                }
             }
+            
         } elseif ($currentFilter == 'PANGKAL') {
             $setSesiPageFilterBy = 2;
             if ($currentFilter != $typeFilter) {
@@ -2297,8 +2423,11 @@
         $nis        = $_POST['nisFormFilterSPP'];
         $namaSiswa  = $_POST['namaFormFilterSPP'];
 
-        $dariTanggal    = " 00:00:00";
-        $sampaiTanggal  = " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
@@ -2387,7 +2516,6 @@
     elseif (isset($_POST['previousPageFilterSPP'])) {
 
         $halamanAktif           = $_POST['halamanSebelumnyaFilterSPP'];
-        $iniScrollPreviousPage  = "ada";
 
         $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -2400,8 +2528,11 @@
         $panggilan = $_POST['panggilanFormFilterSPP'];
         $kelas     = $_POST['kelasFormFilterSPP'];
 
-        $dariTanggal    = " 00:00:00";
-        $sampaiTanggal  = " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $iniScrollPreviousPage = "ada";
 
@@ -2495,7 +2626,6 @@
     elseif (isset($_POST['toPageFilterSPP'])) {
 
         $halamanAktif = $_POST['halamanKeFilterSPP'];
-        $iniScrollNextPage = "ada";
 
         $namaMurid = $_POST['namaSiswaFilterSPP'];
         $isifilby  = $_POST['iniFilterSPP'];
@@ -2506,8 +2636,11 @@
         $panggilan = $_POST['panggilanFormFilterSPP'];
         $kelas     = $_POST['kelasFormFilterSPP'];
 
-        $dariTanggal    = " 00:00:00";
-        $sampaiTanggal  = " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $iniScrollToPage = "ada";
 
@@ -2614,6 +2747,12 @@
         $iniScrollFirstPage  = "ada";
         $setSesiPageFilterBy = 1;
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         if ($_SESSION['c_accounting'] == 'accounting1') { 
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
@@ -2717,11 +2856,16 @@
         $panggilan      = $_POST['panggilanFormFilterSPP'];
         $nis            = $_POST['nisFormFilterSPP'];
 
-        $dariTanggal    = " 00:00:00";
-        $sampaiTanggal  = " 23:59:59";
-
         $iniScrollLastPage  = "ada";
         $setSesiPageFilterBy = 1;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        echo $tanggalDari;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
@@ -2796,6 +2940,577 @@
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
                 ORDER BY STAMP DESC
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['nextPageFilterSPPWithDate'])) {
+
+        $halamanAktif       = $_POST['halamanLanjutFilterSPPWithDate'];
+        $iniScrollNextPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid  = $_POST['namaSiswaFilterSPPWithDate'];
+        $isifilby   = $_POST['iniFilterSPPWithDate'];
+
+        $id         = $_POST['idSiswaFilterSPPWithDate'];
+        $kelas      = $_POST['kelasFormFilterSPPWithDate'];
+        $panggilan  = $_POST['panggilanFormFilterSPPWithDate'];
+        $nis        = $_POST['nisFormFilterSPPWithDate'];
+        $namaSiswa  = $_POST['namaFormFilterSPPWithDate'];
+
+        $setSesiPageFilterBy = 8;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    else if (isset($_POST['previousPageFilterSPPWithDate'])) {
+
+        $halamanAktif           = $_POST['halamanSebelumnyaFilterSPPWithDate'];
+        $iniScrollPreviousPage  = "ada";
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+        $namaMurid = $_POST['namaSiswaFilterSPPWithDate'];
+        $isifilby  = $_POST['iniFilterSPPWithDate'];
+
+        $id        = $_POST['idSiswaFilterSPPWithDate'];
+        $nis       = $_POST['nisFormFilterSPPWithDate'];
+        $namaSiswa = $_POST['namaFormFilterSPPWithDate'];
+        $panggilan = $_POST['panggilanFormFilterSPPWithDate'];
+        $kelas     = $_POST['kelasFormFilterSPPWithDate'];
+
+        $setSesiPageFilterBy = 8;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
+            ";
+
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
+            ";
+
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    } 
+
+    elseif (isset($_POST['toPageFilterSPPWithDate'])) {
+
+        $halamanAktif = $_POST['halamanKeFilterSPPWithDate'];
+
+        $namaMurid = $_POST['namaSiswaFilterSPPWithDate'];
+        $isifilby  = $_POST['iniFilterSPPWithDate'];
+
+        $namaSiswa = $namaMurid;
+        $id        = $_POST['idSiswaFilterSPPWithDate'];
+        $nis       = $_POST['nisFormFilterSPPWithDate'];
+        $panggilan = $_POST['panggilanFormFilterSPPWithDate'];
+        $kelas     = $_POST['kelasFormFilterSPPWithDate'];
+
+        $iniScrollToPage = "ada";
+
+        $setSesiPageFilterBy = 8;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $queryGetDataSPP = "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%' 
+            ";
+
+            $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
+            $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData");
+            // print_r($ambildata_perhalaman->num_rows);
+
+            $jumlahPagination = ceil($hitungDataFilterSPP / $jumlahData);
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['firstPageFilterSPPWithDate'])) {
+
+        $namaMurid      = $_POST['namaFormFilterSPPWithDate'];
+
+        $id             = $_POST['idSiswaFilterSPPWithDate'];
+        $nis            = $_POST['nisFormFilterSPPWithDate'];
+        $kelas          = $_POST['kelasFormFilterSPPWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterSPPWithDate'];
+        $namaSiswa      = $namaMurid;
+
+        $isifilby       = $_POST['iniFilterSPPWithDate'];
+
+        $iniScrollFirstPage    = "ada";
+        $setSesiPageFilterBy   = 8;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = 1;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        }
+
+    }
+
+    elseif (isset($_POST['lastPageFilterSPPWithDate'])) {
+
+        $namaMurid      = $_POST['namaSiswaFilterSPPWithDate'];
+        $isifilby       = $_POST['iniFilterSPPWithDate'];
+
+        $id             = $_POST['idSiswaFilterSPPWithDate'];
+        $namaSiswa      = $namaMurid;
+        $kelas          = $_POST['kelasFormFilterSPPWithDate'];
+        $panggilan      = $_POST['panggilanFormFilterSPPWithDate'];
+        $nis            = $_POST['nisFormFilterSPPWithDate'];
+
+        $iniScrollLastPage    = "ada";
+        $setSesiPageFilterBy   = 8;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_sd_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                LIMIT $dataAwal, $jumlahData
+            ");
+
+            $jumlahLink = 2;
+
+            if ($halamanAktif > $jumlahLink) {
+                $start_number = $halamanAktif - $jumlahLink;
+            } else {
+                $start_number = 1;
+            }
+
+            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+                $end_number = $halamanAktif + $jumlahLink;
+            } else {
+                $end_number = $jumlahPagination;
+            }
+
+        } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            // echo "Last";exit;
+            $namaMurid      = $_POST['namaSiswaFilterSPPWithDate'];
+            $isifilby       = $_POST['iniFilterSPPWithDate'];
+
+            $id             = $_POST['idSiswaFilterSPPWithDate'];
+            $namaSiswa      = $namaMurid;
+            $kelas          = $_POST['kelasFormFilterSPPWithDate'];
+            $panggilan      = $_POST['panggilanFormFilterSPPWithDate'];
+            $nis            = $_POST['nisFormFilterSPPWithDate'];
+
+            $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                AND NAMA LIKE '%$namaMurid%'
+            ");
+
+            $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
+            // echo $totalData;
+
+            $jumlahPagination = ceil($totalData / $jumlahData);
+
+            $halamanAktif   = $jumlahPagination;
+            // echo $halamanAktif;exit;
+
+            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+
+            $hitungDataFilterSPP = $jumlahPagination;
+
+            $ambildata_perhalaman = mysqli_query($con, "
+                SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+                FROM input_data_tk_lama
+                WHERE
+                SPP != 0
+                AND NAMA LIKE '%$namaMurid%'
+                AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                 LIMIT $dataAwal, $jumlahData
             ");
 
@@ -6129,6 +6844,9 @@
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
+                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+
                                 <button type="submit" name="simpan_edit_data" class="form-control btn-success"> <span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
                             </div>
                         </div>
@@ -6145,6 +6863,9 @@
                                 
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
+
+                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
 
                                 <button id="kembali_ke" type="submit" name="back_to_page" class="form-control btn-primary"> <span class="glyphicon glyphicon-log-out" id="cancel"> </span> Kembali </button>
                             </div>
@@ -6239,7 +6960,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="col-sm-3">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label> Filter Date From </label>
                                     <?php if ($tanggalDari == 'kosong_tgl1'): ?>
@@ -6259,7 +6980,7 @@
                                         <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
                                     <?php endif; ?>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="col-sm-2">
                                 <div class="form-group">
@@ -6340,7 +7061,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="col-sm-3">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label> Filter Date From </label>
                                     <?php if ($tanggalDari == 'kosong_tgl1'): ?>
@@ -6360,7 +7081,7 @@
                                         <input type="date" class="form-control" name="tanggal2" value="<?= $tanggalSampai; ?>">
                                     <?php endif; ?>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="col-sm-2">
                                 <div class="form-group">
@@ -6391,6 +7112,14 @@
                 <?php require 'form_edit_pembayaran_registrasi.php'; ?>
             <?php elseif($setSesiPageFilterBy == 7): ?>
                 <?php require 'form_edit_pembayaran_lain.php'; ?>
+
+            <!-- With Filter Date -->
+            <?php elseif($setSesiPageFilterBy == 8): ?>
+                <?php require 'form_edit_pembayaran_spp_with_date.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 9): ?>
+                <?php require 'form_edit_pembayaran_pangkal_with_date.php'; ?>
+            <?php elseif($setSesiPageFilterBy == 10): ?>
+                <?php require 'form_edit_pembayaran_kegiatan_with_date.php'; ?>
             <?php endif; ?>  
 
         </div>

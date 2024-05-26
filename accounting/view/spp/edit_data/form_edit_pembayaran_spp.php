@@ -4,6 +4,9 @@
     // if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
     	// echo "Tidak tanggal SPP";
 
+        // $tanggalDari    = $dariTanggal;
+        // $tanggalSampai  = $sampaiTanggal;
+
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
             $namaMurid = $namaSiswa;
@@ -89,7 +92,11 @@
         }
 
     // } else {
-    	// echo "Ada tanggal SPP";
+
+        
+
+        // }
+
     // }
 
 ?>
@@ -205,6 +212,9 @@
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                     <input type="hidden" name="isi_filter" value="SPP">
+
+                                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                                     
                                     <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                         EDIT 
@@ -236,6 +246,8 @@
                 <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <input type="hidden" name="halamanSebelumnyaFilterSPP" value="<?= $halamanAktif - 1; ?>">
                 <button name="previousPageFilterSPP">
                     &laquo;
@@ -269,6 +281,8 @@
                     <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="toPageFilterSPP">
                         <?= $i; ?>
                     </button>
@@ -288,6 +302,8 @@
                 <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="nextPageFilterSPP" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
@@ -311,6 +327,8 @@
                 <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="firstPageFilterSPP">
                     &laquo;
                     First Page
@@ -333,6 +351,8 @@
                     <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="lastPageFilterSPP">
                         Last Page
                         &raquo;

@@ -12,6 +12,14 @@
     header('location:../login');
   } 
 
+  $timeNow = time(); // Checking the time now when home page starts.
+
+    // echo $timeNow;
+  if ($timeNow > $_SESSION['expire']) {
+    session_destroy();
+    $_SESSION['time_out'] = "session_berakhir";
+  }
+
   $currTahun    = "";
   $currSemester = "";
 

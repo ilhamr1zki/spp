@@ -2,6 +2,8 @@
   
   require 'php/config.php'; 
   session_start(); 
+
+  $showAlert = 0;
   
   if(isset($_SESSION['c_admin'])){ 
     header('location:admin/'); 
@@ -13,7 +15,7 @@
     header('location:walimurid/'); 
   } else if (isset($_SESSION['c_accounting']) ) {
     header('location:accounting/');
-  }
+  } 
 
 ?>
 
@@ -65,11 +67,22 @@ no-repeat center center fixed; background-size: cover;
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg" style="font-size:100%;">Masukkan Username dan Password</p>  
-    <?php if(isset($_SESSION['pesan']) && $_SESSION['pesan']=='gagal'){?>
+
+    <?php if (isset($_SESSION['pesan']) && $_SESSION['pesan']=='gagal'): ?>
+
       <p><div style="display: none;" class="alert alert-danger alert-dismissable">Username atau Password Salah!
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       </div></p>
-    <?php }$_SESSION['pesan'] = '';?>
+      <?php unset($_SESSION['pesan']); ?>
+
+    <?php elseif(isset($_SESSION['time_out']) && $_SESSION['time_out'] == 'session_berakhir') : ?>
+      <p><div style="display: none;" class="alert alert-danger alert-dismissable">Session Berakhir!
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      </div></p>
+      <?php unset($_SESSION['time_out']); ?>
+
+    <?php endif; ?>
+
     <form action="ceklo.php" method="post">
       <div class="form-group has-feedback">
         <input type="text" name="username" class="form-control" placeholder="Username" required="" autocomplete="" autofocus="">
@@ -102,6 +115,13 @@ no-repeat center center fixed; background-size: cover;
 <!-- Select2 -->
 <script src="theme/plugins/select2/select2.full.min.js"></script>
 <script>
+
+  let showAlertSession = `<?= $showAlert; ?>`
+
+  if (showAlertSession == 1) {
+    alert("Session Berakhir");
+  }
+
   $(function () {
     //Initialize Select2 Elements
     $("#select2").select2();
