@@ -14,7 +14,7 @@
 
         $queryGetDataFilterSeragamWithDate = "
             SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_sd_lama
+            FROM input_data_sd
             WHERE
             SERAGAM != 0
             AND NAMA LIKE '%$namaMurid%'
@@ -33,7 +33,7 @@
 
         $ambildata_perhalaman = mysqli_query($con, "
             SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_sd_lama
+            FROM input_data_sd
             WHERE
             SERAGAM != 0
             AND NAMA LIKE '%$namaMurid%'
@@ -67,7 +67,7 @@
 
         $queryGetDataFilterSeragamWithDate = "
             SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE
             SERAGAM != 0
             AND NAMA LIKE '%$namaMurid%'
@@ -86,7 +86,7 @@
 
         $ambildata_perhalaman = mysqli_query($con, "
             SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE
             SERAGAM != 0
             AND NAMA LIKE '%$namaMurid%'

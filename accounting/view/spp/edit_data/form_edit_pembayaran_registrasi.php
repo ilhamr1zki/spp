@@ -9,7 +9,7 @@
            	$namaMurid = $namaSiswa;
             $queryGetDataRegistrasi = "
             SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_sd_lama
+            FROM input_data_sd
             WHERE
             REGISTRASI != 0
             AND NAMA LIKE '%$namaMurid%' ";
@@ -21,7 +21,7 @@
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd_lama
+                FROM input_data_sd
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -49,7 +49,7 @@
             $namaMurid = $namaSiswa;
             $queryGetDataRegistrasi = "
             SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE
             REGISTRASI != 0
             AND NAMA LIKE '%$namaMurid%' ";
@@ -61,7 +61,7 @@
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk_lama
+                FROM input_data_tk
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%' 

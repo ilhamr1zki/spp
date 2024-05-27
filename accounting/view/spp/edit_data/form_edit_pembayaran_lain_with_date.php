@@ -9,7 +9,7 @@
 
         $queryGetDataFilterLainWithDate = "
             SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_sd_lama
+            FROM input_data_sd
             WHERE
             LAIN != 0
             AND NAMA LIKE '%$namaMurid%'
@@ -27,7 +27,7 @@
 
         $ambildata_perhalaman = mysqli_query($con, "
             SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_sd_lama
+            FROM input_data_sd
             WHERE
             LAIN != 0
             AND NAMA LIKE '%$namaMurid%'
@@ -56,7 +56,7 @@
 
         $queryGetDataFilterLainWithDate = "
             SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE
             LAIN != 0
             AND NAMA LIKE '%$namaMurid%'
@@ -74,7 +74,7 @@
 
         $ambildata_perhalaman = mysqli_query($con, "
             SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE
             LAIN != 0
             AND NAMA LIKE '%$namaMurid%'
