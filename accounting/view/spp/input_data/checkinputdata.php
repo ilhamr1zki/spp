@@ -195,6 +195,8 @@
 
             if ($_SESSION['c_accounting'] == 'accounting1') {
 
+                // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
+
                 // Insert Data 
                 $queryInsert = "
                 INSERT INTO `input_data_sd` (
@@ -253,17 +255,10 @@
                 array_push($simpanDataID, $idInvoice['ID']);
             }
 
-            // var_dump($simpanDataID);exit;
-
         }
-
-        // echo  $data_nis . " " . $data_bulan . " " . $data_kelas . " " . $data_nama . " " . $data_panggilan . " " . $data_tx . " " . str_replace(["Rp. ", "."], "", htmlspecialchars($_POST['ket_uang_spp']));exit;
 
         // exit;
     }
-
-    // echo format_tanggal_indo(date("Y-m-d"));
-    // echo end($simpanDataID);
 
 ?>
 
@@ -558,7 +553,7 @@
 
                         <div id="div_cetak_kuitansi">
                             <!-- <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </span> </a> -->
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="post" target="blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="post" target="blank">
                                 <input type="hidden" name="cetak_kuitansi_nis_siswa" value="<?= $data_nis; ?>">
                                 <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data_nama; ?>">
                                 <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data_kelas; ?>">

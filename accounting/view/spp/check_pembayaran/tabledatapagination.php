@@ -102,7 +102,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -176,7 +176,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -501,7 +501,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center;">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -577,7 +577,7 @@
 
                                             <td style="text-align: center;">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -923,7 +923,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center;">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -999,7 +999,7 @@
 
                                             <td style="text-align: center;">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -1269,7 +1269,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -1343,7 +1343,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -1676,7 +1676,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center;">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -1752,7 +1752,7 @@
 
                                             <td style="text-align: center;">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -2204,7 +2204,7 @@
                                             <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -2279,7 +2279,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -2510,7 +2510,7 @@
                                             <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -2585,7 +2585,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -2931,7 +2931,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -3004,7 +3004,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -3077,7 +3077,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -3412,7 +3412,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -3485,7 +3485,7 @@
                                             <td style="text-align: center;"> <strong> - </strong> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -3558,7 +3558,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                             <td style="text-align: center;" id="tombol-cetak">
 
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -3819,7 +3819,7 @@
                                             <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -3894,7 +3894,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -4144,7 +4144,7 @@
                                             <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -4219,7 +4219,7 @@
                                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                             <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                             
-                                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -4484,7 +4484,7 @@
 
                                         <td style="text-align: center;" id="tombol-cetak">
 
-                                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -4735,7 +4735,7 @@
 
                                         <td style="text-align: center;" id="tombol-cetak">
 
-                                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -4975,7 +4975,7 @@
                                         <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                         <td style="text-align: center;" id="tombol-cetak">
 
-                                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -5203,7 +5203,7 @@
                                         <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                         <td style="text-align: center;" id="tombol-cetak">
 
-                                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -5468,7 +5468,7 @@
 
                                         <td style="text-align: center;" id="tombol-cetak">
 
-                                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -5721,7 +5721,7 @@
 
                                         <td style="text-align: center;" id="tombol-cetak">
 
-                                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -5984,7 +5984,7 @@
 
                                     <td style="text-align: center;" id="tombol-cetak">
 
-                                        <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                             <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                             <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                             <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -6235,7 +6235,7 @@
 
                                     <td style="text-align: center;" id="tombol-cetak">
 
-                                        <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                             <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                             <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                             <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -6570,7 +6570,7 @@
                                     <td style="text-align: center;"> <strong> - </strong> </td>
                                     <td style="text-align: center;">
 
-                                        <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                             <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                             <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                             <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -6646,7 +6646,7 @@
 
                                     <td style="text-align: center;">
 
-                                        <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                        <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                             <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                             <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                             <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -7004,7 +7004,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -7077,7 +7077,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -7150,7 +7150,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -7500,7 +7500,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -7573,7 +7573,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -7646,7 +7646,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -8000,7 +8000,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -8073,7 +8073,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -8146,7 +8146,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -8500,7 +8500,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -8573,7 +8573,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -8646,7 +8646,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -8989,7 +8989,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -9062,7 +9062,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -9135,7 +9135,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -9480,7 +9480,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -9553,7 +9553,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -9626,7 +9626,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -9986,7 +9986,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -10059,7 +10059,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -10132,7 +10132,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -10491,7 +10491,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -10564,7 +10564,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -10637,7 +10637,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -10996,7 +10996,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -11069,7 +11069,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -11142,7 +11142,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -11496,7 +11496,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -11569,7 +11569,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -11642,7 +11642,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['STAMP']); ?> </td>
                                 <td style="text-align: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -11918,7 +11918,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -11992,7 +11992,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -12264,7 +12264,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -12338,7 +12338,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -12609,7 +12609,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -12683,7 +12683,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -12954,7 +12954,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -13028,7 +13028,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -13291,7 +13291,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -13365,7 +13365,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -13632,7 +13632,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -13706,7 +13706,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -13983,7 +13983,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -14057,7 +14057,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -14335,7 +14335,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -14409,7 +14409,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -14680,7 +14680,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -14754,7 +14754,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -15006,7 +15006,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center; justify-content: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -15265,7 +15265,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -15340,7 +15340,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -15587,7 +15587,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -15662,7 +15662,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -15910,7 +15910,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -15985,7 +15985,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -16236,7 +16236,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -16311,7 +16311,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -16554,7 +16554,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -16629,7 +16629,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -16873,7 +16873,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -16948,7 +16948,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -17205,7 +17205,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -17280,7 +17280,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -17538,7 +17538,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -17613,7 +17613,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -17869,7 +17869,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -17944,7 +17944,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -18195,7 +18195,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -18270,7 +18270,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -18546,7 +18546,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -18621,7 +18621,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -18887,7 +18887,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -18962,7 +18962,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -19229,7 +19229,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -19304,7 +19304,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -19569,7 +19569,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -19644,7 +19644,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -19904,7 +19904,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -19979,7 +19979,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -20240,7 +20240,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -20315,7 +20315,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -20591,7 +20591,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -20666,7 +20666,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -20943,7 +20943,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -21018,7 +21018,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -21293,7 +21293,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -21368,7 +21368,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -21638,7 +21638,7 @@
                                 <td style="text-align: center; width: 10px;"> <strong> - </strong> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -21713,7 +21713,7 @@
                                 <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                                 <td style="text-align: center; justify-content: center;" id="tombol-cetak-pangkal">
                                 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -21992,7 +21992,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -22259,7 +22259,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -22525,7 +22525,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -22791,7 +22791,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -23052,7 +23052,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -23314,7 +23314,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -23591,7 +23591,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -23867,7 +23867,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -24143,7 +24143,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -24414,7 +24414,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -24668,7 +24668,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -24912,7 +24912,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -25155,7 +25155,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -25398,7 +25398,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -25636,7 +25636,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -25875,7 +25875,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -26129,7 +26129,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -26382,7 +26382,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -26635,7 +26635,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -26883,7 +26883,7 @@
                             <td style="text-align: center;"> <?= tglIndo($data['tanggal_diupdate']); ?> </td>
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -27162,7 +27162,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -27431,7 +27431,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -27699,7 +27699,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -27967,7 +27967,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -28230,7 +28230,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -28494,7 +28494,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -28773,7 +28773,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -29051,7 +29051,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -29329,7 +29329,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -29602,7 +29602,7 @@
 
                             <td style="text-align: center;" id="tombol-cetak">
 
-                                <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                     <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                     <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -29879,7 +29879,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -30146,7 +30146,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -30412,7 +30412,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -30678,7 +30678,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -30939,7 +30939,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -31199,7 +31199,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -31476,7 +31476,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -31752,7 +31752,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -32028,7 +32028,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -32299,7 +32299,7 @@
 
                         <td style="text-align: center;" id="tombol-cetak">
 
-                            <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                            <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                 <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="0">
                                 <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="0">
@@ -32648,7 +32648,7 @@
                                 <td style="text-align: center;"> <strong> - </strong> </td>
                                 <td style="text-align: center;">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">
@@ -32724,7 +32724,7 @@
 
                                 <td style="text-align: center;">
 
-                                    <form action="<?= $baseac; ?>Kuitansi.php" method="POST" target="_blank">
+                                    <form action="<?= $baseac; ?>kuitansi.php" method="POST" target="_blank">
                                         <input type="hidden" id="cetakKuitansi_uang_spp" name="cetak_kuitansi_uang_spp" value="<?= $data['SPP']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_pangkal" value="<?= $data['PANGKAL']; ?>">
                                         <input type="hidden" name="cetak_kuitansi_uang_kegiatan" value="<?= $data['KEGIATAN']; ?>">

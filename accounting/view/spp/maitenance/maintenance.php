@@ -2,6 +2,8 @@
 
     $focus = 0;
 
+    error_reporting(0);
+
     $tahunAjaran1   = "";
     $tahunAjaran2   = "";
 
@@ -70,7 +72,7 @@
                 $semester    = $_POST['isi_semester'];
                 $status      = "aktif";
 
-                $queryGetDataAktif = mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+                $queryGetDataAktif = mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE c_role = '$_SESSION[c_accounting]' ");
 
                 $checkData = mysqli_num_rows($queryGetDataAktif);
 
@@ -108,9 +110,24 @@
 
         }
 
+    } else if (isset($_POST['reset_form'])) {
+
+        mysqli_query($con, "UPDATE tahun_ajaran SET tahun = NULL, semester = NULL, status = NULL WHERE c_role = '$_SESSION[c_accounting]' ");
+        $_SESSION['form_success'] = 'reset_form';
+        $focus = 1;
+        $reloadPage = 1;
+
     }
 
     $dataTahun = mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
+    $data_tahun = mysqli_query($con, "SELECT tahun FROM tahun_ajaran WHERE c_role = '$_SESSION[c_accounting]' ");
+    $data_tahun = mysqli_fetch_assoc($data_tahun)['tahun'];
+
+    if ($data_tahun == NULL) {
+        $data_tahun = "kosong";
+    } else {
+        $data_tahun;
+    }
 
     $countData = mysqli_num_rows($dataTahun);
 
@@ -163,6 +180,13 @@
 
         <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'berhasil'){?>
           <div style="display: none;" class="alert alert-warning alert-dismissable"> Data Berhasil Di Simpan
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <?php unset($_SESSION['form_success']); ?>
+          </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'reset_form'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Data Tahun Ajaran Di Reset
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_success']); ?>
           </div>
@@ -230,10 +254,15 @@
 
             <div class="row">
 
-                <div class="col-sm-3">
+                <div class="col-sm-3" style="display: flex; gap: 10px;">
                     <div class="form-group">
                         <button class="btn btn-sm btn-success" name="simpan_form"> Save </button>
                     </div>
+                    <?php if ($data_tahun != "kosong"): ?>
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-danger" name="reset_form"> Reset </button>
+                        </div>
+                    <?php endif ?>
                 </div>
 
             </div> 

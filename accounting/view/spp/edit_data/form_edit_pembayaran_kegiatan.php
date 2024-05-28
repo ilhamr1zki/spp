@@ -9,7 +9,7 @@
             $namaMurid = $namaSiswa;
         	$queryGetDataKegiatan = "
             SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_sd
+            FROM input_data_sd_lama1
             WHERE
             KEGIATAN != 0
             AND NAMA LIKE '%$namaMurid%' ";
@@ -21,7 +21,7 @@
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -49,7 +49,7 @@
             $namaMurid = $namaSiswa;
             $queryGetDataKegiatan = "
             SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-            FROM input_data_tk
+            FROM input_data_tk_lama
             WHERE
             KEGIATAN != 0
             AND NAMA LIKE '%$namaMurid%' ";
@@ -62,7 +62,7 @@
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%' 

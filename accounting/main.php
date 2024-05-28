@@ -53,7 +53,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Accouting AIIS-SPP</title>
+  <title>ACCOUNTING AIIS-SPP</title>
   <link rel="icon" href="favicon.ico">
   
   <!-- Favicon -->
@@ -911,39 +911,6 @@ oncontextmenu="return false">
     </div>
     <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#"><?php echo $aplikasi['namasek']; ?></a></strong> by ATH
  
-</div>
-
-<div id="datamassiswa" class="modal"  data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel"> <i class="glyphicon glyphicon-calendar"></i> Data Siswa</h4>
-            </div>
-            <div class="modal-body"> 
-                <div class="box-body table-responsive">
-                    <table id="example1x" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                              <th style="text-align: center;" width="5%">NO</th>
-                              <th style="text-align: center;">NIS</th>
-                              <th style="text-align: center;">NAMA</th>
-                              <th style="text-align: center;">GENDER</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                              <td style="text-align: center;"> 1 </td>
-                              <td style="text-align: center;"> 238711 </td>
-                              <td style="text-align: center;"> GATHAN REVANZHA </td>
-                              <td style="text-align: center;"> LAKI - LAKI </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>    
 </div>
 
 <!-- ./wrapper -->

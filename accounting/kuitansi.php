@@ -11,13 +11,6 @@
 
     $nominal = "";
 
-    $localhost = "localhost";
-    $username  = "root";
-    $password  = "";
-    $database  = "u415776667_spp";
-
-    $con = mysqli_connect($localhost, $username, $password, $database);
-
     $queryGetTahunAjaran = mysqli_query($con, "SELECT tahun FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' ");
 
     $countTahunAjaran = mysqli_num_rows($queryGetTahunAjaran);
@@ -126,7 +119,7 @@
         if ($_SESSION['c_accounting'] == 'accounting1') {
             $jenjangPendidikan = "SD";
         } else if ($_SESSION['c_accounting'] == 'accounting2') {
-            $jenjangPendidikan = "TK";
+            $jenjangPendidikan = "KB-TK";
         } else {
             $jenjangPendidikan = "";
         }
@@ -325,20 +318,38 @@
                 <img src="logo_stempel.png" style="width: 70px; height: 70px;">
             </div>
             <div class="kop-surat" style="color: rgba(26, 18, 136, 1);">
-                <strong style="margin-left: 120px;">
-                    <b>
-                    SEKOLAH DASAR
-                    </b>
-                    <br>
-                </strong>
-                <strong style="margin-left: 15px;">
-                    <b>
-                    AKHYAR INTERNATIONAL ISLAMIC SCHOOL
-                    </b>
-                </strong>
+                <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+                    
+                    <strong style="margin-left: 120px;">
+                        <b>
+                        SEKOLAH DASAR
+                        </b>
+                        <br>
+                    </strong>
+                    <strong style="margin-left: 15px;">
+                        <b>
+                        AKHYAR INTERNATIONAL ISLAMIC SCHOOL
+                        </b>
+                    </strong>
+
+                <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+
+                    <strong style="margin-left: 110px;">
+                        <b>
+                        PRA AKHYAR USIA DINI
+                        </b>
+                        <br>
+                    </strong>
+
+                <?php endif ?>
                 <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 80px;"> Komplek Green View, Jl. Green View Blok E No.3-4-5, <br></p>
                 <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 43px;"> Kel. Jaka Setia, Kec. Bekasi Selatan, Kota Bekasi, Jawa Barat 17147 <br></p>
-                <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 141px; margin-top: -10px;"> Telp. 021-82772882 <span id="kw"> <strong> KUITANSI PEMBAYARAN </strong> </span> <span style="color: red; font-size: 20px;"> <strong> <b> <?= $jenjangPendidikan; ?> </b> </strong> </span> </p>
+                <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+                    <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 141px; margin-top: -10px;"> Telp. 021-82772882 <span id="kw">
+                <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+                    <p style="color: rgba(26, 18, 136, 1); font-size: 10px; margin-left: 130px; margin-top: -10px;"> Telp. 021-82772882 <span id="kw">
+                <?php endif ?>
+                <strong> KUITANSI PEMBAYARAN </strong> </span> <span style="color: red; font-size: 20px;"> <strong> <b> <?= $jenjangPendidikan; ?> </b> </strong> </span> </p>
             </div>
         </div>
 
