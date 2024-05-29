@@ -464,6 +464,14 @@
         	font-size: 13px;
         }
 
+        #jenjangSekolah1 {
+        	font-size: 23px;
+        }
+
+        #jenjangSekolah2 {
+        	font-size: 23px;
+        }
+
         #bulan {
         	margin-left: 0px;
         }
@@ -612,6 +620,11 @@
 
         #jns_byr {
         	width: 25%;
+        }
+
+        #title_payment {
+        	font-size: 20px;
+        	margin-top: 7%;
         }
 
         @media only screen and (max-width: 600px) {
@@ -796,6 +809,20 @@
 	        	font-size: 15px;
 	        }
 
+	        #jenjangSekolah1 {
+	        	font-size: 28px;
+	        }
+
+	        #jenjangSekolah2 {
+	        	font-size: 28px;
+	        }
+
+	        #batas {
+	        	max-width: 100%;
+	        	margin-left: auto;
+	        	margin-right: auto;
+	        }
+
         }
     </style>
 </head>
@@ -803,6 +830,12 @@
     <div class="container">
         <div class="header">
             <img class="logo" src="logo_stempel.png" alt="Logo">
+            <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+            	<p id="batas" style="color: rgba(26, 18, 136, 1);"><strong id="jenjangSekolah1"> SEKOLAH DASAR AKHYAR INTERNATIONAL ISLAMIC SCHOOL </strong></p>
+        	<?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+            	<p id="batas" style="color: rgba(26, 18, 136, 1);"><strong id="jenjangSekolah2"> PRA AKHYAR USIA DINI </strong></p>
+            <?php endif ?>
+            
             <p id="alamat" style="color: rgba(26, 18, 136, 1);">Komplek Green View, Jl. Green View Blok E No.3-4-5,</p>
             <p id="alamats" style="color: rgba(26, 18, 136, 1);">Kel. Jaka Setia, Kec. Bekasi Selatan, Kota Bekasi, Jawa Barat 17147</p>
             <p id="alamat" style="color: rgba(26, 18, 136, 1);">Telp. 021-82772882</p>

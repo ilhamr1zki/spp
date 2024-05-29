@@ -834,7 +834,7 @@ oncontextmenu="return false">
           <ul class="treeview-menu">
             
             <li>
-              <a href="<?= $baseac; ?>maintenance" id="form_data"><i class="glyphicon glyphicon-list-alt text-primary"></i> Form Data </a>
+              <a href="<?= $baseac; ?>maintenance" id="form_data"><i class="glyphicon glyphicon-list-alt text-primary"></i> Tahun Ajaran </a>
             </li>
             <li>
               <a href="<?= $baseac; ?>changepassword" id="ubah_password"><i class="glyphicon glyphicon-wrench text-primary"></i> Ubah Password </a>
