@@ -91,7 +91,7 @@
     	if ($_SESSION['c_accounting'] == 'accounting1') {
     		$jenjangPendidikan = 'SD';
     	} else if ($_SESSION['c_accounting'] == 'accounting2') {
-    		$jenjangPendidikan = 'TK';
+    		$jenjangPendidikan = 'KB-TK';
     	}
 
 		$nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];

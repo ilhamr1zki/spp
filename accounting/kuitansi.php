@@ -237,7 +237,7 @@
 
         .container {
             width: 70%;
-            margin-top: 50px !important;
+            margin-top: 13px !important;
             margin: 0 auto;
             padding: 20px;
             border: 1px solid #ccc;
