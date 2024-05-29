@@ -731,7 +731,7 @@
             }
 
             #title_payment {
-            	font-size: 20px;
+            	font-size: 15px;
             	margin-top: 10%;
             }
 
@@ -810,11 +810,11 @@
 	        }
 
 	        #jenjangSekolah1 {
-	        	font-size: 28px;
+	        	font-size: 18px;
 	        }
 
 	        #jenjangSekolah2 {
-	        	font-size: 28px;
+	        	font-size: 18px;
 	        }
 
 	        #batas {
