@@ -1,6 +1,6 @@
 <?php  
 
-	echo $_SESSION['c_accounting'];
+  
 
 ?>
 
@@ -9,10 +9,8 @@
     <div class="error-content">
       <h3><i class="glyphicon glyphicon-ban-circle text-yellow"></i> Akses Ditolak</h3>
         <p>Maaf Halaman Tidak Bisa Ditampilkan, Terjadi Kesalahan</p>
-        <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
-        	<a href="<?php echo $baseac; ?>" class="btn btn-flat btn-danger btn-block">Halaman Utama</a>
-    	<?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
-        	<a href="<?php echo $baseac; ?>" class="btn btn-flat btn-danger btn-block">Halaman Utama</a>
+      <?php if($_SESSION['c_admin'] == 'adm1'): ?>
+          <a href="<?php echo $baseac; ?>" class="btn btn-flat btn-danger btn-block">Halaman Utama</a>
     	<?php else: ?>
         	<a href="<?php echo $base; ?>" class="btn btn-flat btn-danger btn-block">Halaman Utama</a>
         <?php endif ?>

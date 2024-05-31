@@ -744,6 +744,17 @@ oncontextmenu="return false">
               <a href="<?php echo $baseac; ?>checkpembayaran" id="check_pembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran</a>
               <a href="<?php echo $baseac; ?>inputdata" id="input_data"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Input Data </a>
               <a href="<?php echo $baseac; ?>editdata" id="edit_data"><i class="glyphicon glyphicon-pencil text-primary"></i> <span style="margin-left: 5px;"> </span> Edit Data </a>
+              <a href="#" id="export_data">
+                <i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 5px;"> Export Data Excel </span>
+              </a>
+              <ul class="treeview-menu">
+                <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+                  <li> <small style="margin-left: 10px;"> <a href="<?= $baseac; ?>export_excel_sd.php"><i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 7px;"> </span> Pembayaran SD </a> </small> </li>
+                <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+                  <li> <small style="margin-left: 10px;"> <a href="<?= $baseac; ?>export_excel_tk.php"><i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 7px;"> </span> Pembayaran TK </a> </small> </li>
+                <?php endif ?>
+
+              </ul>
               <!-- <ul class="treeview-menu">
                 
                 <li> <small> <a href="<?php echo $baseac; ?>checkpembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
@@ -751,53 +762,6 @@ oncontextmenu="return false">
 
               </ul> -->
             </li>
-
-            <!-- <li>
-              <a href="<?php echo $basead; ?>setting"><i class="glyphicon glyphicon-bullhorn text-primary"></i> Laporan 2 </a>
-              <ul class="treeview-menu">
-                <li>
-                  <small> 
-                    <a href=""> <i class="glyphicon glyphicon-modal-window"></i> <span style="margin-left: 8px;"> </span> Kuitansi </a>
-                  </small> 
-                </li>
-                <li>
-                  <small>
-                    <a href=""> <i class="glyphicon glyphicon-flag"></i> <span style="margin-left: 8px;"> </span> Check Pangkal </a>
-                  </small>
-                </li>
-                <li>
-                  <small>
-                    <a href=""> <i class="glyphicon glyphicon-sd-video"></i> <span style="margin-left: 8px;"> </span> Check SPP </a>
-                  </small>
-                </li>
-                <li>
-                  <small>
-                    <a href=""> <i class="glyphicon glyphicon-list-alt"></i> <span style="margin-left: 8px;"> </span> Check Daftar Ulang </a>
-                  </small>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="<?php echo $basead; ?>setting"><i class="glyphicon glyphicon-check text-primary"></i> Koreksi </a>
-              <ul class="treeview-menu">
-                <li> 
-                  <small> 
-                    <a href=""> <i class="glyphicon glyphicon-copy"></i> <span style="margin-left: 8px;"> </span> Koreksi Sequence ID </a>
-                  </small>
-                </li>
-                <li> 
-                  <small>
-                    <a href=""> <i class="glyphicon glyphicon-ok-sign"></i> <span style="margin-left: 8px;"> </span> Koreksi Data Murid </a>
-                  </small>
-                </li>
-                <li>
-                  <small>
-                    <a href=""> <i class="glyphicon glyphicon-floppy-saved"></i> <span style="margin-left: 8px;"> </span> Koreksi Input Data </a>
-                  </small>
-                </li>
-              </ul>
-            </li> -->
 
           </ul>
         </li>
