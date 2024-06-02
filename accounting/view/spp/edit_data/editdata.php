@@ -10,6 +10,14 @@
         'LAIN'
     ];
 
+    // $queryX = mysqli_query($con, "SELECT * FROM input_data_sd");
+
+    // foreach ($queryX as $key) {
+    //     $date = $key['STAMP'];
+    //     $ts   = strtotime($date);
+    //     echo date("Y-m-d", $date) . "<br>";
+    // }
+
     $data_bulan = [
         'JANUARI',
         'FEBRUARI',

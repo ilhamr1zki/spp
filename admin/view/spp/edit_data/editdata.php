@@ -31,6 +31,13 @@
         'CASH'
     ];
 
+    $url = "";
+    $segmen = explode(" ", $url);
+
+    if ($url == NULL) {
+        echo "Sama";
+    }
+
     $isifilby       = 'kosong';
     $tanggalDari    = 'kosong_tgl1';
     $tanggalSampai  = 'kosong_tgl2';

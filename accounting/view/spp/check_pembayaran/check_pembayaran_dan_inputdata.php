@@ -279,6 +279,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -311,6 +312,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -343,6 +345,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -375,6 +378,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -409,6 +413,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -444,6 +449,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -468,6 +474,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -2336,6 +2343,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6052,6 +6060,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6100,6 +6109,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6132,6 +6142,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6164,6 +6175,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6196,6 +6208,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6230,6 +6243,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6265,6 +6279,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -6289,6 +6304,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -8155,6 +8171,7 @@
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
             $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;
@@ -11871,7 +11888,8 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk_lama ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 
             $jumlahLink = 2;

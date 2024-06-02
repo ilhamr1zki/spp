@@ -33249,130 +33249,136 @@
 
     </div>
 
-    <div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
+    <?php if ($countData == 0): ?>
+        
+    <?php elseif($countData != 0): ?>
 
-        <?php if ($halamanAktif > 1): ?>
+        <div style="display: flex; gap: 5px; padding: 5px; justify-content: center;">
 
-            <form action="checkpembayaran" method="post">
-                <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
-                <button name="previousPage">
-                    &laquo;
-                    Previous
-                </button>
-            </form>
-
-        <?php endif; ?>
-
-        <?php for ($i = $start_number; $i <= $end_number; $i++): ?>
-
-            <?php if ($jumlahPagination == 1): ?>
-                
-            <?php elseif ($halamanAktif == $i): ?>
-                <!-- <a href="check_pembayaran_dan_inputdata.php?nextPage=<?= $halamanAktif - 1; ?>&page=<?= $i; ?>" style="color: red; font-weight: bold; font-size: 19px;">
-                    <?= $i; ?>
-                </a> -->
+            <?php if ($halamanAktif > 1): ?>
 
                 <form action="checkpembayaran" method="post">
                     <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
-                    <button name="currentPage" style="color: black; font-weight: bold; background-color: lightgreen;">
-                        <?= $i; ?>
+                    <button name="previousPage">
+                        &laquo;
+                        Previous
                     </button>
                 </form>
 
-            <?php else: ?>
-                <!-- <a href="check_pembayaran_dan_inputdata.php?page=<?= $i; ?>" id="nextsPage" data-next="<?= $i; ?>">
-                    <?= $i; ?>
-                </a> -->
-                <form action="checkpembayaran" method="post">
-                    <input type="hidden" name="halamanKe" value="<?= $i; ?>">
-                    <button name="toPage">
-                        <?= $i; ?>
-                    </button>
-                </form>
             <?php endif; ?>
 
-        <?php endfor; ?>
+            <?php for ($i = $start_number; $i <= $end_number; $i++): ?>
 
-        <?php if ($halamanAktif < $jumlahPagination): ?>
-            
-            <form action="checkpembayaran" method="post">
-                <input type="hidden" name="halamanLanjut" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextPage" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
-                    next
-                    &raquo;
-                </button>
-            </form>
+                <?php if ($jumlahPagination == 1): ?>
+                    
+                <?php elseif ($halamanAktif == $i): ?>
+                    <!-- <a href="check_pembayaran_dan_inputdata.php?nextPage=<?= $halamanAktif - 1; ?>&page=<?= $i; ?>" style="color: red; font-weight: bold; font-size: 19px;">
+                        <?= $i; ?>
+                    </a> -->
 
-        <?php endif; ?>
+                    <form action="checkpembayaran" method="post">
+                        <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                        <button name="currentPage" style="color: black; font-weight: bold; background-color: lightgreen;">
+                            <?= $i; ?>
+                        </button>
+                    </form>
 
-    </div>
+                <?php else: ?>
+                    <!-- <a href="check_pembayaran_dan_inputdata.php?page=<?= $i; ?>" id="nextsPage" data-next="<?= $i; ?>">
+                        <?= $i; ?>
+                    </a> -->
+                    <form action="checkpembayaran" method="post">
+                        <input type="hidden" name="halamanKe" value="<?= $i; ?>">
+                        <button name="toPage">
+                            <?= $i; ?>
+                        </button>
+                    </form>
+                <?php endif; ?>
 
-    <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
+            <?php endfor; ?>
 
-        <?php if ($halamanAktif > 1): ?>
-
-            <?php if ($halamanAktif > 100): ?>
+            <?php if ($halamanAktif < $jumlahPagination): ?>
                 
                 <form action="checkpembayaran" method="post">
-                    <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                    <input type="hidden" name="paginationSekarangKurang100" value="<?= $halamanAktif; ?>">
-                    <button name="reductionPage100">
-                        &laquo;&laquo;
+                    <input type="hidden" name="halamanLanjut" value="<?= $halamanAktif + 1; ?>">
+                    <button name="nextPage" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
+                        next
+                        &raquo;
                     </button>
                 </form>
-
-            <?php else: ?>
 
             <?php endif; ?>
 
-            <form action="checkpembayaran" method="post">
-                <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
-                <button name="firstPage">
-                    &laquo;
-                    First Page
-                </button>
-            </form>
-        <?php endif; ?>      
+        </div>
 
-        <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-        <button name="findGetPage" onclick="findOpenPage()">
-            On Page
-        </button>
+        <div style="margin-left: 3px; padding: 5px; display: flex; gap: 5px; justify-content: center;">
 
-        <?php if ($halamanAktif == $jumlahPagination): ?>
-            
-        <?php else: ?>
+            <?php if ($halamanAktif > 1): ?>
 
-            <form action="checkpembayaran" method="post">
-                <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
-                <button name="nextLastPage">
-                    Last Page
-                    &raquo;
-                </button>
-            </form>
+                <?php if ($halamanAktif > 100): ?>
+                    
+                    <form action="checkpembayaran" method="post">
+                        <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="paginationSekarangKurang100" value="<?= $halamanAktif; ?>">
+                        <button name="reductionPage100">
+                            &laquo;&laquo;
+                        </button>
+                    </form>
 
-            <?php if ($showAddPage100 == "muncul" ): ?>
+                <?php else: ?>
+
+                <?php endif; ?>
 
                 <form action="checkpembayaran" method="post">
-                    <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
-                    <input type="hidden" name="paginationSekarangTambah100" value="<?= $halamanAktif; ?>">
-                    <button name="addPage100">
-                        &raquo;&raquo;
+                    <input type="hidden" name="backPage" value="<?= $halamanAktif - 1; ?>">
+                    <button name="firstPage">
+                        &laquo;
+                        First Page
+                    </button>
+                </form>
+            <?php endif; ?>      
+
+            <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
+            <button name="findGetPage" onclick="findOpenPage()">
+                On Page
+            </button>
+
+            <?php if ($halamanAktif == $jumlahPagination): ?>
+                
+            <?php else: ?>
+
+                <form action="checkpembayaran" method="post">
+                    <input type="hidden" name="endPage" value="<?= $halamanAktif + 1; ?>">
+                    <button name="nextLastPage">
+                        Last Page
+                        &raquo;
                     </button>
                 </form>
 
-            <?php else: ?>
+                <?php if ($showAddPage100 == "muncul" ): ?>
 
+                    <form action="checkpembayaran" method="post">
+                        <input type="hidden" name="teslg" value="<?= $halamanAktif + 1; ?>">
+                        <input type="hidden" name="paginationSekarangTambah100" value="<?= $halamanAktif; ?>">
+                        <button name="addPage100">
+                            &raquo;&raquo;
+                        </button>
+                    </form>
+
+                <?php else: ?>
+
+
+                <?php endif ?>
+
+                
 
             <?php endif ?>
 
-            
+        </div>
 
-        <?php endif ?>
+        <br>
 
-    </div>
-
-    <br>
+    <?php endif ?>
 
 <?php endif; ?>
 

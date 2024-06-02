@@ -661,7 +661,7 @@ oncontextmenu="return false">
               <a href="<?php echo $basead; ?>checkpembayaran" id="check_pembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran</a>
               <a href="<?php echo $basead; ?>inputdata" id="input_data"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Input Data </a>
               <a href="<?php echo $basead; ?>editdata" id="edit_data"><i class="glyphicon glyphicon-pencil text-primary"></i> <span style="margin-left: 5px;"> </span> Edit Data </a>
-             <!--  <a href="<?php echo $basead; ?>upload" id="upload_data"><i class="glyphicon glyphicon-circle-arrow-up"></i> <span style="margin-left: 5px;"> </span> Import Data Excel </a> -->
+              <!-- <a href="<?php echo $basead; ?>upload" id="upload_data"><i class="glyphicon glyphicon-circle-arrow-up"></i> <span style="margin-left: 5px;"> </span> Import Data Excel </a> -->
               <a href="#" id="export_data">
                 <i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 5px;"> Export Data Excel </span>
               </a>
