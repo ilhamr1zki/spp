@@ -7,6 +7,20 @@
         // $tanggalDari    = $dariTanggal;
         // $tanggalSampai  = $sampaiTanggal;
 
+        $timeNow        = $_SESSION['expire'];
+    
+        $timeRunningOut = time() + 5;
+
+        if ($timeRunningOut == $timeNow || $timeRunningOut > $timeNow) {
+
+            echo "Sesi Habis" . "<br>";
+
+        }
+
+        echo "Setting Waktu : " . $timeNow . "<br>" . "Waktu Hampir Habis : " . $timeRunningOut . "<br>";
+
+        echo "Ini Sesi Waktu : " . $_SESSION['expire'] . " Dan Ini Sesi Habis : " . time();
+
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
             $namaMurid = $namaSiswa;

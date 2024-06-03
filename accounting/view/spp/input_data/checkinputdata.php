@@ -2,6 +2,12 @@
 
     // echo $_SESSION['c_accounting'];exit;
 
+    $timeOut        = $_SESSION['expire'];
+    
+    $timeRunningOut = time() + 5;
+
+    $timeIsOut = 0;
+
     $code_accounting = $_SESSION['c_accounting'];
 
     $dataBulan = [
@@ -196,56 +202,79 @@
             if ($_SESSION['c_accounting'] == 'accounting1') {
 
                 // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
+                if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
-                // Insert Data 
-                $queryInsert = "
-                INSERT INTO `input_data_sd` (
-                    `ID`, `NIS`, `DATE`, `BULAN`, 
-                    `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
-                    `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
-                    `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
-                    `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
-                    `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
-                    `INPUTER`, `STAMP`) 
-                VALUES (
-                    NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
-                    '$data_kelas', NULL, '$data_nama', '$data_panggilan',
-                     '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
-                     '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
-                     '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
-                     '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
-                     '$getDataNamaInputer', '$data_stamp'
-                )";
+                    $_SESSION['form_success'] = "session_time_out";
+                    $timeIsOut = 1;
+                    // exit;
 
-                mysqli_query($con, $queryInsert);
-                $_SESSION['form_success'] = "insert";
+
+                } else {
+
+                    // Insert Data 
+                    $queryInsert = "
+                    INSERT INTO `input_data_sd` (
+                        `ID`, `NIS`, `DATE`, `BULAN`, 
+                        `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
+                        `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                        `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                        `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                        `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                        `INPUTER`, `STAMP`) 
+                    VALUES (
+                        NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
+                        '$data_kelas', NULL, '$data_nama', '$data_panggilan',
+                         '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                         '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                         '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                         '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                         '$getDataNamaInputer', '$data_stamp'
+                    )";
+
+                    mysqli_query($con, $queryInsert);
+                    $_SESSION['form_success'] = "insert";
+
+                }
+
 
                 $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd WHERE NIS = '$data_nis' ");
 
             } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
-                // Insert Data 
-                $queryInsert = "
-                INSERT INTO `input_data_tk` (
-                    `ID`, `NIS`, `DATE`, `BULAN`, 
-                    `KELAS`, `NAMA`, `PANGGILAN`, 
-                    `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
-                    `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
-                    `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
-                    `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
-                    `INPUTER`, `STAMP`, `F27`) 
-                VALUES (
-                    NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
-                    '$data_kelas', '$data_nama', '$data_panggilan',
-                     '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
-                     '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
-                     '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
-                     '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
-                     '$getDataNamaInputer', '$data_stamp', NULL
-                )";
+                if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
-                mysqli_query($con, $queryInsert);
-                $_SESSION['form_success'] = "insert";
+                    $_SESSION['form_success'] = "session_time_out";
+                    $timeIsOut = 1;
+                    // exit;
+
+                } else {
+
+                    // Insert Data 
+                    $queryInsert = "
+                    INSERT INTO `input_data_tk` (
+                        `ID`, `NIS`, `DATE`, `BULAN`, 
+                        `KELAS`, `NAMA`, `PANGGILAN`, 
+                        `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                        `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                        `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                        `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                        `INPUTER`, `STAMP`, `F27`) 
+                    VALUES (
+                        NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
+                        '$data_kelas', '$data_nama', '$data_panggilan',
+                         '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                         '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                         '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                         '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                         '$getDataNamaInputer', '$data_stamp', NULL
+                    )";
+
+                    mysqli_query($con, $queryInsert);
+                    $_SESSION['form_success'] = "insert";
+
+                }
+
+
 
                 $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk WHERE NIS = '$data_nis' ");
 
@@ -354,6 +383,13 @@
 
         <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'insert'){?>
           <div style="display: none;" class="alert alert-warning alert-dismissable">Data Berhasil Di Input
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <?php unset($_SESSION['form_success']); ?>
+          </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'session_time_out'){?>
+          <div style="display: none;" class="alert alert-warning alert-dismissable">Waktu Sesi Telah Habis
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_success']); ?>
           </div>
@@ -1020,6 +1056,19 @@
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> -->
 
 <script language="javascript" type="text/javascript">
+
+    let timeIsOut = `<?= $timeIsOut; ?>`
+
+    if (timeIsOut == 1) {
+
+        const myTimeout = setTimeout(clearSession, 1000);
+
+    }
+
+    function clearSession() {
+        alert('Sessi Habis')
+        document.location.href = `<?= $base; ?>`
+    }
 
     $('#isi_tahun').keypress(function (e) {
         if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;

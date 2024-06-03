@@ -155,6 +155,12 @@
       flex-direction: column;
     }
 
+    .swal2-show {
+      width: 25% !important;
+      font-size: 15px !important;
+      font-weight: bold;
+    }
+
     #spp1 {
       width: 20%;
       margin-right: 10px;
