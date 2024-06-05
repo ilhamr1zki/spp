@@ -7,19 +7,19 @@
         // $tanggalDari    = $dariTanggal;
         // $tanggalSampai  = $sampaiTanggal;
 
-        $timeNow        = $_SESSION['expire'];
+        // $timeNow        = $_SESSION['expire'];
     
-        $timeRunningOut = time() + 5;
+        // $timeRunningOut = time() + 5;
 
-        if ($timeRunningOut == $timeNow || $timeRunningOut > $timeNow) {
+        // if ($timeRunningOut == $timeNow || $timeRunningOut > $timeNow) {
 
-            echo "Sesi Habis" . "<br>";
+        //     echo "Sesi Habis" . "<br>";
 
-        }
+        // }
 
-        echo "Setting Waktu : " . $timeNow . "<br>" . "Waktu Hampir Habis : " . $timeRunningOut . "<br>";
+        // echo "Setting Waktu : " . $timeNow . "<br>" . "Waktu Hampir Habis : " . $timeRunningOut . "<br>";
 
-        echo "Ini Sesi Waktu : " . $_SESSION['expire'] . " Dan Ini Sesi Habis : " . time();
+        // echo "Ini Sesi Waktu : " . $_SESSION['expire'] . " Dan Ini Sesi Habis : " . time();
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
@@ -195,10 +195,40 @@
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
-                                    <input type="hidden" name="isi_filter" value="SPP">
+                                    <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                     <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                         EDIT 
+                                        <!-- <span class="glyphicon glyphicon-pencil">  -->
+                                    </button>
+
+                                </form>
+
+                                <form action="<?= $baseac; ?>editdata" method="POST" target="blank">
+
+                                    <input type="hidden" name="id_siswa" value="<?= $id; ?>">
+                                    <input type="hidden" name="nis_siswa" value="<?= $nis; ?>">
+                                    <input type="hidden" name="nama_siswa" value="<?= $namaSiswa; ?>">
+                                    <input type="hidden" name="kelas_siswa" value="<?= $kelas; ?>">
+                                    <input type="hidden" name="panggilan_siswa" value="<?= $panggilan; ?>">
+
+                                    <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
+                                    <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
+                                    <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                    <input type="hidden" name="nominal_bayar" value="<?= $data['SPP']; ?>">
+                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['SPP_txt']; ?>">
+                                    <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
+                                    <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
+
+                                    <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+
+                                    <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
+                                        TAMBAH
                                         <!-- <span class="glyphicon glyphicon-pencil">  -->
                                     </button>
 
@@ -225,13 +255,41 @@
                                     <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
-                                    <input type="hidden" name="isi_filter" value="SPP">
+                                    <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
 
-                                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                                     
                                     <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                         EDIT 
+                                        <!-- <span class="glyphicon glyphicon-pencil">  -->
+                                    </button>
+
+                                </form>
+
+                                <form action="<?= $baseac; ?>editdata" method="POST" target="blank">
+
+                                    <input type="hidden" name="id_siswa" value="<?= $id; ?>">
+                                    <input type="hidden" name="nis_siswa" value="<?= $nis; ?>">
+                                    <input type="hidden" name="nama_siswa" value="<?= $namaSiswa; ?>">
+                                    <input type="hidden" name="kelas_siswa" value="<?= $kelas; ?>">
+                                    <input type="hidden" name="panggilan_siswa" value="<?= $panggilan; ?>">
+
+                                    <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
+                                    <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
+                                    <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                    <input type="hidden" name="nominal_bayar" value="<?= $data['SPP']; ?>">
+                                    <input type="hidden" name="ket_pembayaran" value="<?= $data['SPP_txt']; ?>">
+                                    <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
+                                    <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
+
+                                    <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+
+                                    <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
+                                        TAMBAH
                                         <!-- <span class="glyphicon glyphicon-pencil">  -->
                                     </button>
 

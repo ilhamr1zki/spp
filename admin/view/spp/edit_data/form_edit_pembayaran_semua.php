@@ -17,7 +17,7 @@
 			PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
 			BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
 			REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-			FROM input_data_sd_lama1
+			FROM input_data_sd
 			WHERE 
 			NIS = '$dataNIS_siswa'
 
@@ -30,7 +30,7 @@
 			PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
 			BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
 			REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-			FROM input_data_tk_lama
+			FROM input_data_tk
 			WHERE 
 			NIS = '$dataNIS_siswa'
 			ORDER BY ID DESC
@@ -48,7 +48,7 @@
 			PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
 			BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
 			REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-			FROM input_data_sd_lama1
+			FROM input_data_sd
 			WHERE 
 			NIS = '$dataNIS_siswa'
 			
@@ -61,7 +61,7 @@
 			PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
 			BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
 			REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-			FROM input_data_tk_lama
+			FROM input_data_tk
 			WHERE 
 			NIS = '$dataNIS_siswa'
 			ORDER BY ID DESC

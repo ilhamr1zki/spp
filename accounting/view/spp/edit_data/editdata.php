@@ -38,6 +38,12 @@
         'CASH'
     ];
 
+    $timeOut        = $_SESSION['expire'];
+    
+    $timeRunningOut = time() + 5;
+
+    $timeIsOut = 0;
+
     $isifilby       = 'kosong';
     $tanggalDari    = 'kosong_tgl1';
     $tanggalSampai  = 'kosong_tgl2';
@@ -66,6 +72,8 @@
     $setSesiPageFilterBy = 0; 
     $setSesiFormEdit     = 0;
 
+    $setSesiJsFormatRupiah = 0;
+
     $nominalBayarSPP        = 0;
     $nominalBayarPangkal    = 0;
     $nominalBayarKegiatan   = 0;
@@ -73,6 +81,22 @@
     $nominalBayarSeragam    = 0;
     $nominalBayarRegistrasi = 0;
     $nominalBayarLain       = 0;
+
+    $data_uang_spp        = 0;
+    $data_uang_pangkal    = 0;
+    $data_uang_kegiatan   = 0;
+    $data_uang_buku       = 0;
+    $data_uang_seragam    = 0;
+    $data_uang_registrasi = 0;
+    $data_uang_lain       = 0;
+
+    $data_ket_spp         = NULL;
+    $data_ket_pangkal     = NULL;
+    $data_ket_kegiatan    = NULL;
+    $data_ket_buku        = NULL;
+    $data_ket_seragam     = NULL;
+    $data_ket_registrasi  = NULL;
+    $data_ket_lain        = NULL;
 
     $ketPembayaranSPP           = NULL;
     $ketPembayaranPangkal       = NULL;
@@ -92,6 +116,8 @@
     $pageActive = 0;
 
     $currentPage        = 0;
+
+    $timeIsOut  = 0;
 
     $queryNamaInputer  = "SELECT username FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ";
     $getNamaInputer    = mysqli_fetch_assoc(mysqli_query($con, $queryNamaInputer))['username'];
@@ -387,6 +413,122 @@
             $nominalBayar       = $_POST['nominal_bayar'];
             $ketPembayaran      = $_POST['ket_pembayaran'];
             $pembayaranVIA      = $_POST['tipe_transaksi'];
+
+            $isifilby = $typeFilter;
+
+        }
+        // AKhir DATA PEMBAYARAN
+
+    }
+
+    // Jika Ada Tombol Tambah Data di filter edit di klik
+    elseif (isset($_POST['tambah_data'])) {
+
+        $id_siswa   = $_POST['id_siswa'];
+        $nis        = $_POST['nis_siswa'];
+        $namaSiswa  = $_POST['nama_siswa'];
+        $kelas      = $_POST['kelas_siswa'];
+        $panggilan  = $_POST['panggilan_siswa'];
+
+        $queryUangSPP       = "";
+        $ketUangSPP         = "";
+
+        $queryUangPangkal   = "";
+        $ketUangPangkal     = "";
+
+        $queryUangKegiatan  = "";
+        $ketUangKegiatan    = "";
+
+        $queryUangBuku      = "";
+        $ketUangBuku        = "";
+
+        $queryUangSeragam   = "";
+        $ketUangSeragam     = "";
+
+        $queryUangRegis     = "";
+        $ketUangRegis       = "";
+
+        $queryUangLain      = "";
+        $ketUangLain        = "";
+
+        $typeFilter         = $_POST['isi_filter'];
+        $idInvoice          = "";
+        $tglPembayaran      = "";
+        $pembayaranBulan    = "";
+        $nominalBayar       = "";
+        $ketPembayaran      = "";
+        $pembayaranVIA      = "";
+
+        $currentPage        = $_POST['currentPage'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        // DATA PEMBAYARAN
+        if ($typeFilter == 'SPP' || $typeFilter == 'PANGKAL' || $typeFilter == 'KEGIATAN' || $typeFilter == 'BUKU' || $typeFilter == 'SERAGAM' || $typeFilter == 'REGISTRASI' || $typeFilter == 'LAIN') {
+
+            $setSesiFormEdit    = 2;
+
+            $idInvoice          = $_POST['id_invoice'];
+            $tglPembayaran      = $_POST['tgl_bukti_pembayaran'];
+            $tglPembayaran      = str_replace([" 00:00:00"], "", $tglPembayaran);
+
+            $pembayaranBulan    = substr($_POST['pembayaran_bulan'], 0, -5);
+            $tahunBayar         = substr($_POST['pembayaran_bulan'], -4);
+            $nominalBayar       = $_POST['nominal_bayar'];
+            $ketPembayaran      = $_POST['ket_pembayaran'];
+            $pembayaranVIA      = $_POST['tipe_transaksi'];
+
+            if ($_SESSION['c_accounting'] == 'accounting1') {
+
+                $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SPP'];
+                $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SPP_txt'];
+
+                $queryUangPangkal   = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['PANGKAL'];
+                $ketUangPangkal     = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['PANGKAL_txt'];
+
+                $queryUangKegiatan  = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['KEGIATAN'];
+                $ketUangKegiatan    = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['KEGIATAN_txt'];
+
+                $queryUangBuku      = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['BUKU'];
+                $ketUangBuku        = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['BUKU_txt'];
+
+                $queryUangSeragam   = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SERAGAM'];
+                $ketUangSeragam     = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SERAGAM_txt'];
+
+                $queryUangRegis     = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['REGISTRASI'];
+                $ketUangRegis       = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['REGISTRASI_txt'];
+
+                $queryUangLain      = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['LAIN'];
+                $ketUangLain        = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['LAIN_txt'];
+
+            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+                $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_tk_lama WHERE ID = '$idInvoice'"))['SPP'];
+                $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['SPP_txt'];
+
+                $queryUangPangkal   = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['PANGKAL'];
+                $ketUangPangkal     = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['PANGKAL_txt'];
+
+                $queryUangKegiatan  = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['KEGIATAN'];
+                $ketUangKegiatan    = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['KEGIATAN_txt'];
+
+                $queryUangBuku      = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['BUKU'];
+                $ketUangBuku        = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['BUKU_txt'];
+
+                $queryUangSeragam   = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['SERAGAM'];
+                $ketUangSeragam     = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['SERAGAM_txt'];
+
+                $queryUangRegis     = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['REGISTRASI'];
+                $ketUangRegis       = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['REGISTRASI_txt'];
+
+                $queryUangLain      = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['LAIN'];
+                $ketUangLain        = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['LAIN_txt'];
+
+            }
 
             $isifilby = $typeFilter;
 
@@ -7050,6 +7192,234 @@
 
     }
     // Akhir Tombol Kembali
+
+    // Jika Ada Tombol simpan_tambah_edit
+    elseif (isset($_POST['simpan_tambah_edit'])) {
+
+        $id         = $_POST['data_id_siswa'];
+        $nis        = $_POST['data_nis_siswa'];
+        $namaSiswa  = $_POST['data_nama_siswa'];
+        $kelas      = $_POST['data_kelas_siswa'];
+        $panggilan  = $_POST['data_panggilan_siswa'];
+
+        $idInvoice       = $_POST['idInvoice'];
+        $currentFilter   = $_POST['currentFilter'];
+        $typeFilter      = htmlspecialchars($_POST['isi_filter_edit']);
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
+        $typeFilter      = htmlspecialchars($_POST['isi_filter_edit']);
+
+        $halamanAktif    = $_POST['currentPage'];
+        $currentFilter   = $_POST['currentFilter'];
+
+        $data_uang_spp   = str_replace(["Rp. ", "Rp ", "."], "", $_POST['nominal_spp_edit']);
+        $data_ket_spp    = htmlspecialchars($_POST['ket_uang_spp_edit']);
+        if ($data_ket_spp == '') {
+            $data_ket_spp = NULL;
+        } else if ($data_ket_spp != '') {
+            $data_ket_spp       = htmlspecialchars($_POST['ket_uang_spp_edit']);
+            // echo $data_ket_spp . " ";
+        }
+
+        $data_uang_pangkal      = str_replace(["Rp. ", "Rp ", "."], "", $_POST['nominal_pangkal_edit']);
+        $data_ket_pangkal       = htmlspecialchars($_POST['ket_uang_pangkal_edit']);
+        if ($data_ket_pangkal == '') {
+            $data_ket_pangkal = null;
+        } else if ($data_ket_pangkal != '') {
+            $data_ket_pangkal       = htmlspecialchars($_POST['ket_uang_pangkal_edit']);
+            // echo $data_ket_pangkal . " ";
+        }
+
+        $data_uang_kegiatan     = str_replace(["Rp. ", "Rp ", "."], "", $_POST['nominal_kegiatan_edit']);
+        $data_ket_kegiatan      = htmlspecialchars($_POST['ket_uang_kegiatan_edit']);
+        if ($data_ket_kegiatan == '') {
+            $data_ket_kegiatan = null;
+        } else if ($data_ket_kegiatan != '') {
+            $data_ket_kegiatan       = htmlspecialchars($_POST['ket_uang_kegiatan_edit']);
+            // echo $data_ket_kegiatan . " ";
+        }
+
+        $data_uang_buku         = str_replace(["Rp. ", "Rp ", "."], "", $_POST['nominal_buku_edit']);
+        $data_ket_buku          = htmlspecialchars($_POST['ket_uang_buku_edit']);
+        if ($data_ket_buku == '') {
+            $data_ket_buku = null;
+        } else if ($data_ket_buku != '') {
+            $data_ket_buku       = htmlspecialchars($_POST['ket_uang_buku_edit']);
+            // echo $data_ket_buku . " ";
+        }
+
+        $data_uang_seragam      = str_replace(["Rp. ", "Rp ", "."], "", $_POST['nominal_seragam_edit']);
+        $data_ket_seragam       = htmlspecialchars($_POST['ket_uang_seragam_edit']);
+        if ($data_ket_seragam == '') {
+            $data_ket_seragam = null;
+        } else if ($data_ket_seragam != '') {
+            $data_ket_seragam       = htmlspecialchars($_POST['ket_uang_seragam_edit']);
+            // echo $data_ket_seragam . " ";
+        }
+
+        $data_uang_registrasi   = str_replace(["Rp. ", "Rp ", "."], "", $_POST['nominal_regis_edit']);
+        $data_ket_registrasi    = htmlspecialchars($_POST['ket_uang_regis_edit']);
+        if ($data_ket_registrasi == '') {
+            $data_ket_registrasi = null;
+        } else if ($data_ket_registrasi != '') {
+            $data_ket_registrasi       = htmlspecialchars($_POST['ket_uang_regis_edit']);
+            // echo $data_ket_registrasi . " ";
+        }
+
+        $data_uang_lain         = str_replace(["Rp. ", "Rp ", "."], "", $_POST['nominal_lain_edit']);
+        $data_ket_lain          = htmlspecialchars($_POST['ket_uang_lain2_edit']);
+        if ($data_ket_lain == '') {
+            $data_ket_lain = null;
+        } else if ($data_ket_lain != '') {
+            $data_ket_lain       = htmlspecialchars($_POST['ket_uang_lain2_edit']);
+            // echo $data_ket_lain;
+        }
+
+        $data_stamp         = date("Y-m-d H:i:s");
+
+        $dataIDInvoice = "";
+
+        if ($_SESSION['c_accounting'] == 'accounting1') {
+
+            // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
+            if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+                $_SESSION['form_success'] = "session_time_out";
+                $timeIsOut = 1;
+                // exit;
+
+            } else {
+
+                if ($currentFilter == 'SPP') {
+
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        echo $dariTanggal;
+                        $setSesiPageFilterBy = 8;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        echo "bawah";exit;
+                        $setSesiPageFilterBy = 1;
+                    }
+
+                    $isifilby = $currentFilter;
+
+                } elseif ($currentFilter == 'PANGKAL') {
+
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        echo $dariTanggal;
+                        $setSesiPageFilterBy = 9;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        echo "bawah";exit;
+                        $setSesiPageFilterBy = 2;
+                    }
+
+                    $isifilby = $currentFilter;
+
+                } elseif ($currentFilter == 'KEGIATAN') {
+                    
+
+
+                }
+
+                // Update Data 
+                $queryUpdate = "
+                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                    SET 
+                    `SPP`='$data_uang_spp',
+                    `SPP_txt`='$data_ket_spp',
+                    `PANGKAL`='$data_uang_pangkal',
+                    `PANGKAL_txt`='$data_ket_pangkal',
+                    `KEGIATAN`='$data_uang_kegiatan', 
+                    `KEGIATAN_txt`='$data_ket_kegiatan',
+                    `BUKU`='$data_uang_buku',
+                    `BUKU_txt`='$data_ket_buku',
+                    `SERAGAM`='$data_uang_seragam',
+                    `SERAGAM_txt`='$data_ket_seragam',
+                    `REGISTRASI`='$data_uang_registrasi',
+                    `REGISTRASI_txt`='$data_ket_registrasi',
+                    `LAIN`='$data_uang_lain',
+                    `LAIN_txt`='$data_ket_lain',
+                    `STAMP`='$data_stamp'
+                    WHERE  `ID`= '$idInvoice'
+                ";
+
+                mysqli_query($con, $queryUpdate);
+
+                $iniScrollBackSave = 'ada';
+
+            }
+
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+            if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+                $_SESSION['form_success'] = "session_time_out";
+                $timeIsOut = 1;
+                // exit;
+
+            } else {
+
+                if ($currentFilter == 'SPP') {
+
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 8;
+                        // echo $idInvoice . " " . $data_uang_buku;exit;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 1;
+                    }
+
+                    $isifilby = $currentFilter;
+
+                } elseif ($currentFilter == 'PANGKAL') {
+
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        echo $dariTanggal;
+                        $setSesiPageFilterBy = 9;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        echo "bawah";exit;
+                        $setSesiPageFilterBy = 2;
+                    }
+
+                    $isifilby = $currentFilter;
+
+                }
+
+                // Update Data 
+                $queryUpdate = "
+                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                    SET 
+                    `SPP`='$data_uang_spp',
+                    `SPP_txt`='$data_ket_spp',
+                    `PANGKAL`='$data_uang_pangkal',
+                    `PANGKAL_txt`='$data_ket_pangkal',
+                    `KEGIATAN`='$data_uang_kegiatan', 
+                    `KEGIATAN_txt`='$data_ket_kegiatan',
+                    `BUKU`='$data_uang_buku',
+                    `BUKU_txt`='$data_ket_buku',
+                    `SERAGAM`='$data_uang_seragam',
+                    `SERAGAM_txt`='$data_ket_seragam',
+                    `REGISTRASI`='$data_uang_registrasi',
+                    `REGISTRASI_txt`='$data_ket_registrasi',
+                    `LAIN`='$data_uang_lain',
+                    `LAIN_txt`='$data_ket_lain',
+                    `STAMP`='$data_stamp'
+                    WHERE  `ID`= '$idInvoice'
+                ";
+
+                mysqli_query($con, $queryUpdate);
+
+                $iniScrollBackSave = 'ada';
+
+            }
+
+        }
+
+    }
+    // Akhir Bagian Tombol simpan_tambah_edit
 
     // Bagian Pagination
 
@@ -14701,6 +15071,13 @@
               </div>
             <?php } ?>
 
+            <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'session_time_out'){?>
+              <div style="display: none;" class="alert alert-danger alert-dismissable"> Waktu Sesi Telah Habis
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <?php unset($_SESSION['form_success']); ?>
+              </div>
+            <?php } ?>
+
             <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'data_update'){?>
               <div style="display: none;" class="alert alert-warning alert-dismissable"> Data Berhasil Di Update
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -14719,7 +15096,13 @@
     </div>
 
     <!-- Jika Sesi Form Edit Bukan 0 Maka Muncul Form Edit Data -->
-    <?php if ($setSesiFormEdit != 0): ?>
+    <?php if ($setSesiFormEdit == 1): ?>
+
+        <?php  
+
+            $setSesiJsFormatRupiah = 1;
+
+        ?>
 
         <div class="box box-info">
 
@@ -14917,6 +15300,1075 @@
 
                 </div>
                 
+            </form>
+
+        </div>
+
+    <?php elseif($setSesiFormEdit == 2): ?>
+
+        <?php  
+
+            $setSesiJsFormatRupiah = 2;
+
+        ?>
+
+        <div class="box box-info">
+
+            <form action="<?= $baseac; ?>editdata" method="POST">
+
+                <div class="box-header with-border">
+                    <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Form Edit Data Pembayaran </h3>
+                </div>
+
+                <div class="box-body">
+                    
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label>INVOICE</label>
+                                <input type="text" readonly="" class="form-control" id="idInvoice" value="<?= $idInvoice; ?>" name="idInvoice" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label>NIS</label>
+                                <input type="text" class="form-control" id="nis_siswa" name="nis_siswa" value="<?= $nis; ?>" readonly="" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>NAMA</label>
+                                <input type="text" class="form-control" id="nama_siswa" readonly="" value="<?= $namaSiswa; ?>" name="nama_siswa" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>PANGGILAN</label>
+                                <input type="text" class="form-control" id="panggilan_siswa" readonly="" value="<?= $panggilan; ?>" name="panggilan_siswa" />
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label>Kelas</label>
+                                <input type="text" class="form-control" readonly="" id="kelas_siswa" value="<?= $kelas; ?>" name="kelas_siswa" />
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label>TANGGAL PEMBAYARAN</label>
+                                <input type="text" class="form-control" readonly="" name="tanggal_bukti_tf" value="<?= str_replace([' 00:00:00'], "", tglIndo($tglPembayaran)); ?>" id="tanggal_bukti_tf">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label>BULAN PEMBAYARAN</label>
+                                <input type="text" class="form-control" readonly="" name="pembayaranBulan" value="<?= $pembayaranBulan; ?>" id="pembayaranBulan">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label>TAHUN</label>
+                                <input type="text" name="isi_tahun" readonly="" id="isi_tahun" value="<?= $tahunBayar; ?>" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label>TX</label>
+                                <input type="text" name="tx" readonly="" id="tx" value="<?= $pembayaranVIA; ?>" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="flex-containers">
+
+                    <div>
+
+                        <?php if ($typeFilter == 'SPP'): ?>
+                            
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 215px;"> UANG SPP </label>
+                                    <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" value="<?= rupiahFormatInput($queryUangSPP); ?>" readonly>
+
+                                    <?php if ($ketUangSPP == NULL): ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                    <?php endif ?>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 175px;"> UANG PANGKAL </label>
+
+                                    <?php if ($queryUangPangkal == 0): ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" class="uang_pangkal" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" readonly="" class="uang_pangkal" value="<?= rupiahFormatInput($queryUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+                                    <?php if ($ketUangPangkal == NULL): ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+
+                                    <?php if ($queryUangKegiatan == 0): ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" name="nominal_kegiatan_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" readonly="" name="nominal_kegiatan_edit" value="<?= rupiahFormatInput($queryUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangKegiatan == NULL): ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 204px;"> UANG BUKU </label>
+
+                                    <?php if ($queryUangBuku == 0): ?>
+                                        <input type="text" id="rupiah_buku_edit" name="nominal_buku_edit" class="uang_buku" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangBuku == NULL): ?>
+                                        <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 172px;"> UANG SERAGAM </label>
+
+                                    <?php if ($queryUangSeragam == 0): ?>
+                                        <input type="text" id="rupiah_seragam_edit" name="nominal_seragam_edit" class="uang_seragam" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_seragam_edit" readonly="" name="nominal_seragam_edit" class="uang_seragam" value="<?= rupiahFormatInput($queryUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSeragam == NULL): ?>
+                                        <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+
+                                    <?php if ($queryUangRegis == 0): ?>
+                                        <input type="text" id="rupiah_regis_edit" name="nominal_regis_edit" class="uang_regis" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_regis_edit" readonly="" name="nominal_regis_edit" readonly="" class="uang_regis" value="<?= rupiahFormatInput($queryUangRegis); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangRegis == NULL): ?>
+                                        <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+
+                                    <?php if ($queryUangLain == 0): ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" class="lain2" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" readonly="" class="lain2" value="<?= rupiahFormatInput($queryUangLain); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangLain == NULL): ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        <?php elseif($typeFilter == 'PANGKAL'): ?>
+                            
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 215px;"> UANG SPP </label>
+
+                                    <?php if ($queryUangSPP == 0): ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" readonly="" value="<?= rupiahFormatInput($queryUangSPP); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSPP == NULL): ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 175px;"> UANG PANGKAL </label>
+
+                                    <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" readonly="" class="uang_pangkal" value="<?= rupiahFormatInput($queryUangPangkal); ?>">
+
+                                    <?php if ($ketUangPangkal == null): ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+
+                                    <?php if ($queryUangKegiatan == 0): ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" name="nominal_kegiatan_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" readonly="" name="nominal_kegiatan_edit" value="<?= rupiahFormatInput($queryUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangKegiatan == NULL): ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 204px;"> UANG BUKU </label>
+
+                                    <?php if ($queryUangBuku == 0): ?>
+                                        <input type="text" id="rupiah_buku_edit" name="nominal_buku_edit" class="uang_buku" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangBuku == NULL): ?>
+                                        <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 172px;"> UANG SERAGAM </label>
+
+                                    <?php if ($queryUangSeragam == 0): ?>
+                                        <input type="text" id="rupiah_seragam_edit" name="nominal_seragam_edit" class="uang_seragam" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_seragam_edit" readonly="" name="nominal_seragam_edit" class="uang_seragam" value="<?= rupiahFormatInput($queryUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSeragam == NULL): ?>
+                                        <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+
+                                    <?php if ($queryUangRegis == 0): ?>
+                                        <input type="text" id="rupiah_regis_edit" name="nominal_regis_edit" class="uang_regis" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_regis_edit" readonly="" name="nominal_regis_edit" readonly="" class="uang_regis" value="<?= rupiahFormatInput($queryUangRegis); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangRegis == NULL): ?>
+                                        <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+
+                                    <?php if ($queryUangLain == 0): ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" class="lain2" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" readonly="" class="lain2" value="<?= rupiahFormatInput($queryUangLain); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangLain == NULL): ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        <?php elseif($typeFilter == 'KEGIATAN'): ?>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 215px;"> UANG SPP </label>
+
+                                    <?php if ($queryUangSPP == 0): ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" readonly="" value="<?= rupiahFormatInput($queryUangSPP); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSPP == NULL): ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 175px;"> UANG PANGKAL </label>
+
+                                    <?php if ($queryUangPangkal == 0): ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" class="uang_pangkal" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" readonly="" class="uang_pangkal" value="<?= rupiahFormatInput($queryUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+                                    <?php if ($ketUangPangkal == NULL): ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+
+                                    <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" readonly="" name="nominal_kegiatan_edit" value="<?= rupiahFormatInput($queryUangKegiatan); ?>">
+
+                                    <?php if ($ketUangKegiatan == NULL): ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 204px;"> UANG BUKU </label>
+
+                                    <?php if ($queryUangBuku == 0): ?>
+                                        <input type="text" id="rupiah_buku_edit" name="nominal_buku_edit" class="uang_buku" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangBuku == NULL): ?>
+                                        <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 172px;"> UANG SERAGAM </label>
+
+                                    <?php if ($queryUangSeragam == 0): ?>
+                                        <input type="text" id="rupiah_seragam_edit" name="nominal_seragam_edit" class="uang_seragam" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_seragam_edit" readonly="" name="nominal_seragam_edit" class="uang_seragam" value="<?= rupiahFormatInput($queryUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSeragam == NULL): ?>
+                                        <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+
+                                    <?php if ($queryUangRegis == 0): ?>
+                                        <input type="text" id="rupiah_regis_edit" name="nominal_regis_edit" class="uang_regis" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_regis_edit" readonly="" name="nominal_regis_edit" readonly="" class="uang_regis" value="<?= rupiahFormatInput($queryUangRegis); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangRegis == NULL): ?>
+                                        <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+
+                                    <?php if ($queryUangLain == 0): ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" class="lain2" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" readonly="" class="lain2" value="<?= rupiahFormatInput($queryUangLain); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangLain == NULL): ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        <?php elseif($typeFilter == 'BUKU'): ?>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 215px;"> UANG SPP </label>
+
+                                    <?php if ($queryUangSPP == 0): ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" readonly="" value="<?= rupiahFormatInput($queryUangSPP); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSPP == NULL): ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 175px;"> UANG PANGKAL </label>
+
+                                    <?php if ($queryUangPangkal == 0): ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" class="uang_pangkal" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" readonly="" class="uang_pangkal" value="<?= rupiahFormatInput($queryUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+                                    <?php if ($ketUangPangkal == NULL): ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+
+                                    <?php if ($queryUangKegiatan == 0): ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" name="nominal_kegiatan_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" readonly="" name="nominal_kegiatan_edit" value="<?= rupiahFormatInput($queryUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangKegiatan == NULL): ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 204px;"> UANG BUKU </label>
+
+                                    <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
+
+                                    <?php if ($ketUangBuku == NULL): ?>
+                                        <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 172px;"> UANG SERAGAM </label>
+
+                                    <?php if ($queryUangSeragam == 0): ?>
+                                        <input type="text" id="rupiah_seragam_edit" name="nominal_seragam_edit" class="uang_seragam" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_seragam_edit" readonly="" name="nominal_seragam_edit" class="uang_seragam" value="<?= rupiahFormatInput($queryUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSeragam == NULL): ?>
+                                        <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+
+                                    <?php if ($queryUangRegis == 0): ?>
+                                        <input type="text" id="rupiah_regis_edit" name="nominal_regis_edit" class="uang_regis" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_regis_edit" readonly="" name="nominal_regis_edit" readonly="" class="uang_regis" value="<?= rupiahFormatInput($queryUangRegis); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangRegis == NULL): ?>
+                                        <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+
+                                    <?php if ($queryUangLain == 0): ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" class="lain2" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" readonly="" class="lain2" value="<?= rupiahFormatInput($queryUangLain); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangLain == NULL): ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        <?php elseif($typeFilter == 'SERAGAM'): ?>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 215px;"> UANG SPP </label>
+
+                                    <?php if ($queryUangSPP == 0): ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" readonly="" value="<?= rupiahFormatInput($queryUangSPP); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSPP == NULL): ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 175px;"> UANG PANGKAL </label>
+
+                                    <?php if ($queryUangPangkal == 0): ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" class="uang_pangkal" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" readonly="" class="uang_pangkal" value="<?= rupiahFormatInput($queryUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+                                    <?php if ($ketUangPangkal == NULL): ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+
+                                    <?php if ($queryUangKegiatan == 0): ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" name="nominal_kegiatan_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" readonly="" name="nominal_kegiatan_edit" value="<?= rupiahFormatInput($queryUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangKegiatan == NULL): ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 204px;"> UANG BUKU </label>
+
+                                    <?php if ($queryUangBuku == 0): ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangBuku == NULL): ?>
+                                        <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 172px;"> UANG SERAGAM </label>
+
+                                    <input type="text" id="rupiah_seragam_edit" readonly="" name="nominal_seragam_edit" class="uang_seragam" value="<?= rupiahFormatInput($queryUangSeragam); ?>">
+
+                                    <?php if ($ketUangSeragam == NULL): ?>
+                                        <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+
+                                    <?php if ($queryUangRegis == 0): ?>
+                                        <input type="text" id="rupiah_regis_edit" name="nominal_regis_edit" class="uang_regis" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_regis_edit" readonly="" name="nominal_regis_edit" readonly="" class="uang_regis" value="<?= rupiahFormatInput($queryUangRegis); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangRegis == NULL): ?>
+                                        <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+
+                                    <?php if ($queryUangLain == 0): ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" class="lain2" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" readonly="" class="lain2" value="<?= rupiahFormatInput($queryUangLain); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangLain == NULL): ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        <?php elseif($typeFilter == 'REGISTRASI'): ?>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 215px;"> UANG SPP </label>
+
+                                    <?php if ($queryUangSPP == 0): ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" readonly="" value="<?= rupiahFormatInput($queryUangSPP); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSPP == NULL): ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 175px;"> UANG PANGKAL </label>
+
+                                    <?php if ($queryUangPangkal == 0): ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" class="uang_pangkal" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" readonly="" class="uang_pangkal" value="<?= rupiahFormatInput($queryUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+                                    <?php if ($ketUangPangkal == NULL): ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+
+                                    <?php if ($queryUangKegiatan == 0): ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" name="nominal_kegiatan_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" readonly="" name="nominal_kegiatan_edit" value="<?= rupiahFormatInput($queryUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangKegiatan == NULL): ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 204px;"> UANG BUKU </label>
+
+                                    <?php if ($queryUangBuku == 0): ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangBuku == NULL): ?>
+                                        <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 172px;"> UANG SERAGAM </label>
+
+                                    <?php if ($queryUangSeragam == 0): ?>
+                                        <input type="text" id="rupiah_seragam_edit" name="nominal_seragam_edit" class="uang_seragam" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_seragam_edit" readonly="" name="nominal_seragam_edit" class="uang_seragam" value="<?= rupiahFormatInput($queryUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSeragam == NULL): ?>
+                                        <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+
+                                    <input type="text" id="rupiah_regis_edit" readonly="" name="nominal_regis_edit" readonly="" class="uang_regis" value="<?= rupiahFormatInput($queryUangRegis); ?>">
+
+                                    <?php if ($ketUangRegis == NULL): ?>
+                                        <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+
+                                    <?php if ($queryUangLain == 0): ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" class="lain2" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" readonly="" class="lain2" value="<?= rupiahFormatInput($queryUangLain); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangLain == NULL): ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        <?php elseif($typeFilter == 'LAIN'): ?>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 215px;"> UANG SPP </label>
+
+                                    <?php if ($queryUangSPP == 0): ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_spp_edit" class="uang_spp" name="nominal_spp_edit" readonly="" value="<?= rupiahFormatInput($queryUangSPP); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSPP == NULL): ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 175px;"> UANG PANGKAL </label>
+
+                                    <?php if ($queryUangPangkal == 0): ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" class="uang_pangkal" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_pangkal_edit" name="nominal_pangkal_edit" readonly="" class="uang_pangkal" value="<?= rupiahFormatInput($queryUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+                                    <?php if ($ketUangPangkal == NULL): ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                    <?php endif ?>
+                                    
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+
+                                    <?php if ($queryUangKegiatan == 0): ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" name="nominal_kegiatan_edit" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_kegiatan_edit" class="uang_kegiatan" readonly="" name="nominal_kegiatan_edit" value="<?= rupiahFormatInput($queryUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangKegiatan == NULL): ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 204px;"> UANG BUKU </label>
+
+                                    <?php if ($queryUangBuku == 0): ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangBuku == NULL): ?>
+                                        <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 172px;"> UANG SERAGAM </label>
+
+                                    <?php if ($queryUangSeragam == 0): ?>
+                                        <input type="text" id="rupiah_seragam_edit" name="nominal_seragam_edit" class="uang_seragam" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_seragam_edit" readonly="" name="nominal_seragam_edit" class="uang_seragam" value="<?= rupiahFormatInput($queryUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangSeragam == NULL): ?>
+                                        <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+
+                                    <?php if ($queryUangRegis == 0): ?>
+                                        <input type="text" id="rupiah_regis_edit" name="nominal_regis_edit" class="uang_regis" value="0">
+                                    <?php else: ?>
+                                        <input type="text" id="rupiah_regis_edit" readonly="" name="nominal_regis_edit" readonly="" class="uang_regis" value="<?= rupiahFormatInput($queryUangRegis); ?>">
+                                    <?php endif ?>
+
+                                    <?php if ($ketUangRegis == NULL): ?>
+                                        <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group" style="margin-left: 15px;">
+                                    <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+
+                                    <input type="text" id="rupiah_lain_edit" name="nominal_lain_edit" readonly="" class="lain2" value="<?= rupiahFormatInput($queryUangLain); ?>">
+
+                                    <?php if ($ketUangLain == NULL): ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
+                                    <?php else: ?>
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                    <?php endif ?>
+
+                                </div>
+                            </div>
+
+                        <?php endif ?>
+
+                        <div class="tombol">
+
+                            <div class="form-group">
+
+                                <label style="color: white;"> </label>
+
+                                <input type="hidden" name="data_id_siswa" value="<?= $id_siswa; ?>">
+                                <input type="hidden" name="data_nis_siswa" value="<?= $nis; ?>">
+                                <input type="hidden" name="data_nama_siswa" value="<?= $namaSiswa; ?>">
+                                <input type="hidden" name="data_kelas_siswa" value="<?= $kelas; ?>">
+                                <input type="hidden" name="data_panggilan_siswa" value="<?= $panggilan; ?>">
+                                
+                                <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
+                                <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
+
+                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="isi_filter_edit" value="<?= $typeFilter; ?>">
+
+                                <button id="save_record" type="submit" name="simpan_tambah_edit" class="form-control btn-success"> <span class="glyphicon glyphicon-floppy-disk"> </span> Simpan </button>
+                            
+                            </div>
+
+                            <div class="form-group">
+                                
+                                <label style="color: white;"> </label>
+
+                                <input type="hidden" name="data_id_siswa" value="<?= $id_siswa; ?>">
+                                <input type="hidden" name="data_nis_siswa" value="<?= $nis; ?>">
+                                <input type="hidden" name="data_nama_siswa" value="<?= $namaSiswa; ?>">
+                                <input type="hidden" name="data_kelas_siswa" value="<?= $kelas; ?>">
+                                <input type="hidden" name="data_panggilan_siswa" value="<?= $panggilan; ?>">
+                                
+                                <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
+                                <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
+
+                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="isi_filter_edit" value="<?= $typeFilter; ?>">
+
+                                <button id="kembali_ke" type="submit" name="back_to_page" class="form-control btn-primary"> <span class="glyphicon glyphicon-log-out" id="cancel"> </span> Kembali </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </form>
 
         </div>
@@ -15227,6 +16679,19 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
+        let timeIsOut = `<?= $timeIsOut; ?>`
+
+        if (timeIsOut == 1) {
+
+            const myTimeout = setTimeout(clearSession, 1000);
+
+        }
+
+        function clearSession() {
+            alert('Sessi Habis')
+            document.location.href = `<?= $base; ?>`
+        }
+
 		$("#list_spp").click();
 	    $("#edit_data").css({
 	        "background-color" : "#ccc",
@@ -15248,6 +16713,8 @@
         let scrollLastPage        = `<?= $iniScrollLastPage; ?>`
         let scrollBackSave        = `<?= $iniScrollBackSave; ?>`
         let scrollBackPage        = `<?= $iniScrollBackPage; ?>`
+
+        let setSesiJsFormatRupiah = `<?= $setSesiJsFormatRupiah; ?>`
 
         if (scrollNextPage == 'ada') {
             // window.scrollTo(0, document.body.scrollHeight);
@@ -15304,16 +16771,79 @@
             });
         }
 
+        if (setSesiJsFormatRupiah == 1) {
+
+            let nominalBayar  = document.getElementById('nominalBayar')
+
+            nominalBayar.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                nominalBayar.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+        } else if (setSesiJsFormatRupiah == 2) {
+            /* Format Rupiah SPP */
+            let rupiah_spp_edit        = document.getElementById('rupiah_spp_edit');
+            let rupiah_pangkal_edit    = document.getElementById('rupiah_pangkal_edit');
+            let rupiah_kegiatan_edit   = document.getElementById('rupiah_kegiatan_edit');
+            let rupiah_buku_edit       = document.getElementById('rupiah_buku_edit');
+            let rupiah_seragam_edit    = document.getElementById('rupiah_seragam_edit');
+            let rupiah_regis_edit      = document.getElementById('rupiah_regis_edit');
+            let rupiah_lain_edit       = document.getElementById('rupiah_lain_edit');
+
+            rupiah_spp_edit.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                rupiah_spp_edit.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+            rupiah_pangkal_edit.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                rupiah_pangkal_edit.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+            rupiah_kegiatan_edit.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                rupiah_kegiatan_edit.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+            rupiah_buku_edit.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                rupiah_buku_edit.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+            rupiah_seragam_edit.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                rupiah_seragam_edit.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+            rupiah_regis_edit.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                rupiah_regis_edit.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+            rupiah_lain_edit.addEventListener('keyup', function(e){
+                // tambahkan 'Rp.' pada saat form di ketik
+                // alert("ok")
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                rupiah_lain_edit.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+        }
+
 	})
-
-    let nominalBayar  = document.getElementById('nominalBayar')
-
-    nominalBayar.addEventListener('keyup', function(e){
-        // tambahkan 'Rp.' pada saat form di ketik
-        // alert("ok")
-        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-        nominalBayar.value = formatRupiah(this.value, 'Rp. ');
-    });
 
 	function OpenCarisiswaModal(){
         $('#modalEditData').modal("show");

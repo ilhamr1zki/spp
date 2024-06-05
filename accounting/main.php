@@ -121,8 +121,6 @@
 
   <!-- Pace style -->
   <link rel="stylesheet" href="<?php echo $base; ?>theme/plugins/pace/pace.min.css">
-
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   
   <!-- datetime -->
   <link href="<?php echo $base; ?>theme/datetime/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -304,7 +302,19 @@
       justify-content: center;
     }
 
+    .flex_container_edit {
+      display: flex;
+      justify-content: center;
+    }
+
     .flex-container > div {
+      border: 1px solid black;
+      margin: 10px;
+      width: 50%;
+      padding: 20px;
+    }
+
+    .flex_container_edit > div {
       border: 1px solid black;
       margin: 10px;
       width: 50%;
@@ -466,6 +476,7 @@
         flex-direction: column;
         margin-right: 50px;
         margin-top: 20px;
+        gap: 0px;
       }
 
       .ket_uang_spp, 
@@ -487,7 +498,12 @@
         margin-left: 29px;
       }
 
-      #cek_pembayaran {
+      #save_record {
+        width: 100%;
+        margin-left: 29px;
+      }
+
+      #cek_pembayaran, #kembali_ke {
         width: 100%;
         margin-left: 29px;
       }
@@ -524,7 +540,23 @@
         align-items: center;
       }
 
+      .flex_container_edit {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
       .flex-container > div {
+        background-color: #f1f1f1;
+        border: 1px solid black;
+        margin: 10px;
+        width: 100%;
+        padding: 20px;
+      }
+
+      .flex_container_edit > div {
         background-color: #f1f1f1;
         border: 1px solid black;
         margin: 10px;
@@ -957,8 +989,6 @@ oncontextmenu="return false">
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 <!-- Select2 -->
 <script src="<?php echo $base; ?>theme/plugins/select2/select2.full.min.js"></script>
 <script>
@@ -976,6 +1006,14 @@ oncontextmenu="return false">
   $(function () {
     //Initialize Select2 Elements
     $("#select4").select2();
+  });
+  $(function () {
+    //Initialize Select2 Elements
+    $("#js-example-basic-multiple").select2();
+    $('#js-example-basic-multiple').on('select2:select', function (e) {
+      var data = e.params.data;
+      alertflex-containers(data);
+    });
   });
 </script>
 <script>

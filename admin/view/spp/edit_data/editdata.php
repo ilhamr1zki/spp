@@ -3701,7 +3701,7 @@
                 if ($pembayaranVIA == 'kosong') {
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                        UPDATE `u415776667_spp`.`input_data_sd` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -3726,7 +3726,7 @@
                     ";
 
                     $queryUpdate2 = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                        UPDATE `u415776667_spp`.`input_data_tk` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -3753,7 +3753,7 @@
                 } elseif ($pembayaranVIA != 'kosong') {
 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                        UPDATE `u415776667_spp`.`input_data_sd` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -3778,7 +3778,7 @@
                     ";
 
                     $queryUpdate2 = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                        UPDATE `u415776667_spp`.`input_data_tk` 
                         SET 
                         `DATE`='$tglPembayaranDB', 
                         `BULAN`='$pembayaranBulanDB', 
@@ -4146,7 +4146,7 @@
                                 PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
                                 BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
                                 REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-                                FROM input_data_sd_lama1
+                                FROM input_data_sd
                                 WHERE 
                                 NIS = '$nis'
 
@@ -4158,7 +4158,7 @@
                                 PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
                                 BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
                                 REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-                                FROM input_data_tk_lama
+                                FROM input_data_tk
                                 WHERE 
                                 NIS = '$nis'
                                 ORDER BY ID DESC
@@ -4196,7 +4196,7 @@
                                 PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
                                 BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
                                 REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-                                FROM input_data_sd_lama1
+                                FROM input_data_sd
                                 WHERE 
                                 NIS = '$nis'
                                 
@@ -4209,7 +4209,7 @@
                                 PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
                                 BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
                                 REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-                                FROM input_data_tk_lama
+                                FROM input_data_tk
                                 WHERE 
                                 NIS = '$nis'
                                 ORDER BY ID DESC
@@ -4264,10 +4264,10 @@
         $tanggalSampai;
 
         // Jika Data Merupakan Jenjang SD
-        mysqli_query($con, "DELETE FROM input_data_sd_lama1 WHERE ID = '$_POST[idinvoice]' ");
+        mysqli_query($con, "DELETE FROM input_data_sd WHERE ID = '$_POST[idinvoice]' ");
 
         // Jika Data Merupakan Jenjang TK
-        mysqli_query($con, "DELETE FROM input_data_tk_lama WHERE ID = '$_POST[idinvoice]' ");
+        mysqli_query($con, "DELETE FROM input_data_tk WHERE ID = '$_POST[idinvoice]' ");
 
         $queryGetDataSemua = "
             SELECT 
@@ -4276,7 +4276,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
 
@@ -4289,7 +4289,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC
@@ -4307,7 +4307,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
             
@@ -4320,7 +4320,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC
@@ -4551,7 +4551,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
 
@@ -4564,7 +4564,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC
@@ -4580,7 +4580,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
 
@@ -4593,7 +4593,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC
@@ -4650,7 +4650,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
 
@@ -4663,7 +4663,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC 
@@ -4679,7 +4679,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
             
@@ -4692,7 +4692,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, INPUTER, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC
@@ -4747,7 +4747,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
 
@@ -4760,7 +4760,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC 
@@ -4778,7 +4778,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_sd_lama1
+            FROM input_data_sd
             WHERE 
             NIS = '$nis'
 
@@ -4791,7 +4791,7 @@
             PANGKAL, PANGKAL_txt, KEGIATAN, KEGIATAN_txt,
             BUKU, BUKU_txt, SERAGAM, SERAGAM_txt, REGISTRASI,
             REGISTRASI_txt, LAIN, LAIN_txt, STAMP 
-            FROM input_data_tk_lama
+            FROM input_data_tk
             WHERE 
             NIS = '$nis'
             ORDER BY ID DESC");
