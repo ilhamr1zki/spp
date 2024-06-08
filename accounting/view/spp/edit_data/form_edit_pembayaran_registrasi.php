@@ -1,94 +1,86 @@
-<?php  
+<?php 
 
-	// Jika filter by SPP sedangkan filter tanggal dari dan tanggal sampai tidak di isi 
-    // if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-    	// echo "Tidak tanggal SPP";
+    if ($_SESSION['c_accounting'] == 'accounting1') {
 
-        if ($_SESSION['c_accounting'] == 'accounting1') {
+       	$namaMurid = $namaSiswa;
+        $queryGetDataRegistrasi = "
+        SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        FROM input_data_sd_lama1
+        WHERE
+        REGISTRASI != 0
+        AND NAMA LIKE '%$namaMurid%' ";
 
-           	$namaMurid = $namaSiswa;
-            $queryGetDataRegistrasi = "
-            SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+        $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+        // echo $dataAwal . "<br>";
+        $ambildata_perhalaman = mysqli_query($con, "
+            SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd_lama1
             WHERE
             REGISTRASI != 0
-            AND NAMA LIKE '%$namaMurid%' ";
+            AND NAMA LIKE '%$namaMurid%' 
+            ORDER BY ID DESC
+            LIMIT $dataAwal, $jumlahData");
+        // print_r($ambildata_perhalaman->num_rows);
+        $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
 
-            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
-            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+        $jumlahLink = 2;
 
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd_lama1
-                WHERE
-                REGISTRASI != 0
-                AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY ID DESC
-                LIMIT $dataAwal, $jumlahData");
-            // print_r($ambildata_perhalaman->num_rows);
-            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
+        if ($halamanAktif > $jumlahLink) {
+            $start_number = $halamanAktif - $jumlahLink;
+        } else {
+            $start_number = 1;
+        }
 
-            $jumlahLink = 2;
+        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+            $end_number = $halamanAktif + $jumlahLink;
+        } else {
+            $end_number = $jumlahPagination;
+        }
 
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
-            } else {
-                $start_number = 1;
-            }
+    } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
-            }
+        $namaMurid = $namaSiswa;
+        $queryGetDataRegistrasi = "
+        SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        FROM input_data_tk_lama
+        WHERE
+        REGISTRASI != 0
+        AND NAMA LIKE '%$namaMurid%' ";
 
-        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+        $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
+        $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
 
-            $namaMurid = $namaSiswa;
-            $queryGetDataRegistrasi = "
-            SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+        // echo $dataAwal . "<br>";
+        $ambildata_perhalaman = mysqli_query($con, "
+            SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk_lama
             WHERE
             REGISTRASI != 0
-            AND NAMA LIKE '%$namaMurid%' ";
+            AND NAMA LIKE '%$namaMurid%' 
+            ORDER BY ID DESC
+            LIMIT $dataAwal, $jumlahData");
+        // print_r($ambildata_perhalaman->num_rows);
+        $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
 
-            $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
-            $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
+        $jumlahLink = 2;
 
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk_lama
-                WHERE
-                REGISTRASI != 0
-                AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY ID DESC
-                LIMIT $dataAwal, $jumlahData");
-            // print_r($ambildata_perhalaman->num_rows);
-            $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
-
-            $jumlahLink = 2;
-
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
-            } else {
-                $start_number = 1;
-            }
-
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
-            }
-
+        if ($halamanAktif > $jumlahLink) {
+            $start_number = $halamanAktif - $jumlahLink;
+        } else {
+            $start_number = 1;
         }
 
-    // } else {
-    	// echo "Ada tanggal SPP";
-    // }
+        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+            $end_number = $halamanAktif + $jumlahLink;
+        } else {
+            $end_number = $jumlahPagination;
+        }
+
+    }
 
 ?>
 	
@@ -177,6 +169,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                 <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
 
                                 <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                     EDIT 
@@ -196,12 +190,14 @@
                                 <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                 <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                 <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                <input type="hidden" name="nominal_bayar" value="<?= $data['SPP']; ?>">
-                                <input type="hidden" name="ket_pembayaran" value="<?= $data['SPP_txt']; ?>">
+                                <input type="hidden" name="nominal_bayar" value="<?= $data['REGISTRASI']; ?>">
+                                <input type="hidden" name="ket_pembayaran" value="<?= $data['REGISTRASI_txt']; ?>">
                                 <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                 <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                 <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
 
                                 <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
                                     TAMBAH

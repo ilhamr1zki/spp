@@ -1,99 +1,91 @@
 <?php  
 
-	// Jika filter by SPP sedangkan filter tanggal dari dan tanggal sampai tidak di isi 
-    // if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-    	// echo "Tidak tanggal SPP";
+    if ($_SESSION['c_accounting'] == 'accounting1') {
 
-        if ($_SESSION['c_accounting'] == 'accounting1') {
+       	$namaMurid = $namaSiswa;
+        $queryGetDataSeragam = "
+        SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        FROM input_data_sd_lama1
+        WHERE
+        SERAGAM != 0
+        AND NAMA LIKE '%$namaMurid%' ";
 
-           	$namaMurid = $namaSiswa;
-            $queryGetDataSeragam = "
-            SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
+        $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+        // echo $dataAwal . "<br>";
+        $ambildata_perhalaman = mysqli_query($con, "
+            SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd_lama1
             WHERE
             SERAGAM != 0
-            AND NAMA LIKE '%$namaMurid%' ";
+            AND NAMA LIKE '%$namaMurid%' 
+            ORDER BY ID DESC
+            LIMIT $dataAwal, $jumlahData");
+        // print_r($ambildata_perhalaman->num_rows);
+        $htg = mysqli_num_rows($ambildata_perhalaman);
+        // echo $htg;exit;
 
-            $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
-            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
+        $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
 
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd_lama1
-                WHERE
-                SERAGAM != 0
-                AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY ID DESC
-                LIMIT $dataAwal, $jumlahData");
-            // print_r($ambildata_perhalaman->num_rows);
-            $htg = mysqli_num_rows($ambildata_perhalaman);
-            // echo $htg;exit;
+        $jumlahLink = 2;
 
-            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
+        if ($halamanAktif > $jumlahLink) {
+            $start_number = $halamanAktif - $jumlahLink;
+        } else {
+            $start_number = 1;
+        }
 
-            $jumlahLink = 2;
+        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+            $end_number = $halamanAktif + $jumlahLink;
+        } else {
+            $end_number = $jumlahPagination;
+        }
 
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
-            } else {
-                $start_number = 1;
-            }
+    } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
-            }
+        $namaMurid = $namaSiswa;
+        $queryGetDataSeragam = "
+        SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        FROM input_data_tk_lama
+        WHERE
+        SERAGAM != 0
+        AND NAMA LIKE '%$namaMurid%' ";
 
-        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+        $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
+        $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
 
-            $namaMurid = $namaSiswa;
-            $queryGetDataSeragam = "
-            SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+        // echo $dataAwal . "<br>";
+        $ambildata_perhalaman = mysqli_query($con, "
+            SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk_lama
             WHERE
             SERAGAM != 0
-            AND NAMA LIKE '%$namaMurid%' ";
+            AND NAMA LIKE '%$namaMurid%' 
+            ORDER BY ID DESC
+            LIMIT $dataAwal, $jumlahData");
+        // print_r($ambildata_perhalaman->num_rows);
+        $htg = mysqli_num_rows($ambildata_perhalaman);
+        // echo $htg;exit;
+        $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
 
-            $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
-            $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
+        $jumlahLink = 2;
 
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk_lama
-                WHERE
-                SERAGAM != 0
-                AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY ID DESC
-                LIMIT $dataAwal, $jumlahData");
-            // print_r($ambildata_perhalaman->num_rows);
-            $htg = mysqli_num_rows($ambildata_perhalaman);
-            // echo $htg;exit;
-            $jumlahPagination = ceil($hitungDataFilterSeragam / $jumlahData);
-
-            $jumlahLink = 2;
-
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
-            } else {
-                $start_number = 1;
-            }
-
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
-            }
-
+        if ($halamanAktif > $jumlahLink) {
+            $start_number = $halamanAktif - $jumlahLink;
+        } else {
+            $start_number = 1;
         }
 
-    // } else {
-    	// echo "Ada tanggal SPP";
-    // }
+        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+            $end_number = $halamanAktif + $jumlahLink;
+        } else {
+            $end_number = $jumlahPagination;
+        }
+
+    }
 
 ?>
 	
@@ -186,8 +178,8 @@
                                 <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                 <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                 <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                <input type="hidden" name="nominal_bayar" value="<?= $data['BUKU']; ?>">
-                                <input type="hidden" name="ket_pembayaran" value="<?= $data['BUKU_txt']; ?>">
+                                <input type="hidden" name="nominal_bayar" value="<?= $data['SERAGAM']; ?>">
+                                <input type="hidden" name="ket_pembayaran" value="<?= $data['SERAGAM_txt']; ?>">
                                 <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                 <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 

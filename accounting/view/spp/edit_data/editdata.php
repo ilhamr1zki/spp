@@ -9102,7 +9102,7 @@
 
             $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -9121,7 +9121,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -9147,7 +9147,7 @@
 
             $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -9166,7 +9166,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 PANGKAL != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -10220,7 +10220,7 @@
 
             $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -10239,7 +10239,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -10265,7 +10265,7 @@
 
             $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -10284,7 +10284,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -13533,7 +13533,7 @@
 
             $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -13552,7 +13552,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -13578,7 +13578,7 @@
 
             $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -13597,7 +13597,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 REGISTRASI != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -15322,6 +15322,10 @@
 
         <div class="box box-info">
 
+            <div class="box-header with-border">
+                <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Pembayaran <?= $isifilby; ?> </h3>
+            </div>
+
             <div class="box-body">
                 <div class="row">
 
@@ -15410,7 +15414,7 @@
 
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <label>TANGGAL PEMBAYARAN</label>
+                                <label>TANGGAL BAYAR</label>
                                 <input type="date" class="form-control" value="<?= $tglPembayaran; ?>" name="tglPembayaran">
                             </div>
                         </div>
@@ -15577,8 +15581,14 @@
 
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <label>TANGGAL PEMBAYARAN</label>
-                                <input type="text" class="form-control" readonly="" name="tanggal_bukti_tf" value="<?= str_replace([' 00:00:00'], "", tglIndo($tglPembayaran)); ?>" id="tanggal_bukti_tf">
+                                <label>TANGGAL BAYAR</label>
+
+                                <?php if ($tglPembayaran == '-'): ?>
+                                    <input type="text" class="form-control" readonly="" name="tanggal_bukti_tf" value="<?= $tglPembayaran; ?>" id="tanggal_bukti_tf">
+                                <?php else: ?>
+                                    <input type="text" class="form-control" readonly="" name="tanggal_bukti_tf" value="<?= str_replace([' 00:00:00'], "", tglIndo($tglPembayaran)); ?>" id="tanggal_bukti_tf">
+                                <?php endif ?>
+                                
                             </div>
                         </div>
                         
@@ -15621,7 +15631,7 @@
                                     <?php if ($ketUangSPP == NULL): ?>
                                         <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= ($ketUangSPP); ?>" placeholder="Keterangan">
                                     <?php endif ?>
                                     
                                 </div>
@@ -15640,7 +15650,7 @@
                                     <?php if ($ketUangPangkal == NULL): ?>
                                         <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= ($ketUangPangkal); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15659,7 +15669,7 @@
                                     <?php if ($ketUangKegiatan == NULL): ?>
                                         <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= ($ketUangKegiatan); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15678,7 +15688,7 @@
                                     <?php if ($ketUangBuku == NULL): ?>
                                         <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= ($ketUangBuku); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15697,7 +15707,7 @@
                                     <?php if ($ketUangSeragam == NULL): ?>
                                         <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= ($ketUangSeragam); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15716,7 +15726,7 @@
                                     <?php if ($ketUangRegis == NULL): ?>
                                         <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= ($ketUangRegis); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15735,7 +15745,7 @@
                                     <?php if ($ketUangLain == NULL): ?>
                                         <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= ($ketUangLain); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15756,7 +15766,7 @@
                                     <?php if ($ketUangSPP == NULL): ?>
                                         <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= ($ketUangSPP); ?>" placeholder="Keterangan">
                                     <?php endif ?>
 
                                 </div>
@@ -15771,7 +15781,7 @@
                                     <?php if ($ketUangPangkal == null): ?>
                                         <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= ($ketUangPangkal); ?>">
                                     <?php endif ?>
                                     
 
@@ -15791,7 +15801,7 @@
                                     <?php if ($ketUangKegiatan == NULL): ?>
                                         <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= ($ketUangKegiatan); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15810,7 +15820,7 @@
                                     <?php if ($ketUangBuku == NULL): ?>
                                         <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= ($ketUangBuku); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15829,7 +15839,7 @@
                                     <?php if ($ketUangSeragam == NULL): ?>
                                         <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= ($ketUangSeragam); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15848,7 +15858,7 @@
                                     <?php if ($ketUangRegis == NULL): ?>
                                         <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= ($ketUangRegis); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15867,7 +15877,7 @@
                                     <?php if ($ketUangLain == NULL): ?>
                                         <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= ($ketUangLain); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15888,7 +15898,7 @@
                                     <?php if ($ketUangSPP == NULL): ?>
                                         <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= ($ketUangSPP); ?>" placeholder="Keterangan">
                                     <?php endif ?>
 
                                 </div>
@@ -15907,7 +15917,7 @@
                                     <?php if ($ketUangPangkal == NULL): ?>
                                         <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= ($ketUangPangkal); ?>">
                                     <?php endif ?>
                                     
 
@@ -15923,7 +15933,7 @@
                                     <?php if ($ketUangKegiatan == NULL): ?>
                                         <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= ($ketUangKegiatan); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15942,7 +15952,7 @@
                                     <?php if ($ketUangBuku == NULL): ?>
                                         <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= ($ketUangBuku); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15961,7 +15971,7 @@
                                     <?php if ($ketUangSeragam == NULL): ?>
                                         <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= ($ketUangSeragam); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15980,7 +15990,7 @@
                                     <?php if ($ketUangRegis == NULL): ?>
                                         <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= ($ketUangRegis); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -15999,7 +16009,7 @@
                                     <?php if ($ketUangLain == NULL): ?>
                                         <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= ($ketUangLain); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16020,7 +16030,7 @@
                                     <?php if ($ketUangSPP == NULL): ?>
                                         <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= ($ketUangSPP); ?>" placeholder="Keterangan">
                                     <?php endif ?>
 
                                 </div>
@@ -16039,7 +16049,7 @@
                                     <?php if ($ketUangPangkal == NULL): ?>
                                         <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= ($ketUangPangkal); ?>">
                                     <?php endif ?>
                                     
 
@@ -16059,7 +16069,7 @@
                                     <?php if ($ketUangKegiatan == NULL): ?>
                                         <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= ($ketUangKegiatan); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16074,7 +16084,7 @@
                                     <?php if ($ketUangBuku == NULL): ?>
                                         <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= $ketUangBuku; ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16093,7 +16103,7 @@
                                     <?php if ($ketUangSeragam == NULL): ?>
                                         <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= ($ketUangSeragam); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16112,7 +16122,7 @@
                                     <?php if ($ketUangRegis == NULL): ?>
                                         <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= ($ketUangRegis); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16131,7 +16141,7 @@
                                     <?php if ($ketUangLain == NULL): ?>
                                         <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= ($ketUangLain); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16152,7 +16162,7 @@
                                     <?php if ($ketUangSPP == NULL): ?>
                                         <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= ($ketUangSPP); ?>" placeholder="Keterangan">
                                     <?php endif ?>
 
                                 </div>
@@ -16171,7 +16181,7 @@
                                     <?php if ($ketUangPangkal == NULL): ?>
                                         <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= ($ketUangPangkal); ?>">
                                     <?php endif ?>
                                     
 
@@ -16191,7 +16201,7 @@
                                     <?php if ($ketUangKegiatan == NULL): ?>
                                         <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= ($ketUangKegiatan); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16210,7 +16220,7 @@
                                     <?php if ($ketUangBuku == NULL): ?>
                                         <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= ($ketUangBuku); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16225,7 +16235,7 @@
                                     <?php if ($ketUangSeragam == NULL): ?>
                                         <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= ($ketUangSeragam); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16244,7 +16254,7 @@
                                     <?php if ($ketUangRegis == NULL): ?>
                                         <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= ($ketUangRegis); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16263,7 +16273,7 @@
                                     <?php if ($ketUangLain == NULL): ?>
                                         <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= ($ketUangLain); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16284,7 +16294,7 @@
                                     <?php if ($ketUangSPP == NULL): ?>
                                         <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= ($ketUangSPP); ?>" placeholder="Keterangan">
                                     <?php endif ?>
 
                                 </div>
@@ -16303,7 +16313,7 @@
                                     <?php if ($ketUangPangkal == NULL): ?>
                                         <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= ($ketUangPangkal); ?>">
                                     <?php endif ?>
                                     
 
@@ -16323,7 +16333,7 @@
                                     <?php if ($ketUangKegiatan == NULL): ?>
                                         <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= ($ketUangKegiatan); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16334,7 +16344,7 @@
                                     <label style="margin-right: 204px;"> UANG BUKU </label>
 
                                     <?php if ($queryUangBuku == 0): ?>
-                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="0">
+                                        <input type="text" id="rupiah_buku_edit" name="nominal_buku_edit" class="uang_buku" value="0">
                                     <?php else: ?>
                                         <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
                                     <?php endif ?>
@@ -16342,7 +16352,7 @@
                                     <?php if ($ketUangBuku == NULL): ?>
                                         <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= ($ketUangBuku); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16361,7 +16371,7 @@
                                     <?php if ($ketUangSeragam == NULL): ?>
                                         <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= ($ketUangSeragam); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16376,7 +16386,7 @@
                                     <?php if ($ketUangRegis == NULL): ?>
                                         <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= ($ketUangRegis); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16395,7 +16405,7 @@
                                     <?php if ($ketUangLain == NULL): ?>
                                         <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= ($ketUangLain); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16416,7 +16426,7 @@
                                     <?php if ($ketUangSPP == NULL): ?>
                                         <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= htmlspecialchars($ketUangSPP); ?>" placeholder="Keterangan">
+                                        <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp_edit" readonly value="<?= ($ketUangSPP); ?>" placeholder="Keterangan">
                                     <?php endif ?>
 
                                 </div>
@@ -16435,7 +16445,7 @@
                                     <?php if ($ketUangPangkal == NULL): ?>
                                         <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= htmlspecialchars($ketUangPangkal); ?>">
+                                        <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal_edit" readonly="" value="<?= ($ketUangPangkal); ?>">
                                     <?php endif ?>
                                     
 
@@ -16455,7 +16465,7 @@
                                     <?php if ($ketUangKegiatan == NULL): ?>
                                         <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= htmlspecialchars($ketUangKegiatan); ?>">
+                                        <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan_edit" readonly="" value="<?= ($ketUangKegiatan); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16466,7 +16476,7 @@
                                     <label style="margin-right: 204px;"> UANG BUKU </label>
 
                                     <?php if ($queryUangBuku == 0): ?>
-                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="0">
+                                        <input type="text" id="rupiah_buku_edit" name="nominal_buku_edit" class="uang_buku" value="0">
                                     <?php else: ?>
                                         <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
                                     <?php endif ?>
@@ -16474,7 +16484,7 @@
                                     <?php if ($ketUangBuku == NULL): ?>
                                         <input type="text" class="ket_uang_buku" name="ket_uang_buku_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= htmlspecialchars($ketUangBuku); ?>">
+                                        <input type="text" class="ket_uang_buku" readonly="" name="ket_uang_buku_edit" value="<?= ($ketUangBuku); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16493,7 +16503,7 @@
                                     <?php if ($ketUangSeragam == NULL): ?>
                                         <input type="text" class="ket_uang_seragam" name="ket_uang_seragam_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= htmlspecialchars($ketUangSeragam); ?>">
+                                        <input type="text" class="ket_uang_seragam" readonly="" name="ket_uang_seragam_edit" value="<?= ($ketUangSeragam); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16512,7 +16522,7 @@
                                     <?php if ($ketUangRegis == NULL): ?>
                                         <input type="text" class="ket_uang_regis" name="ket_uang_regis_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= htmlspecialchars($ketUangRegis); ?>">
+                                        <input type="text" class="ket_uang_regis" readonly="" name="ket_uang_regis_edit" readonly="" value="<?= ($ketUangRegis); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16527,7 +16537,7 @@
                                     <?php if ($ketUangLain == NULL): ?>
                                         <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" placeholder="Keterangan">
                                     <?php else: ?>
-                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= htmlspecialchars($ketUangLain); ?>">
+                                        <input type="text" class="ket_lain2" name="ket_uang_lain2_edit" readonly="" value="<?= ($ketUangLain); ?>">
                                     <?php endif ?>
 
                                 </div>
@@ -16593,7 +16603,12 @@
 
         <div class="box box-info">
             <div class="box-header with-border">
-                <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Form Edit Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+
+                <?php if ($isifilby == 'kosong'): ?>
+                    <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Form Edit Data Pembayaran </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+                <?php else: ?>
+                    <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Form Edit Data Pembayaran <?= $isifilby; ?> </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+                <?php endif ?>
                
             </div>
 

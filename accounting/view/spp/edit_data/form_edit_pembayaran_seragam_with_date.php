@@ -208,8 +208,8 @@
                                 <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
                                 <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
                                 <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
-                                <input type="hidden" name="nominal_bayar" value="<?= $data['SPP']; ?>">
-                                <input type="hidden" name="ket_pembayaran" value="<?= $data['SPP_txt']; ?>">
+                                <input type="hidden" name="nominal_bayar" value="<?= $data['SERAGAM']; ?>">
+                                <input type="hidden" name="ket_pembayaran" value="<?= $data['SERAGAM_txt']; ?>">
                                 <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
                                 <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 

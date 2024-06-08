@@ -101,7 +101,7 @@
                 <th style="text-align: center; width: 1%;"> NIS </th>
                 <th style="text-align: center; width: 7%;"> NAMA </th>
                 <th style="text-align: center; width: 1%;"> KELAS </th>
-                <th style="text-align: center; width: 3%;"> PANGKAL </th>
+                <th style="text-align: center; width: 3%;"> UANG PANGKAL </th>
                 <th style="text-align: center; width: 3%;"> TANGGAL BAYAR </th>
                 <th style="text-align: center; width: 3%;"> PEMBAYARAN BULAN </th>
                 <th style="text-align: center; width: 5%;"> KET PANGKAL </th>
