@@ -5,7 +5,7 @@
     	// echo "Tidak tanggal SPP";
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
-
+            // echo "Sini";exit;
            	$namaMurid = $namaSiswa;
 	        $queryGetDataBuku = "
 	        SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -28,6 +28,10 @@
 	            ORDER BY ID DESC
 	            LIMIT $dataAwal, $jumlahData");
 	        // print_r($ambildata_perhalaman->num_rows);
+
+            $hitung = mysqli_num_rows($ambildata_perhalaman);
+            // echo "Jumlah data : " . $hitung;exit;
+
 	        $jumlahPagination = ceil($hitungDataFilterBuku / $jumlahData);
 
 	        $jumlahLink = 2;
@@ -183,6 +187,33 @@
 
                             </form>
 
+                            <form action="<?= $baseac; ?>editdata" method="POST" target="blank">
+
+                                <input type="hidden" name="id_siswa" value="<?= $id; ?>">
+                                <input type="hidden" name="nis_siswa" value="<?= $nis; ?>">
+                                <input type="hidden" name="nama_siswa" value="<?= $namaSiswa; ?>">
+                                <input type="hidden" name="kelas_siswa" value="<?= $kelas; ?>">
+                                <input type="hidden" name="panggilan_siswa" value="<?= $panggilan; ?>">
+
+                                <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
+                                <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
+                                <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                <input type="hidden" name="nominal_bayar" value="<?= $data['BUKU']; ?>">
+                                <input type="hidden" name="ket_pembayaran" value="<?= $data['BUKU_txt']; ?>">
+                                <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
+                                <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
+
+                                <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+
+                                <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
+                                    TAMBAH
+                                    <!-- <span class="glyphicon glyphicon-pencil">  -->
+                                </button>
+
+                            </form>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -206,6 +237,8 @@
                 <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="previousPageFilterBuku">
                     &laquo;
                     Previous
@@ -238,6 +271,8 @@
                     <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                     <button name="toPageFilterBuku">
                         <?= $i; ?>
                     </button>
@@ -258,6 +293,8 @@
                 <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="nextPageFilterBuku" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
@@ -281,6 +318,8 @@
                 <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="firstPageFilterBuku">
                     &laquo;
                     First Page
@@ -304,6 +343,8 @@
 	                <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
 	                <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
 	                <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 	                <button name="lastPageFilterBuku">
 	                    Last Page
 	                    &raquo;

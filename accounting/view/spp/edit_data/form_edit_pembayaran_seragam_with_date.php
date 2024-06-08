@@ -42,6 +42,9 @@
             LIMIT $dataAwal, $jumlahData
         ");
 
+        $htg = mysqli_num_rows($ambildata_perhalaman);
+        // echo $htg;exit;
+
         $jumlahPagination = ceil($hitungDataFilterSeragamWithDate / $jumlahData);
 
         $jumlahLink = 2;
@@ -131,7 +134,7 @@
                 <th style="text-align: center; width: 5%;"> TRANSAKSI </th>
                 <th style="text-align: center; width: 7%;"> DI INPUT OLEH </th>
                 <th style="text-align: center; width: 10%;"> STAMP </th>
-                <th style="text-align: center; width: 1%;"> CETAK </th>
+                <th style="text-align: center; width: 1%;"> ACTION </th>
               </tr>
             </thead>
             <tbody>
@@ -189,6 +192,33 @@
 
                                 <button id="edit_data" name="edit_data_with_date" class="btn btn-sm btn-primary btn-circle"> 
                                     EDIT 
+                                    <!-- <span class="glyphicon glyphicon-pencil">  -->
+                                </button>
+
+                            </form>
+
+                            <form action="<?= $baseac; ?>editdata" method="POST" target="blank">
+
+                                <input type="hidden" name="id_siswa" value="<?= $id; ?>">
+                                <input type="hidden" name="nis_siswa" value="<?= $nis; ?>">
+                                <input type="hidden" name="nama_siswa" value="<?= $namaSiswa; ?>">
+                                <input type="hidden" name="kelas_siswa" value="<?= $kelas; ?>">
+                                <input type="hidden" name="panggilan_siswa" value="<?= $panggilan; ?>">
+
+                                <input type="hidden" name="id_invoice" value="<?= $data['ID']; ?>">
+                                <input type="hidden" name="tgl_bukti_pembayaran" value="<?= ($data['DATE'] == NULL || $data['DATE'] == '0000-00-00 00:00:00') ? ("-") : ($data['DATE']); ?>">
+                                <input type="hidden" name="pembayaran_bulan" value="<?= $data['pembayaran_bulan']; ?>">
+                                <input type="hidden" name="nominal_bayar" value="<?= $data['SPP']; ?>">
+                                <input type="hidden" name="ket_pembayaran" value="<?= $data['SPP_txt']; ?>">
+                                <input type="hidden" name="tipe_transaksi" value="<?= $data['TRANSAKSI']; ?>">
+                                <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
+
+                                <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+
+                                <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
+                                    TAMBAH
                                     <!-- <span class="glyphicon glyphicon-pencil">  -->
                                 </button>
 

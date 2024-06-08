@@ -182,6 +182,9 @@
 
                                     <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
 
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+
                                     <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
                                         TAMBAH
                                         <!-- <span class="glyphicon glyphicon-pencil">  -->
@@ -242,6 +245,9 @@
 
                                     <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
 
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+
                                     <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
                                         TAMBAH
                                         <!-- <span class="glyphicon glyphicon-pencil">  -->
@@ -274,6 +280,8 @@
                 <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="previousPageFilterPANGKAL">
                     &laquo;
                     Previous
@@ -306,6 +314,8 @@
                     <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="toPageFilterPANGKAL">
                         <?= $i; ?>
                     </button>
@@ -325,6 +335,8 @@
                 <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="nextPageFilterPANGKAL" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
@@ -348,6 +360,8 @@
                 <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="firstPageFilterPANGKAL">
                     &laquo;
                     First Page
@@ -370,6 +384,8 @@
                     <input type="hidden" name="kelasFormFilterPANGKAL" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterPANGKAL" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterPANGKAL" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="lastPageFilterPANGKAL">
                         Last Page
                         &raquo;

@@ -604,7 +604,7 @@
                     if ($pembayaranVIA == 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_sd` 
+                            UPDATE `u415776667_spp`.`input_data_sd_lama1` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -631,7 +631,7 @@
                     } elseif ($pembayaranVIA != 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_sd` 
+                            UPDATE `u415776667_spp`.`input_data_sd_lama1` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -886,7 +886,7 @@
 
                                 $ambildata_perhalaman = mysqli_query($con, "
                                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                    FROM input_data_sd
+                                    FROM input_data_sd_lama1
                                     WHERE
                                     SERAGAM != 0
                                     AND NAMA LIKE '%$namaSiswa%'
@@ -919,7 +919,7 @@
 
                                 $ambildata_perhalaman = mysqli_query($con, "
                                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                    FROM input_data_sd
+                                    FROM input_data_sd_lama1
                                     WHERE
                                     SERAGAM != 0
                                     AND NAMA LIKE '%$namaSiswa%'
@@ -2642,7 +2642,7 @@
                     if ($pembayaranVIA == 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_sd` 
+                            UPDATE `u415776667_spp`.`input_data_sd_lama1` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -2669,7 +2669,7 @@
                     } else if ($pembayaranVIA != 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_sd` 
+                            UPDATE `u415776667_spp`.`input_data_sd_lama1` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -2708,7 +2708,7 @@
 
                                 $ambildata_perhalaman = mysqli_query($con, "
                                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                    FROM input_data_sd
+                                    FROM input_data_sd_lama1
                                     WHERE
                                     SPP != 0
                                     AND NAMA LIKE '%$namaSiswa%'
@@ -2741,7 +2741,7 @@
 
                                 $ambildata_perhalaman = mysqli_query($con, "
                                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                    FROM input_data_sd
+                                    FROM input_data_sd_lama1
                                     WHERE
                                     SPP != 0
                                     AND NAMA LIKE '%$namaSiswa%'
@@ -3868,7 +3868,7 @@
                     if ($pembayaranVIA == 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_tk` 
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -3895,7 +3895,7 @@
                     } elseif ($pembayaranVIA != 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_tk` 
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -4150,7 +4150,7 @@
 
                                 $ambildata_perhalaman = mysqli_query($con, "
                                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                    FROM input_data_tk
+                                    FROM input_data_tk_lama
                                     WHERE
                                     SERAGAM != 0
                                     AND NAMA LIKE '%$namaSiswa%'
@@ -4183,7 +4183,7 @@
 
                                 $ambildata_perhalaman = mysqli_query($con, "
                                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                    FROM input_data_tk
+                                    FROM input_data_tk_lama
                                     WHERE
                                     SERAGAM != 0
                                     AND NAMA LIKE '%$namaSiswa%'
@@ -4866,7 +4866,7 @@
                     if ($pembayaranVIA == 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_tk` 
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -4893,7 +4893,7 @@
                     } elseif($pembayaranVIA != 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_tk` 
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -5841,7 +5841,7 @@
                     if ($pembayaranVIA == 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_tk` 
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -5868,7 +5868,7 @@
                     } else if ($pembayaranVIA != 'kosong') {
 
                         $queryUpdate = "
-                            UPDATE `u415776667_spp`.`input_data_tk` 
+                            UPDATE `u415776667_spp`.`input_data_tk_lama` 
                             SET 
                             `DATE`='$tglPembayaranDB', 
                             `BULAN`='$pembayaranBulanDB', 
@@ -7298,10 +7298,8 @@
                 if ($currentFilter == 'SPP') {
 
                     if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
-                        echo $dariTanggal;
                         $setSesiPageFilterBy = 8;
                     } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                        echo "bawah";exit;
                         $setSesiPageFilterBy = 1;
                     }
 
@@ -7310,10 +7308,8 @@
                 } elseif ($currentFilter == 'PANGKAL') {
 
                     if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
-                        echo $dariTanggal;
                         $setSesiPageFilterBy = 9;
                     } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                        echo "bawah";exit;
                         $setSesiPageFilterBy = 2;
                     }
 
@@ -7321,9 +7317,59 @@
 
                 } elseif ($currentFilter == 'KEGIATAN') {
                     
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 10;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 3;
+                    }
 
+                    $isifilby = $currentFilter;
 
-                }
+                } elseif ($currentFilter == 'BUKU') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 11;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 4;
+                    }
+
+                    $isifilby = $currentFilter;
+                    // echo "Buku ";
+
+                } elseif ($currentFilter == 'SERAGAM') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 12;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 5;
+                    }
+
+                    $isifilby = $currentFilter;
+                    // echo "Buku ";
+
+                } elseif ($currentFilter == 'REGISTRASI') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 13;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 6;
+                    }
+
+                    $isifilby = $currentFilter;
+                    // echo "Buku ";
+
+                } elseif ($currentFilter == 'LAIN') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 14;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 7;
+                    }
+
+                    $isifilby = $currentFilter;
+                    // echo "Buku ";
+
+                } 
 
                 // Update Data 
                 $queryUpdate = "
@@ -7377,16 +7423,67 @@
                 } elseif ($currentFilter == 'PANGKAL') {
 
                     if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
-                        echo $dariTanggal;
                         $setSesiPageFilterBy = 9;
                     } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-                        echo "bawah";exit;
                         $setSesiPageFilterBy = 2;
                     }
 
                     $isifilby = $currentFilter;
 
-                }
+                } elseif ($currentFilter == 'KEGIATAN') {
+
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 10;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 3;
+                    }
+
+                    $isifilby = $currentFilter;
+
+                } elseif ($currentFilter == 'BUKU') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 11;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 4;
+                    }
+
+                    $isifilby = $currentFilter;
+
+                } elseif ($currentFilter == 'SERAGAM') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 12;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 5;
+                    }
+
+                    $isifilby = $currentFilter;
+                    // echo "Buku ";
+
+                } elseif ($currentFilter == 'REGISTRASI') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 13;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 6;
+                    }
+
+                    $isifilby = $currentFilter;
+                    // echo "Buku ";
+
+                } elseif ($currentFilter == 'LAIN') {
+                    
+                    if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
+                        $setSesiPageFilterBy = 14;
+                    } else if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
+                        $setSesiPageFilterBy = 7;
+                    }
+
+                    $isifilby = $currentFilter;
+                    // echo "Buku ";
+
+                } 
 
                 // Update Data 
                 $queryUpdate = "
@@ -7487,7 +7584,7 @@
                 $end_number = $jumlahPagination;
             }
 
-        } else {
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
             $setSesiPageFilterBy = 1;
 
@@ -7668,7 +7765,7 @@
 
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -7680,7 +7777,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -7704,13 +7801,13 @@
                 $end_number = $jumlahPagination;
             }
 
-        } else {
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
             
             $setSesiPageFilterBy = 1;
             
             $queryGetDataSPP = "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -7722,7 +7819,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -7889,7 +7986,7 @@
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -7908,7 +8005,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -7930,11 +8027,11 @@
                 $end_number = $jumlahPagination;
             }
 
-        } else {
+        } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -7953,7 +8050,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -8447,7 +8544,7 @@
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SPP != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -8468,7 +8565,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -8503,7 +8600,7 @@
 
             $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -8524,7 +8621,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SPP != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -8568,6 +8665,12 @@
         $panggilan  = $_POST['panggilanFormFilterPANGKAL'];
         $nis        = $_POST['nisFormFilterPANGKAL'];
         $namaSiswa  = $_POST['namaFormFilterPANGKAL'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $setSesiPageFilterBy = 2;
 
@@ -8670,6 +8773,9 @@
         $dariTanggal    = " 00:00:00";
         $sampaiTanggal  = " 23:59:59";
 
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $iniScrollPreviousPage = "ada";
         $setSesiPageFilterBy = 2;
 
@@ -8767,6 +8873,12 @@
         $panggilan = $_POST['panggilanFormFilterPANGKAL'];
         $kelas     = $_POST['kelasFormFilterPANGKAL'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 2;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
@@ -8862,6 +8974,12 @@
         $kelas          = $_POST['kelasFormFilterPANGKAL'];
         $panggilan      = $_POST['panggilanFormFilterPANGKAL'];
         $namaSiswa      = $namaMurid;
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $isifilby       = $_POST['iniFilterPANGKAL'];
 
@@ -8970,6 +9088,12 @@
         $kelas          = $_POST['kelasFormFilterPANGKAL'];
         $panggilan      = $_POST['panggilanFormFilterPANGKAL'];
         $nis            = $_POST['nisFormFilterPANGKAL'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $iniScrollLastPage  = "ada";
         $setSesiPageFilterBy = 2;
@@ -9655,6 +9779,12 @@
         $nis        = $_POST['nisFormFilterKegiatan'];
         $namaSiswa  = $_POST['namaFormFilterKegiatan'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 3;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
@@ -9755,6 +9885,12 @@
         $panggilan = $_POST['panggilanFormFilterKegiatan'];
         $kelas     = $_POST['kelasFormFilterKegiatan'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 3;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
@@ -9852,6 +9988,12 @@
         $nis       = $_POST['nisFormFilterKegiatan'];
         $panggilan = $_POST['panggilanFormFilterKegiatan'];
         $kelas     = $_POST['kelasFormFilterKegiatan'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $setSesiPageFilterBy = 3;
 
@@ -9952,6 +10094,13 @@
         $isifilby       = $_POST['iniFilterKegiatan'];
 
         $iniScrollFirstPage  = "ada";
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 3;
 
         if ($_SESSION['c_accounting'] == 'accounting1') { 
@@ -10058,6 +10207,13 @@
         $nis            = $_POST['nisFormFilterKegiatan'];
 
         $iniScrollLastPage  = "ada";
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 3;
 
         if ($_SESSION['c_accounting'] == 'accounting1') { 
@@ -10625,7 +10781,7 @@
 
             $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 KEGIATAN != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -10646,7 +10802,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -10672,7 +10828,7 @@
 
             $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 KEGIATAN != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -10693,7 +10849,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 KEGIATAN != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -10736,6 +10892,12 @@
         $panggilan  = $_POST['panggilanFormFilterBuku'];
         $nis        = $_POST['nisFormFilterBuku'];
         $namaSiswa  = $_POST['namaFormFilterBuku'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $setSesiPageFilterBy = 4;
 
@@ -10837,6 +10999,12 @@
         $panggilan = $_POST['panggilanFormFilterBuku'];
         $kelas     = $_POST['kelasFormFilterBuku'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 4;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
@@ -10937,6 +11105,12 @@
 
         $setSesiPageFilterBy = 4;
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
             $queryGetDataBuku = "
@@ -11034,6 +11208,12 @@
         $namaSiswa      = $namaMurid;
 
         $isifilby       = $_POST['iniFilterBuku'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $iniScrollFirstPage  = "ada";
         $setSesiPageFilterBy = 4;
@@ -11140,6 +11320,12 @@
         $kelas          = $_POST['kelasFormFilterBuku'];
         $panggilan      = $_POST['panggilanFormFilterBuku'];
         $nis            = $_POST['nisFormFilterBuku'];
+
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
         $iniScrollPreviousPage  = "ada";
         $setSesiPageFilterBy = 4;
@@ -11592,7 +11778,7 @@
 
             $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 BUKU != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -11612,7 +11798,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -11638,7 +11824,7 @@
 
             $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 BUKU != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -11658,7 +11844,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -11708,7 +11894,7 @@
 
             $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 BUKU != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -11729,7 +11915,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -11755,7 +11941,7 @@
 
             $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 BUKU != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -11776,7 +11962,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 BUKU != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -11820,13 +12006,19 @@
         $nis        = $_POST['nisFormFilterSeragam'];
         $namaSiswa  = $_POST['namaFormFilterSeragam'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 5;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
             $queryGetDataSeragam = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -11837,7 +12029,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -11865,7 +12057,7 @@
 
             $queryGetDataSeragam = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -11876,7 +12068,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -11920,13 +12112,19 @@
         $panggilan = $_POST['panggilanFormFilterSeragam'];
         $kelas     = $_POST['kelasFormFilterSeragam'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 5;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
             $queryGetDataSeragam = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -11937,7 +12135,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -11965,7 +12163,7 @@
 
             $queryGetDataSeragam = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -11976,7 +12174,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12018,13 +12216,19 @@
         $panggilan = $_POST['panggilanFormFilterSeragam'];
         $kelas     = $_POST['kelasFormFilterSeragam'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $setSesiPageFilterBy = 5;
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
 
             $queryGetDataSeragam = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -12037,7 +12241,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -12065,7 +12269,7 @@
 
             $queryGetDataSeragam = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -12078,7 +12282,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%' 
@@ -12118,6 +12322,12 @@
 
         $isifilby       = $_POST['iniFilterSeragam'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $iniScrollFirstPage  = "ada";
 
         $setSesiPageFilterBy = 5;
@@ -12126,7 +12336,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12144,7 +12354,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12170,7 +12380,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12188,7 +12398,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12225,6 +12435,12 @@
         $panggilan      = $_POST['panggilanFormFilterSeragam'];
         $nis            = $_POST['nisFormFilterSeragam'];
 
+        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
+        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+
+        $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
+        $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
+
         $iniScrollPreviousPage  = "ada";
 
         $setSesiPageFilterBy = 5;
@@ -12233,7 +12449,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12252,7 +12468,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12278,7 +12494,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12297,7 +12513,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12351,7 +12567,7 @@
 
             $queryGetDataSeragamWithDate = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12363,7 +12579,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12393,7 +12609,7 @@
 
             $queryGetDataSeragamWithDate = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12405,7 +12621,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12463,7 +12679,7 @@
 
             $queryGetDataSeragamWithDate = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12475,7 +12691,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12502,7 +12718,7 @@
 
             $queryGetDataSeragamWithDate = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12514,7 +12730,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12567,7 +12783,7 @@
 
             $queryGetDataSeragamWithDate = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12581,7 +12797,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12609,7 +12825,7 @@
 
             $queryGetDataSeragamWithDate = "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12623,7 +12839,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12677,7 +12893,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12697,7 +12913,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12723,7 +12939,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12743,7 +12959,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12794,7 +13010,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12815,7 +13031,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd
+                FROM input_data_sd_lama1
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -12841,7 +13057,7 @@
 
             $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12862,7 +13078,7 @@
 
             $ambildata_perhalaman = mysqli_query($con, "
                 SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk
+                FROM input_data_tk_lama
                 WHERE
                 SERAGAM != 0
                 AND NAMA LIKE '%$namaMurid%'
@@ -15986,7 +16202,7 @@
                                     <label style="margin-right: 204px;"> UANG BUKU </label>
 
                                     <?php if ($queryUangBuku == 0): ?>
-                                        <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="0">
+                                        <input type="text" id="rupiah_buku_edit" name="nominal_buku_edit" class="uang_buku" value="0">
                                     <?php else: ?>
                                         <input type="text" id="rupiah_buku_edit" readonly="" name="nominal_buku_edit" class="uang_buku" value="<?= rupiahFormatInput($queryUangBuku); ?>">
                                     <?php endif ?>
