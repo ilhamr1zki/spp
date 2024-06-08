@@ -23,6 +23,10 @@
             AND NAMA LIKE '%$namaMurid%' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
+
+        $hitung = mysqli_num_rows($ambildata_perhalaman);
+        // echo $hitung;exit;
+
         // print_r($ambildata_perhalaman->num_rows);
         $jumlahPagination = ceil($hitungDataFilterRegistrasi / $jumlahData);
 
@@ -229,6 +233,8 @@
                 <input type="hidden" name="kelasFormFilterRegistrasi" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterRegistrasi" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterRegistrasi" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="previousPageFilterRegistrasi">
                     &laquo;
                     Previous
@@ -261,6 +267,8 @@
                     <input type="hidden" name="kelasFormFilterRegistrasi" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterRegistrasi" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterRegistrasi" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="toPageFilterRegistrasi">
                         <?= $i; ?>
                     </button>
@@ -281,6 +289,8 @@
                 <input type="hidden" name="kelasFormFilterRegistrasi" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterRegistrasi" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterRegistrasi" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="nextPageFilterRegistrasi" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
@@ -304,6 +314,8 @@
                 <input type="hidden" name="kelasFormFilterRegistrasi" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterRegistrasi" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterRegistrasi" value="<?= $panggilan; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="firstPageFilterRegistrasi">
                     &laquo;
                     First Page
@@ -327,6 +339,8 @@
 	                <input type="hidden" name="kelasFormFilterRegistrasi" value="<?= $kelas; ?>">
 	                <input type="hidden" name="namaFormFilterRegistrasi" value="<?= $namaMurid; ?>">
 	                <input type="hidden" name="panggilanFormFilterRegistrasi" value="<?= $panggilan; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
 	                <button name="lastPageFilterRegistrasi">
 	                    Last Page
 	                    &raquo;
