@@ -33,6 +33,9 @@
 	        LIMIT $dataAwal, $jumlahData
 	    ");
 
+	    $htg = mysqli_num_rows($ambildata_perhalaman);
+	    // echo $htg;exit;
+
 	    $jumlahPagination = ceil($hitungDataFilterSPPDate / $jumlahData);
 
 	    $jumlahLink = 2;

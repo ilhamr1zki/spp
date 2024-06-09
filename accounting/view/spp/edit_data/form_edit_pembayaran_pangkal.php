@@ -1,94 +1,89 @@
 <?php  
 
-	// Jika filter by SPP sedangkan filter tanggal dari dan tanggal sampai tidak di isi 
-    // if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
-    	// echo "Tidak tanggal SPP";
+    if ($_SESSION['c_accounting'] == 'accounting1') {
 
-        if ($_SESSION['c_accounting'] == 'accounting1') {
+        $namaMurid = $namaSiswa;
+        $queryGetDataPANGKAL = "
+        SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        FROM input_data_sd_lama1
+        WHERE
+        PANGKAL != 0
+        AND NAMA LIKE '%$namaMurid%' ";
+        $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
+        $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
+        // echo $hitungDataFilterPANGKAL;
 
-            $namaMurid = $namaSiswa;
-            $queryGetDataPANGKAL = "
-            SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+        // echo $dataAwal . "<br>";
+        $ambildata_perhalaman = mysqli_query($con, "
+            SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd_lama1
             WHERE
             PANGKAL != 0
-            AND NAMA LIKE '%$namaMurid%' ";
-            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
-            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
-            // echo $hitungDataFilterPANGKAL;
+            AND NAMA LIKE '%$namaMurid%' 
+            ORDER BY ID DESC
+            LIMIT $dataAwal, $jumlahData");
+        // print_r($ambildata_perhalaman->num_rows);
+        $htg = mysqli_num_rows($ambildata_perhalaman);
+        // echo $htg;
 
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_sd_lama1
-                WHERE
-                PANGKAL != 0
-                AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY ID DESC
-                LIMIT $dataAwal, $jumlahData");
-            // print_r($ambildata_perhalaman->num_rows);
-            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+        $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
 
-            $jumlahLink = 2;
+        $jumlahLink = 2;
 
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
-            } else {
-                $start_number = 1;
-            }
+        if ($halamanAktif > $jumlahLink) {
+            $start_number = $halamanAktif - $jumlahLink;
+        } else {
+            $start_number = 1;
+        }
 
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
-            }
+        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+            $end_number = $halamanAktif + $jumlahLink;
+        } else {
+            $end_number = $jumlahPagination;
+        }
 
-        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+    } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
-            $namaMurid = $namaSiswa;
-            $queryGetDataPANGKAL = "
-            SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        $namaMurid = $namaSiswa;
+        $queryGetDataPANGKAL = "
+        SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
+        FROM input_data_tk_lama
+        WHERE
+        PANGKAL != 0
+        AND NAMA LIKE '%$namaMurid%' ";
+        $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
+        $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
+        // echo $hitungDataFilterPANGKAL;
+
+        $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
+        // echo $dataAwal . "<br>";
+        $ambildata_perhalaman = mysqli_query($con, "
+            SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk_lama
             WHERE
             PANGKAL != 0
-            AND NAMA LIKE '%$namaMurid%' ";
-            $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
-            $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
-            // echo $hitungDataFilterPANGKAL;
+            AND NAMA LIKE '%$namaMurid%' 
+            ORDER BY ID DESC
+            LIMIT $dataAwal, $jumlahData");
+        // print_r($ambildata_perhalaman->num_rows);
+        $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
 
-            $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
-            // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "
-                SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                FROM input_data_tk_lama
-                WHERE
-                PANGKAL != 0
-                AND NAMA LIKE '%$namaMurid%' 
-                ORDER BY ID DESC
-                LIMIT $dataAwal, $jumlahData");
-            // print_r($ambildata_perhalaman->num_rows);
-            $jumlahPagination = ceil($hitungDataFilterPANGKAL / $jumlahData);
+        $jumlahLink = 2;
 
-            $jumlahLink = 2;
-
-            if ($halamanAktif > $jumlahLink) {
-                $start_number = $halamanAktif - $jumlahLink;
-            } else {
-                $start_number = 1;
-            }
-
-            if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
-                $end_number = $halamanAktif + $jumlahLink;
-            } else {
-                $end_number = $jumlahPagination;
-            }
-
+        if ($halamanAktif > $jumlahLink) {
+            $start_number = $halamanAktif - $jumlahLink;
+        } else {
+            $start_number = 1;
         }
 
-    // } else {
-    	// echo "Ada tanggal SPP";
-    // }
+        if ($halamanAktif < ($jumlahPagination - $jumlahLink)) {
+            $end_number = $halamanAktif + $jumlahLink;
+        } else {
+            $end_number = $jumlahPagination;
+        }
+
+    }
 
 ?>
 	
