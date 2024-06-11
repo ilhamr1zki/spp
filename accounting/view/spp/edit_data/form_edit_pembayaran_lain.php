@@ -24,6 +24,8 @@
             AND NAMA LIKE '%$namaMurid%' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
+        $htg = mysqli_num_rows($ambildata_perhalaman);
+        // echo $htg;exit;
         // print_r($ambildata_perhalaman->num_rows);
         $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
 
