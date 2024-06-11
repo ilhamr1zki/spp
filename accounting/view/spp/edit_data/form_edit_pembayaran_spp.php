@@ -22,7 +22,7 @@
         // echo "Ini Sesi Waktu : " . $_SESSION['expire'] . " Dan Ini Sesi Habis : " . time();
 
         if ($_SESSION['c_accounting'] == 'accounting1') {
-
+            
             $namaMurid = $namaSiswa;
             $queryGetDataSPP = "
             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
