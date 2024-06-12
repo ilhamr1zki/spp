@@ -25,7 +25,7 @@
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         $htg = mysqli_num_rows($ambildata_perhalaman);
-        // echo $htg;exit;
+        // echo $htg;
         // print_r($ambildata_perhalaman->num_rows);
         $jumlahPagination = ceil($hitungDataFilterLain / $jumlahData);
 
@@ -171,8 +171,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                 <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
-                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                 <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                     EDIT 
@@ -198,8 +198,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                 <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
-                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                 <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
                                     TAMBAH
@@ -231,8 +231,8 @@
                 <input type="hidden" name="kelasFormFilterLain" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterLain" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterLain" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="previousPageFilterLain">
                     &laquo;
                     Previous
@@ -265,8 +265,8 @@
                     <input type="hidden" name="kelasFormFilterLain" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterLain" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterLain" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                     <button name="toPageFilterLain">
                         <?= $i; ?>
                     </button>
@@ -287,8 +287,8 @@
                 <input type="hidden" name="kelasFormFilterLain" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterLain" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterLain" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="nextPageFilterLain" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
@@ -312,8 +312,8 @@
                 <input type="hidden" name="kelasFormFilterLain" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterLain" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterLain" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="firstPageFilterLain">
                     &laquo;
                     First Page
@@ -337,8 +337,8 @@
 	                <input type="hidden" name="kelasFormFilterLain" value="<?= $kelas; ?>">
 	                <input type="hidden" name="namaFormFilterLain" value="<?= $namaMurid; ?>">
 	                <input type="hidden" name="panggilanFormFilterLain" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 	                <button name="lastPageFilterLain">
 	                    Last Page
 	                    &raquo;

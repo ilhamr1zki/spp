@@ -64,6 +64,9 @@
     $setSesiPageFilterBy = 0; 
     $setSesiFormEdit     = 0;
 
+    $dariTanggal    = "";
+    $sampaiTanggal  = "";
+
     $setSesiJsFormatRupiah = 0;
 
     $nominalBayarSPP        = 0;
@@ -339,8 +342,8 @@
 
         $currentPage        = $_POST['currentPage'];
 
-        // $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        // $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         // $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         // $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -385,8 +388,8 @@
 
         $currentPage        = $_POST['currentPage'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -453,8 +456,8 @@
 
         $currentPage        = $_POST['currentPage'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -542,8 +545,8 @@
         $currentFilter   = $_POST['currentFilter'];
         $typeFilter      = htmlspecialchars($_POST['isi_filter_edit']);
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -573,7 +576,7 @@
             switch ($typeFilter) {
                 case "SPP" :
                     $nominalBayarSPP        = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranSPP       = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranSPP       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarPangkal;
                     $ketPembayaranPangkal;
@@ -1366,7 +1369,7 @@
                     $ketPembayaranSPP;
 
                     $nominalBayarPangkal    = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranPangkal   = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranPangkal   = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarKegiatan;
                     $ketPembayaranKegiatan;
@@ -1940,7 +1943,7 @@
                     $ketPembayaranPangkal;
 
                     $nominalBayarKegiatan   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranKegiatan  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranKegiatan  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
                     // echo $ketPembayaranKegiatan;exit;
 
                     $nominalBayarBuku;
@@ -2570,7 +2573,7 @@
                     $ketPembayaranKegiatan;
 
                     $nominalBayarBuku   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranBuku  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranBuku  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarSeragam;
                     $ketPembayaranSeragam;
@@ -3166,7 +3169,7 @@
                     $ketPembayaranBuku;
 
                     $nominalBayarSeragam   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranSeragam  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranSeragam  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarRegistrasi;
                     $ketPembayaranRegistrasi;
@@ -3691,7 +3694,7 @@
                     $ketPembayaranSeragam;
 
                     $nominalBayarRegistrasi   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranRegistrasi  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranRegistrasi  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarLain;
                     $ketPembayaranLain;
@@ -4176,7 +4179,7 @@
                     $ketPembayaranRegistrasi;
 
                     $nominalBayarLain   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranLain  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     if ($currentFilter == 'SPP') {
 
@@ -4646,7 +4649,7 @@
             switch ($typeFilter) {
                 case "SPP" :
                     $nominalBayarSPP        = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranSPP       = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranSPP       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
                     $nominalBayarPangkal;
                     $ketPembayaranPangkal;
 
@@ -5432,7 +5435,7 @@
                     $ketPembayaranSPP;
 
                     $nominalBayarPangkal    = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranPangkal   = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranPangkal   = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarKegiatan;
                     $ketPembayaranKegiatan;
@@ -6005,7 +6008,7 @@
                     $ketPembayaranPangkal;
 
                     $nominalBayarKegiatan   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranKegiatan  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranKegiatan  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarBuku;
                     $ketPembayaranBuku;
@@ -6630,7 +6633,7 @@
                     $ketPembayaranKegiatan;
 
                     $nominalBayarBuku   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranBuku  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranBuku  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarSeragam;
                     $ketPembayaranSeragam;
@@ -7173,7 +7176,7 @@
                     $ketPembayaranBuku;
 
                     $nominalBayarSeragam   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranSeragam  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranSeragam  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarRegistrasi;
                     $ketPembayaranRegistrasi;
@@ -7697,7 +7700,7 @@
                     $ketPembayaranSeragam;
 
                     $nominalBayarRegistrasi   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranRegistrasi  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranRegistrasi  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     $nominalBayarLain;
                     $ketPembayaranLain;
@@ -8182,7 +8185,7 @@
                     $ketPembayaranRegistrasi;
 
                     $nominalBayarLain   = str_replace(["Rp ", "Rp. ", ".", ","], "", $_POST['nominalBayar']);
-                    $ketPembayaranLain  = htmlspecialchars($_POST['ketPembayaran']);
+                    $ketPembayaranLain  = mysqli_real_escape_string($con, htmlspecialchars($_POST['ketPembayaran']));
 
                     if ($currentFilter == 'SPP') {
 
@@ -8666,8 +8669,8 @@
 
         $typeFilter    = htmlspecialchars($_POST['isi_filter_edit']);
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -8814,8 +8817,8 @@
         $currentFilter   = $_POST['currentFilter'];
         $typeFilter      = htmlspecialchars($_POST['isi_filter_edit']);
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -8884,10 +8887,10 @@
         if ($data_ket_lain == '') {
             $data_ket_lain = null;
         } else if ($data_ket_lain != '') {
-            $data_ket_lain       = htmlspecialchars($_POST['ket_uang_lain2_edit']);
+            $data_ket_lain       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_lain2_edit']));
             // echo $data_ket_lain;
         }
-
+        // echo $data_ket_lain;exit;
         $data_stamp         = date("Y-m-d H:i:s");
 
         $dataIDInvoice = "";
@@ -8982,26 +8985,26 @@
                 } 
 
                 // Update Data 
-                $queryUpdate = "
+                $queryUpdate = '
                     UPDATE `u415776667_spp`.`input_data_sd_lama1` 
                     SET 
-                    `SPP`='$data_uang_spp',
-                    `SPP_txt`='$data_ket_spp',
-                    `PANGKAL`='$data_uang_pangkal',
-                    `PANGKAL_txt`='$data_ket_pangkal',
-                    `KEGIATAN`='$data_uang_kegiatan', 
-                    `KEGIATAN_txt`='$data_ket_kegiatan',
-                    `BUKU`='$data_uang_buku',
-                    `BUKU_txt`='$data_ket_buku',
-                    `SERAGAM`='$data_uang_seragam',
-                    `SERAGAM_txt`='$data_ket_seragam',
-                    `REGISTRASI`='$data_uang_registrasi',
-                    `REGISTRASI_txt`='$data_ket_registrasi',
-                    `LAIN`='$data_uang_lain',
-                    `LAIN_txt`='$data_ket_lain',
-                    `STAMP`='$data_stamp'
-                    WHERE  `ID`= '$idInvoice'
-                ";
+                    `SPP`="$data_uang_spp",
+                    `SPP_txt`="$data_ket_spp",
+                    `PANGKAL`="$data_uang_pangkal",
+                    `PANGKAL_txt`="$data_ket_pangkal",
+                    `KEGIATAN`="$data_uang_kegiatan", 
+                    `KEGIATAN_txt`="$data_ket_kegiatan",
+                    `BUKU`="$data_uang_buku",
+                    `BUKU_txt`="$data_ket_buku",
+                    `SERAGAM`="$data_uang_seragam",
+                    `SERAGAM_txt`="$data_ket_seragam",
+                    `REGISTRASI`="$data_uang_registrasi",
+                    `REGISTRASI_txt`="$data_ket_registrasi",
+                    `LAIN`="$data_uang_lain",
+                    `LAIN_txt`="$data_ket_lain",
+                    `STAMP`="$data_stamp"
+                    WHERE `ID`= "$idInvoice"
+                ';
 
                 mysqli_query($con, $queryUpdate);
 
@@ -9083,6 +9086,7 @@
                     // echo "Buku ";
 
                 } elseif ($currentFilter == 'LAIN') {
+                    echo "Lain ";
                     
                     if ($dariTanggal != " 00:00:00" && $sampaiTanggal != " 23:59:59") {
                         $setSesiPageFilterBy = 14;
@@ -9114,7 +9118,7 @@
                     `LAIN`='$data_uang_lain',
                     `LAIN_txt`='$data_ket_lain',
                     `STAMP`='$data_stamp'
-                    WHERE  `ID`= '$idInvoice'
+                    WHERE `ID`= '$idInvoice'
                 ";
 
                 mysqli_query($con, $queryUpdate);
@@ -9148,8 +9152,8 @@
         $nis        = $_POST['nisFormFilterSPP'];
         $namaSiswa  = $_POST['namaFormFilterSPP'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -9253,8 +9257,8 @@
         $panggilan = $_POST['panggilanFormFilterSPP'];
         $kelas     = $_POST['kelasFormFilterSPP'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -9361,8 +9365,8 @@
         $panggilan = $_POST['panggilanFormFilterSPP'];
         $kelas     = $_POST['kelasFormFilterSPP'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -9472,8 +9476,8 @@
         $iniScrollFirstPage  = "ada";
         $setSesiPageFilterBy = 1;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -9584,8 +9588,8 @@
         $iniScrollLastPage  = "ada";
         $setSesiPageFilterBy = 1;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -9704,8 +9708,8 @@
 
         $setSesiPageFilterBy = 8;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -9812,8 +9816,8 @@
 
         $setSesiPageFilterBy = 8;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -9919,8 +9923,8 @@
 
         $setSesiPageFilterBy = 8;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -10028,8 +10032,8 @@
         $iniScrollFirstPage    = "ada";
         $setSesiPageFilterBy   = 8;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -10144,8 +10148,8 @@
         $iniScrollLastPage    = "ada";
         $setSesiPageFilterBy   = 8;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -15846,8 +15850,8 @@
         $nis        = $_POST['nisFormFilterLain'];
         $namaSiswa  = $_POST['namaFormFilterLain'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -15952,8 +15956,8 @@
         $panggilan = $_POST['panggilanFormFilterLain'];
         $kelas     = $_POST['kelasFormFilterLain'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16056,8 +16060,8 @@
         $panggilan = $_POST['panggilanFormFilterLain'];
         $kelas     = $_POST['kelasFormFilterLain'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16162,8 +16166,8 @@
 
         $isifilby       = $_POST['iniFilterLain'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16274,8 +16278,8 @@
         $panggilan      = $_POST['panggilanFormFilterLain'];
         $nis            = $_POST['nisFormFilterLain'];
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16395,8 +16399,8 @@
 
         $setSesiPageFilterBy = 14;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16507,8 +16511,8 @@
 
         $setSesiPageFilterBy = 14;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16611,8 +16615,8 @@
 
         $setSesiPageFilterBy = 14;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16721,8 +16725,8 @@
 
         $setSesiPageFilterBy = 14;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -16838,8 +16842,8 @@
 
         $setSesiPageFilterBy = 14;
 
-        $dariTanggal    = $_POST['tanggal1'] . " 00:00:00";
-        $sampaiTanggal  = $_POST['tanggal2'] . " 23:59:59";
+        $dariTanggal    = $_POST['tanggal1'];
+        $sampaiTanggal  = $_POST['tanggal2'];
 
         $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
         $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
@@ -17159,8 +17163,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
-                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                 <button type="submit" name="simpan_edit_data" class="form-control btn-success"> <span class="glyphicon glyphicon-floppy-disk"></span> Simpan </button>
                             </div>
@@ -17179,8 +17183,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
-                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                 <button id="kembali_ke" type="submit" name="back_to_page" class="form-control btn-primary"> <span class="glyphicon glyphicon-log-out" id="cancel"> </span> Kembali </button>
                             </div>
@@ -18230,8 +18234,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
-                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                                 <input type="hidden" name="isi_filter_edit" value="<?= $typeFilter; ?>">
 
                                 <button id="save_record" type="submit" name="simpan_tambah_edit" class="form-control btn-success"> <span class="glyphicon glyphicon-floppy-disk"> </span> Simpan </button>
@@ -18251,8 +18255,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $currentPage; ?>">
                                 <input type="hidden" name="currentFilter" value="<?= $typeFilter; ?>">
 
-                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                                 <input type="hidden" name="isi_filter_edit" value="<?= $typeFilter; ?>">
 
                                 <button id="kembali_ke" type="submit" name="back_to_page" class="form-control btn-primary"> <span class="glyphicon glyphicon-log-out" id="cancel"> </span> Kembali </button>
@@ -18534,6 +18538,9 @@
         </div>
 
     <?php endif ?>
+
+    <?php echo "Tanggal Dari : " . $dariTanggal . "<br>" . "Tanggal Sampai : " . $sampaiTanggal . "<br>"; ?>
+    <?php echo "Ini Sesi Form Edit Nomer " . $setSesiFormEdit . "<br> Ini Sesi Sesi Page Filter By " . $setSesiPageFilterBy; ?>
 
     <div id="modalEditData" class="modal"  data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-lg">

@@ -101,192 +101,277 @@
     $queryFindNamaInputer = mysqli_query($con, "SELECT username FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ");
     $getDataNamaInputer   = ucfirst(mysqli_fetch_assoc($queryFindNamaInputer)['username']);
     // echo $getDataNamaInputer;
-    $simpanDataID = [];
+    $simpanDataID       = [];
+    
+    $simpanDataKetSPP       = [];
+    $simpanDataKetPangkal   = [];
+    $simpanDataKetKegiatan  = [];
+    $simpanDataKetBuku      = [];
+    $simpanDataKetSeragam   = [];
+    $simpanDataKetRegis     = [];
+    $simpanDataKetLain      = [];
+
     $inputData = 0;
     $sesi = 0;
 
     if (isset($_POST['simpan_data'])) {
-        $sesi = 1;
-        $inputData = 1;
 
-        $data_id            = htmlspecialchars($_POST['id_siswa']);
-        $data_nis           = htmlspecialchars($_POST['nis_siswa']);
-        $data_tanggal_input = htmlspecialchars($_POST['tanggal_bukti_tf'] . " 00:00:00");
+        $data_uang_spp        = $_POST['nominal_spp'];
+        $data_uang_pangkal    = $_POST['nominal_pangkal'];
+        $data_uang_kegiatan   = $_POST['nominal_kegiatan'];
+        $data_uang_buku       = $_POST['nominal_buku'];
+        $data_uang_seragam    = $_POST['nominal_seragam'];
+        $data_uang_registrasi = $_POST['nominal_regis'];
+        $data_uang_lain       = $_POST['nominal_lain'];
 
-        if ($_POST['isi_bulan'] != '') {
-            # code...
-            $data_bulan         = htmlspecialchars(strtoupper($_POST['isi_bulan']) . " " . $_POST['isi_tahun']);
+        $data_ket_spp         = $_POST['ket_uang_spp'];
+        $data_ket_pangkal     = $_POST['ket_uang_pangkal'];
+        $data_ket_kegiatan    = $_POST['ket_uang_kegiatan'];
+        $data_ket_buku        = $_POST['ket_uang_buku'];
+        $data_ket_seragam     = $_POST['ket_uang_seragam'];
+        $data_ket_registrasi  = $_POST['ket_uang_regis'];
+        $data_ket_lain        = $_POST['ket_uang_lain2'];
+
+        if (empty($data_uang_spp) && empty($data_uang_pangkal) && empty($data_uang_kegiatan) && empty($data_uang_buku) && empty($data_uang_seragam) && empty($data_uang_registrasi) && empty($data_uang_lain)) {
+
+            $_SESSION['err_warning'] = 'err_validation_all_empty';
+
+            $data_id            = htmlspecialchars($_POST['id_siswa']);
+            $data_nis           = htmlspecialchars($_POST['nis_siswa']);
+            $data_tanggal_input = htmlspecialchars($_POST['tanggal_bukti_tf'] . " 00:00:00");
+
+            if ($_POST['isi_bulan'] != '') {
+                # code...
+                $data_bulan         = htmlspecialchars(strtoupper($_POST['isi_bulan']) . " " . $_POST['isi_tahun']);
+            } else {
+                $data_bulan = '';
+            }
+            
+            $data_kelas         = htmlspecialchars($_POST['kelas_siswa']);
+            $data_nama          = htmlspecialchars($_POST['nama_siswa']);
+            $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
+            $data_tx            = htmlspecialchars($_POST['isi_tx']);
+ 
         } else {
-            $data_bulan = '';
-        }
-        
-        $data_kelas         = htmlspecialchars($_POST['kelas_siswa']);
-        $data_nama          = htmlspecialchars($_POST['nama_siswa']);
-        $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
-        $data_tx            = htmlspecialchars($_POST['isi_tx']);
 
-        // Validasi jika data siswa tidak ada
-        if ($data_id == '' || $data_nis == '' || $data_nama == '') {
-            $_SESSION['err_warning'] = 'err_validation';
-        } else {
+            $sesi = 1;
+            $inputData = 1;
 
-            $data_uang_spp          = str_replace(["Rp. ", "."], "", $_POST['nominal_spp']);
-            $data_ket_spp           = htmlspecialchars($_POST['ket_uang_spp']);
-            if ($data_ket_spp == '') {
-                $data_ket_spp = NULL;
-            } else if ($data_ket_spp != '') {
-                $data_ket_spp       = htmlspecialchars($_POST['ket_uang_spp']);
-                // echo $data_ket_spp . " ";
+            $data_id            = htmlspecialchars($_POST['id_siswa']);
+            $data_nis           = htmlspecialchars($_POST['nis_siswa']);
+            $data_tanggal_input = htmlspecialchars($_POST['tanggal_bukti_tf'] . " 00:00:00");
+
+            if ($_POST['isi_bulan'] != '') {
+                # code...
+                $data_bulan         = htmlspecialchars(strtoupper($_POST['isi_bulan']) . " " . $_POST['isi_tahun']);
+            } else {
+                $data_bulan = '';
             }
+            
+            $data_kelas         = htmlspecialchars($_POST['kelas_siswa']);
+            $data_nama          = htmlspecialchars($_POST['nama_siswa']);
+            $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
+            $data_tx            = htmlspecialchars($_POST['isi_tx']);
 
-            $data_uang_pangkal      = str_replace(["Rp. ", "."], "", $_POST['nominal_pangkal']);
-            $data_ket_pangkal       = htmlspecialchars($_POST['ket_uang_pangkal']);
-            if ($data_ket_pangkal == '') {
-                $data_ket_pangkal = null;
-            } else if ($data_ket_pangkal != '') {
-                $data_ket_pangkal       = htmlspecialchars($_POST['ket_uang_pangkal']);
-                // echo $data_ket_pangkal . " ";
-            }
+            // Validasi jika data siswa tidak ada
+            if ($data_id == '' || $data_nis == '' || $data_nama == '') {
+                $_SESSION['err_warning'] = 'err_validation';
+            } else {
 
-            $data_uang_kegiatan     = str_replace(["Rp. ", "."], "", $_POST['nominal_kegiatan']);
-            $data_ket_kegiatan      = htmlspecialchars($_POST['ket_uang_kegiatan']);
-            if ($data_ket_kegiatan == '') {
-                $data_ket_kegiatan = null;
-            } else if ($data_ket_kegiatan != '') {
-                $data_ket_kegiatan       = htmlspecialchars($_POST['ket_uang_kegiatan']);
-                // echo $data_ket_kegiatan . " ";
-            }
+                $data_uang_spp          = str_replace(["Rp. ", "."], "", $_POST['nominal_spp']);
+                $data_ket_spp           = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_spp']));
+                if ($data_ket_spp == '') {
+                    $data_ket_spp = NULL;
+                } else if ($data_ket_spp != '') {
+                    $data_ket_spp       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_spp']));
+                    // echo $data_ket_spp . " ";
+                }
 
-            $data_uang_buku         = str_replace(["Rp. ", "."], "", $_POST['nominal_buku']);
-            $data_ket_buku          = htmlspecialchars($_POST['ket_uang_buku']);
-            if ($data_ket_buku == '') {
-                $data_ket_buku = null;
-            } else if ($data_ket_buku != '') {
-                $data_ket_buku       = htmlspecialchars($_POST['ket_uang_buku']);
-                // echo $data_ket_buku . " ";
-            }
+                $data_uang_pangkal      = str_replace(["Rp. ", "."], "", $_POST['nominal_pangkal']);
+                $data_ket_pangkal       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_pangkal']));
+                if ($data_ket_pangkal == '') {
+                    $data_ket_pangkal = null;
+                } else if ($data_ket_pangkal != '') {
+                    $data_ket_pangkal       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_pangkal']));
+                    // echo $data_ket_pangkal . " ";
+                }
 
-            $data_uang_seragam      = str_replace(["Rp. ", "."], "", $_POST['nominal_seragam']);
-            $data_ket_seragam       = htmlspecialchars($_POST['ket_uang_seragam']);
-            if ($data_ket_seragam == '') {
-                $data_ket_seragam = null;
-            } else if ($data_ket_seragam != '') {
-                $data_ket_seragam       = htmlspecialchars($_POST['ket_uang_seragam']);
-                // echo $data_ket_seragam . " ";
-            }
+                $data_uang_kegiatan     = str_replace(["Rp. ", "."], "", $_POST['nominal_kegiatan']);
+                $data_ket_kegiatan      = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_kegiatan']));
+                if ($data_ket_kegiatan == '') {
+                    $data_ket_kegiatan = null;
+                } else if ($data_ket_kegiatan != '') {
+                    $data_ket_kegiatan       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_kegiatan']));
+                    // echo $data_ket_kegiatan . " ";
+                }
 
-            $data_uang_registrasi   = str_replace(["Rp. ", "."], "", $_POST['nominal_regis']);
-            $data_ket_registrasi    = htmlspecialchars($_POST['ket_uang_regis']);
-            if ($data_ket_registrasi == '') {
-                $data_ket_registrasi = null;
-            } else if ($data_ket_registrasi != '') {
-                $data_ket_registrasi       = htmlspecialchars($_POST['ket_uang_regis']);
-                // echo $data_ket_registrasi . " ";
-            }
+                $data_uang_buku         = str_replace(["Rp. ", "."], "", $_POST['nominal_buku']);
+                $data_ket_buku          = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_buku']));
+                if ($data_ket_buku == '') {
+                    $data_ket_buku = null;
+                } else if ($data_ket_buku != '') {
+                    $data_ket_buku       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_buku']));
+                    // echo $data_ket_buku . " ";
+                }
 
-            $data_uang_lain         = str_replace(["Rp. ", "."], "", $_POST['nominal_lain']);
-            $data_ket_lain          = htmlspecialchars($_POST['ket_uang_lain2']);
-            if ($data_ket_lain == '') {
-                $data_ket_lain = null;
-            } else if ($data_ket_lain != '') {
-                $data_ket_lain       = htmlspecialchars($_POST['ket_uang_lain2']);
-                // echo $data_ket_lain;
-            }
-            // $data_inputer           = ucfirst(str)
+                $data_uang_seragam      = str_replace(["Rp. ", "."], "", $_POST['nominal_seragam']);
+                $data_ket_seragam       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_seragam']));
+                if ($data_ket_seragam == '') {
+                    $data_ket_seragam = null;
+                } else if ($data_ket_seragam != '') {
+                    $data_ket_seragam       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_seragam']));
+                    // echo $data_ket_seragam . " ";
+                }
 
-            $data_stamp         = date("Y-m-d H:i:s");
-            // echo $data_stamp;exit;
+                $data_uang_registrasi   = str_replace(["Rp. ", "."], "", $_POST['nominal_regis']);
+                $data_ket_registrasi    = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_regis']));
+                if ($data_ket_registrasi == '') {
+                    $data_ket_registrasi = null;
+                } else if ($data_ket_registrasi != '') {
+                    $data_ket_registrasi       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_regis']));
+                    // echo $data_ket_registrasi . " ";
+                }
 
-            $dataIDInvoice = "";
+                $data_uang_lain         = str_replace(["Rp. ", "."], "", $_POST['nominal_lain']);
+                $data_ket_lain          = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_lain2']));
+                if ($data_ket_lain == '') {
+                    $data_ket_lain = null;
+                } else if ($data_ket_lain != '') {
+                    $data_ket_lain       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_lain2']));
+                    // echo $data_ket_lain;
+                }
+                // $data_inputer           = ucfirst(str)
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+                $data_stamp         = date("Y-m-d H:i:s");
+                // echo $data_stamp;exit;
 
-                // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
-                if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+                $dataIDInvoice = "";
+                $allData       = "";
 
-                    $_SESSION['form_success'] = "session_time_out";
-                    $timeIsOut = 1;
-                    // exit;
+                if ($_SESSION['c_accounting'] == 'accounting1') {
+
+                    // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
+                    if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+                        $_SESSION['form_success'] = "session_time_out";
+                        $timeIsOut = 1;
+                        // exit;
 
 
-                } else {
+                    } else {
 
-                    // Insert Data 
-                    $queryInsert = "
-                    INSERT INTO `input_data_sd` (
-                        `ID`, `NIS`, `DATE`, `BULAN`, 
-                        `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
-                        `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
-                        `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
-                        `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
-                        `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
-                        `INPUTER`, `STAMP`) 
-                    VALUES (
-                        NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
-                        '$data_kelas', NULL, '$data_nama', '$data_panggilan',
-                         '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
-                         '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
-                         '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
-                         '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
-                         '$getDataNamaInputer', '$data_stamp'
-                    )";
+                        // Insert Data 
+                        $queryInsert = "
+                        INSERT INTO `input_data_sd_lama1` (
+                            `ID`, `NIS`, `DATE`, `BULAN`, 
+                            `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
+                            `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                            `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                            `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                            `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                            `INPUTER`, `STAMP`) 
+                        VALUES (
+                            NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
+                            '$data_kelas', NULL, '$data_nama', '$data_panggilan',
+                             '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                             '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                             '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                             '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                             '$getDataNamaInputer', '$data_stamp'
+                        )";
 
-                    mysqli_query($con, $queryInsert);
-                    $_SESSION['form_success'] = "insert";
+                        mysqli_query($con, $queryInsert);
+                        $_SESSION['form_success'] = "insert";
+
+                    }
+
+                    $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
+                    $allData       = mysqli_query($con, "SELECT * FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
+
+                } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+                    if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+                        $_SESSION['form_success'] = "session_time_out";
+                        $timeIsOut = 1;
+                        // exit;
+
+                    } else {
+
+                        // Insert Data 
+                        $queryInsert = "
+                        INSERT INTO `input_data_tk_lama` (
+                            `ID`, `NIS`, `DATE`, `BULAN`, 
+                            `KELAS`, `NAMA`, `PANGGILAN`, 
+                            `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                            `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                            `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                            `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                            `INPUTER`, `STAMP`, `F27`) 
+                        VALUES (
+                            NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
+                            '$data_kelas', '$data_nama', '$data_panggilan',
+                             '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                             '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                             '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                             '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                             '$getDataNamaInputer', '$data_stamp', NULL
+                        )";
+
+                        mysqli_query($con, $queryInsert);
+                        $_SESSION['form_success'] = "insert";
+
+                    }
+
+                    $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
+                    $allData       = mysqli_query($con, "SELECT * FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
 
                 }
 
+                foreach ($dataIDInvoice as $idInvoice) {
+                    array_push($simpanDataID, $idInvoice['ID']);
+                }
 
-                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd WHERE NIS = '$data_nis' ");
+                // Get Data Keterangan Uang SPP
+                foreach ($allData as $get_data) {
+                    array_push($simpanDataKetSPP, $get_data['SPP_txt']);
+                }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+                // Get Data Keterangan Uang Pangkal
+                foreach ($allData as $get_data) {
+                    array_push($simpanDataKetPangkal, $get_data['PANGKAL_txt']);
+                }
 
-                if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+                // Get Data Keterangan Uang Kegiatan
+                foreach ($allData as $get_data) {
+                    array_push($simpanDataKetKegiatan, $get_data['KEGIATAN_txt']);
+                }
 
-                    $_SESSION['form_success'] = "session_time_out";
-                    $timeIsOut = 1;
-                    // exit;
+                // Get Data Keterangan Uang Buku
+                foreach ($allData as $get_data) {
+                    array_push($simpanDataKetBuku, $get_data['BUKU_txt']);
+                }
 
-                } else {
+                // Get Data Keterangan Uang Seragam
+                foreach ($allData as $get_data) {
+                    array_push($simpanDataKetSeragam, $get_data['SERAGAM_txt']);
+                }
 
-                    // Insert Data 
-                    $queryInsert = "
-                    INSERT INTO `input_data_tk` (
-                        `ID`, `NIS`, `DATE`, `BULAN`, 
-                        `KELAS`, `NAMA`, `PANGGILAN`, 
-                        `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
-                        `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
-                        `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
-                        `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
-                        `INPUTER`, `STAMP`, `F27`) 
-                    VALUES (
-                        NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
-                        '$data_kelas', '$data_nama', '$data_panggilan',
-                         '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
-                         '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
-                         '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
-                         '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
-                         '$getDataNamaInputer', '$data_stamp', NULL
-                    )";
+                // Get Data Keterangan Uang Registrasi
+                foreach ($allData as $get_data) {
+                    array_push($simpanDataKetRegis, $get_data['REGISTRASI_txt']);
+                }
 
-                    mysqli_query($con, $queryInsert);
-                    $_SESSION['form_success'] = "insert";
-
+                // Get Data Keterangan Uang Lain2
+                foreach ($allData as $get_data) {
+                    array_push($simpanDataKetLain, $get_data['LAIN_txt']);
                 }
 
 
-
-                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk WHERE NIS = '$data_nis' ");
-
-            }
-
-            foreach ($dataIDInvoice as $idInvoice) {
-                array_push($simpanDataID, $idInvoice['ID']);
             }
 
         }
 
-        // exit;
     }
 
 ?>
@@ -395,39 +480,22 @@
           </div>
         <?php } ?>
 
-        <?php if(isset($_SESSION['pesan']) && $_SESSION['pesan'] == 'tambah'){?>
-          <div style="display: none;" class="alert alert-warning alert-dismissable">Setup Naik Juz Berhasil Disimpan
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             <?php unset($_SESSION['pesan']); ?>
-          </div>
-        <?php } ?>
-
-        <?php if(isset($_SESSION['pesan']) && $_SESSION['pesan'] == 'edit'){?>
-          <div style="display: none;" class="alert alert-info alert-dismissable">Data Naik Juz Berhasil Disimpan
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             <?php unset($_SESSION['pesan']); ?>
-          </div>
-        <?php } ?>
-
-        <?php if(isset($_SESSION['pesan']) && $_SESSION['pesan'] == 'edit_catatan') { ?>
-          <div style="display: none;" class="alert alert-success alert-dismissable"> Histori Catatan Berhasil Disimpan
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             <?php unset($_SESSION['pesan']); ?>
-          </div>
-        <?php } ?>
-
-        <?php if(isset($_SESSION['pesan']) && $_SESSION['pesan'] == 'hapus') {?>
-          <div style="display: none;" class="alert alert-info alert-dismissable">Data Naik Juz Berhasil Dihapus
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             <?php unset($_SESSION['pesan']); ?>
-          </div>
-        <?php } ?>
-
         <?php if(isset($_SESSION['err_warning']) && $_SESSION['err_warning'] == 'err_validation'){?>
           <div style="display: none;" class="alert alert-danger alert-dismissable"> Mohon Cari Siswa Terlebih Dahulu
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <?php 
                 $sesi = 3;
+                $inputData = 3;
+                unset($_SESSION['err_warning']); 
+            ?>
+          </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['err_warning']) && $_SESSION['err_warning'] == 'err_validation_all_empty'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Data Input Wajib Di Isi
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <?php 
+                $sesi = 4;
                 $inputData = 3;
                 unset($_SESSION['err_warning']); 
             ?>
@@ -524,7 +592,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 215px;"> UANG SPP </label>
                             <input type="text" id="rupiah_spp" class="uang_spp" value="<?= rupiahFormat($data_uang_spp); ?>" readonly>
-                            <input type="text" class="ket_uang_spp" id="ket_uang_spp" readonly value="<?= $data_ket_spp; ?>" placeholder="Keterangan">
+                            <input type="text" class="ket_uang_spp" id="ket_uang_spp" readonly value="<?= end($simpanDataKetSPP); ?>" placeholder="Keterangan">
                         </div>
                     </div>
 
@@ -532,7 +600,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 175px;"> UANG PANGKAL </label>
                             <input type="text" id="rupiah_pangkal" readonly class="uang_pangkal" value="<?= rupiahFormat($data_uang_pangkal); ?>">
-                            <input type="text" class="ket_uang_pangkal" readonly value="<?= $data_ket_pangkal; ?>" placeholder="Keterangan">
+                            <input type="text" class="ket_uang_pangkal" readonly value="<?= end($simpanDataKetPangkal); ?>" placeholder="Keterangan">
                         </div>
                     </div>
 
@@ -540,7 +608,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 173px;"> UANG KEGIATAN </label>
                             <input type="text" id="rupiah_kegiatan" readonly="" class="uang_kegiatan" value="<?= rupiahFormat($data_uang_kegiatan); ?>">
-                            <input type="text" class="ket_uang_kegiatan" readonly="" placeholder="Keterangan" value="<?= $data_ket_kegiatan; ?>">
+                            <input type="text" class="ket_uang_kegiatan" readonly="" placeholder="Keterangan" value="<?= end($simpanDataKetKegiatan); ?>">
                         </div>
                     </div>
 
@@ -548,7 +616,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 204px;"> UANG BUKU </label>
                             <input type="text" id="rupiah_buku" class="uang_buku" readonly="" value="<?= rupiahFormat($data_uang_buku); ?>">
-                            <input type="text" class="ket_uang_buku" readonly="" placeholder="Keterangan" value="<?= $data_ket_buku; ?>">
+                            <input type="text" class="ket_uang_buku" readonly="" placeholder="Keterangan" value="<?= end($simpanDataKetBuku); ?>">
                         </div>
                     </div>
 
@@ -556,7 +624,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 172px;"> UANG SERAGAM </label>
                             <input type="text" id="rupiah_seragam" readonly="" class="uang_seragam" value="<?= rupiahFormat($data_uang_seragam); ?>">
-                            <input type="text" class="ket_uang_seragam" readonly="" placeholder="Keterangan" value="<?= $data_ket_seragam; ?>">
+                            <input type="text" class="ket_uang_seragam" readonly="" placeholder="Keterangan" value="<?= end($simpanDataKetSeragam); ?>">
                         </div>
                     </div>
 
@@ -564,7 +632,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
                             <input type="text" id="rupiah_regis" readonly class="uang_regis" value="<?= rupiahFormat($data_uang_registrasi); ?>">
-                            <input type="text" class="ket_uang_regis" readonly="" placeholder="Keterangan" value="<?= $data_ket_registrasi; ?>">
+                            <input type="text" class="ket_uang_regis" readonly="" placeholder="Keterangan" value="<?= end($simpanDataKetRegis); ?>">
                         </div>
                     </div>
 
@@ -572,7 +640,7 @@
                         <div class="form-group" style="margin-left: 15px;">
                             <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
                             <input type="text" id="rupiah_lain" class="lain2" readonly="" value="<?= rupiahFormat($data_uang_lain); ?>">
-                            <input type="text" class="ket_lain2" placeholder="Keterangan" readonly="" value="<?= $data_ket_lain; ?>">
+                            <input type="text" class="ket_lain2" placeholder="Keterangan" readonly="" value="<?= end($simpanDataKetLain); ?>">
                         </div>
                     </div>
 
@@ -605,13 +673,13 @@
                                 <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data_uang_registrasi; ?>">
                                 <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data_uang_lain; ?>">
 
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= $data_ket_spp; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data_ket_pangkal; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data_ket_kegiatan; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= $data_ket_buku; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data_ket_seragam; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data_ket_registrasi; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="<?= $data_ket_lain; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= end($simpanDataKetSPP); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= end($simpanDataKetPangkal); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= end($simpanDataKetKegiatan); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= end($simpanDataKetBuku); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= end($simpanDataKetSeragam); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= end($simpanDataKetRegis); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="<?= end($simpanDataKetLain); ?>">
 
                                 <button type="submit" name="cetak_kuitansi" id="btn_cetak_kuitansi" class="btn btn-success btn-circle"> <span class="glyphicon glyphicon-print"> </span> Cetak Kuitansi </button>
                             </form>
@@ -636,13 +704,13 @@
                                 <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data_uang_registrasi; ?>">
                                 <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data_uang_lain; ?>">
 
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= $data_ket_spp; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= $data_ket_pangkal; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= $data_ket_kegiatan; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= $data_ket_buku; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data_ket_seragam; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data_ket_registrasi; ?>">
-                                <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="<?= $data_ket_lain; ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= end($simpanDataKetSPP); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= end($simpanDataKetPangkal); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= end($simpanDataKetKegiatan); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= end($simpanDataKetBuku); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= end($simpanDataKetSeragam); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= end($simpanDataKetRegis); ?>">
+                                <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="<?= end($simpanDataKetLain); ?>">
 
                                 <input type="hidden" name="jenisPembayaranSPP" value="<?= $data_uang_spp; ?>">
                                 <input type="hidden" name="jenisPembayaranPangkal" value="<?= $data_uang_pangkal; ?>">
@@ -738,6 +806,161 @@
                                 <option value=""> -- PILIH -- </option>
                                 <?php foreach ($opsiTx as $tx): ?>
                                     <option value="<?= $tx; ?>"> <?= $tx; ?> </option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="new1" />
+
+                <div class="flex-containers">
+
+                    <!-- SPP -->
+                    <div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 215px;"> UANG SPP </label>
+                                <input type="text" id="rupiah_spp" class="uang_spp" value="0" name="nominal_spp" required="">
+                                <input type="text" class="ket_uang_spp" id="ket_uang_spp" name="ket_uang_spp" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 175px;"> UANG PANGKAL </label>
+                                <input type="text" id="rupiah_pangkal" class="uang_pangkal" value="0" name="nominal_pangkal">
+                                <input type="text" class="ket_uang_pangkal" name="ket_uang_pangkal" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 173px;"> UANG KEGIATAN </label>
+                                <input type="text" id="rupiah_kegiatan" class="uang_kegiatan" value="0" name="nominal_kegiatan">
+                                <input type="text" class="ket_uang_kegiatan" name="ket_uang_kegiatan" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 204px;"> UANG BUKU </label>
+                                <input type="text" id="rupiah_buku" class="uang_buku" value="0" name="nominal_buku">
+                                <input type="text" class="ket_uang_buku" name="ket_uang_buku" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 172px;"> UANG SERAGAM </label>
+                                <input type="text" id="rupiah_seragam" class="uang_seragam" value="0" name="nominal_seragam">
+                                <input type="text" class="ket_uang_seragam" name="ket_uang_seragam" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 71px;"> UANG REGISTRASI/Daftar Ulang </label>
+                                <input type="text" id="rupiah_regis" class="uang_regis" value="0" name="nominal_regis">
+                                <input type="text" class="ket_uang_regis" name="ket_uang_regis" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group" style="margin-left: 15px;">
+                                <label style="margin-right: 26px;"> LAIN<sup style="font-size: 10px;">2</sup>/INFAQ/Sumbangan/Antar Jemput </label>
+                                <input type="text" id="rupiah_lain" class="lain2" value="0" name="nominal_lain">
+                                <input type="text" class="ket_lain2" name="ket_uang_lain2" placeholder="Keterangan">
+                            </div>
+                        </div>
+
+                        <div class="tombol">
+                            <div class="form-group">
+                                <button id="save_record" name="simpan_data" class="btn btn-warning btn-circle"> Save Record </button>
+                            </div>
+
+                        <div class="form-group">
+                            <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </a>
+                            <!-- <button id="cek_pembayaran" class="btn btn-primary btn-circle"> Cek Pembayaran </button> -->
+                        </div>
+
+        </form>
+
+    <?php elseif($sesi == 4): ?>
+
+        <form action="<?= $baseac; ?>inputdata" method="post">
+            <div class="box-body table-responsive">
+
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <label>ID SISWA</label>
+                            <input type="text" name="id_siswa" readonly="" class="form-control" id="id_siswa" value="<?= $data_id; ?>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>NIS</label>
+                            <input type="text" class="form-control" name="nis_siswa" id="nis_siswa" value="<?= $data_nis; ?>" readonly="" />
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label>NAMA</label>
+                            <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" readonly="" value="<?= $data_nama; ?>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label>PANGGILAN</label>
+                            <input type="text" class="form-control" name="panggilan_siswa" id="panggilan_siswa" readonly="" value="<?= $data_panggilan; ?>" />
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <label>Kelas</label>
+                            <input type="text" class="form-control" readonly="" name="kelas_siswa" id="kelas_siswa" value="<?= $data_kelas; ?>" />
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TANGGAL</label>
+                            <input type="date" class="form-control" name="tanggal_bukti_tf" id="tanggal_bukti_tf">
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>BULAN</label>
+                            <select class="form-control" name="isi_bulan">
+                                <option value=""> -- PILIH -- </option>
+                                <?php foreach ($dataBulan as $bln) : ?>
+                                    <option value="<?= $bln; ?>" <?=($bln == $_POST['isi_bulan'] )?'selected="selected"':''?> > <?= $bln; ?> </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TAHUN</label>
+                            <input type="text" name="isi_tahun" id="isi_tahun" placeholder="2024" class="form-control" value="<?= $_POST['isi_tahun']; ?>">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>TX</label>
+                            <select class="form-control" name="isi_tx">
+                                <option value=""> -- PILIH -- </option>
+                                <?php foreach ($opsiTx as $tx): ?>
+                                    <option value="<?= $tx; ?>" <?=($tx == $data_tx ) ? 'selected="selected"':''?> > <?= $tx; ?> </option>
                                 <?php endforeach ?>
                             </select>
                         </div>

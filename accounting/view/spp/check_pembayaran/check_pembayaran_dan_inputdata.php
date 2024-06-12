@@ -138,7 +138,7 @@
             }
         }
 
-    } else {
+    } else if ($code_accounting == 'accounting2') {
 
          if (isset($_POST['filter_by'])) {
 
@@ -6082,7 +6082,7 @@
     } else if ($code_accounting == 'accounting2') {
 
         // histori input data tk
-        $queryGetAllDataHistori     = "SELECT * FROM input_data_tk";
+        $queryGetAllDataHistori     = "SELECT * FROM input_data_tk_lama ORDER BY ID DESC";
         $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
 
         $halamanAktif = "";
@@ -11888,7 +11888,7 @@
 
             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
             // echo $dataAwal . "<br>";
-            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk_lama ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
             $countData = mysqli_num_rows($ambildata_perhalaman);
             // print_r($ambildata_perhalaman->num_rows);
 

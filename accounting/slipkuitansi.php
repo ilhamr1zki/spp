@@ -1,3 +1,5 @@
+
+
 <?php  
 
 	session_start();
@@ -111,13 +113,13 @@
 	    $isiUangSPP        = $_POST['cetak_kuitansi_uang_spp'];
 	    $isiUangPangkal    = $_POST['cetak_kuitansi_uang_pangkal'];
 	    $isiUangKegiatan   = $_POST['cetak_kuitansi_uang_kegiatan'];
+
 	    $isiUangBuku       = $_POST['cetak_kuitansi_uang_buku'];
 	    $isiUangSeragam    = $_POST['cetak_kuitansi_uang_seragam'];
 	    $isiUangRegis      = $_POST['cetak_kuitansi_uang_registrasi'];
 	    $isiUangLain       = $_POST['cetak_kuitansi_uang_lain'];
 
 	    $ketUangSPP        = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_spp']);
-
 	    $ketUangPANGKAL    = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_pangkal']);
 	    $ketUangKegiatan   = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_kegiatan']);
 	    $ketUangBuku       = htmlspecialchars($_POST['cetak_kuitansi_ket_uang_buku']);

@@ -5,7 +5,7 @@
     	// echo "Tidak tanggal SPP";
 
         // $tanggalDari    = $dariTanggal;
-        // $tanggalSampai  = $sampaiTanggal;
+        // $sampaiTanggal  = $sampaiTanggal;
 
         // $timeNow        = $_SESSION['expire'];
     
@@ -318,8 +318,8 @@
                 <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <input type="hidden" name="halamanSebelumnyaFilterSPP" value="<?= $halamanAktif - 1; ?>">
                 <button name="previousPageFilterSPP">
                     &laquo;
@@ -353,8 +353,8 @@
                     <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                     <button name="toPageFilterSPP">
                         <?= $i; ?>
                     </button>
@@ -374,8 +374,8 @@
                 <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="nextPageFilterSPP" id="nextPage" data-nextpage="<?= $halamanAktif + 1; ?>">
                     next
                     &raquo;
@@ -399,8 +399,8 @@
                 <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="firstPageFilterSPP">
                     &laquo;
                     First Page
@@ -423,8 +423,8 @@
                     <input type="hidden" name="kelasFormFilterSPP" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterSPP" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterSPP" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                     <button name="lastPageFilterSPP">
                         Last Page
                         &raquo;
