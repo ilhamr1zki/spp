@@ -915,7 +915,11 @@
                                     $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
 
                                     if ($hitungJumlahDataHalaman == 0) {
-                                        $pageActive =  $halamanAktif - 1;
+                                        if ($halamanAktif == 1 && $hitungJumlahDataHalaman == 0) {
+                                            $pageActive = 1;
+                                        } else {
+                                            $pageActive =  $halamanAktif - 1;
+                                        }
                                     } else if ($hitungJumlahDataHalaman != 0) {
                                         $pageActive =  $halamanAktif;
                                     }
@@ -2286,7 +2290,11 @@
                                     $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
 
                                     if ($hitungJumlahDataHalaman == 0) {
-                                        $pageActive =  $halamanAktif - 1;
+                                        if ($halamanAktif == 1 && $hitungJumlahDataHalaman == 0) {
+                                            $pageActive = 1;
+                                        } else {
+                                            $pageActive =  $halamanAktif - 1;
+                                        }
                                     } else if ($hitungJumlahDataHalaman != 0) {
                                         $pageActive =  $halamanAktif;
                                     }
@@ -5424,7 +5432,11 @@
                                     $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
 
                                     if ($hitungJumlahDataHalaman == 0) {
-                                        $pageActive =  $halamanAktif - 1;
+                                        if ($halamanAktif == 1 && $hitungJumlahDataHalaman == 0) {
+                                            $pageActive = 1;
+                                        } else {
+                                            $pageActive =  $halamanAktif - 1;
+                                        }
                                     } else if ($hitungJumlahDataHalaman != 0) {
                                         $pageActive =  $halamanAktif;
                                     }
@@ -6792,7 +6804,11 @@
                                     $hitungJumlahDataHalaman = mysqli_num_rows($ambildata_perhalaman);
 
                                     if ($hitungJumlahDataHalaman == 0) {
-                                        $pageActive =  $halamanAktif - 1;
+                                        if ($halamanAktif == 1 && $hitungJumlahDataHalaman == 0) {
+                                            $pageActive = 1;
+                                        } else {
+                                            $pageActive =  $halamanAktif - 1;
+                                        }
                                     } else if ($hitungJumlahDataHalaman != 0) {
                                         $pageActive =  $halamanAktif;
                                     }

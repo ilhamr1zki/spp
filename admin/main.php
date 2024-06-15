@@ -681,36 +681,20 @@ oncontextmenu="return false">
 
           </ul>
         </li>
-
-        <!-- Try Layout -->
-        <!-- <li>
-          <a href="#">
-            <i class="glyphicon glyphicon-usd"></i> <span> Try Layout </span>
-          </a>
-          <ul class="treeview-menu">
-            
-            <li>
-              <a href="#"><i class="glyphicon glyphicon-plus text-primary"></i> Input Data </a>
-              <ul class="treeview-menu">
-                
-                <li> <small> <a href="<?php echo $baseac; ?>trylayout"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
-                <li> <small> <a href="<?php echo $baseac; ?>checkinputdata"><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
-
-              </ul>
-            </li>
-
-          </ul>
-        </li> -->
         
         <!-- Maintenance -->
         <li>
-          <a href="#">
+          <a href="#" id="list_maintenance">
             <i class="glyphicon glyphicon-cog"></i> <span> MAINTENANCE </span>
           </a>
           <ul class="treeview-menu">
             
             <li>
-              <a href="<?= $basea; ?>maintenance"><i class="glyphicon glyphicon-list-alt text-primary"></i> Tahun Ajaran </a>
+              <a href="<?= $basead; ?>tahunajaran" id="tahunajaran"><i class="glyphicon glyphicon-list-alt text-primary"></i> Tahun Ajaran </a>
+            </li>
+
+            <li>
+              <a href="<?= $basead; ?>tambahdatasiswa" id="tambahdatasiswa"><i class="glyphicon glyphicon-user text-primary"></i> Tambah Data Siswa </a>
             </li>
 
           </ul>
@@ -750,8 +734,10 @@ oncontextmenu="return false">
     }
 
     #region form maintenance
-    elseif ($act == 'maintenance') {
-      require 'view/spp/maitenance/maintenance.php';
+    elseif ($act == 'tahunajaran') {
+      require 'view/maitenance/tahun_ajaran/index.php';
+    } elseif ($act == 'tambahdatasiswa') {
+      require 'view/maitenance/siswa/index.php';
     }
 
     else{
@@ -775,6 +761,31 @@ oncontextmenu="return false">
 
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo $base; ?>theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    
+    let timeIsOut = `<?= $timeIsOut; ?>`
+
+    if (timeIsOut == 1) {
+
+      const myTimeout = setTimeout(showPopUp, 1000);
+
+    }
+
+    function showPopUp() {
+      Swal.fire({
+        title: 'TIME IS OUT',
+        icon: "warning"
+      });
+
+      setTimeout(clearSession, 1200);
+      
+    }
+
+    function clearSession() {
+      document.location.href = `<?= $basead; ?>a-control/<?php echo md5('logout'); ?>/access`
+    }
+
+</script>
 
 <script src="<?php echo $base; ?>theme/js/summernote.min.js" crossorigin="anonymous"></script>
 

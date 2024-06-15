@@ -23,7 +23,9 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
 
           session_start();
           $_SESSION['c_admin'] = $getData['c_admin'];
-          // echo $_SESSION['c_admin'];exit;
+          $_SESSION['start_sess']   = time();
+          // Session Will Be Expired after 30 Minute
+          $_SESSION['expire']       = $_SESSION['start_sess'] + (30 * 60);
           header('location:admin/');
           exit;
 
