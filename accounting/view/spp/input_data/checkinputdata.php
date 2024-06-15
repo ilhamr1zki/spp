@@ -30,6 +30,8 @@
         'CASH'
     ];
 
+    // echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut;
+
     function rupiahFormat($angkax){
     
         $hasil_rupiahx = "Rp " . number_format($angkax,0,'.',',');
@@ -132,25 +134,53 @@
         $data_ket_registrasi  = $_POST['ket_uang_regis'];
         $data_ket_lain        = $_POST['ket_uang_lain2'];
 
-        if (empty($data_uang_spp) && empty($data_uang_pangkal) && empty($data_uang_kegiatan) && empty($data_uang_buku) && empty($data_uang_seragam) && empty($data_uang_registrasi) && empty($data_uang_lain)) {
+        $data_id            = htmlspecialchars($_POST['id_siswa']);
+        $data_nis           = htmlspecialchars($_POST['nis_siswa']);
+        $data_nama          = htmlspecialchars($_POST['nama_siswa']);
 
-            $_SESSION['err_warning'] = 'err_validation_all_empty';
+        // Validasi jika data siswa tidak ada
+        if ($data_id == '' || $data_nis == '' || $data_nama == '') {
 
-            $data_id            = htmlspecialchars($_POST['id_siswa']);
-            $data_nis           = htmlspecialchars($_POST['nis_siswa']);
-            $data_tanggal_input = htmlspecialchars($_POST['tanggal_bukti_tf'] . " 00:00:00");
+            if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
-            if ($_POST['isi_bulan'] != '') {
-                # code...
-                $data_bulan         = htmlspecialchars(strtoupper($_POST['isi_bulan']) . " " . $_POST['isi_tahun']);
+                $_SESSION['form_success'] = "session_time_out";
+                $timeIsOut = 1;
+                // exit;
+
             } else {
-                $data_bulan = '';
+                $_SESSION['err_warning'] = 'err_validation';
             }
-            
-            $data_kelas         = htmlspecialchars($_POST['kelas_siswa']);
-            $data_nama          = htmlspecialchars($_POST['nama_siswa']);
-            $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
-            $data_tx            = htmlspecialchars($_POST['isi_tx']);
+
+        // Jika Tidak Ada Data Form Pembayaran Di Isi
+        } else if (empty($data_uang_spp) && empty($data_uang_pangkal) && empty($data_uang_kegiatan) && empty($data_uang_buku) && empty($data_uang_seragam) && empty($data_uang_registrasi) && empty($data_uang_lain)) {
+
+            if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+                $_SESSION['form_success'] = "session_time_out";
+                $timeIsOut = 1;
+                // exit;
+
+            } else {
+
+                $_SESSION['err_warning'] = 'err_validation_all_empty';
+
+                $data_id            = htmlspecialchars($_POST['id_siswa']);
+                $data_nis           = htmlspecialchars($_POST['nis_siswa']);
+                $data_tanggal_input = htmlspecialchars($_POST['tanggal_bukti_tf'] . " 00:00:00");
+
+                if ($_POST['isi_bulan'] != '') {
+                    # code...
+                    $data_bulan         = htmlspecialchars(strtoupper($_POST['isi_bulan']) . " " . $_POST['isi_tahun']);
+                } else {
+                    $data_bulan = '';
+                }
+                
+                $data_kelas         = htmlspecialchars($_POST['kelas_siswa']);
+                $data_nama          = htmlspecialchars($_POST['nama_siswa']);
+                $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
+                $data_tx            = htmlspecialchars($_POST['isi_tx']);
+
+            }
  
         } else {
 
@@ -173,201 +203,193 @@
             $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
             $data_tx            = htmlspecialchars($_POST['isi_tx']);
 
-            // Validasi jika data siswa tidak ada
-            if ($data_id == '' || $data_nis == '' || $data_nama == '') {
-                $_SESSION['err_warning'] = 'err_validation';
-            } else {
+            $data_uang_spp          = str_replace(["Rp. ", "."], "", $_POST['nominal_spp']);
+            $data_ket_spp           = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_spp']));
+            if ($data_ket_spp == '') {
+                $data_ket_spp = NULL;
+            } else if ($data_ket_spp != '') {
+                $data_ket_spp       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_spp']));
+                // echo $data_ket_spp . " ";
+            }
 
-                $data_uang_spp          = str_replace(["Rp. ", "."], "", $_POST['nominal_spp']);
-                $data_ket_spp           = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_spp']));
-                if ($data_ket_spp == '') {
-                    $data_ket_spp = NULL;
-                } else if ($data_ket_spp != '') {
-                    $data_ket_spp       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_spp']));
-                    // echo $data_ket_spp . " ";
-                }
-
-                $data_uang_pangkal      = str_replace(["Rp. ", "."], "", $_POST['nominal_pangkal']);
+            $data_uang_pangkal      = str_replace(["Rp. ", "."], "", $_POST['nominal_pangkal']);
+            $data_ket_pangkal       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_pangkal']));
+            if ($data_ket_pangkal == '') {
+                $data_ket_pangkal = null;
+            } else if ($data_ket_pangkal != '') {
                 $data_ket_pangkal       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_pangkal']));
-                if ($data_ket_pangkal == '') {
-                    $data_ket_pangkal = null;
-                } else if ($data_ket_pangkal != '') {
-                    $data_ket_pangkal       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_pangkal']));
-                    // echo $data_ket_pangkal . " ";
-                }
+                // echo $data_ket_pangkal . " ";
+            }
 
-                $data_uang_kegiatan     = str_replace(["Rp. ", "."], "", $_POST['nominal_kegiatan']);
-                $data_ket_kegiatan      = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_kegiatan']));
-                if ($data_ket_kegiatan == '') {
-                    $data_ket_kegiatan = null;
-                } else if ($data_ket_kegiatan != '') {
-                    $data_ket_kegiatan       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_kegiatan']));
-                    // echo $data_ket_kegiatan . " ";
-                }
+            $data_uang_kegiatan     = str_replace(["Rp. ", "."], "", $_POST['nominal_kegiatan']);
+            $data_ket_kegiatan      = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_kegiatan']));
+            if ($data_ket_kegiatan == '') {
+                $data_ket_kegiatan = null;
+            } else if ($data_ket_kegiatan != '') {
+                $data_ket_kegiatan       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_kegiatan']));
+                // echo $data_ket_kegiatan . " ";
+            }
 
-                $data_uang_buku         = str_replace(["Rp. ", "."], "", $_POST['nominal_buku']);
-                $data_ket_buku          = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_buku']));
-                if ($data_ket_buku == '') {
-                    $data_ket_buku = null;
-                } else if ($data_ket_buku != '') {
-                    $data_ket_buku       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_buku']));
-                    // echo $data_ket_buku . " ";
-                }
+            $data_uang_buku         = str_replace(["Rp. ", "."], "", $_POST['nominal_buku']);
+            $data_ket_buku          = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_buku']));
+            if ($data_ket_buku == '') {
+                $data_ket_buku = null;
+            } else if ($data_ket_buku != '') {
+                $data_ket_buku       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_buku']));
+                // echo $data_ket_buku . " ";
+            }
 
-                $data_uang_seragam      = str_replace(["Rp. ", "."], "", $_POST['nominal_seragam']);
+            $data_uang_seragam      = str_replace(["Rp. ", "."], "", $_POST['nominal_seragam']);
+            $data_ket_seragam       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_seragam']));
+            if ($data_ket_seragam == '') {
+                $data_ket_seragam = null;
+            } else if ($data_ket_seragam != '') {
                 $data_ket_seragam       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_seragam']));
-                if ($data_ket_seragam == '') {
-                    $data_ket_seragam = null;
-                } else if ($data_ket_seragam != '') {
-                    $data_ket_seragam       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_seragam']));
-                    // echo $data_ket_seragam . " ";
-                }
+                // echo $data_ket_seragam . " ";
+            }
 
-                $data_uang_registrasi   = str_replace(["Rp. ", "."], "", $_POST['nominal_regis']);
-                $data_ket_registrasi    = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_regis']));
-                if ($data_ket_registrasi == '') {
-                    $data_ket_registrasi = null;
-                } else if ($data_ket_registrasi != '') {
-                    $data_ket_registrasi       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_regis']));
-                    // echo $data_ket_registrasi . " ";
-                }
+            $data_uang_registrasi   = str_replace(["Rp. ", "."], "", $_POST['nominal_regis']);
+            $data_ket_registrasi    = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_regis']));
+            if ($data_ket_registrasi == '') {
+                $data_ket_registrasi = null;
+            } else if ($data_ket_registrasi != '') {
+                $data_ket_registrasi       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_regis']));
+                // echo $data_ket_registrasi . " ";
+            }
 
-                $data_uang_lain         = str_replace(["Rp. ", "."], "", $_POST['nominal_lain']);
-                $data_ket_lain          = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_lain2']));
-                if ($data_ket_lain == '') {
-                    $data_ket_lain = null;
-                } else if ($data_ket_lain != '') {
-                    $data_ket_lain       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_lain2']));
-                    // echo $data_ket_lain;
-                }
-                // $data_inputer           = ucfirst(str)
+            $data_uang_lain         = str_replace(["Rp. ", "."], "", $_POST['nominal_lain']);
+            $data_ket_lain          = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_lain2']));
+            if ($data_ket_lain == '') {
+                $data_ket_lain = null;
+            } else if ($data_ket_lain != '') {
+                $data_ket_lain       = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_lain2']));
+                // echo $data_ket_lain;
+            }
+            // $data_inputer           = ucfirst(str)
 
-                $data_stamp         = date("Y-m-d H:i:s");
-                // echo $data_stamp;exit;
+            $data_stamp         = date("Y-m-d H:i:s");
+            // echo $data_stamp;exit;
 
-                $dataIDInvoice = "";
-                $allData       = "";
+            $dataIDInvoice = "";
+            $allData       = "";
 
-                if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1') {
 
-                    // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
-                    if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+                // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
+                if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
-                        $_SESSION['form_success'] = "session_time_out";
-                        $timeIsOut = 1;
-                        // exit;
+                    $_SESSION['form_success'] = "session_time_out";
+                    $timeIsOut = 1;
+                    // exit;
 
 
-                    } else {
+                } else {
 
-                        // Insert Data 
-                        $queryInsert = "
-                        INSERT INTO `input_data_sd_lama1` (
-                            `ID`, `NIS`, `DATE`, `BULAN`, 
-                            `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
-                            `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
-                            `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
-                            `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
-                            `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
-                            `INPUTER`, `STAMP`) 
-                        VALUES (
-                            NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
-                            '$data_kelas', NULL, '$data_nama', '$data_panggilan',
-                             '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
-                             '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
-                             '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
-                             '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
-                             '$getDataNamaInputer', '$data_stamp'
-                        )";
+                    // Insert Data 
+                    $queryInsert = "
+                    INSERT INTO `input_data_sd_lama1` (
+                        `ID`, `NIS`, `DATE`, `BULAN`, 
+                        `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
+                        `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                        `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                        `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                        `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                        `INPUTER`, `STAMP`) 
+                    VALUES (
+                        NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
+                        '$data_kelas', NULL, '$data_nama', '$data_panggilan',
+                         '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                         '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                         '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                         '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                         '$getDataNamaInputer', '$data_stamp'
+                    )";
 
-                        mysqli_query($con, $queryInsert);
-                        $_SESSION['form_success'] = "insert";
-
-                    }
-
-                    $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
-                    $allData       = mysqli_query($con, "SELECT * FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
-
-                } else if ($_SESSION['c_accounting'] == 'accounting2') {
-
-                    if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
-
-                        $_SESSION['form_success'] = "session_time_out";
-                        $timeIsOut = 1;
-                        // exit;
-
-                    } else {
-
-                        // Insert Data 
-                        $queryInsert = "
-                        INSERT INTO `input_data_tk_lama` (
-                            `ID`, `NIS`, `DATE`, `BULAN`, 
-                            `KELAS`, `NAMA`, `PANGGILAN`, 
-                            `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
-                            `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
-                            `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
-                            `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
-                            `INPUTER`, `STAMP`, `F27`) 
-                        VALUES (
-                            NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
-                            '$data_kelas', '$data_nama', '$data_panggilan',
-                             '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
-                             '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
-                             '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
-                             '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
-                             '$getDataNamaInputer', '$data_stamp', NULL
-                        )";
-
-                        mysqli_query($con, $queryInsert);
-                        $_SESSION['form_success'] = "insert";
-
-                    }
-
-                    $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
-                    $allData       = mysqli_query($con, "SELECT * FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
+                    mysqli_query($con, $queryInsert);
+                    $_SESSION['form_success'] = "insert";
 
                 }
 
-                foreach ($dataIDInvoice as $idInvoice) {
-                    array_push($simpanDataID, $idInvoice['ID']);
+                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
+                $allData       = mysqli_query($con, "SELECT * FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
+
+            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+
+                if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+                    $_SESSION['form_success'] = "session_time_out";
+                    $timeIsOut = 1;
+                    // exit;
+
+                } else {
+
+                    // Insert Data 
+                    $queryInsert = "
+                    INSERT INTO `input_data_tk_lama` (
+                        `ID`, `NIS`, `DATE`, `BULAN`, 
+                        `KELAS`, `NAMA`, `PANGGILAN`, 
+                        `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
+                        `PANGKAL`, `PANGKAL_txt`, `KEGIATAN`, `KEGIATAN_txt`, 
+                        `BUKU`, `BUKU_txt`, `SERAGAM`, `SERAGAM_txt`, 
+                        `REGISTRASI`, `REGISTRASI_txt`, `LAIN`, `LAIN_txt`, 
+                        `INPUTER`, `STAMP`, `F27`) 
+                    VALUES (
+                        NULL, '$data_nis', '$data_tanggal_input', '$data_bulan', 
+                        '$data_kelas', '$data_nama', '$data_panggilan',
+                         '$data_tx', NULL, NULL, '$data_uang_spp', '$data_ket_spp', 
+                         '$data_uang_pangkal', '$data_ket_pangkal', '$data_uang_kegiatan', '$data_ket_kegiatan', 
+                         '$data_uang_buku', '$data_ket_buku', '$data_uang_seragam', '$data_ket_seragam', 
+                         '$data_uang_registrasi', '$data_ket_registrasi', '$data_uang_lain', '$data_ket_lain', 
+                         '$getDataNamaInputer', '$data_stamp', NULL
+                    )";
+
+                    mysqli_query($con, $queryInsert);
+                    $_SESSION['form_success'] = "insert";
+
                 }
 
-                // Get Data Keterangan Uang SPP
-                foreach ($allData as $get_data) {
-                    array_push($simpanDataKetSPP, $get_data['SPP_txt']);
-                }
+                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
+                $allData       = mysqli_query($con, "SELECT * FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
 
-                // Get Data Keterangan Uang Pangkal
-                foreach ($allData as $get_data) {
-                    array_push($simpanDataKetPangkal, $get_data['PANGKAL_txt']);
-                }
+            }
 
-                // Get Data Keterangan Uang Kegiatan
-                foreach ($allData as $get_data) {
-                    array_push($simpanDataKetKegiatan, $get_data['KEGIATAN_txt']);
-                }
+            foreach ($dataIDInvoice as $idInvoice) {
+                array_push($simpanDataID, $idInvoice['ID']);
+            }
 
-                // Get Data Keterangan Uang Buku
-                foreach ($allData as $get_data) {
-                    array_push($simpanDataKetBuku, $get_data['BUKU_txt']);
-                }
+            // Get Data Keterangan Uang SPP
+            foreach ($allData as $get_data) {
+                array_push($simpanDataKetSPP, $get_data['SPP_txt']);
+            }
 
-                // Get Data Keterangan Uang Seragam
-                foreach ($allData as $get_data) {
-                    array_push($simpanDataKetSeragam, $get_data['SERAGAM_txt']);
-                }
+            // Get Data Keterangan Uang Pangkal
+            foreach ($allData as $get_data) {
+                array_push($simpanDataKetPangkal, $get_data['PANGKAL_txt']);
+            }
 
-                // Get Data Keterangan Uang Registrasi
-                foreach ($allData as $get_data) {
-                    array_push($simpanDataKetRegis, $get_data['REGISTRASI_txt']);
-                }
+            // Get Data Keterangan Uang Kegiatan
+            foreach ($allData as $get_data) {
+                array_push($simpanDataKetKegiatan, $get_data['KEGIATAN_txt']);
+            }
 
-                // Get Data Keterangan Uang Lain2
-                foreach ($allData as $get_data) {
-                    array_push($simpanDataKetLain, $get_data['LAIN_txt']);
-                }
+            // Get Data Keterangan Uang Buku
+            foreach ($allData as $get_data) {
+                array_push($simpanDataKetBuku, $get_data['BUKU_txt']);
+            }
 
+            // Get Data Keterangan Uang Seragam
+            foreach ($allData as $get_data) {
+                array_push($simpanDataKetSeragam, $get_data['SERAGAM_txt']);
+            }
 
+            // Get Data Keterangan Uang Registrasi
+            foreach ($allData as $get_data) {
+                array_push($simpanDataKetRegis, $get_data['REGISTRASI_txt']);
+            }
+
+            // Get Data Keterangan Uang Lain2
+            foreach ($allData as $get_data) {
+                array_push($simpanDataKetLain, $get_data['LAIN_txt']);
             }
 
         }
@@ -474,7 +496,7 @@
         <?php } ?>
 
         <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'session_time_out'){?>
-          <div style="display: none;" class="alert alert-warning alert-dismissable">Waktu Sesi Telah Habis
+          <div style="display: none;" class="alert alert-danger alert-dismissable">Waktu Sesi Telah Habis
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_success']); ?>
           </div>
@@ -1280,18 +1302,6 @@
 
 <script language="javascript" type="text/javascript">
 
-    let timeIsOut = `<?= $timeIsOut; ?>`
-
-    if (timeIsOut == 1) {
-
-        const myTimeout = setTimeout(clearSession, 1000);
-
-    }
-
-    function clearSession() {
-        alert('Sessi Habis')
-        document.location.href = `<?= $base; ?>`
-    }
 
     $('#isi_tahun').keypress(function (e) {
         if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;

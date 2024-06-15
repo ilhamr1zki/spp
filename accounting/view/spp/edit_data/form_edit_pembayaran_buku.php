@@ -179,6 +179,8 @@
                                 <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                 <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
+                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                 <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                     EDIT 

@@ -913,6 +913,31 @@ oncontextmenu="return false">
 
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo $base; ?>theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+  let timeIsOut = `<?= $timeIsOut; ?>`
+
+  if (timeIsOut == 1) {
+
+    const myTimeout = setTimeout(showPopUp, 1000);
+
+  }
+
+  function showPopUp() {
+    Swal.fire({
+      title: 'TIME IS OUT',
+      icon: "warning"
+    });
+
+    setTimeout(clearSession, 1200);
+    
+  }
+
+  function clearSession() {
+    document.location.href = `<?= $baseac; ?>a-control/<?php echo md5('logout'); ?>/access`
+  }
+
+</script>
 
 <script src="<?php echo $base; ?>theme/js/summernote.min.js" crossorigin="anonymous"></script>
 

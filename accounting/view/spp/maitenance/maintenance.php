@@ -13,7 +13,22 @@
 
     $isiSemester = [1, 2];
 
-    if (isset($_POST['simpan_form'])) {
+    $timeOut        = $_SESSION['expire'];
+    
+    $timeRunningOut = time() + 5;
+
+    $timeIsOut = 0;
+
+    // echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut;
+
+    if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+        $_SESSION['form_success'] = "session_time_out";
+        $timeIsOut = 1;
+        error_reporting(1);
+        // exit;
+
+    } else if (isset($_POST['simpan_form'])) {
         $tahunAjaran1 = $_POST['tahun_ajaran'];
         $tahunAjaran2 = $_POST['tahun_ajaran_2'];
         $checkTypeData1 = (int) $tahunAjaran1;
@@ -169,6 +184,15 @@
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_error']); ?>
           </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'session_time_out'){?>
+            <div style="display: none;" class="alert alert-danger alert-dismissable"> Waktu Sesi Telah Habis
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <?php 
+                    unset($_SESSION['form_success']); 
+                ?>
+            </div>
         <?php } ?>
 
         <?php if(isset($_SESSION['form_error']) && $_SESSION['form_error'] == 'form2_must_number'){?>

@@ -11,7 +11,22 @@
 
     $isiSemester = [1, 2];
 
-    if (isset($_POST['simpan_ubah_pw'])) {
+    $timeOut        = $_SESSION['expire'];
+    
+    $timeRunningOut = time() + 5;
+
+    $timeIsOut = 0;
+
+    // echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut;
+
+    if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+        error_reporting(1);
+        $_SESSION['form_success'] = "session_time_out";
+        $timeIsOut = 1;
+        // exit;
+
+    } else if (isset($_POST['simpan_ubah_pw'])) {
 
         $dataPasswordLama   = mysqli_query($con, "SELECT * FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' "); 
 
@@ -64,7 +79,7 @@
         <?php } ?>
 
         <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'change_password_error'){?>
-          <div style="display: none;" class="alert alert-danger alert-dismissable"> Password Lama Salah
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Password Sekarang Salah
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_success']); ?>
           </div>
@@ -75,6 +90,15 @@
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_success']); ?>
           </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'session_time_out'){?>
+            <div style="display: none;" class="alert alert-danger alert-dismissable"> Waktu Sesi Telah Habis
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <?php 
+                    unset($_SESSION['form_success']); 
+                ?>
+            </div>
         <?php } ?>
 
         <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'change_password_too_short'){?>

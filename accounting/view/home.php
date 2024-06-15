@@ -1,15 +1,53 @@
 <?php
 
-  if ($_SESSION['c_accounting'] == 'accounting1') {
-    $jsi=mysqli_query($con,"SELECT * FROM data_murid_sd WHERE KELAS LIKE '%SD%' ");
-    $hsi=mysqli_num_rows($jsi);
-  } else if ($_SESSION['c_accounting'] == 'accounting2') {
-    $jsi=mysqli_query($con,"SELECT * FROM data_murid_tk WHERE KELAS LIKE '%KB%' OR KELAS LIKE '%TKA%' OR KELAS LIKE '%TKB%' ");
-    $hsi=mysqli_num_rows($jsi);
+  $timeOut        = $_SESSION['expire'];
+    
+  $timeRunningOut = time() + 5;
+
+  $timeIsOut = 0;
+
+  if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
+
+    if ($_SESSION['c_accounting'] == 'accounting1') {
+      $jsi=mysqli_query($con,"SELECT * FROM data_murid_sd WHERE KELAS LIKE '%SD%' ");
+      $hsi=mysqli_num_rows($jsi);
+    } else if ($_SESSION['c_accounting'] == 'accounting2') {
+      $jsi=mysqli_query($con,"SELECT * FROM data_murid_tk WHERE KELAS LIKE '%KB%' OR KELAS LIKE '%TKA%' OR KELAS LIKE '%TKB%' ");
+      $hsi=mysqli_num_rows($jsi);
+    }
+
+    $_SESSION['form_success'] = "session_time_out";
+    $timeIsOut = 1;
+    // exit;
+
+  } else {
+
+    if ($_SESSION['c_accounting'] == 'accounting1') {
+      $jsi=mysqli_query($con,"SELECT * FROM data_murid_sd WHERE KELAS LIKE '%SD%' ");
+      $hsi=mysqli_num_rows($jsi);
+    } else if ($_SESSION['c_accounting'] == 'accounting2') {
+      $jsi=mysqli_query($con,"SELECT * FROM data_murid_tk WHERE KELAS LIKE '%KB%' OR KELAS LIKE '%TKA%' OR KELAS LIKE '%TKB%' ");
+      $hsi=mysqli_num_rows($jsi);
+    }
+
   }
 
+  // echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut
 
 ?>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12 col-lg-12">
+    <?php if(isset($_SESSION['form_success']) && $_SESSION['form_success'] == 'session_time_out'){?>
+      <div style="display: none;" class="alert alert-danger alert-dismissable"> Waktu Sesi Telah Habis
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <?php 
+              unset($_SESSION['form_success']); 
+          ?>
+      </div>
+    <?php } ?>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">

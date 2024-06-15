@@ -160,8 +160,8 @@
 	                                <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
 	                                <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
-	                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-               		 				<input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+	                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
 	                                <button id="edit_data" name="edit_data_with_date" class="btn btn-sm btn-primary btn-circle"> 
 	                                    EDIT 
@@ -187,8 +187,8 @@
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                     <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
-                                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                     <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
                                         TAMBAH
@@ -221,9 +221,8 @@
 	                                <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
 	                                <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
-	                                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-               		 				<input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
-
+	                                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 	                                <button id="edit_data" name="edit_data_with_date" class="btn btn-sm btn-primary btn-circle"> 
 	                                    EDIT 
 	                                    <!-- <span class="glyphicon glyphicon-pencil">  -->
@@ -248,8 +247,8 @@
                                     <input type="hidden" name="currentPage" value="<?= $halamanAktif; ?>">
 
                                     <input type="hidden" name="isi_filter" value="<?= $isifilby; ?>">
-                                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                     <button id="edit_data" name="tambah_data" class="btn btn-sm btn-success btn-circle"> 
                                         TAMBAH
@@ -283,8 +282,8 @@
                 <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="previousPageFilterPangkalWithDate">
                     &laquo;
                     Previous
@@ -317,8 +316,8 @@
                     <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                     <button name="toPageFilterPangkalWithDate">
                         <?= $i; ?>
                     </button>
@@ -339,8 +338,8 @@
                 <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="nextPageFilterPangkalWithDate">
                     next
                     &raquo;
@@ -364,8 +363,8 @@
                 <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
                 <button name="firstPageFilterPangkalWithDate">
                     &laquo;
                     First Page
@@ -388,8 +387,8 @@
 	                <input type="hidden" name="kelasFormFilterPangkalWithDate" value="<?= $kelas; ?>">
 	                <input type="hidden" name="namaFormFilterPangkalWithDate" value="<?= $namaMurid; ?>">
 	                <input type="hidden" name="panggilanFormFilterPangkalWithDate" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 	                <button name="lastPageFilterPangkalWithDate">
 	                    Last Page
 	                    &raquo;

@@ -149,8 +149,8 @@
 
                                     <input type="hidden" name="isi_filter" value="PANGKAL">
 
-                                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                     <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                         EDIT 
@@ -212,8 +212,8 @@
 
                                     <input type="hidden" name="isi_filter" value="PANGKAL">
 
-                                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
-                                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
+                                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
+                                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
 
                                     <button id="edit_data" name="edit_data" class="btn btn-sm btn-primary btn-circle"> 
                                         EDIT 
