@@ -239,8 +239,8 @@
                 <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="previousPageFilterBuku">
                     &laquo;
                     Previous
@@ -273,8 +273,8 @@
                     <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
                     <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
                     <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                     <button name="toPageFilterBuku">
                         <?= $i; ?>
                     </button>
@@ -320,8 +320,8 @@
                 <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
                 <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
                 <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
-                <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
-                <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+                <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
                 <button name="firstPageFilterBuku">
                     &laquo;
                     First Page
@@ -345,8 +345,8 @@
 	                <input type="hidden" name="kelasFormFilterBuku" value="<?= $kelas; ?>">
 	                <input type="hidden" name="namaFormFilterBuku" value="<?= $namaMurid; ?>">
 	                <input type="hidden" name="panggilanFormFilterBuku" value="<?= $panggilan; ?>">
-                    <input type="hidden" name="tanggal1" value="<?= $dariTanggal; ?>">
-                    <input type="hidden" name="tanggal2" value="<?= $sampaiTanggal; ?>">
+                    <input type="hidden" name="tanggal1" value="<?= $tanggalDari; ?>">
+                    <input type="hidden" name="tanggal2" value="<?= $tanggalSampai; ?>">
 	                <button name="lastPageFilterBuku">
 	                    Last Page
 	                    &raquo;
