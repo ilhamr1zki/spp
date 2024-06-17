@@ -761,6 +761,7 @@ oncontextmenu="return false">
 
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo $base; ?>theme/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
     
     let timeIsOut = `<?= $timeIsOut; ?>`
