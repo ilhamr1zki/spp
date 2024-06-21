@@ -9,7 +9,7 @@
 
     	$queryGetDataSPP = "
 	        SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-	        FROM input_data_sd_lama1
+	        FROM input_data_sd
 	        WHERE
 	        SPP != 0
 	        AND NAMA LIKE '%$namaMurid%'
@@ -24,7 +24,7 @@
 
 	    $ambildata_perhalaman = mysqli_query($con, "
 	        SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-	        FROM input_data_sd_lama1
+	        FROM input_data_sd
 	        WHERE
 	        SPP != 0
 	        AND NAMA LIKE '%$namaMurid%'
@@ -56,7 +56,7 @@
 
     	$queryGetDataSPP = "
 	        SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-	        FROM input_data_tk_lama
+	        FROM input_data_tk
 	        WHERE
 	        SPP != 0
 	        AND NAMA LIKE '%$namaMurid%'
@@ -71,7 +71,7 @@
 
 	    $ambildata_perhalaman = mysqli_query($con, "
 	        SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-	        FROM input_data_tk_lama
+	        FROM input_data_tk
 	        WHERE
 	        SPP != 0
 	        AND NAMA LIKE '%$namaMurid%'

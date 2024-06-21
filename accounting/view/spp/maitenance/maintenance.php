@@ -169,6 +169,8 @@
 
 ?>
 
+<?php echo $tahunAjaran1; ?>
+
 <div class="row">
     <div class="col-xs-12 col-md-12 col-lg-12">
 
@@ -233,7 +235,9 @@
         <?php if(isset($_SESSION['form_empty']) && $_SESSION['form_empty'] == 'form2_empty'){?>
           <div style="display: none;" class="alert alert-danger alert-dismissable"> Tahun Ajaran di Input 2 Harap Di Isi
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             <?php unset($_SESSION['form_empty']); ?>
+             <?php 
+                unset($_SESSION['form_empty']); 
+            ?>
           </div>
         <?php } ?>
 
@@ -253,7 +257,7 @@
                 <div class="col-sm-8">
                     <div class="form-group">
                         <label> Tahun Ajaran</label>
-                        <input type="text" name="tahun_ajaran" placeholder="input 1" value="<?= $tahunAjaran1; ?>" id="tahun_ajaran">
+                        <input type="text" name="tahun_ajaran" oninvalid="this.setCustomValidity('Harus di isi 4 Digit angka')" required pattern="^([2-3])[0-9]{3}$" placeholder="input 1" value="<?= $tahunAjaran1; ?>" id="tahun_ajaran">
                         <input type="text" id="slashx" value="/" readonly style="background-color: white; border: 0px;">
                         <input type="text" name="tahun_ajaran_2" placeholder="input 2" value="<?= $tahunAjaran2; ?>" id="tahun_ajaran_2">
                     </div>

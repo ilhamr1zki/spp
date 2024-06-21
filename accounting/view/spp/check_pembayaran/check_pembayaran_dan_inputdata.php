@@ -963,8 +963,8 @@
                         if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
 
                             $namaMurid = $namaSiswa;
-                            $queryGetDataFilterSemua = "
-                            SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ";
+                            $queryGetDataFilterSemua = '
+                            SELECT * FROM input_data_sd WHERE NAMA LIKE "%$namaMurid%" ';
                             $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
                             $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
                             // echo $hitungDataFilterSemua;
@@ -6099,7 +6099,7 @@
         } else if ($code_accounting == 'accounting2') {
 
             // histori input data tk
-            $queryGetAllDataHistori     = "SELECT * FROM input_data_tk_lama ORDER BY ID DESC";
+            $queryGetAllDataHistori     = "SELECT * FROM input_data_tk ORDER BY ID DESC";
             $execQueryGetAllDataHistori = mysqli_query($con, $queryGetAllDataHistori);
 
             $halamanAktif = "";
@@ -6373,12 +6373,17 @@
                             // Data SPP
                             // echo "Masuk filter SPP tanpa filter tanggal dari dan tanggal sampai";exit;
                             $namaMurid = $namaSiswa;
-                            $queryGetDataSPP = "
+
+                            if (strpos($namaMurid, "'")) {
+                                $namaMurid = substr($namaMurid,-5);
+                            }
+
+                            $queryGetDataSPP = '
                             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_tk
                             WHERE
                             SPP != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NAMA LIKE "%$namaMurid%" ';
                             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                             // echo $hitungDataFilterSPP;
@@ -6504,6 +6509,10 @@
                             // echo "Masuk ke filter tanggal " . $dariTanggal . " & " . $sampaiTanggal;
                             $namaMurid = $namaSiswa;
 
+                            if (strpos($namaMurid, "'")) {
+                                $namaMurid = substr($namaMurid,-5);
+                            }
+
                             $tanggalDari    = $_POST['tanggal1'];
                             $tanggalSampai  = $_POST['tanggal2'];
 
@@ -6603,6 +6612,11 @@
                             // Data PANGKAL
                             // echo "Masuk filter PANGKAL tanpa filter tanggal dari dan tanggal sampai";exit;
                             $namaMurid = $namaSiswa;
+
+                            if (strpos($namaMurid, "'")) {
+                                $namaMurid = substr($namaMurid,-5);
+                            }
+
                             $queryGetDataPANGKAL = "
                             SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_tk
@@ -6734,6 +6748,10 @@
                             // echo "Masuk ke filter tanggal " . $dariTanggal . " & " . $sampaiTanggal;
                             $namaMurid = $namaSiswa;
 
+                            if (strpos($namaMurid, "'")) {
+                                $namaMurid = substr($namaMurid,-5);
+                            }
+
                             $tanggalDari    = $_POST['tanggal1'];
                             $tanggalSampai  = $_POST['tanggal2']; 
 
@@ -6791,6 +6809,10 @@
                         if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
 
                             $namaMurid = $namaSiswa;
+                            if (strpos($namaMurid, "'")) {
+                                $namaMurid = substr($namaMurid,-5);
+                            }
+
                             $queryGetDataFilterSemua = "
                             SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' ";
                             $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
@@ -11905,7 +11927,7 @@
 
                 $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                 // echo $dataAwal . "<br>";
-                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk_lama ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
+                $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk ORDER BY ID DESC LIMIT $dataAwal, $jumlahData  ");
                 $countData = mysqli_num_rows($ambildata_perhalaman);
                 // print_r($ambildata_perhalaman->num_rows);
 
@@ -22382,11 +22404,11 @@
                             <?php foreach ($execqueryGetAllDataSiswa as $data): ?>
                             <tr onclick="
                                 OnSiswaSelectedModal(
-                                    '<?= $data['ID']; ?>', 
-                                    '<?= $data['NIS']; ?>', 
-                                    '<?= $data['Nama']; ?>', 
-                                    '<?= $data['KELAS']; ?>', 
-                                    '<?= $data['Panggilan']; ?>'
+                                    `<?= $data['ID']; ?>`, 
+                                    `<?= $data['NIS']; ?>`, 
+                                    `<?= $data['Nama']; ?>`, 
+                                    `<?= $data['KELAS']; ?>`, 
+                                    `<?= $data['Panggilan']; ?>`
                                     )
                                 ">
                                     <td style="text-align: center;"> <?= $no++; ?> </td>

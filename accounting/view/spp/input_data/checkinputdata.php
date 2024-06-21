@@ -199,8 +199,8 @@
             }
             
             $data_kelas         = htmlspecialchars($_POST['kelas_siswa']);
-            $data_nama          = htmlspecialchars($_POST['nama_siswa']);
-            $data_panggilan     = htmlspecialchars($_POST['panggilan_siswa']);
+            $data_nama          = mysqli_real_escape_string($con, htmlspecialchars($_POST['nama_siswa']));
+            $data_panggilan     = mysqli_real_escape_string($con, htmlspecialchars($_POST['panggilan_siswa']));
             $data_tx            = htmlspecialchars($_POST['isi_tx']);
 
             $data_uang_spp          = str_replace(["Rp. ", "."], "", $_POST['nominal_spp']);
@@ -287,7 +287,7 @@
 
                     // Insert Data 
                     $queryInsert = "
-                    INSERT INTO `input_data_sd_lama1` (
+                    INSERT INTO `input_data_sd` (
                         `ID`, `NIS`, `DATE`, `BULAN`, 
                         `KELAS`, `NAMA_KELAS`, `NAMA`, `PANGGILAN`, 
                         `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
@@ -310,8 +310,8 @@
 
                 }
 
-                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
-                $allData       = mysqli_query($con, "SELECT * FROM input_data_sd_lama1 WHERE NIS = '$data_nis' ");
+                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd WHERE NIS = '$data_nis' ");
+                $allData       = mysqli_query($con, "SELECT * FROM input_data_sd WHERE NIS = '$data_nis' ");
 
             } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
@@ -325,7 +325,7 @@
 
                     // Insert Data 
                     $queryInsert = "
-                    INSERT INTO `input_data_tk_lama` (
+                    INSERT INTO `input_data_tk` (
                         `ID`, `NIS`, `DATE`, `BULAN`, 
                         `KELAS`, `NAMA`, `PANGGILAN`, 
                         `TRANSAKSI`, `SPP_SET`, `PANGKAL_SET`, `SPP`, `SPP_txt`, 
@@ -348,8 +348,8 @@
 
                 }
 
-                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
-                $allData       = mysqli_query($con, "SELECT * FROM input_data_tk_lama WHERE NIS = '$data_nis' ");
+                $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_tk WHERE NIS = '$data_nis' ");
+                $allData       = mysqli_query($con, "SELECT * FROM input_data_tk WHERE NIS = '$data_nis' ");
 
             }
 
@@ -681,7 +681,7 @@
                             <!-- <a href="javascript:void(0);" id="cek_pembayaran" class="btn btn-success btn-circle"> Cetak Kuitansi <span class="glyphicon glyphicon-print"> </span> </a> -->
                             <form action="<?= $baseac; ?>kuitansi.php" method="post" target="blank">
                                 <input type="hidden" name="cetak_kuitansi_nis_siswa" value="<?= $data_nis; ?>">
-                                <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data_nama; ?>">
+                                <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $_POST['nama_siswa']; ?>">
                                 <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data_kelas; ?>">
                                 <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= end($simpanDataID); ?>">
                                 <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data_tanggal_input; ?>">
@@ -712,7 +712,7 @@
                             <form action="<?= $baseac; ?>slipkuitansi.php" method="post" target="blank">
                                 
                                 <input type="hidden" name="cetak_kuitansi_nis_siswa" value="<?= $data_nis; ?>">
-                                <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $data_nama; ?>">
+                                <input type="hidden" name="cetak_kuitansi_nama_siswa" value="<?= $_POST['nama_siswa']; ?>">
                                 <input type="hidden" name="cetak_kuitansi_kelas_siswa" value="<?= $data_kelas; ?>">
                                 <input type="hidden" name="cetak_kuitansi_id_invoice" value="<?= end($simpanDataID); ?>">
                                 <input type="hidden" name="cetak_kuitansi_bukti_tf" value="<?= $data_tanggal_input; ?>">
@@ -1271,11 +1271,11 @@
                             <?php foreach ($execqueryGetAllDataSiswa as $data): ?>
                             <tr onclick="
                                 OnSiswaSelectedModal(
-                                    '<?= $data['ID']; ?>', 
-                                    '<?= $data['NIS']; ?>', 
-                                    '<?= $data['Nama']; ?>', 
-                                    '<?= $data['KELAS']; ?>', 
-                                    '<?= $data['Panggilan']; ?>'
+                                    `<?= $data['ID']; ?>`, 
+                                    `<?= $data['NIS']; ?>`, 
+                                    `<?= $data['Nama']; ?>`, 
+                                    `<?= $data['KELAS']; ?>`, 
+                                    `<?= $data['Panggilan']; ?>`
                                     )
                                 ">
                                     <td style="text-align: center;"> <?= $no++; ?> </td>

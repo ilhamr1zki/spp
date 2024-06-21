@@ -124,9 +124,6 @@
             $jenjangPendidikan = "";
         }
 
-        $nisSiswa          = $_POST['cetak_kuitansi_nis_siswa'];
-        $namaSiswa         = $_POST['cetak_kuitansi_nama_siswa'];
-        $kelasSiswa        = $_POST['cetak_kuitansi_kelas_siswa'];
         $idInvoice         = $_POST['cetak_kuitansi_id_invoice'];
         $tglTf             = $_POST['cetak_kuitansi_bukti_tf'];
         $bayarBulan        = $_POST['cetak_kuitansi_bulan_pembayaran'];
@@ -151,7 +148,7 @@
 
         // Bagian Data Siswa
         $nisSiswa        = $_POST['cetak_kuitansi_nis_siswa'];
-        $namaSiswa       = $_POST['cetak_kuitansi_nama_siswa'];
+        $namaSiswa       = htmlspecialchars($_POST['cetak_kuitansi_nama_siswa']);
         $kelasSiswa      = $_POST['cetak_kuitansi_kelas_siswa'];
         $idInvoice       = $_POST['cetak_kuitansi_id_invoice'];
 

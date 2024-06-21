@@ -2,6 +2,7 @@
 
   $jenis_kelamin      = ["L", "P"];
   $jenjang_pendidikan = mysqli_query($con, "SELECT * FROM kelas ORDER BY kelas ASC");
+
   $pendidikan         = ["SD", "SMP", "SMA", "SMK", "D1", "D2", "D3", "D4", "S1", "S2", "S3"];
   $pekerjaan          = ["WIRASWASTA", "KS", "PNS", "TNI", "POLRI", "PENSIUNAN", "LAINNYA"];
   $pekerjaanIbu       = ["WIRASWASTA", "KS", "PNS", "TNI", "POLRI", "PENSIUNAN", "IRT", "LAINNYA"];
@@ -10,14 +11,14 @@
 
     $nis    = $_POST['nis_siswa'];
     // $nisn   = $_POST['nisn_siswa'];
-    // $nama   = mysqli_real_escape_string($con , htmlspecialchars($_POST['nama_siswa']));
-    $nama   = htmlspecialchars($_POST['nama_siswa']);
+    $nama   = mysqli_real_escape_string($con , htmlspecialchars($_POST['nama_siswa']));
+    // $nama   = htmlspecialchars($_POST['nama_siswa']);
     $alamat = mysqli_real_escape_string($con, htmlspecialchars($_POST['alamat_siswa']));
     $tl     = date('Y-m-d',strtotime($_POST['tl_siswa']));
     $jns_kl = htmlspecialchars($_POST['jns_kl']);
     $klp    = htmlspecialchars($_POST['_klpselect']);
     $thnJ   = htmlspecialchars($_POST['_thnjoin']);
-    $pggl   = htmlspecialchars($_POST['_nmpanggilan']);
+    $pggl   = mysqli_real_escape_string($con, htmlspecialchars($_POST['_nmpanggilan']));
     $brtB   = htmlspecialchars($_POST['_beratbadan']);
     $tggB   = htmlspecialchars($_POST['_tinggibadan']);
     $ukr    = htmlspecialchars($_POST['_ukuranbaju']);
@@ -27,25 +28,30 @@
     $email  = htmlspecialchars($_POST['_email']);
 
     // ortu
-    $namaAyah  = htmlspecialchars($_POST['_nmayah']);
-    $pddknAyah = htmlspecialchars($_POST['_pendayah']);
+    $namaAyah  = mysqli_real_escape_string($con, htmlspecialchars($_POST['_nmayah']));
+    $pddknAyah = mysqli_real_escape_string($con, htmlspecialchars($_POST['_pendayah'] . " - " . $_POST['ketPendA']));
+
     $pkrjnAyah = htmlspecialchars($_POST['_pekerjaanayah']);
     if ($pkrjnAyah == 'KS') {
       $pkrjnAyah = "KARYAWAN SWASTA";
     } elseif ($pkrjnAyah == 'LAINNYA') {
       $pkrjnAyah = $_POST['kerjaLain1'];
     }
-    $tmptTglAyah  = htmlspecialchars($_POST['_temptglayah']);
 
-    $namaIbu      = htmlspecialchars($_POST['_nmibu']);
-    $pddknIbu     = htmlspecialchars($_POST['_pendibu']);
+    $tmptTglAyah  = mysqli_real_escape_string($con, htmlspecialchars($_POST['_temptglayah'] . ", " . $_POST['tl_ayah']));
+
+    $namaIbu      = mysqli_real_escape_string($con, htmlspecialchars($_POST['_nmibu']));
+    $pddknIbu     = mysqli_real_escape_string($con,htmlspecialchars($_POST['_pendibu'] . " - " . $_POST['ketPendI']));
+    // echo "Data Ayah : " . $pddknAyah . "<br>" . "Data Ibu : " . $pddknIbu;exit;
+
     $pkrjnIbu     = htmlspecialchars($_POST['_pekerjaanibu']);
     if ($pkrjnIbu == 'KS') {
       $pkrjnIbu = "KARYAWAN SWASTA";
     } elseif ($pkrjnIbu == 'LAINNYA') {
       $pkrjnIbu = $_POST['kerjaLain2'];
     }
-    $tmptTglIbu   = htmlspecialchars($_POST['_temptglibu']);
+
+    $tmptTglIbu   = mysqli_real_escape_string($con, htmlspecialchars($_POST['_temptglibu'] . ", " . $_POST['tl_ibu']));
 
     if ($klp == 'KB' || $klp == 'TKA' || $klp == 'TKB') {
       $kodeJenjang = "PTK";
@@ -54,13 +60,6 @@
     }
 
     $c_jenjang = str_replace(['PTK'], "TK", $kodeJenjang);
-
-    $dataNoTrakhir = mysqli_fetch_array(mysqli_query($con,"SELECT (nourut + 1) as nourut FROM penomoranmas where kode = '$kodeJenjang' limit 1 "));
-    $nomorurut     = $dataNoTrakhir['nourut'] ?? 0;
-
-    $invID = str_pad($nomorurut, 4, '0', STR_PAD_LEFT);
-
-    $kodseq = $c_jenjang."".$invID;
 
     // // echo $kodseq;exit;
 
@@ -95,12 +94,13 @@
     //   ttl_i = '$tmptTglIbu', 
     //   nis = '$nis' ");
 
-    // $penomoran=mysqli_query($con,"UPDATE penomoranmas set nourut='$nomorurut' where kode ='$kodeJenjang' ");
+    // $penomoran=mysqli_query($con,"UPDATE penomoranmas set no`urut='$nomorurut' where kode ='$kodeJenjang' ");
     if ($nis == "" || $nama == "" || $pggl == "" ) {
       $_SESSION['pesan'] = "data_empty";
     } elseif($klp == "kosong") {
       $_SESSION['pesan'] = "jenjang_pendidikan_empty";
     } else {
+
       if ($c_jenjang != "TK") {
 
         $kelas  = str_replace(["1SD", "2SD", "3SD", "4SD", "5SD", "6SD"], ["1 SD", "2 SD", "3 SD", "4 SD", "5 SD", "6 SD"], $klp);
@@ -130,9 +130,9 @@
           ttl_a         = '$tmptTglAyah', 
           nama_ibu      = '$namaIbu', 
           pendidikan_i  = '$pddknIbu', 
-          pekerjaan_i = '$pkrjnIbu',
-          ttl_i = '$tmptTglIbu', 
-          NIS = '$nis' 
+          pekerjaan_i   = '$pkrjnIbu',
+          ttl_i         = '$tmptTglIbu', 
+          NIS           = '$nis' 
         ");
 
       } elseif ($c_jenjang == 'TK') {
@@ -164,14 +164,15 @@
           ttl_a         = '$tmptTglAyah', 
           nama_ibu      = '$namaIbu', 
           pendidikan_i  = '$pddknIbu', 
-          pekerjaan_i = '$pkrjnIbu',
-          ttl_i = '$tmptTglIbu', 
-          NIS = '$nis' 
+          pekerjaan_i   = '$pkrjnIbu',
+          ttl_i         = '$tmptTglIbu', 
+          NIS           = '$nis' 
         ");
 
       }
 
       $_SESSION['pesan'] = 'tambah';
+      
     }
 
   }
@@ -268,7 +269,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>TANGGAL LAHIR</label>
-                    <div class="controls input-append date form_date" data-date="1998-10-14" data-date-format="dd MM yyyy" data-link-field="dtp_input1">
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
                         <input class="form-control" required type="text" name="tl_siswa" value="" >
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
@@ -345,7 +346,7 @@
 
                     <div class="box-body">
                       <div class="row">
-                          <div class="col-sm-4">
+                          <div class="col-sm-3">
                             <div class="form-group">
                                 <label>Nama Ayah</label>
                                 <input type="text" class="form-control" id="_nmayah" name="_nmayah" >
@@ -353,41 +354,56 @@
                           </div>
                           <div class="col-sm-2">
                             <div class="form-group">
-                                <label>Pendidikan Ayah</label>
-                                <select id="_pendayah" name="_pendayah"  class="form-control form-select">
-                                    <option value="">-- PILIH --</option>
+                                <label>Tempat Lahir. Ayah</label>
+                                <input type="text" class="form-control" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group">
+                              <label>TGL LAHIR AYAH</label>
+                              <div class="controls input-append date form_date2" data-date-format="dd MM yyyy">
+                                  <input class="form-control" required type="text" name="tl_ayah" value="" >
+                                  <span class="add-on"><i class="icon-th"></i></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <select id="_pendayah" name="_pendayah"  class="form-control form-select" onchange="fatherAcademy()">
+                                    <option value="kosong">-- PILIH --</option>
                                     <?php foreach ($pendidikan as $dataPendidikan): ?>
                                       <option value="<?= $dataPendidikan; ?>"> <?= $dataPendidikan; ?> </option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
                           </div>
-                          <div class="col-sm-3">
+                          <div class="col-sm-3" id="ketPendidikan1">
                             <div class="form-group">
-                                <label>Pekerjaan Ayah</label>
-                                <select id="_pekerjaanayah" name="_pekerjaanayah" class="form-control form-select" onchange="fatherJob()">
-                                    <option value="">-- PILIH --</option>
-                                    <?php foreach ($pekerjaan as $jenisPekerjaan): ?>
-                                      <?php if ($jenisPekerjaan != 'KS' && $jenisPekerjaan != 'LAINNYA'): ?>
-                                        <option value="<?= $jenisPekerjaan; ?>"> <?= $jenisPekerjaan; ?> </option>
-                                      <?php elseif($jenisPekerjaan == 'KS'): ?>
-                                        <option value="<?= $jenisPekerjaan; ?>"> KARYAWAN SWASTA </option>
-                                      <?php elseif($jenisPekerjaan == 'LAINNYA'): ?>
-                                        <option value="<?= $jenisPekerjaan; ?>"> LAIN - LAIN </option>
-                                      <?php endif ?>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-                          </div>
-                          <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>Tempat Tgl. Ayah</label>
-                                <input type="text" class="form-control" id="_temptglayah" name="_temptglayah">
+                                <label>Jurusan</label>
+                                <input type="text" class="form-control" id="ketPendidikanA" name="ketPendA">
                             </div>
                           </div>
                       </div>
-                      <div class="row" id="anotherJob1">
-                        <div class="col-sm-4">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <select id="_pekerjaanayah" name="_pekerjaanayah" class="form-control form-select" onchange="fatherJob()">
+                                  <option value="">-- PILIH --</option>
+                                  <?php foreach ($pekerjaan as $jenisPekerjaan): ?>
+                                    <?php if ($jenisPekerjaan != 'KS' && $jenisPekerjaan != 'LAINNYA'): ?>
+                                      <option value="<?= $jenisPekerjaan; ?>"> <?= $jenisPekerjaan; ?> </option>
+                                    <?php elseif($jenisPekerjaan == 'KS'): ?>
+                                      <option value="<?= $jenisPekerjaan; ?>"> KARYAWAN SWASTA </option>
+                                    <?php elseif($jenisPekerjaan == 'LAINNYA'): ?>
+                                      <option value="<?= $jenisPekerjaan; ?>"> LAIN - LAIN </option>
+                                    <?php endif ?>
+                                  <?php endforeach ?>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-4" id="anotherJob1">
                           <div class="form-group">
                               <label>Pekerjaan</label>
                               <input type="text" class="form-control" id="kerjaLain" name="kerjaLain1" >
@@ -406,58 +422,83 @@
                     <div class="box-header with-border">
                       <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
                     </div>
-                      <div class="box-body">
-                        <div class="row">
-                          <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>Nama Ibu</label>
-                                <input type="text" class="form-control" id="_nmibu" name="_nmibu" >
-                            </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" >
                           </div>
-                          <div class="col-sm-2">
-                            <div class="form-group">
-                                <label>Pendidikan Ibu</label>
-                                <select id="_pendibu" name="_pendibu"  class="form-control form-select">
-                                  <option value="">-- PILIH --</option>
-                                    <?php foreach ($pendidikan as $dataPendidikan): ?>
-                                      <option value="<?= $dataPendidikan; ?>"> <?= $dataPendidikan; ?> </option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                              <label>Tempat Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu">
                           </div>
-                          <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>Pekerjaan Ibu</label>
-                                <select id="_pekerjaanibu" name="_pekerjaanibu" class="form-control form-select" onchange="motherJob()">
-                                  <option value="">-- PILIH --</option>
-                                    <?php foreach ($pekerjaanIbu as $jenisPekerjaan): ?>
-                                      <?php if ($jenisPekerjaan != 'KS'): ?>
-                                        <option value="<?= $jenisPekerjaan; ?>"> <?= $jenisPekerjaan; ?> </option>
-                                      <?php elseif($jenisPekerjaan == 'KS'): ?>
-                                        <option value="<?= $jenisPekerjaan; ?>"> KARYAWAN SWASTA </option>
-                                      <?php elseif($jenisPekerjaan == 'LAINNYA'): ?>
-                                        <option value="<?= $jenisPekerjaan; ?>"> LAIN - LAIN </option>
-                                      <?php endif ?>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-                          </div>
-                          <div class="col-sm-3">
-                            <div class="form-group">
-                                <label>Tempat Tgl. Ibu</label>
-                                <input type="text" class="form-control" id="_temptglibu" name="_temptglibu">
+                        </div>
+
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                            <label>TGL LAHIR IBU</label>
+                            <div class="controls input-append date form_date3" data-date-format="dd MM yyyy">
+                                <input class="form-control" required type="text" name="tl_ibu" value="" >
+                                <span class="add-on"><i class="icon-th"></i></span>
                             </div>
                           </div>
                         </div>
-                        <div class="row" id="anotherJob2">
-                          <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>Pekerjaan</label>
-                                <input type="text" class="form-control" id="kerjaLain" name="kerjaLain2" >
-                            </div>
+
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <select id="_pendibu" name="_pendibu"  class="form-control form-select" onchange="motherAcademy()">
+                                <option value="kosong1">-- PILIH --</option>
+                                  <?php foreach ($pendidikan as $dataPendidikan): ?>
+                                    <option value="<?= $dataPendidikan; ?>"> <?= $dataPendidikan; ?> </option>
+                                  <?php endforeach ?>
+                              </select>
                           </div>
                         </div>
+
+                        <div class="col-sm-3" id="ketPendidikan2">
+                          <div class="form-group">
+                              <label>Jurusan</label>
+                              <input type="text" class="form-control" id="ketPendidikanI" name="ketPendI">
+                          </div>
+                        </div>
+
                       </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <select id="_pekerjaanibu" name="_pekerjaanibu" class="form-control form-select" onchange="motherJob()">
+                              <option value="">-- PILIH --</option>
+                                <?php foreach ($pekerjaanIbu as $jenisPekerjaan): ?>
+                                  <?php if ($jenisPekerjaan != 'KS'): ?>
+                                    <option value="<?= $jenisPekerjaan; ?>"> <?= $jenisPekerjaan; ?> </option>
+                                  <?php elseif($jenisPekerjaan == 'KS'): ?>
+                                    <option value="<?= $jenisPekerjaan; ?>"> KARYAWAN SWASTA </option>
+                                  <?php elseif($jenisPekerjaan == 'LAINNYA'): ?>
+                                    <option value="<?= $jenisPekerjaan; ?>"> LAIN - LAIN </option>
+                                  <?php endif ?>
+                                <?php endforeach ?>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4" id="anotherJob2">
+                          <div class="form-group">
+                              <label>Pekerjaan</label>
+                              <input type="text" class="form-control" id="kerjaLain" name="kerjaLain2" >
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
                   </div>
                 </div>
               </div>
@@ -479,6 +520,8 @@
 <script type="text/javascript" src="<?php echo $base; ?>theme/datetime/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript">
   $(document).ready( function () {
+    $("#ketPendidikan1").hide();
+    $("#ketPendidikan2").hide();
     $("#anotherJob1").hide();
     $("#anotherJob2").hide();
     $("#list_maintenance").click();
@@ -489,6 +532,26 @@
   });
 
   $('.form_date').datetimepicker({
+    weekStart: 1,
+    todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0
+  });
+
+  $('.form_date2').datetimepicker({
+    weekStart: 1,
+    todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0
+  });
+
+  $('.form_date3').datetimepicker({
     weekStart: 1,
     todayBtn:  1,
     autoclose: 1,
@@ -525,18 +588,44 @@
   function fatherJob() {
     let dataAyah = document.getElementById("_pekerjaanayah").value;
     if (dataAyah == 'LAINNYA') {
-        $("#anotherJob1").show();
+      $("#anotherJob1").show();
     } else {
-      alert("You selected: " + x);
+      $("#anotherJob1").hide();
+    }
+  }
+
+  function fatherAcademy() {
+    let dataPendAyah = document.getElementById("_pendayah").value;
+    if (dataPendAyah == 'SD') {
+      $("#ketPendidikan1").hide();
+    } else if(dataPendAyah == 'SMP') {
+      $("#ketPendidikan1").hide();
+    } else if(dataPendAyah == 'kosong') {
+      $("#ketPendidikan1").hide();
+    } else {
+      $("#ketPendidikan1").show();
     }
   }
 
   function motherJob() {
     let dataIbu = document.getElementById("_pekerjaanibu").value;
     if (dataIbu == 'LAINNYA') {
-        $("#anotherJob2").show();
+      $("#anotherJob2").show();
     } else {
-      alert("You selected: " + x);
+      $("#anotherJob2").hide();
+    }
+  }
+
+  function motherAcademy() {
+    let dataPendIbu = document.getElementById("_pendibu").value;
+    if (dataPendIbu == 'SD') {
+      $("#ketPendidikan2").hide();
+    } else if(dataPendIbu == 'SMP') {
+      $("#ketPendidikan2").hide();
+    } else if(dataPendIbu == 'kosong1') {
+      $("#ketPendidikan2").hide();
+    } else {
+      $("#ketPendidikan2").show();
     }
   }
 

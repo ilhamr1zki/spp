@@ -487,49 +487,49 @@
 
                 if ($_SESSION['c_accounting'] == 'accounting1') {
 
-                    $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SPP'];
-                    $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SPP_txt'];
+                    $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_sd WHERE ID = '$idInvoice' "))['SPP'];
+                    $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['SPP_txt'];
 
-                    $queryUangPangkal   = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['PANGKAL'];
-                    $ketUangPangkal     = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['PANGKAL_txt'];
+                    $queryUangPangkal   = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL FROM input_data_sd WHERE ID = '$idInvoice' "))['PANGKAL'];
+                    $ketUangPangkal     = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['PANGKAL_txt'];
 
-                    $queryUangKegiatan  = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['KEGIATAN'];
-                    $ketUangKegiatan    = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['KEGIATAN_txt'];
+                    $queryUangKegiatan  = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN FROM input_data_sd WHERE ID = '$idInvoice' "))['KEGIATAN'];
+                    $ketUangKegiatan    = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['KEGIATAN_txt'];
 
-                    $queryUangBuku      = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['BUKU'];
-                    $ketUangBuku        = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['BUKU_txt'];
+                    $queryUangBuku      = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU FROM input_data_sd WHERE ID = '$idInvoice' "))['BUKU'];
+                    $ketUangBuku        = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['BUKU_txt'];
 
-                    $queryUangSeragam   = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SERAGAM'];
-                    $ketUangSeragam     = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['SERAGAM_txt'];
+                    $queryUangSeragam   = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM FROM input_data_sd WHERE ID = '$idInvoice' "))['SERAGAM'];
+                    $ketUangSeragam     = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['SERAGAM_txt'];
 
-                    $queryUangRegis     = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['REGISTRASI'];
-                    $ketUangRegis       = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['REGISTRASI_txt'];
+                    $queryUangRegis     = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI FROM input_data_sd WHERE ID = '$idInvoice' "))['REGISTRASI'];
+                    $ketUangRegis       = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['REGISTRASI_txt'];
 
-                    $queryUangLain      = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['LAIN'];
-                    $ketUangLain        = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN_txt FROM input_data_sd_lama1 WHERE ID = '$idInvoice' "))['LAIN_txt'];
+                    $queryUangLain      = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN FROM input_data_sd WHERE ID = '$idInvoice' "))['LAIN'];
+                    $ketUangLain        = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['LAIN_txt'];
 
                 } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
-                    $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_tk_lama WHERE ID = '$idInvoice'"))['SPP'];
-                    $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['SPP_txt'];
+                    $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_tk WHERE ID = '$idInvoice'"))['SPP'];
+                    $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['SPP_txt'];
 
-                    $queryUangPangkal   = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['PANGKAL'];
-                    $ketUangPangkal     = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['PANGKAL_txt'];
+                    $queryUangPangkal   = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL FROM input_data_tk WHERE ID = '$idInvoice' "))['PANGKAL'];
+                    $ketUangPangkal     = mysqli_fetch_assoc(mysqli_query($con, "SELECT PANGKAL_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['PANGKAL_txt'];
 
-                    $queryUangKegiatan  = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['KEGIATAN'];
-                    $ketUangKegiatan    = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['KEGIATAN_txt'];
+                    $queryUangKegiatan  = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN FROM input_data_tk WHERE ID = '$idInvoice' "))['KEGIATAN'];
+                    $ketUangKegiatan    = mysqli_fetch_assoc(mysqli_query($con, "SELECT KEGIATAN_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['KEGIATAN_txt'];
 
-                    $queryUangBuku      = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['BUKU'];
-                    $ketUangBuku        = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['BUKU_txt'];
+                    $queryUangBuku      = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU FROM input_data_tk WHERE ID = '$idInvoice' "))['BUKU'];
+                    $ketUangBuku        = mysqli_fetch_assoc(mysqli_query($con, "SELECT BUKU_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['BUKU_txt'];
 
-                    $queryUangSeragam   = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['SERAGAM'];
-                    $ketUangSeragam     = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['SERAGAM_txt'];
+                    $queryUangSeragam   = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM FROM input_data_tk WHERE ID = '$idInvoice' "))['SERAGAM'];
+                    $ketUangSeragam     = mysqli_fetch_assoc(mysqli_query($con, "SELECT SERAGAM_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['SERAGAM_txt'];
 
-                    $queryUangRegis     = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['REGISTRASI'];
-                    $ketUangRegis       = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['REGISTRASI_txt'];
+                    $queryUangRegis     = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI FROM input_data_tk WHERE ID = '$idInvoice' "))['REGISTRASI'];
+                    $ketUangRegis       = mysqli_fetch_assoc(mysqli_query($con, "SELECT REGISTRASI_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['REGISTRASI_txt'];
 
-                    $queryUangLain      = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['LAIN'];
-                    $ketUangLain        = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN_txt FROM input_data_tk_lama WHERE ID = '$idInvoice' "))['LAIN_txt'];
+                    $queryUangLain      = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN FROM input_data_tk WHERE ID = '$idInvoice' "))['LAIN'];
+                    $ketUangLain        = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['LAIN_txt'];
 
                 }
 
@@ -609,7 +609,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -624,7 +624,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -651,7 +651,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -687,7 +687,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -716,7 +716,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -733,7 +733,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -760,7 +760,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -793,7 +793,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -821,7 +821,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -838,7 +838,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -867,7 +867,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -903,7 +903,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -936,7 +936,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -953,7 +953,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -980,7 +980,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1014,7 +1014,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1046,7 +1046,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1063,7 +1063,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1091,7 +1091,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1124,7 +1124,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1156,7 +1156,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1173,7 +1173,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1201,7 +1201,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1235,7 +1235,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1267,7 +1267,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1284,7 +1284,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1312,7 +1312,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1347,7 +1347,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1404,7 +1404,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1421,7 +1421,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1448,7 +1448,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1481,7 +1481,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1514,7 +1514,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1529,7 +1529,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1556,7 +1556,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1592,7 +1592,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1621,7 +1621,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1638,7 +1638,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1665,7 +1665,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1698,7 +1698,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1731,7 +1731,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1748,7 +1748,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1775,7 +1775,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1808,7 +1808,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1841,7 +1841,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1858,7 +1858,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1885,7 +1885,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1918,7 +1918,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -1950,7 +1950,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1967,7 +1967,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -1994,7 +1994,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2028,7 +2028,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2060,7 +2060,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2077,7 +2077,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2105,7 +2105,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2140,7 +2140,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2202,7 +2202,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2219,7 +2219,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2246,7 +2246,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2279,7 +2279,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2311,7 +2311,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2328,7 +2328,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2355,7 +2355,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2388,7 +2388,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2421,7 +2421,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2436,7 +2436,7 @@
                             } elseif($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2463,7 +2463,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2498,7 +2498,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2530,7 +2530,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2547,7 +2547,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2574,7 +2574,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2607,7 +2607,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2640,7 +2640,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2657,7 +2657,7 @@
                             } elseif($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2686,7 +2686,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2720,7 +2720,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2752,7 +2752,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2769,7 +2769,7 @@
                             } elseif($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2796,7 +2796,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2830,7 +2830,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2862,7 +2862,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2881,7 +2881,7 @@
                                 // echo "LAIN";exit;
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -2908,7 +2908,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -2942,7 +2942,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3001,7 +3001,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3018,7 +3018,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3045,7 +3045,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3079,7 +3079,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3113,7 +3113,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3130,7 +3130,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3157,7 +3157,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3190,7 +3190,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3222,7 +3222,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3239,7 +3239,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3266,7 +3266,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3300,7 +3300,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3333,7 +3333,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3348,7 +3348,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3373,7 +3373,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3407,7 +3407,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3441,7 +3441,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3458,7 +3458,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3485,7 +3485,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3519,7 +3519,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3551,7 +3551,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3568,7 +3568,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3596,7 +3596,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3632,7 +3632,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3664,7 +3664,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3681,7 +3681,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3709,7 +3709,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3743,7 +3743,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3802,7 +3802,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3819,7 +3819,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3846,7 +3846,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3879,7 +3879,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3911,7 +3911,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3928,7 +3928,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -3955,7 +3955,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -3988,7 +3988,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4020,7 +4020,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4037,7 +4037,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4064,7 +4064,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4097,7 +4097,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4129,7 +4129,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4146,7 +4146,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4173,7 +4173,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4206,7 +4206,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4238,7 +4238,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4253,7 +4253,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4278,7 +4278,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4313,7 +4313,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4348,7 +4348,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4365,7 +4365,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4393,7 +4393,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4428,7 +4428,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4504,7 +4504,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4521,7 +4521,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4549,7 +4549,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4582,7 +4582,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4614,7 +4614,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4631,7 +4631,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4659,7 +4659,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4694,7 +4694,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4726,7 +4726,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4743,7 +4743,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4770,7 +4770,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4804,7 +4804,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4836,7 +4836,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4853,7 +4853,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4881,7 +4881,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4916,7 +4916,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -4949,7 +4949,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4966,7 +4966,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -4994,7 +4994,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5029,7 +5029,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5062,7 +5062,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5077,7 +5077,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5102,7 +5102,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5137,7 +5137,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5215,7 +5215,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5232,7 +5232,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5261,7 +5261,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5294,7 +5294,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5326,7 +5326,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5343,7 +5343,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5372,7 +5372,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5407,7 +5407,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5440,7 +5440,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5457,7 +5457,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5484,7 +5484,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5518,7 +5518,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5550,7 +5550,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5567,7 +5567,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5595,7 +5595,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5630,7 +5630,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5694,7 +5694,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5709,7 +5709,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                                    UPDATE `u415776667_spp`.`input_data_sd` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5734,7 +5734,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5769,7 +5769,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_sd_lama1
+                                        FROM input_data_sd
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5835,7 +5835,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5850,7 +5850,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5876,7 +5876,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5909,7 +5909,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -5937,7 +5937,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5954,7 +5954,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -5981,7 +5981,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6014,7 +6014,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6042,7 +6042,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6059,7 +6059,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6088,7 +6088,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6124,7 +6124,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6157,7 +6157,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6174,7 +6174,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6202,7 +6202,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6237,7 +6237,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6270,7 +6270,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6287,7 +6287,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6315,7 +6315,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6348,7 +6348,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6380,7 +6380,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6397,7 +6397,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6425,7 +6425,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6459,7 +6459,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6491,7 +6491,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6508,7 +6508,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6536,7 +6536,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6571,7 +6571,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6627,7 +6627,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6644,7 +6644,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6671,7 +6671,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6705,7 +6705,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6737,7 +6737,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6752,7 +6752,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6779,7 +6779,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6815,7 +6815,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6844,7 +6844,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6861,7 +6861,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6888,7 +6888,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6922,7 +6922,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -6954,7 +6954,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6971,7 +6971,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -6998,7 +6998,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7031,7 +7031,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7064,7 +7064,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7081,7 +7081,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7108,7 +7108,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7141,7 +7141,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7173,7 +7173,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7190,7 +7190,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7217,7 +7217,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7251,7 +7251,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7283,7 +7283,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7300,7 +7300,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7328,7 +7328,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7363,7 +7363,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7423,7 +7423,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7440,7 +7440,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7467,7 +7467,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7500,7 +7500,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7532,7 +7532,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7549,7 +7549,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7576,7 +7576,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7609,7 +7609,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7642,7 +7642,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7657,7 +7657,7 @@
                             } elseif($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7684,7 +7684,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7718,7 +7718,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7750,7 +7750,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7767,7 +7767,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7794,7 +7794,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7828,7 +7828,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7861,7 +7861,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7878,7 +7878,7 @@
                             } elseif($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7905,7 +7905,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7939,7 +7939,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -7970,7 +7970,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -7987,7 +7987,7 @@
                             } elseif($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8014,7 +8014,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8048,7 +8048,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8080,7 +8080,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8097,7 +8097,7 @@
                             } elseif($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8124,7 +8124,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8158,7 +8158,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8217,7 +8217,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8234,7 +8234,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8261,7 +8261,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8294,7 +8294,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8327,7 +8327,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8344,7 +8344,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8371,7 +8371,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8404,7 +8404,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8436,7 +8436,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8453,7 +8453,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8480,7 +8480,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8514,7 +8514,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8547,7 +8547,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8562,7 +8562,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8587,7 +8587,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8622,7 +8622,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8657,7 +8657,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8674,7 +8674,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8701,7 +8701,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8735,7 +8735,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8767,7 +8767,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8784,7 +8784,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8812,7 +8812,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8847,7 +8847,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8880,7 +8880,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8897,7 +8897,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -8925,7 +8925,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -8960,7 +8960,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9019,7 +9019,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9036,7 +9036,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9064,7 +9064,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9097,7 +9097,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9129,7 +9129,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9146,7 +9146,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9173,7 +9173,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9206,7 +9206,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9238,7 +9238,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9255,7 +9255,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9282,7 +9282,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9315,7 +9315,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9346,7 +9346,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9363,7 +9363,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9390,7 +9390,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9423,7 +9423,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9455,7 +9455,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9470,7 +9470,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9495,7 +9495,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9530,7 +9530,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9565,7 +9565,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9582,7 +9582,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9610,7 +9610,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9645,7 +9645,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9721,7 +9721,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9738,7 +9738,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9766,7 +9766,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9799,7 +9799,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9831,7 +9831,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9848,7 +9848,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9876,7 +9876,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9911,7 +9911,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -9943,7 +9943,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9960,7 +9960,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -9987,7 +9987,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10021,7 +10021,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10053,7 +10053,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10070,7 +10070,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10098,7 +10098,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10133,7 +10133,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10166,7 +10166,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10183,7 +10183,7 @@
                             } else if ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10211,7 +10211,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10246,7 +10246,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SERAGAM != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10279,7 +10279,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10294,7 +10294,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10319,7 +10319,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10354,7 +10354,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         REGISTRASI != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10432,7 +10432,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10449,7 +10449,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10478,7 +10478,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10511,7 +10511,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         SPP != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10543,7 +10543,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10560,7 +10560,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10589,7 +10589,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10624,7 +10624,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         PANGKAL != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10657,7 +10657,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10674,7 +10674,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10701,7 +10701,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10734,7 +10734,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         KEGIATAN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10766,7 +10766,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10783,7 +10783,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10811,7 +10811,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10846,7 +10846,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         BUKU != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10911,7 +10911,7 @@
                             if ($pembayaranVIA == 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10926,7 +10926,7 @@
                             } elseif ($pembayaranVIA != 'kosong') {
 
                                 $queryUpdate = "
-                                    UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                                    UPDATE `u415776667_spp`.`input_data_tk` 
                                     SET 
                                     `DATE`='$tglPembayaranDB', 
                                     `BULAN`='$pembayaranBulanDB', 
@@ -10951,7 +10951,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -10986,7 +10986,7 @@
 
                                     $ambildata_perhalaman = mysqli_query($con, "
                                         SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                                        FROM input_data_tk_lama
+                                        FROM input_data_tk
                                         WHERE
                                         LAIN != 0
                                         AND NAMA LIKE '%$namaSiswa%'
@@ -11359,7 +11359,7 @@
 
                     // Update Data 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_sd_lama1` 
+                        UPDATE `u415776667_spp`.`input_data_sd` 
                         SET 
                         `SPP`='$data_uang_spp',
                         `SPP_txt`='$data_ket_spp',
@@ -11473,7 +11473,7 @@
 
                     // Update Data 
                     $queryUpdate = "
-                        UPDATE `u415776667_spp`.`input_data_tk_lama` 
+                        UPDATE `u415776667_spp`.`input_data_tk` 
                         SET 
                         `SPP`='$data_uang_spp',
                         `SPP_txt`='$data_ket_spp',
@@ -11751,7 +11751,7 @@
 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -11763,7 +11763,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -11793,7 +11793,7 @@
                 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -11805,7 +11805,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -11966,13 +11966,11 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            echo $tanggalDari;
-
             if ($_SESSION['c_accounting'] == 'accounting1') {
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -11991,7 +11989,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -12017,7 +12015,7 @@
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -12036,7 +12034,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -12530,7 +12528,7 @@
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SPP != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12551,7 +12549,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -12586,7 +12584,7 @@
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SPP != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -12607,7 +12605,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SPP != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -12664,7 +12662,7 @@
 
                 $queryGetDataPangkal = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -12674,7 +12672,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -12702,7 +12700,7 @@
 
                 $queryGetDataPangkal = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -12712,7 +12710,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -13088,7 +13086,7 @@
 
                 $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -13107,7 +13105,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -13133,7 +13131,7 @@
 
                 $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -13152,7 +13150,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -13650,7 +13648,7 @@
 
                 $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -13671,7 +13669,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -13697,7 +13695,7 @@
 
                 $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -13720,7 +13718,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, PANGKAL, TRANSAKSI, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     PANGKAL != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -13987,7 +13985,7 @@
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -13999,7 +13997,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -14027,7 +14025,7 @@
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -14039,7 +14037,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -14206,7 +14204,7 @@
 
                 $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -14225,7 +14223,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -14251,7 +14249,7 @@
 
                 $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -14270,7 +14268,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -14767,7 +14765,7 @@
 
                 $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -14788,7 +14786,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -14814,7 +14812,7 @@
 
                 $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -14835,7 +14833,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15320,7 +15318,7 @@
 
                 $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15339,7 +15337,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15365,7 +15363,7 @@
 
                 $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15384,7 +15382,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15764,7 +15762,7 @@
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -15784,7 +15782,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15810,7 +15808,7 @@
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -15830,7 +15828,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15880,7 +15878,7 @@
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -15901,7 +15899,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -15927,7 +15925,7 @@
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -15948,7 +15946,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     BUKU != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16004,7 +16002,7 @@
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16015,7 +16013,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16043,7 +16041,7 @@
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16054,7 +16052,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16110,7 +16108,7 @@
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16121,7 +16119,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16149,7 +16147,7 @@
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16160,7 +16158,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16214,7 +16212,7 @@
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16227,7 +16225,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16255,7 +16253,7 @@
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16268,7 +16266,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -16322,7 +16320,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16340,7 +16338,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16366,7 +16364,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16384,7 +16382,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16435,7 +16433,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16454,7 +16452,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16480,7 +16478,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16499,7 +16497,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16553,7 +16551,7 @@
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16565,7 +16563,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16595,7 +16593,7 @@
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16607,7 +16605,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16665,7 +16663,7 @@
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16677,7 +16675,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16704,7 +16702,7 @@
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16716,7 +16714,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16769,7 +16767,7 @@
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16783,7 +16781,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16811,7 +16809,7 @@
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16825,7 +16823,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16879,7 +16877,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16899,7 +16897,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16925,7 +16923,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -16945,7 +16943,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -16996,7 +16994,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17017,7 +17015,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17043,7 +17041,7 @@
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17064,7 +17062,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     SERAGAM != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17120,7 +17118,7 @@
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17131,7 +17129,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17159,7 +17157,7 @@
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17170,7 +17168,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17226,7 +17224,7 @@
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17237,7 +17235,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17265,7 +17263,7 @@
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17276,7 +17274,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17330,7 +17328,7 @@
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17343,7 +17341,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17371,7 +17369,7 @@
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17384,7 +17382,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -17437,7 +17435,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17455,7 +17453,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17481,7 +17479,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17499,7 +17497,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17549,7 +17547,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17568,7 +17566,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17594,7 +17592,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17613,7 +17611,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17667,7 +17665,7 @@
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17679,7 +17677,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17709,7 +17707,7 @@
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17721,7 +17719,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17779,7 +17777,7 @@
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17791,7 +17789,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17818,7 +17816,7 @@
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17830,7 +17828,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17883,7 +17881,7 @@
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17897,7 +17895,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17925,7 +17923,7 @@
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -17939,7 +17937,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -17993,7 +17991,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -18013,7 +18011,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18039,7 +18037,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -18059,7 +18057,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18110,7 +18108,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -18131,7 +18129,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18157,7 +18155,7 @@
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -18178,7 +18176,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18234,7 +18232,7 @@
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18245,7 +18243,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18273,7 +18271,7 @@
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18284,7 +18282,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18340,7 +18338,7 @@
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18351,7 +18349,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18379,7 +18377,7 @@
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18390,7 +18388,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18444,7 +18442,7 @@
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18457,7 +18455,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18485,7 +18483,7 @@
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18498,7 +18496,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%' 
@@ -18551,7 +18549,7 @@
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18569,7 +18567,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18595,7 +18593,7 @@
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18613,7 +18611,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18663,7 +18661,7 @@
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18682,7 +18680,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18708,7 +18706,7 @@
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -18727,7 +18725,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -19224,7 +19222,7 @@
 
                 $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -19245,7 +19243,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_sd_lama1
+                    FROM input_data_sd
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -19271,7 +19269,7 @@
 
                 $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
@@ -19292,7 +19290,7 @@
 
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
-                    FROM input_data_tk_lama
+                    FROM input_data_tk
                     WHERE
                     LAIN != 0
                     AND NAMA LIKE '%$namaMurid%'
@@ -20915,8 +20913,8 @@
 
     <?php endif ?>
 
-    <?php echo "Tanggal Dari : " . $dariTanggal . "<br>" . "Tanggal Sampai : " . $sampaiTanggal . "<br>"; ?>
-    <?php echo "Ini Sesi Form Edit Nomer " . $setSesiFormEdit . "<br> Ini Sesi Sesi Page Filter By " . $setSesiPageFilterBy; ?>
+    <!-- <?php echo "Tanggal Dari : " . $dariTanggal . "<br>" . "Tanggal Sampai : " . $sampaiTanggal . "<br>"; ?> -->
+    <!-- <?php echo "Ini Sesi Form Edit Nomer " . $setSesiFormEdit . "<br> Ini Sesi Sesi Page Filter By " . $setSesiPageFilterBy; ?> -->
 
     <div id="modalEditData" class="modal"  data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-lg">
