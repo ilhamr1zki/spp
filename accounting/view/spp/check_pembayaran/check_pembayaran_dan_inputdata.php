@@ -963,6 +963,11 @@
                         if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
 
                             $namaMurid = $namaSiswa;
+
+                            if (strpos($namaMurid, "'")) {
+                                $namaMurid = substr($namaMurid,-5);
+                            }
+
                             $queryGetDataFilterSemua = '
                             SELECT * FROM input_data_sd WHERE NAMA LIKE "%$namaMurid%" ';
                             $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
