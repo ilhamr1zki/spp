@@ -777,7 +777,7 @@ oncontextmenu="return false">
               <a href="<?php echo $baseac; ?>inputdata" id="input_data"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Input Data </a>
               <a href="<?php echo $baseac; ?>editdata" id="edit_data"><i class="glyphicon glyphicon-pencil text-primary"></i> <span style="margin-left: 5px;"> </span> Edit Data </a>
               <a href="#" id="export_data">
-                <i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 5px;"> Export Data Excel </span>
+                <i class="glyphicon glyphicon-export"></i> <span style="margin-left: 5px;"> Export Data Pembayaran </span>
               </a>
               <ul class="treeview-menu">
                 <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
@@ -787,40 +787,32 @@ oncontextmenu="return false">
                 <?php endif ?>
 
               </ul>
-              <!-- <ul class="treeview-menu">
-                
-                <li> <small> <a href="<?php echo $baseac; ?>checkpembayaran"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
-                <li> <small> <a href=""><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
 
-              </ul> -->
             </li>
 
           </ul>
         </li>
 
-        <!-- Try Layout -->
-        <!-- <li>
-          <a href="#">
-            <i class="glyphicon glyphicon-usd"></i> <span> Try Layout </span>
+        <!-- Data Siswa -->
+        <li>
+          <a href="#" id="list_data_siswa">
+            <i class="glyphicon glyphicon-zoom-in"></i> <span> DATA SISWA </span>
           </a>
           <ul class="treeview-menu">
             
             <li>
-              <a href="#"><i class="glyphicon glyphicon-plus text-primary"></i> Input Data </a>
-              <ul class="treeview-menu">
-                
-                <li> <small> <a href="<?php echo $baseac; ?>trylayout"><i class="glyphicon glyphicon glyphicon-check"></i> <span style="margin-left: 5px;"> </span> Check Pembayaran & Input Data </a> </small> </li>
-                <li> <small> <a href="<?php echo $baseac; ?>inputdata"><i class="glyphicon glyphicon glyphicon-zoom-in"></i> <span style="margin-left: 5px;"> </span> Check Input Data </a> </small> </li>
+              <a href="<?php echo $baseac; ?>tambahdatasiswa" id="tambahdatasiswa"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Tambah Siswa Baru </a>
 
-              </ul>
-            </li>
-
-            <li>
-              <a href="<?= $baseac; ?>slipkuitansi"><i class="glyphicon glyphicon-plus text-primary"></i> Slip Kuitansi </a>
+              <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+                <a href="<?php echo $baseac; ?>exportdatasiswa_sd.php" id="exportdatasiswa_sd"><i class="glyphicon glyphicon-export text-primary"></i> <span style="margin-left: 5px;"> </span> Export Data Siswa </a>
+              <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+                <a href="<?php echo $baseac; ?>exportdatasiswa_tk.php" id="exportdatasiswa_tk"><i class="glyphicon glyphicon-export text-primary"></i> <span style="margin-left: 5px;"> </span> Export Data Siswa </a>
+              <?php endif; ?>
+              
             </li>
 
           </ul>
-        </li> -->
+        </li>
         
         <!-- Maintenance -->
         <li>
@@ -870,6 +862,11 @@ oncontextmenu="return false">
       require 'view/spp/edit_data/editdata.php';
     } else if ($act == 'editform') {
       require 'view/spp/edit_data/formdata.php';
+    }
+
+    #region add new student
+    elseif ($act == 'tambahdatasiswa') {
+      require 'view/spp/data_siswa/siswa/add/index.php';
     }
 
     else if ($act == 'datacheckpayment') {

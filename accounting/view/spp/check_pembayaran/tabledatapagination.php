@@ -27,7 +27,7 @@
                         FROM input_data_sd
                         WHERE
                         SPP != 0
-                        AND NAMA LIKE '%$namaMurid%' ";
+                        AND NIS = '$nis' ";
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         // echo $hitungDataFilterSPP;
@@ -1969,7 +1969,7 @@
                         WHERE
                         SPP != 0
                         AND STAMP >= '$dariTanggal' AND STAMP < '$sampaiTanggal' 
-                        AND NAMA LIKE '%$namaMurid%' ";
+                        AND NIS = '$nis' ";
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         $getDataArr          = mysqli_fetch_array($execQueryDataSPP);
@@ -2149,7 +2149,7 @@
                         FROM input_data_sd
                         WHERE
                         PANGKAL != 0
-                        AND NAMA LIKE '%$namaMurid%' ";
+                        AND NIS = '$nis' ";
                         $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                         $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
                         // echo $hitungDataFilterPANGKAL;

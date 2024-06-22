@@ -8,7 +8,7 @@
         FROM input_data_sd
         WHERE
         LAIN != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
         $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
@@ -21,7 +21,7 @@
             FROM input_data_sd
             WHERE
             LAIN != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         $htg = mysqli_num_rows($ambildata_perhalaman);
@@ -51,7 +51,7 @@
         FROM input_data_tk
         WHERE
         LAIN != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
         $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
@@ -64,7 +64,7 @@
             FROM input_data_tk
             WHERE
             LAIN != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

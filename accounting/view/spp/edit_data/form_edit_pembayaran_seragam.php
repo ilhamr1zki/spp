@@ -8,7 +8,7 @@
         FROM input_data_sd
         WHERE
         SERAGAM != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
         $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
@@ -20,7 +20,7 @@
             FROM input_data_sd
             WHERE
             SERAGAM != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);
@@ -51,7 +51,7 @@
         FROM input_data_tk
         WHERE
         SERAGAM != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
         $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
@@ -63,7 +63,7 @@
             FROM input_data_tk
             WHERE
             SERAGAM != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

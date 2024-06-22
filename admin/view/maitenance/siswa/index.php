@@ -35,7 +35,7 @@
     if ($pkrjnAyah == 'KS') {
       $pkrjnAyah = "KARYAWAN SWASTA";
     } elseif ($pkrjnAyah == 'LAINNYA') {
-      $pkrjnAyah = $_POST['kerjaLain1'];
+      $pkrjnAyah = mysqli_real_escape_string($con, htmlspecialchars($_POST['kerjaLain1']));
     }
 
     $tmptTglAyah  = mysqli_real_escape_string($con, htmlspecialchars($_POST['_temptglayah'] . ", " . $_POST['tl_ayah']));
@@ -48,7 +48,7 @@
     if ($pkrjnIbu == 'KS') {
       $pkrjnIbu = "KARYAWAN SWASTA";
     } elseif ($pkrjnIbu == 'LAINNYA') {
-      $pkrjnIbu = $_POST['kerjaLain2'];
+      $pkrjnIbu = mysqli_real_escape_string($con, htmlspecialchars($_POST['kerjaLain2']));
     }
 
     $tmptTglIbu   = mysqli_real_escape_string($con, htmlspecialchars($_POST['_temptglibu'] . ", " . $_POST['tl_ibu']));

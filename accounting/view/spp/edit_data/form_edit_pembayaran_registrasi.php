@@ -8,7 +8,7 @@
         FROM input_data_sd
         WHERE
         REGISTRASI != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
         $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
@@ -20,7 +20,7 @@
             FROM input_data_sd
             WHERE
             REGISTRASI != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
 
@@ -52,7 +52,7 @@
         FROM input_data_tk
         WHERE
         REGISTRASI != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
         $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
@@ -64,7 +64,7 @@
             FROM input_data_tk
             WHERE
             REGISTRASI != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

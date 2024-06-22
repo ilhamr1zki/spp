@@ -185,6 +185,7 @@
                         }
 
                     } else {
+
                         $isifilby;
                         $id                 = "";
                         $nis                = "";
@@ -235,6 +236,7 @@
                         }
 
                         $_SESSION['form_kosong'] = "filter_kosong";
+
                     }
 
                 } else {
@@ -548,7 +550,7 @@
                             FROM input_data_sd
                             WHERE
                             SPP != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
                             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                             // echo $hitungDataFilterSPP;
@@ -560,7 +562,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 SPP != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY STAMP DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -682,7 +684,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 SPP != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -697,7 +699,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 SPP != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -780,7 +782,7 @@
                             FROM input_data_sd
                             WHERE
                             PANGKAL != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
                             $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                             $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
                             // echo $hitungDataFilterPANGKAL;
@@ -792,7 +794,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 PANGKAL != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -914,7 +916,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 PANGKAL != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -931,7 +933,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 PANGKAL != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -968,15 +970,15 @@
                                 $namaMurid = substr($namaMurid,-5);
                             }
 
-                            $queryGetDataFilterSemua = '
-                            SELECT * FROM input_data_sd WHERE NAMA LIKE "%$namaMurid%" ';
+                            $queryGetDataFilterSemua = "
+                            SELECT * FROM input_data_sd WHERE NIS = '$nis' ";
                             $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
                             $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
                             // echo $hitungDataFilterSemua;
 
                             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                             // echo $dataAwal . "<br>";
-                            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
+                            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_sd WHERE NIS = '$nis' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
 
                             $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
                             // echo $jumlahPagination;
@@ -1007,7 +1009,7 @@
                             $queryGetDataFilterSemuaWithDate = "
                                 SELECT * FROM input_data_sd 
                                 WHERE
-                                NAMA LIKE '%$namaMurid%'
+                                NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -1020,7 +1022,7 @@
                             $ambildata_perhalaman = mysqli_query($con, "
                                 SELECT * FROM input_data_sd
                                 WHERE
-                                NAMA LIKE '%$namaMurid%'
+                                NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 ORDER BY STAMP ASC
                                 LIMIT $dataAwal, $jumlahData
@@ -1059,7 +1061,7 @@
                             FROM input_data_sd
                             WHERE
                             KEGIATAN != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
                             $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
@@ -1071,7 +1073,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 KEGIATAN != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -1105,7 +1107,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 KEGIATAN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -1123,7 +1125,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 KEGIATAN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -1159,7 +1161,7 @@
                             FROM input_data_sd
                             WHERE
                             BUKU != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
                             $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
@@ -1171,7 +1173,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 BUKU != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -1203,7 +1205,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 BUKU != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -1222,7 +1224,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 BUKU != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -1258,7 +1260,7 @@
                             FROM input_data_sd
                             WHERE
                             SERAGAM != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
                             $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
@@ -1270,7 +1272,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 SERAGAM != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -1302,7 +1304,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 SERAGAM != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -1321,7 +1323,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 SERAGAM != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -1357,7 +1359,7 @@
                             FROM input_data_sd
                             WHERE
                             REGISTRASI != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
                             $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
@@ -1369,7 +1371,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 REGISTRASI != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -1401,7 +1403,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 REGISTRASI != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -1420,7 +1422,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 REGISTRASI != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -1456,7 +1458,7 @@
                             FROM input_data_sd
                             WHERE
                             LAIN != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
                             $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
@@ -1469,7 +1471,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 LAIN != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -1501,7 +1503,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 LAIN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -1519,7 +1521,7 @@
                                 FROM input_data_sd
                                 WHERE
                                 LAIN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -1593,7 +1595,7 @@
                 $namaSiswa  = $_POST['namaFormFilterSemua'];
 
                 $queryGetDataFilterSemua = "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis'
                 ";
 
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
@@ -1601,7 +1603,7 @@
                 $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData
                 ");
 
                 $check = mysqli_fetch_assoc($ambildata_perhalaman);
@@ -1639,14 +1641,14 @@
                 $kelas     = $_POST['kelasFormFilterSemua'];
 
                 $queryGetDataFilterSemua = "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' 
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis' 
                 ";
 
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
                 $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
 
                 $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
@@ -1680,7 +1682,7 @@
                 $kelas     = $_POST['kelasFormFilterSemua'];
 
                 $queryGetDataFilterSemua = "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' 
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis' 
                 ";
 
                 $execQueryDataFilterSemua   = mysqli_query($con, $queryGetDataFilterSemua);
@@ -1689,7 +1691,7 @@
                 $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%' 
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -1725,7 +1727,7 @@
                 $iniScrollPreviousPage  = "ada";
 
                 $execQueryGetAllDataHistoriFilterSemua = mysqli_query($con, "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -1739,7 +1741,7 @@
                 $hitungDataFilterSemua = $totalData;
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -1772,7 +1774,7 @@
                 $iniScrollPreviousPage  = "ada";
 
                 $execQueryGetAllDataHistoriFilterSemua = mysqli_query($con, "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -1786,7 +1788,7 @@
                 $hitungDataFilterSemua = $totalData;
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_sd WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_sd WHERE NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -1826,7 +1828,7 @@
 
                 $queryGetDataFilterSemuaWithDate = "
                     SELECT * FROM input_data_sd 
-                    WHERE NAMA LIKE '%$namaMurid%' AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                    WHERE NIS = '$nis' AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 ";
 
                 $execQueryDataFilterSemuaWithDate    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
@@ -1836,7 +1838,7 @@
                     SELECT * 
                     FROM input_data_sd
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER BY STAMP ASC
                     LIMIT $dataAwal, $jumlahData
@@ -1882,7 +1884,7 @@
                     SELECT * FROM input_data_sd
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
                 $hitungDataFilterSemuaWithDate = mysqli_num_rows($execQueryDataFilterSemua);
@@ -1890,7 +1892,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_sd
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     ORDER By STAMP ASC
                     LIMIT $dataAwal, $jumlahData");
@@ -1932,7 +1934,7 @@
                     SELECT * FROM input_data_sd
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
                 $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
@@ -1943,7 +1945,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_sd
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER by STAMP ASC
                     LIMIT $dataAwal, $jumlahData");
@@ -1985,7 +1987,7 @@
                     SELECT * FROM input_data_sd
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -2002,7 +2004,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_sd
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER BY STAMP ASC
                     LIMIT $dataAwal, $jumlahData
@@ -2042,7 +2044,7 @@
                     SELECT * FROM input_data_sd
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -2060,7 +2062,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_sd
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER BY STAMP ASC
                     LIMIT $dataAwal, $jumlahData
@@ -2101,7 +2103,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -2111,7 +2113,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2153,7 +2155,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -2163,7 +2165,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2203,7 +2205,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -2215,7 +2217,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2255,7 +2257,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -2273,7 +2275,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -2310,7 +2312,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -2329,7 +2331,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -2407,7 +2409,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -2417,7 +2419,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -2463,7 +2465,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 ";
 
@@ -2475,7 +2477,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2519,7 +2521,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -2538,7 +2540,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -2579,7 +2581,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -2599,7 +2601,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -2641,7 +2643,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
@@ -2654,7 +2656,7 @@
                     FROM input_data_sd
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2697,7 +2699,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataPangkal    = mysqli_query($con, $queryGetDataPangkal);
                 $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPangkal);
@@ -2707,7 +2709,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2749,7 +2751,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                 $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
@@ -2759,7 +2761,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2799,7 +2801,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                 $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
@@ -2811,7 +2813,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -2851,7 +2853,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
@@ -2869,7 +2871,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -2906,7 +2908,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
@@ -2925,7 +2927,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -2969,7 +2971,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
@@ -2980,7 +2982,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3028,7 +3030,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '.' '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
@@ -3040,7 +3042,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -3083,7 +3085,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
@@ -3096,7 +3098,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3140,7 +3142,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
@@ -3159,7 +3161,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3200,7 +3202,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
@@ -3220,7 +3222,7 @@
                     FROM input_data_sd
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3260,7 +3262,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
@@ -3271,7 +3273,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3313,7 +3315,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatan     = mysqli_query($con, $queryGetDataKegiatan);
@@ -3324,7 +3326,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3364,7 +3366,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDatakegiatan    = mysqli_query($con, $queryGetDataKegiatan);
                 $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDatakegiatan);
@@ -3376,7 +3378,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3416,7 +3418,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
@@ -3434,7 +3436,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3471,7 +3473,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
@@ -3490,7 +3492,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3534,7 +3536,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
@@ -3545,7 +3547,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3593,7 +3595,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
@@ -3604,7 +3606,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -3647,7 +3649,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
@@ -3660,7 +3662,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3704,7 +3706,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegitanWithDate);
@@ -3723,7 +3725,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3764,7 +3766,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatanWithDate);
@@ -3784,7 +3786,7 @@
                     FROM input_data_sd
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -3824,7 +3826,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -3835,7 +3837,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3877,7 +3879,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataBuku);
@@ -3888,7 +3890,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3928,7 +3930,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -3941,7 +3943,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -3981,7 +3983,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -3999,7 +4001,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4036,7 +4038,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -4055,7 +4057,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4099,7 +4101,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
@@ -4110,7 +4112,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4158,7 +4160,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
@@ -4169,7 +4171,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -4212,7 +4214,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
@@ -4225,7 +4227,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -4269,7 +4271,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
@@ -4288,7 +4290,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4329,7 +4331,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
@@ -4349,7 +4351,7 @@
                     FROM input_data_sd
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4389,7 +4391,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -4400,7 +4402,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -4442,7 +4444,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataSeragam);
@@ -4453,7 +4455,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -4493,7 +4495,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -4506,7 +4508,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -4546,7 +4548,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -4564,7 +4566,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4601,7 +4603,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -4620,7 +4622,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4664,7 +4666,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
@@ -4675,7 +4677,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4723,7 +4725,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
@@ -4734,7 +4736,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -4777,7 +4779,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
@@ -4790,7 +4792,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -4834,7 +4836,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
@@ -4853,7 +4855,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4894,7 +4896,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
@@ -4914,7 +4916,7 @@
                     FROM input_data_sd
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -4954,7 +4956,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -4965,7 +4967,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5007,7 +5009,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataRegistrasi);
@@ -5018,7 +5020,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5058,7 +5060,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -5071,7 +5073,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5111,7 +5113,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -5129,7 +5131,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5166,7 +5168,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -5185,7 +5187,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5229,7 +5231,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
@@ -5240,7 +5242,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5288,7 +5290,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
@@ -5299,7 +5301,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -5342,7 +5344,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
@@ -5355,7 +5357,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5399,7 +5401,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
@@ -5418,7 +5420,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5459,7 +5461,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
@@ -5479,7 +5481,7 @@
                     FROM input_data_sd
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5519,7 +5521,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -5530,7 +5532,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5572,7 +5574,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLain     = mysqli_query($con, $queryGetDataLain);
@@ -5583,7 +5585,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5623,7 +5625,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -5636,7 +5638,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5676,7 +5678,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -5694,7 +5696,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5731,7 +5733,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -5750,7 +5752,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5794,7 +5796,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
@@ -5805,7 +5807,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -5853,7 +5855,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDatLainWithDate);
@@ -5864,7 +5866,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -5907,7 +5909,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
@@ -5920,7 +5922,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -5964,7 +5966,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
@@ -5983,7 +5985,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -6024,7 +6026,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
@@ -6044,7 +6046,7 @@
                     FROM input_data_sd
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -6400,7 +6402,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 SPP != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY STAMP DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -6526,7 +6528,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 SPP != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -6541,7 +6543,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 SPP != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -6627,7 +6629,7 @@
                             FROM input_data_tk
                             WHERE
                             PANGKAL != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
                             $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                             $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
                             // echo $hitungDataFilterPANGKAL;
@@ -6639,7 +6641,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 PANGKAL != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -6765,7 +6767,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 PANGKAL != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -6782,7 +6784,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 PANGKAL != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -6819,14 +6821,14 @@
                             }
 
                             $queryGetDataFilterSemua = "
-                            SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' ";
+                            SELECT * FROM input_data_tk WHERE NIS = '$nis' ";
                             $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
                             $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
                             // echo $hitungDataFilterSemua;
 
                             $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
                             // echo $dataAwal . "<br>";
-                            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
+                            $ambildata_perhalaman = mysqli_query($con, "SELECT * FROM input_data_tk WHERE NIS = '$nis' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
 
                             $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
                             // echo $jumlahPagination;
@@ -6857,7 +6859,7 @@
                             $queryGetDataFilterSemuaWithDate = "
                                 SELECT * FROM input_data_tk 
                                 WHERE
-                                NAMA LIKE '%$namaMurid%'
+                                NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -6870,7 +6872,7 @@
                             $ambildata_perhalaman = mysqli_query($con, "
                                 SELECT * FROM input_data_tk
                                 WHERE
-                                NAMA LIKE '%$namaMurid%'
+                                NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 ORDER BY STAMP ASC
                                 LIMIT $dataAwal, $jumlahData
@@ -6909,7 +6911,7 @@
                             FROM input_data_tk
                             WHERE
                             KEGIATAN != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
                             $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
@@ -6921,7 +6923,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 KEGIATAN != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -6955,7 +6957,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 KEGIATAN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -6973,7 +6975,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 KEGIATAN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -7009,7 +7011,7 @@
                             FROM input_data_tk
                             WHERE
                             BUKU != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
                             $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
@@ -7021,7 +7023,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 BUKU != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -7053,7 +7055,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 BUKU != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -7072,7 +7074,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 BUKU != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -7108,7 +7110,7 @@
                             FROM input_data_tk
                             WHERE
                             SERAGAM != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
                             $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
@@ -7120,7 +7122,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 SERAGAM != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -7152,7 +7154,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 SERAGAM != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -7171,7 +7173,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 SERAGAM != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -7207,7 +7209,7 @@
                             FROM input_data_tk
                             WHERE
                             REGISTRASI != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
                             $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
@@ -7219,7 +7221,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 REGISTRASI != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -7251,7 +7253,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 REGISTRASI != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -7270,7 +7272,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 REGISTRASI != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -7306,7 +7308,7 @@
                             FROM input_data_tk
                             WHERE
                             LAIN != 0
-                            AND NAMA LIKE '%$namaMurid%' ";
+                            AND NIS = '$nis' ";
 
                             $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
                             $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
@@ -7319,7 +7321,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 LAIN != 0
-                                AND NAMA LIKE '%$namaMurid%' 
+                                AND NIS = '$nis' 
                                 ORDER BY ID DESC
                                 LIMIT $dataAwal, $jumlahData");
                             // print_r($ambildata_perhalaman->num_rows);
@@ -7351,7 +7353,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 LAIN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                             ";
 
@@ -7369,7 +7371,7 @@
                                 FROM input_data_tk
                                 WHERE
                                 LAIN != 0
-                                AND NAMA LIKE '%$namaMurid%'
+                                AND NIS = '$nis'
                                 AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                                 LIMIT $dataAwal, $jumlahData
                             ");
@@ -7443,7 +7445,7 @@
                 $namaSiswa  = $_POST['namaFormFilterSemua'];
 
                 $queryGetDataFilterSemua = "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis'
                 ";
 
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
@@ -7451,7 +7453,7 @@
                 $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData
                 ");
 
                 $check = mysqli_fetch_assoc($ambildata_perhalaman);
@@ -7489,14 +7491,14 @@
                 $kelas     = $_POST['kelasFormFilterSemua'];
 
                 $queryGetDataFilterSemua = "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' 
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis' 
                 ";
 
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemua);
                 $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis' ORDER BY ID DESC LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
 
                 $jumlahPagination = ceil($hitungDataFilterSemua / $jumlahData);
@@ -7530,7 +7532,7 @@
                 $kelas     = $_POST['kelasFormFilterSemua'];
 
                 $queryGetDataFilterSemua = "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' 
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis' 
                 ";
 
                 $execQueryDataFilterSemua   = mysqli_query($con, $queryGetDataFilterSemua);
@@ -7539,7 +7541,7 @@
                 $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%' 
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -7575,7 +7577,7 @@
                 $iniScrollPreviousPage  = "ada";
 
                 $execQueryGetAllDataHistoriFilterSemua = mysqli_query($con, "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -7589,7 +7591,7 @@
                 $hitungDataFilterSemua = $totalData;
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -7622,7 +7624,7 @@
                 $iniScrollPreviousPage  = "ada";
 
                 $execQueryGetAllDataHistoriFilterSemua = mysqli_query($con, "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -7636,7 +7638,7 @@
                 $hitungDataFilterSemua = $totalData;
 
                 $ambildata_perhalaman = mysqli_query($con, "
-                    SELECT * FROM input_data_tk WHERE NAMA LIKE '%$namaMurid%'
+                    SELECT * FROM input_data_tk WHERE NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -7676,7 +7678,7 @@
 
                 $queryGetDataFilterSemuaWithDate = "
                     SELECT * FROM input_data_tk 
-                    WHERE NAMA LIKE '%$namaMurid%' AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
+                    WHERE NIS = '$nis' AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                 ";
 
                 $execQueryDataFilterSemuaWithDate    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
@@ -7686,7 +7688,7 @@
                     SELECT * 
                     FROM input_data_tk
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER BY STAMP ASC
                     LIMIT $dataAwal, $jumlahData
@@ -7732,7 +7734,7 @@
                     SELECT * FROM input_data_tk
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
                 $hitungDataFilterSemuaWithDate = mysqli_num_rows($execQueryDataFilterSemua);
@@ -7740,7 +7742,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_tk
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     ORDER By STAMP ASC
                     LIMIT $dataAwal, $jumlahData");
@@ -7782,7 +7784,7 @@
                     SELECT * FROM input_data_tk
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataFilterSemua    = mysqli_query($con, $queryGetDataFilterSemuaWithDate);
                 $hitungDataFilterSemua = mysqli_num_rows($execQueryDataFilterSemua);
@@ -7793,7 +7795,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_tk
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER by STAMP ASC
                     LIMIT $dataAwal, $jumlahData");
@@ -7835,7 +7837,7 @@
                     SELECT * FROM input_data_tk
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -7852,7 +7854,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_tk
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER BY STAMP ASC
                     LIMIT $dataAwal, $jumlahData
@@ -7892,7 +7894,7 @@
                     SELECT * FROM input_data_tk
                     WHERE
                     STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSemua);
@@ -7910,7 +7912,7 @@
                 $ambildata_perhalaman = mysqli_query($con, "
                     SELECT * FROM input_data_tk
                     WHERE
-                    NAMA LIKE '%$namaMurid%'
+                    NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     ORDER BY STAMP ASC
                     LIMIT $dataAwal, $jumlahData
@@ -7951,7 +7953,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -7961,7 +7963,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8003,7 +8005,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -8013,7 +8015,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8053,7 +8055,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -8065,7 +8067,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8105,7 +8107,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -8123,7 +8125,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8160,7 +8162,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -8179,7 +8181,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY STAMP DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8257,7 +8259,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                 $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
@@ -8267,7 +8269,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8313,7 +8315,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                 ";
 
@@ -8325,7 +8327,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8369,7 +8371,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -8388,7 +8390,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8429,7 +8431,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSPP);
@@ -8449,7 +8451,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8491,7 +8493,7 @@
                     WHERE
                     SPP != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
@@ -8504,7 +8506,7 @@
                     FROM input_data_tk
                     WHERE
                     SPP != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8547,7 +8549,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataPangkal    = mysqli_query($con, $queryGetDataPangkal);
                 $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPangkal);
@@ -8557,7 +8559,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8599,7 +8601,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                 $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
@@ -8609,7 +8611,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8649,7 +8651,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                 $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
@@ -8661,7 +8663,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8701,7 +8703,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
@@ -8719,7 +8721,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8756,7 +8758,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPANGKAL);
@@ -8775,7 +8777,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8819,7 +8821,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
@@ -8830,7 +8832,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -8878,7 +8880,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '.' '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
@@ -8890,7 +8892,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -8933,7 +8935,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataPangkalWithDate    = mysqli_query($con, $queryGetDataPangkalWithDate);
@@ -8946,7 +8948,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -8990,7 +8992,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
@@ -9009,7 +9011,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9050,7 +9052,7 @@
                     WHERE
                     PANGKAL != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterPangkalWithDate);
@@ -9070,7 +9072,7 @@
                     FROM input_data_tk
                     WHERE
                     PANGKAL != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9110,7 +9112,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
@@ -9121,7 +9123,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -9163,7 +9165,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatan     = mysqli_query($con, $queryGetDataKegiatan);
@@ -9174,7 +9176,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -9214,7 +9216,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
                 $execQueryDatakegiatan    = mysqli_query($con, $queryGetDataKegiatan);
                 $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDatakegiatan);
@@ -9226,7 +9228,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -9266,7 +9268,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
@@ -9284,7 +9286,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9321,7 +9323,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatan);
@@ -9340,7 +9342,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9384,7 +9386,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
@@ -9395,7 +9397,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9443,7 +9445,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
@@ -9454,7 +9456,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -9497,7 +9499,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataKegiatanWithDate    = mysqli_query($con, $queryGetDataKegiatanWithDate);
@@ -9510,7 +9512,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -9554,7 +9556,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegitanWithDate);
@@ -9573,7 +9575,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9614,7 +9616,7 @@
                     WHERE
                     KEGIATAN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterKegiatanWithDate);
@@ -9634,7 +9636,7 @@
                     FROM input_data_tk
                     WHERE
                     KEGIATAN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9674,7 +9676,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -9685,7 +9687,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -9727,7 +9729,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataBuku);
@@ -9738,7 +9740,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -9778,7 +9780,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -9791,7 +9793,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -9831,7 +9833,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -9849,7 +9851,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9886,7 +9888,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -9905,7 +9907,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -9949,7 +9951,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
@@ -9960,7 +9962,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10008,7 +10010,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
@@ -10019,7 +10021,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -10062,7 +10064,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBukuWithDate    = mysqli_query($con, $queryGetDataBukuWithDate);
@@ -10075,7 +10077,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10119,7 +10121,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
@@ -10138,7 +10140,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10179,7 +10181,7 @@
                     WHERE
                     BUKU != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBukuWithDate);
@@ -10199,7 +10201,7 @@
                     FROM input_data_tk
                     WHERE
                     BUKU != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10239,7 +10241,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -10250,7 +10252,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10292,7 +10294,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataSeragam);
@@ -10303,7 +10305,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10343,7 +10345,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -10356,7 +10358,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10396,7 +10398,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -10414,7 +10416,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10451,7 +10453,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -10470,7 +10472,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10514,7 +10516,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
@@ -10525,7 +10527,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10573,7 +10575,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
@@ -10584,7 +10586,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -10627,7 +10629,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragamWithDate    = mysqli_query($con, $queryGetDataSeragamWithDate);
@@ -10640,7 +10642,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10684,7 +10686,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
@@ -10703,7 +10705,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10744,7 +10746,7 @@
                     WHERE
                     SERAGAM != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragamWithDate);
@@ -10764,7 +10766,7 @@
                     FROM input_data_tk
                     WHERE
                     SERAGAM != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -10804,7 +10806,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -10815,7 +10817,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10857,7 +10859,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataRegistrasi);
@@ -10868,7 +10870,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10908,7 +10910,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -10921,7 +10923,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -10961,7 +10963,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -10979,7 +10981,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11016,7 +11018,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -11035,7 +11037,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11079,7 +11081,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
@@ -11090,7 +11092,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11138,7 +11140,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
@@ -11149,7 +11151,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -11192,7 +11194,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasiWithDate    = mysqli_query($con, $queryGetDataRegistrasiWithDate);
@@ -11205,7 +11207,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -11249,7 +11251,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
@@ -11268,7 +11270,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11309,7 +11311,7 @@
                     WHERE
                     REGISTRASI != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasiWithDate);
@@ -11329,7 +11331,7 @@
                     FROM input_data_tk
                     WHERE
                     REGISTRASI != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11369,7 +11371,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -11380,7 +11382,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -11422,7 +11424,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLain     = mysqli_query($con, $queryGetDataLain);
@@ -11433,7 +11435,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -11473,7 +11475,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -11486,7 +11488,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -11526,7 +11528,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -11544,7 +11546,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11581,7 +11583,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -11600,7 +11602,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11644,7 +11646,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
@@ -11655,7 +11657,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11703,7 +11705,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDatLainWithDate);
@@ -11714,7 +11716,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai' 
                     ORDER BY STAMP ASC
                     LIMIT $dataAwal, $jumlahData");
@@ -11758,7 +11760,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%' 
+                    AND NIS = '$nis' 
                 ";
 
                 $execQueryDataLainWithDate    = mysqli_query($con, $queryGetDataLainWithDate);
@@ -11771,7 +11773,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -11815,7 +11817,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
@@ -11834,7 +11836,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -11875,7 +11877,7 @@
                     WHERE
                     LAIN != 0
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLainWithDate);
@@ -11895,7 +11897,7 @@
                     FROM input_data_tk
                     WHERE
                     LAIN != 0
-                    AND NAMA LIKE '%$namaMurid%'
+                    AND NIS = '$nis'
                     AND STAMP >= '$tanggalDari' AND STAMP <= '$tanggalSampai'
                     LIMIT $dataAwal, $jumlahData
                 ");

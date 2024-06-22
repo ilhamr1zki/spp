@@ -8,7 +8,7 @@
         FROM input_data_sd
         WHERE
         KEGIATAN != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
         $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
@@ -20,7 +20,7 @@
             FROM input_data_sd
             WHERE
             KEGIATAN != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);
@@ -48,7 +48,7 @@
         FROM input_data_tk
         WHERE
         KEGIATAN != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
 
         $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
         $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
@@ -61,7 +61,7 @@
             FROM input_data_tk
             WHERE
             KEGIATAN != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

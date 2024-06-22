@@ -669,7 +669,7 @@ oncontextmenu="return false">
               <a href="<?php echo $basead; ?>editdata" id="edit_data"><i class="glyphicon glyphicon-pencil text-primary"></i> <span style="margin-left: 5px;"> </span> Edit Data </a>
               <!-- <a href="<?php echo $basead; ?>upload" id="upload_data"><i class="glyphicon glyphicon-circle-arrow-up"></i> <span style="margin-left: 5px;"> </span> Import Data Excel </a> -->
               <a href="#" id="export_data">
-                <i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 5px;"> Export Data Excel </span>
+                <i class="glyphicon glyphicon-export"></i> <span style="margin-left: 5px;"> Export Data Pembayaran </span>
               </a>
               <ul class="treeview-menu">
                 
@@ -695,6 +695,10 @@ oncontextmenu="return false">
 
             <li>
               <a href="<?= $basead; ?>tambahdatasiswa" id="tambahdatasiswa"><i class="glyphicon glyphicon-user text-primary"></i> Tambah Data Siswa </a>
+            </li>
+
+            <li>
+              <a href="<?= $basead; ?>tambahdatasiswa" id="tambahdatasiswa"><i class="glyphicon glyphicon-import text-primary"></i> Import Data Siswa </a>
             </li>
 
           </ul>

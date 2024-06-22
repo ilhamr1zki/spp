@@ -12,7 +12,7 @@
 	        FROM input_data_sd
 	        WHERE
 	        BUKU != 0
-	        AND NAMA LIKE '%$namaMurid%' ";
+	        AND NIS = '$nis' ";
 
 	        $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
 	        $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
@@ -24,7 +24,7 @@
 	            FROM input_data_sd
 	            WHERE
 	            BUKU != 0
-	            AND NAMA LIKE '%$namaMurid%' 
+	            AND NIS = '$nis' 
 	            ORDER BY ID DESC
 	            LIMIT $dataAwal, $jumlahData");
 	        // print_r($ambildata_perhalaman->num_rows);
@@ -56,7 +56,7 @@
 	        FROM input_data_tk
 	        WHERE
 	        BUKU != 0
-	        AND NAMA LIKE '%$namaMurid%' ";
+	        AND NIS = '$nis' ";
 
 	        $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
 	        $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
@@ -68,7 +68,7 @@
 	            FROM input_data_tk
 	            WHERE
 	            BUKU != 0
-	            AND NAMA LIKE '%$namaMurid%' 
+	            AND NIS = '$nis' 
 	            ORDER BY ID DESC
 	            LIMIT $dataAwal, $jumlahData");
 	        // print_r($ambildata_perhalaman->num_rows);
