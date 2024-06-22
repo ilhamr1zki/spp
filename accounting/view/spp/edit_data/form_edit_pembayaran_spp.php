@@ -24,12 +24,13 @@
         if ($_SESSION['c_accounting'] == 'accounting1') {
             
             $namaMurid = $namaSiswa;
-            $queryGetDataSPP = '
+            echo $nis;
+            $queryGetDataSPP = "
             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
             SPP != 0
-            AND NAMA LIKE "%$namaMurid%" ';
+            AND NIS = '$nis' ";
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
             // echo $hitungDataFilterSPP;
@@ -41,7 +42,7 @@
                 FROM input_data_sd
                 WHERE
                 SPP != 0
-                AND NAMA LIKE '%$namaMurid%' 
+                AND NIS = '$nis' 
                 ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
@@ -65,14 +66,16 @@
         } else if ($_SESSION['c_accounting'] == 'accounting2') {
 
             $namaMurid = $namaSiswa;
-            $queryGetDataSPP = '
+            // echo $nis;
+            $queryGetDataSPP = "
             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
             SPP != 0
-            AND NAMA LIKE "%$namaMurid%" ';
+            AND NIS = '$nis' ";
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
+            // echo $hitungDataFilterSPP;exit;
 
             if ($hitungDataFilterSPP == 0) {
                 $hitungDataFilterSPP = 0;
@@ -85,7 +88,7 @@
                 FROM input_data_tk
                 WHERE
                 SPP != 0
-                AND NAMA LIKE '%$namaMurid%' 
+                AND NIS = '$nis'
                 ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
