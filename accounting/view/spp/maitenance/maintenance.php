@@ -39,6 +39,11 @@
             $_SESSION['form_empty'] = 'twoform_empty';
             $focus = 1;
 
+        } elseif ($_POST['tahun_ajaran'] == '' && $_POST['tahun_ajaran_2'] != '') {
+
+            $_SESSION['form_empty'] = 'first_form_empty';
+            $focus = 3;            
+
         } else if ($_POST['tahun_ajaran'] == '') {
 
             $tahunAjaran2 = $_POST['tahun_ajaran_2'];
@@ -98,6 +103,7 @@
                     $reloadPage = 1;
 
                     $_SESSION['form_success'] = 'berhasil';
+                    $focus = 5;
 
                 } else {
                     // echo $countData;
@@ -105,6 +111,7 @@
                     $reloadPage = 1;
 
                     $_SESSION['form_success'] = 'berhasil';
+                    $focus = 5;
                 }
 
             } else if (strlen($_POST['tahun_ajaran']) != 4) {
@@ -169,8 +176,6 @@
 
 ?>
 
-<?php echo $tahunAjaran1; ?>
-
 <div class="row">
     <div class="col-xs-12 col-md-12 col-lg-12">
 
@@ -201,6 +206,13 @@
           <div style="display: none;" class="alert alert-danger alert-dismissable"> Tahun Ajaran di Input 2 Wajib Di isi 4 Digit Angka
              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
              <?php unset($_SESSION['form_error']); ?>
+          </div>
+        <?php } ?>
+
+        <?php if(isset($_SESSION['form_empty']) && $_SESSION['form_empty'] == 'first_form_empty'){?>
+          <div style="display: none;" class="alert alert-danger alert-dismissable"> Tahun Ajaran di Input 1 Wajib Di isi 
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <?php unset($_SESSION['form_empty']); ?>
           </div>
         <?php } ?>
 
@@ -257,9 +269,9 @@
                 <div class="col-sm-8">
                     <div class="form-group">
                         <label> Tahun Ajaran</label>
-                        <input type="text" name="tahun_ajaran" oninvalid="this.setCustomValidity('Harus di isi 4 Digit angka')" required pattern="^([2-3])[0-9]{3}$" placeholder="input 1" value="<?= $tahunAjaran1; ?>" id="tahun_ajaran">
+                        <input type="text" name="tahun_ajaran" required oninvalid="this.setCustomValidity('Angka Pertama wajib angka 2 & Harus di isi 4 Digit angka')" oninput="this.setCustomValidity('')" pattern="^(2)[0-9]{3}$" placeholder="input 1" value="<?= $tahunAjaran1; ?>" id="tahun_ajaran">
                         <input type="text" id="slashx" value="/" readonly style="background-color: white; border: 0px;">
-                        <input type="text" name="tahun_ajaran_2" placeholder="input 2" value="<?= $tahunAjaran2; ?>" id="tahun_ajaran_2">
+                        <input type="text" name="tahun_ajaran_2" required oninvalid="this.setCustomValidity('Angka Pertama wajib angka 2 & Harus di isi 4 Digit angka')" oninput="this.setCustomValidity('')" pattern="^(2)[0-9]{3}$" placeholder="input 2" value="<?= $tahunAjaran2; ?>" id="tahun_ajaran_2">
                     </div>
                 </div>
 
@@ -305,13 +317,24 @@
 
 <script type="text/javascript">
         
-    let dataFocus = `<?= $focus; ?>`
+    let dataFocus  = `<?= $focus; ?>`
     let reloadPage = `<?= $reloadPage; ?>`
+    let tahunAjar1 = `<?= $tahunAjaran1; ?>` 
+    let tahunAjar2 = `<?= $tahunAjaran2; ?>` 
 
     if (dataFocus == 1) {
         $("#tahun_ajaran").focus();
     } else if (dataFocus == 2) {
+        $("#tahun_ajaran").val(`<?= $_POST['tahun_ajaran']; ?>`);
         $("#tahun_ajaran_2").focus();
+    } else if (dataFocus == 3) {
+        $("#tahun_ajaran").focus();
+        $("#tahun_ajaran_2").val(`<?= $_POST['tahun_ajaran_2']; ?>`);
+    } else if (dataFocus == 0) {
+        let checkDatas = $("#tahun_ajaran").val();
+        if(checkDatas == '') {
+            $("#tahun_ajaran").focus();
+        } 
     }
 
     if (reloadPage == 1) {

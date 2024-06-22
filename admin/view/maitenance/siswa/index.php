@@ -103,36 +103,38 @@
 
       if ($c_jenjang != "TK") {
 
+        // echo $c_jenjang;exit;
+
         $kelas  = str_replace(["1SD", "2SD", "3SD", "4SD", "5SD", "6SD"], ["1 SD", "2 SD", "3 SD", "4 SD", "5 SD", "6 SD"], $klp);
         // echo $kelas;exit;
 
         $insertDB1 = mysqli_query($con,"
           INSERT INTO data_murid_sd 
           set
-          Nama          = '$nama',
-          KELAS         = '$kelas',
-          jk            = '$jns_kl',
-          temlahir      = '$alamat',
-          tanglahir     = '$tl', 
-          thn_join      = '$thnJ', 
-          Panggilan     = '$pggl', 
-          KLP           = NULL, 
-          berat_badan   = NULL,
-          tinggi_badan  = NULL, 
-          ukuran_baju   = NULL, 
-          alamat        = '$almtRm', 
-          telp_rumah    = '$noTelp', 
-          HP            = '$noHp',
-          email         = '$email', 
-          nama_ayah     = '$namaAyah', 
-          pendidikan_a  = '$pddknAyah', 
-          pekerjaan_a   = '$pkrjnAyah',
-          ttl_a         = '$tmptTglAyah', 
-          nama_ibu      = '$namaIbu', 
-          pendidikan_i  = '$pddknIbu', 
-          pekerjaan_i   = '$pkrjnIbu',
-          ttl_i         = '$tmptTglIbu', 
-          NIS           = '$nis' 
+          Nama                  = '$nama',
+          KELAS                 = '$kelas',
+          jk                    = '$jns_kl',
+          tempat_lahir          = '$alamat',
+          tanggal_lahir         = '$tl', 
+          tahun_join            = '$thnJ', 
+          Panggilan             = '$pggl', 
+          KLP                   = NULL, 
+          berat_badan           = NULL,
+          tinggi_badan          = NULL, 
+          ukuran_baju           = NULL, 
+          Alamat                = '$almtRm', 
+          telp_rumah            = '$noTelp', 
+          HP                    = '$noHp',
+          alamat_email          = '$email', 
+          nama_ayah             = '$namaAyah', 
+          Pendidikan            = '$pddknAyah', 
+          Pekerjaan             = '$pkrjnAyah',
+          tempat_tanggal_lahir  = '$tmptTglAyah', 
+          nama_ibu              = '$namaIbu', 
+          Pendidikan1           = '$pddknIbu', 
+          Pekerjaan1            = '$pkrjnIbu',
+          tempat_tanggal_lahir1 = '$tmptTglIbu', 
+          NIS                   = '$nis' 
         ");
 
       } elseif ($c_jenjang == 'TK') {

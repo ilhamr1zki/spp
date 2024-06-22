@@ -8,7 +8,7 @@
         FROM input_data_sd
         WHERE
         PANGKAL != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
         $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
         $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
         // echo $hitungDataFilterPANGKAL;
@@ -20,7 +20,7 @@
             FROM input_data_sd
             WHERE
             PANGKAL != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);
@@ -51,7 +51,7 @@
         FROM input_data_tk
         WHERE
         PANGKAL != 0
-        AND NAMA LIKE '%$namaMurid%' ";
+        AND NIS = '$nis' ";
         $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
         $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
         // echo $hitungDataFilterPANGKAL;
@@ -63,7 +63,7 @@
             FROM input_data_tk
             WHERE
             PANGKAL != 0
-            AND NAMA LIKE '%$namaMurid%' 
+            AND NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

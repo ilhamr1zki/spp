@@ -12,7 +12,7 @@
 	        FROM input_data_sd
 	        WHERE
 	        SPP != 0
-	        AND NAMA LIKE '%$namaMurid%'
+	        AND NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
 	    ";
 
@@ -27,7 +27,7 @@
 	        FROM input_data_sd
 	        WHERE
 	        SPP != 0
-	        AND NAMA LIKE '%$namaMurid%'
+	        AND NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
             order by STAMP
 	        LIMIT $dataAwal, $jumlahData
@@ -59,7 +59,7 @@
 	        FROM input_data_tk
 	        WHERE
 	        SPP != 0
-	        AND NAMA LIKE '%$namaMurid%'
+	        AND NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
 	    ";
 
@@ -74,7 +74,7 @@
 	        FROM input_data_tk
 	        WHERE
 	        SPP != 0
-	        AND NAMA LIKE '%$namaMurid%'
+	        AND NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
 	        order by STAMP 
 	        LIMIT $dataAwal, $jumlahData

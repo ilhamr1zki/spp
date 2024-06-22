@@ -24,7 +24,6 @@
         if ($_SESSION['c_accounting'] == 'accounting1') {
             
             $namaMurid = $namaSiswa;
-            echo $nis;
             $queryGetDataSPP = "
             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
