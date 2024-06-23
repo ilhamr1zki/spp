@@ -880,12 +880,12 @@ oncontextmenu="return false">
 
     #region form maintenance
     elseif ($act == 'maintenance') {
-      require 'view/spp/maitenance/maintenance.php';
+      require 'view/spp/maintenance/maintenance.php';
     }
 
     #region change password
     else if ($act == 'changepassword') {
-      require 'view/spp/maitenance/changepassword.php';
+      require 'view/spp/maintenance/changepassword.php';
     }
 
     else{
