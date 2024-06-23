@@ -734,14 +734,14 @@ oncontextmenu="return false">
 
     #region import data
     elseif($act == 'importdatasiswa') {
-      require 'view/maitenance/uploadfile.php';
+      require 'view/maintenance/uploadfile.php';
     }
 
     #region form maintenance
     elseif ($act == 'tahunajaran') {
-      require 'view/maitenance/tahun_ajaran/index.php';
+      require 'view/maintenance/tahun_ajaran/index.php';
     } elseif ($act == 'tambahdatasiswa') {
-      require 'view/maitenance/siswa/index.php';
+      require 'view/maintenance/siswa/index.php';
     }
 
     else{
