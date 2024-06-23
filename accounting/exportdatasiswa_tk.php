@@ -188,7 +188,7 @@
 
                         <?php else: ?>
                         
-                            <td style="text-align: center;"> <?= $data['HP']; ?> </td>
+                            <td style="text-align: center;"> <?= str_replace(["'"],"",$data['HP']); ?> </td>
                             
                         <?php endif ?>
 

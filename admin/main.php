@@ -698,7 +698,7 @@ oncontextmenu="return false">
             </li>
 
             <li>
-              <a href="<?= $basead; ?>tambahdatasiswa" id="tambahdatasiswa"><i class="glyphicon glyphicon-import text-primary"></i> Import Data Siswa </a>
+              <a href="<?= $basead; ?>importdatasiswa" id="importdatasiswa"><i class="glyphicon glyphicon-import text-primary"></i> Import Data Siswa </a>
             </li>
 
           </ul>
@@ -733,8 +733,8 @@ oncontextmenu="return false">
     }
 
     #region import data
-    elseif($act == 'upload') {
-      require 'view/spp/upload/uploadfile.php';
+    elseif($act == 'importdatasiswa') {
+      require 'view/maitenance/uploadfile.php';
     }
 
     #region form maintenance

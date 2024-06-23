@@ -53,8 +53,11 @@
     </style>
 
     <?php
-        header("Content-type: application/vnd-ms-excel");
-        header("Content-Disposition: attachment; filename=data_murid_sd.xls");
+        header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
+        header("Content-Disposition: attachment; filename=data_murid_sd.xls");  //File name extension was wrong
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Cache-Control: private",false);
     ?>
 
     <div style="overflow-x: auto; margin: 10px;">
@@ -128,7 +131,7 @@
 
                         <?php else: ?>
                             
-                            <td style="text-align: center;"> <?= $data['tanggal_lahir']; ?> </td>
+                            <td style="text-align: center;"> <?= str_replace([" 00:00:00"],"",$data['tanggal_lahir']); ?> </td>
                             
                         <?php endif ?>
 
@@ -188,7 +191,7 @@
 
                         <?php else: ?>
                         
-                            <td style="text-align: center;"> <?= $data['HP']; ?> </td>
+                            <td style="text-align: center;"> <?= str_replace(["'"],"",$data['HP']); ?> </td>
                             
                         <?php endif ?>
 
