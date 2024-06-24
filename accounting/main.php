@@ -151,6 +151,17 @@
       border-top: 1px solid black;
     }
 
+    #button_act {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    #button_form_edit {
+      display: flex;
+      gap: 10px;
+    }
+
     hr.new2 {
       border-top: 1px solid black;
       width: 100%;
@@ -802,6 +813,7 @@ oncontextmenu="return false">
             
             <li>
               <a href="<?php echo $baseac; ?>tambahdatasiswa" id="tambahdatasiswa"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Tambah Siswa Baru </a>
+              <a href="<?= $baseac; ?>editdatasiswa" id="editdatasiswa"><i class="glyphicon glyphicon-pencil text-primary"></i> <span style="margin-left: 5px;"> </span> Edit Data Siswa </a>
 
               <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
                 <a href="<?php echo $baseac; ?>exportdatasiswa_sd.php" id="exportdatasiswa_sd"><i class="glyphicon glyphicon-export text-primary"></i> <span style="margin-left: 5px;"> </span> Export Data Siswa </a>
@@ -867,6 +879,10 @@ oncontextmenu="return false">
     #region add new student
     elseif ($act == 'tambahdatasiswa') {
       require 'view/spp/data_siswa/siswa/add/index.php';
+    }
+
+    elseif ($act == 'editdatasiswa') {
+      require 'view/spp/data_siswa/siswa/edit/index.php';
     }
 
     else if ($act == 'datacheckpayment') {
@@ -976,6 +992,14 @@ oncontextmenu="return false">
       "lengthChange": true,
       "searching": true,
       "ordering": false,
+      "info": false,
+      "autoWidth": false
+    });
+    $('#form_edit_siswa').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
       "info": false,
       "autoWidth": false
     });

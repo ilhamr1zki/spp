@@ -21,7 +21,7 @@
 
     $timeIsOut = 0;
 
-    // echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut;
+    echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut;
 
     if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
@@ -303,13 +303,24 @@
 
 <script type="text/javascript">
         
-    let dataFocus = `<?= $focus; ?>`
+    let dataFocus  = `<?= $focus; ?>`
     let reloadPage = `<?= $reloadPage; ?>`
+    let tahunAjar1 = `<?= $tahunAjaran1; ?>` 
+    let tahunAjar2 = `<?= $tahunAjaran2; ?>` 
 
     if (dataFocus == 1) {
         $("#tahun_ajaran").focus();
     } else if (dataFocus == 2) {
+        $("#tahun_ajaran").val(`<?= $_POST['tahun_ajaran']; ?>`);
         $("#tahun_ajaran_2").focus();
+    } else if (dataFocus == 3) {
+        $("#tahun_ajaran").focus();
+        $("#tahun_ajaran_2").val(`<?= $_POST['tahun_ajaran_2']; ?>`);
+    } else if (dataFocus == 0) {
+        let checkDatas = $("#tahun_ajaran").val();
+        if(checkDatas == '') {
+            $("#tahun_ajaran").focus();
+        } 
     }
 
     if (reloadPage == 1) {

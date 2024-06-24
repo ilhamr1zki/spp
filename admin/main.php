@@ -141,6 +141,21 @@
       font-family:arial;
     }
 
+    #cancel {
+      transform: scaleX(-1);
+    }
+
+    #button_act {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    #button_form_edit {
+      display: flex;
+      gap: 10px;
+    }
+
     hr.new1 {
       border-top: 1px solid black;
     }
@@ -369,6 +384,11 @@
         width: 40%;
         margin-right: 10px; 
         text-align: end;
+      }
+
+      #button_act {
+        display: flex;
+        flex-direction: column;
       }
 
       #tahun_ajaran {
@@ -698,6 +718,10 @@ oncontextmenu="return false">
             </li>
 
             <li>
+              <a href="<?= $basead; ?>editdatasiswa" id="editdatasiswa"><i class="glyphicon glyphicon-pencil text-primary"></i> Edit Data Siswa </a>
+            </li>
+
+            <li>
               <a href="<?= $basead; ?>importdatasiswa" id="importdatasiswa"><i class="glyphicon glyphicon-import text-primary"></i> Import Data Siswa </a>
             </li>
 
@@ -730,6 +754,8 @@ oncontextmenu="return false">
     #region edit data
     elseif ($act == 'editdata') {
       require 'view/spp/edit_data/editdata.php';
+    } else if($act=='editsiswa'){
+      require 'view/a-editsiswa.php';
     }
 
     #region import data
@@ -741,7 +767,11 @@ oncontextmenu="return false">
     elseif ($act == 'tahunajaran') {
       require 'view/maintenance/tahun_ajaran/index.php';
     } elseif ($act == 'tambahdatasiswa') {
-      require 'view/maintenance/siswa/index.php';
+      require 'view/maintenance/siswa/add/index.php';
+    } elseif ($act == 'editdatasiswa') {
+      require 'view/maintenance/siswa/edit/index.php';
+    } elseif ($act == 'hapusdatasiswa') {
+      require 'view/maintenance/siswa/delete/index.php';
     }
 
     else{
@@ -832,6 +862,14 @@ oncontextmenu="return false">
       "lengthChange": true,
       "searching": true,
       "ordering": false,
+      "info": false,
+      "autoWidth": false
+    });
+    $('#form_edit_siswa').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
       "info": false,
       "autoWidth": false
     });
