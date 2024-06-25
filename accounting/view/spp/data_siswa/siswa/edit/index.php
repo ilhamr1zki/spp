@@ -322,6 +322,7 @@
               <th style="text-align: center;" width="5%">NO</th>
               <th style="text-align: center;">NIS</th>
               <th style="text-align: center;">NAMA</th>
+              <th style="text-align: center;">KELAS</th>
               <th style="text-align: center;">GENDER</th>
               <th style="text-align: center;">TEMPAT/TANGGAL LAHIR</th>
               <th style="text-align: center;" width="25%">ACTION</th>
@@ -336,6 +337,7 @@
                   <td style="text-align: center;"> <?= $vr++; ?> </td>
                   <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                   <td style="text-align: center;"> <?= $data['Nama']; ?> </td>
+                  <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
                   <td style="text-align: center;"> <?= ($data['jk'] == 'L') ? "Laki - Laki" : "Perempuan"; ?> </td>
                   <?php if ($data['tanggal_lahir'] == NULL): ?>
                     <td style="text-align: center;"> <strong> - </strong> </td>
@@ -387,6 +389,7 @@
                   <td style="text-align: center;"> <?= $vr++; ?> </td>
                   <td style="text-align: center;"> <?= $data['NIS']; ?> </td>
                   <td style="text-align: center;"> <?= $data['Nama']; ?> </td>
+                  <td style="text-align: center;"> <?= $data['KELAS']; ?> </td>
                   <td style="text-align: center;"> <?= ($data['jk'] == 'L') ? "Laki - Laki" : "Perempuan"; ?> </td>
                   <?php if ($data['tanglahir'] == NULL): ?>
                     <td style="text-align: center;"> <strong> - </strong> </td>
@@ -428,7 +431,7 @@
 
                       <button class="btn btn-sm btn-primary" name="editData_Siswa"> Edit </button>
                     </form>
-                    <button class="btn btn-sm btn-danger" name="deleteData_Siswa" onclick="deleteData(`<?= $data['NIS']; ?>`, `<?= $data['Nama']; ?>`)"> Delete </button>
+
                   </td>
                 </tr>
 
@@ -441,12 +444,12 @@
       </div>
 
     <?php elseif($sesiForm == 1): ?>
+        
+      <?php if($jenjangSiswa == 'KB'): ?>
 
-      <div class="box box-info">
         <div class="box-header with-border">
           <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
         </div>
-        <!-- /.box-header -->
         
         <form role="form" method="post" action="editdatasiswa">
           <input type="hidden" name="c_kelas" value="">
@@ -484,10 +487,19 @@
                   <div class="form-group">
                     <label>JENJANG PENDIDIKAN</label>
                     <select class="form-control form-select" id="kelas" name="kelas">
-                      <option value="kosong"> -- PILIH -- </option>
-                      <?php foreach ($jenjangOpt as $data): ?>
-                        <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
-                      <?php endforeach ?>
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
                     </select>
                   </div>
                 </div>
@@ -673,12 +685,2191 @@
               <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
 
         </form>  
-              <form action="editdatasiswa" method="POST">
-                <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
-              </form>
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == 'TKA'): ?>
+
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
             </div>
 
-      </div>
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == 'TKB'): ?>
+
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == '1SD'): ?>
+
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == '2SD'): ?>
+        
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == '3SD'): ?>
+        
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == '4SD'): ?>
+        
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == '5SD'): ?>
+        
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php elseif($jenjangSiswa == '6SD'): ?>
+
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= $namaSiswa; ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <select class="form-control form-select" name="jns_kl">
+                      <option value="kosong"> -- PILIH -- </option>
+                      <?php foreach ($jenis_kelamin as $jk): ?>
+                        <?php if ($jk == "L"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Laki - Laki </option>
+                        <?php elseif($jk == "P"): ?>
+                          <option value="<?= $jk; ?>" <?=($jk == $jkSiswa )?'selected="selected"':''?> > Perempuan </option>
+                        <?php endif ?>
+                      <?php endforeach ?>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+
+                      <?php if ($jenjangSiswa != 'LULUS'): ?>
+
+                        <option value="kosong"> -- PILIH -- </option>
+
+                        <?php foreach ($jenjangOpt as $data): ?>
+                          <option value="<?= str_replace([" "],"",$data); ?>" <?= (str_replace([" "],"",$data) == $jenjangSiswa) ? 'selected="selected"' : '' ; ?> > <?= $data; ?> </option>
+                        <?php endforeach ?>
+
+                      <?php elseif($jenjangSiswa == 'LULUS'): ?>
+                        <option value="" > LULUS </option>
+                      <?php endif ?>
+                      
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_siswa" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i> Simpan Siswa </button>
+
+        </form>  
+
+        <form action="editdatasiswa" method="POST">
+          <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+        </form>
+
+      <?php else: ?>
+
+        <div class="box-header with-border">
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= str_replace(["#"],"",$namaSiswa); ?> </h3>
+        </div>
+        
+        <form role="form" method="post" action="editdatasiswa">
+          <input type="hidden" name="c_kelas" value="">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>NIS<sup style="color: red; font-size: 10px;">*</sup></label>
+                    <input type="text" readonly value="<?= $nisSiswa; ?>" name="nis_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>NAMA LENGKAP</label>
+                    <input type="text" readonly value="<?= $namaSiswa; ?>" name="nama_siswa" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENIS KELAMIN</label>
+                    <input type="text" class="form-control" readonly value="<?= ($jkSiswa == 'L') ? "Laki - Laki" : "Perempuan"; ?>">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>JENJANG PENDIDIKAN</label>
+                    <select class="form-control form-select" id="kelas" name="kelas">
+                      <option value="" > <?= $jenjangSiswa; ?> </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>KELOMPOK</label>
+                    <input type="text" readonly value="<?= $klp; ?>" name="isi_klp" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>ALAMAT LAHIR</label>
+                    <input type="text" readonly name="alamat_siswa" value="<?= $tempLahir; ?>" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>TANGGAL LAHIR</label>
+                    <div class="controls input-append date form_date" data-date-format="dd MM yyyy">
+                        <input class="form-control" readonly type="text" name="tl_siswa" value="<?= $tangLahir; ?>">
+                        <span class="add-on"><i class="icon-th"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tahun Join</label>
+                        <input type="text" value="<?= $thnJoin; ?>" readonly class="form-control" id="_thnjoin" name="_thnjoin" >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nama Panggilan</label>
+                        <input type="text" class="form-control" readonly value="<?= $nmPnggilan; ?>" id="_nmpanggilan" name="_nmpanggilan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Berat Badan</label>
+                        <input type="text" class="form-control" readonly value="<?= $beratBadan; ?>" id="_beratbadan" name="_beratbadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Tinggi Badan</label>
+                        <input type="text" class="form-control" readonly value="<?= $tggBadan; ?>" id="_tinggibadan" name="_tinggibadan">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label>Ukuran Baju</label>
+                        <input type="text" class="form-control" readonly value="<?= $ukrBaju; ?>" id="_ukuranbaju" name="_ukuranbaju">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Alamat</label>
+                        <textarea class="form-control" readonly name="_alamatrumah" id="_alamatrumah">
+                          <?= $almtRmh; ?>
+                        </textarea>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>Telp.</label>
+                        <input type="text" class="form-control" readonly value="<?= $telpRmh; ?>" id="_telp" name="telp_rumah">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                      <div class="form-group">
+                        <label>HP</label>
+                        <input type="text" class="form-control" readonly value="<?= $no_hp; ?>" id="_hp" name="_hp">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" readonly value="<?= $almtEmail; ?>" id="_email" name="_email" >
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ayah</h3>
+                    </div>
+
+                    <div class="box-body">
+                      <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nama Ayah</label>
+                                <input type="text" class="form-control" readonly value="<?= $namaAyah; ?>" id="_nmayah" name="_nmayah" >
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Tempat Tgl Lahir. Ayah</label>
+                                <input type="text" class="form-control" readonly value="<?= $tempLhrAyah; ?>" id="_temptglayah" name="_temptglayah">
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="form-group">
+                                <label>Pend. Ayah</label>
+                                <input type="text" name="_pendayah" readonly class="form-control" value="<?= $pendAyah; ?>">
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Pekerjaan Ayah</label>
+                              <input type="text" class="form-control" readonly name="_pekerjaanayah" value="<?= $pekAyah; ?>">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="box">
+                    <div class="box-header with-border">
+                      <h3 class="box-title"> <i class="glyphicon glyphicon-user"></i> Data Ibu</h3>
+                    </div>
+                    <div class="box-body">
+                      <div class="row">
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                              <label>Nama Ibu</label>
+                              <input type="text" class="form-control" readonly id="_nmibu" name="_nmibu" value="<?= $namaIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>Tempat Tgl Lahir. Ibu</label>
+                              <input type="text" class="form-control" readonly id="_temptglibu" name="_temptglibu" value="<?= $tempLhrIbu; ?>">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                              <label>Pend. Ibu</label>
+                              <input type="text" name="_pendibu" readonly class="form-control" value="<?= $pendIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label>Pekerjaan Ibu</label>
+                            <input type="text" name="_pekerjaanibu" readonly class="form-control" value="<?= $pekIbu; ?>">
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+
+        </form>
+
+      <?php endif ?>
 
     <?php endif ?>
 

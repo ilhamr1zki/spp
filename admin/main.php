@@ -770,8 +770,6 @@ oncontextmenu="return false">
       require 'view/maintenance/siswa/add/index.php';
     } elseif ($act == 'editdatasiswa') {
       require 'view/maintenance/siswa/edit/index.php';
-    } elseif ($act == 'hapusdatasiswa') {
-      require 'view/maintenance/siswa/delete/index.php';
     }
 
     else{
