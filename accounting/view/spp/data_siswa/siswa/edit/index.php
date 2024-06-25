@@ -2653,7 +2653,7 @@
       <?php else: ?>
 
         <div class="box-header with-border">
-          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= str_replace(["#"],"",$namaSiswa); ?> </h3>
+          <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Edit Data Siswa <?= str_replace(["#","(Keluar) "],"",$namaSiswa); ?> </h3>
         </div>
         
         <form role="form" method="post" action="editdatasiswa">
