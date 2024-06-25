@@ -325,7 +325,7 @@
               <th style="text-align: center;">KELAS</th>
               <th style="text-align: center;">GENDER</th>
               <th style="text-align: center;">TEMPAT/TANGGAL LAHIR</th>
-              <th style="text-align: center;" width="25%">ACTION</th>
+              <th style="text-align: center;">ACTION</th>
             </tr>
           </thead>
           <tbody>
