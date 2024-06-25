@@ -861,7 +861,7 @@
             <div id="terima_pembayaran"> 
             	<center>
             		<span id="isi_menerima_pembayaran"> 
-            			<?= $dbJenisPembayaran['data']['isi_jenis']; ?>
+            			<?= str_replace(["-,"],"",$dbJenisPembayaran['data']['isi_jenis']); ?>
             		</span>
             	</center>
             </div>
