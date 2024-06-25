@@ -21,7 +21,7 @@
 
     $timeIsOut = 0;
 
-    echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut;
+    // echo "Waktu Habis : " . $timeOut . " Waktu Berjalan : " . $timeRunningOut;
 
     if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
