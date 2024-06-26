@@ -113,6 +113,9 @@
     $simpanDataKetRegis     = [];
     $simpanDataKetLain      = [];
 
+    $dataNamaWithSpecialCharacter       = "";
+    $dataPanggilanWithSpecialCharacter  = "";
+
     $inputData = 0;
     $sesi = 0;
 
@@ -202,6 +205,9 @@
             $data_nama          = mysqli_real_escape_string($con, htmlspecialchars($_POST['nama_siswa']));
             $data_panggilan     = mysqli_real_escape_string($con, htmlspecialchars($_POST['panggilan_siswa']));
             $data_tx            = htmlspecialchars($_POST['isi_tx']);
+
+            $dataNamaWithSpecialCharacter       = htmlspecialchars($_POST['nama_siswa']);
+            $dataPanggilanWithSpecialCharacter  = htmlspecialchars($_POST['panggilan_siswa']);
 
             $data_uang_spp          = str_replace(["Rp. ", "."], "", $_POST['nominal_spp']);
             $data_ket_spp           = mysqli_real_escape_string($con, htmlspecialchars($_POST['ket_uang_spp']));
@@ -519,6 +525,8 @@
             <?php 
                 $sesi = 4;
                 $inputData = 3;
+                $dataNamaWithSpecialCharacter = $data_nama;
+                $dataPanggilanWithSpecialCharacter = $data_panggilan;
                 unset($_SESSION['err_warning']); 
             ?>
           </div>
@@ -528,11 +536,6 @@
 </div>
 
 <div class="box box-info">
-
-    <div class="box-header with-border">
-        <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
-       
-    </div>
 
     <?php if ($sesi == 1): ?>
        
@@ -554,13 +557,13 @@
                 <div class="col-sm-5">
                     <div class="form-group">
                         <label>NAMA</label>
-                        <input type="text" class="form-control" id="nama_siswa" readonly="" value="<?= $data_nama; ?>" />
+                        <input type="text" class="form-control" id="nama_siswa" readonly="" value="<?= $dataNamaWithSpecialCharacter; ?>" />
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label>PANGGILAN</label>
-                        <input type="text" class="form-control" id="panggilan_siswa" readonly="" value="<?= $data_panggilan; ?>" />
+                        <input type="text" class="form-control" id="panggilan_siswa" readonly="" value="<?= $dataPanggilanWithSpecialCharacter; ?>" />
                     </div>
                 </div>
                 <div class="col-sm-1">
@@ -757,6 +760,11 @@
 
     <?php elseif($sesi == 3): ?>
 
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+
         <form action="<?= $baseac; ?>inputdata" method="post">
             <div class="box-body table-responsive">
 
@@ -912,6 +920,11 @@
 
     <?php elseif($sesi == 4): ?>
 
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
+
         <form action="<?= $baseac; ?>inputdata" method="post">
             <div class="box-body table-responsive">
 
@@ -931,13 +944,13 @@
                     <div class="col-sm-5">
                         <div class="form-group">
                             <label>NAMA</label>
-                            <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" readonly="" value="<?= $data_nama; ?>" />
+                            <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" readonly="" value="<?= $dataNamaWithSpecialCharacter; ?>" />
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label>PANGGILAN</label>
-                            <input type="text" class="form-control" name="panggilan_siswa" id="panggilan_siswa" readonly="" value="<?= $data_panggilan; ?>" />
+                            <input type="text" class="form-control" name="panggilan_siswa" id="panggilan_siswa" readonly="" value="<?= $dataPanggilanWithSpecialCharacter; ?>" />
                         </div>
                     </div>
                     <div class="col-sm-1">
@@ -1066,6 +1079,11 @@
         </form>
 
     <?php else: ?>
+
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3><span style="float:right;"><a class="btn btn-primary" onclick="OpenCarisiswaModal()"><i class="glyphicon glyphicon-plus"></i> Cari Siswa</a></span>
+           
+        </div>
 
         <form action="<?= $baseac; ?>inputdata" method="post">
             <div class="box-body table-responsive">
