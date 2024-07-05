@@ -20,6 +20,8 @@
 			echo "sukses";
 		} else {
 			echo "gagal";
+			mysqli_error($con);
+			exit;
 		}
 
 	}

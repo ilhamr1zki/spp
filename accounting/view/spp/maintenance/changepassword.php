@@ -32,10 +32,10 @@
 
         $getPassword = mysqli_fetch_assoc($dataPasswordLama)['password'];
 
-        $dataInputPasswordLama       = htmlspecialchars($_POST['password_lama']);
-        $dataInputPasswordBaru       = htmlspecialchars(strtolower($_POST['password_baru']));
+        $dataInputPasswordLama       = mysqli_real_escape_string($con, htmlspecialchars($_POST['password_lama']));
+        $dataInputPasswordBaru       = mysqli_real_escape_string($con, htmlspecialchars($_POST['password_baru']));
         // echo strlen($dataInputPasswordBaru);exit;
-        $dataInputKonfirmasiPassword = htmlspecialchars(strtolower($_POST['konfirmasi_password_baru']));
+        $dataInputKonfirmasiPassword = mysqli_real_escape_string($con, htmlspecialchars($_POST['konfirmasi_password_baru']));
 
         if (password_verify($dataInputPasswordLama, $getPassword)) {
 

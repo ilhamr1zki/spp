@@ -12,6 +12,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     $execQueryGetUser   = mysqli_query($con, $sqlGetUser);
 
     $countData          = mysqli_num_rows($execQueryGetUser);
+    $isiPassword        = mysqli_real_escape_string($con, htmlspecialchars($_POST['password']));
 
     if ($countData == 1) {
 
@@ -19,7 +20,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
 
       $dataPassword = $getData['password'];
 
-      if (password_verify($_POST['password'], $dataPassword)) {
+      if (password_verify($isiPassword, $dataPassword)) {
 
           session_start();
           $_SESSION['c_admin'] = $getData['c_admin'];
@@ -48,6 +49,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     $execQueryGetUser   = mysqli_query($con, $sqlGetUser);
 
     $countData          = mysqli_num_rows($execQueryGetUser);
+    $isiPassword        = mysqli_real_escape_string($con, htmlspecialchars($_POST['password']));
 
     if ($countData == 1) {
 
@@ -55,7 +57,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
 
       $dataPassword = $getData['password'];
 
-      if (password_verify($_POST['password'], $dataPassword)) {
+      if (password_verify($isiPassword, $dataPassword)) {
 
           session_start();
           $_SESSION['c_accounting'] = $getData['c_accounting'];

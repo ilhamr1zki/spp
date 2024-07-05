@@ -379,6 +379,7 @@
 
                       <button class="btn btn-sm btn-primary" name="editData_Siswa"> Edit </button>
                     </form>
+                      <!-- <button class="btn btn-sm btn-danger" name="deleteData_Siswa" onclick="deleteData(`<?= $data['NIS']; ?>`, `<?= $data['Nama']; ?>`)"> Delete </button> -->
                     
                   </td>
                 </tr>
@@ -431,6 +432,7 @@
 
                       <button class="btn btn-sm btn-primary" name="editData_Siswa"> Edit </button>
                     </form>
+                    <!-- <button class="btn btn-sm btn-danger" name="deleteData_Siswa" onclick="deleteData(`<?= $data['NIS']; ?>`, `<?= $data['Nama']; ?>`)"> Delete </button> -->
 
                   </td>
                 </tr>

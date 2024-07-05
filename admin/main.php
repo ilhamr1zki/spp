@@ -728,6 +728,24 @@ oncontextmenu="return false">
           </ul>
         </li>
 
+        <!-- Users -->
+        <li>
+          <a href="#" id="list_users">
+            <i class="glyphicon glyphicon-user"></i> <span> USERS </span>
+          </a>
+          <ul class="treeview-menu">
+            
+            <li>
+              <a href="<?= $basead; ?>tambahuser" id="tambahuser"><i class="glyphicon glyphicon-plus text-primary"></i> Tambah User </a>
+            </li>
+
+            <li>
+              <a href="<?= $basead; ?>edituser" id="edituser"><i class="glyphicon glyphicon-pencil text-primary"></i> Edit User </a>
+            </li>
+
+          </ul>
+        </li>
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -770,6 +788,13 @@ oncontextmenu="return false">
       require 'view/maintenance/siswa/add/index.php';
     } elseif ($act == 'editdatasiswa') {
       require 'view/maintenance/siswa/edit/index.php';
+    }
+
+    #region users
+    elseif ($act == 'tambahuser') {
+      require 'view/users/tambah/index.php';
+    } elseif ($act == 'edituser') {
+      require 'view/users/edit/index.php';
     }
 
     else{
