@@ -21,7 +21,7 @@
 
         // echo "Ini Sesi Waktu : " . $_SESSION['expire'] . " Dan Ini Sesi Habis : " . time();
 
-        if ($_SESSION['c_accounting'] == 'accounting1') {
+        if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
             
             $namaMurid = $namaSiswa;
             $queryGetDataSPP = "
@@ -62,7 +62,7 @@
                 $end_number = $jumlahPagination;
             }
 
-        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+        } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
             $namaMurid = $namaSiswa;
             // echo $nis;

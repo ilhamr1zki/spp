@@ -20,10 +20,6 @@
                     // Data SPP
                     $namaMurid = $_POST['nama_siswa'];
 
-                    if (strpos($namaMurid, "'")) {
-                        $namaMurid = substr($namaMurid,-5);
-                    }
-
                     $nis       = $_POST['nis_siswa'];
                     $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 

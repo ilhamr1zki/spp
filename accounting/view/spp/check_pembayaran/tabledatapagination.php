@@ -1,4 +1,4 @@
-<?php if ($code_accounting == 'accounting1'): ?>
+<?php if ($code_accounting == 'accounting1' || $checkSession == 'sd'): ?>
         
     <?php if (isset($_POST['filter_by'])): ?>
 
@@ -32975,7 +32975,7 @@
         </div>
     <!-- Akhir Modal Cari Siswa -->
 
-<?php elseif ($code_accounting == 'accounting2') : ?>
+<?php elseif ($code_accounting == 'accounting2' || $checkSession == 'tk') : ?>
 
     <?php require 'tabledatapagination_tk.php'; ?>
 

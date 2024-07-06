@@ -386,6 +386,10 @@
         text-align: end;
       }
 
+      #pass1 {
+        margin-top: 15px;
+      }
+
       #button_act {
         display: flex;
         flex-direction: column;
@@ -725,6 +729,10 @@ oncontextmenu="return false">
               <a href="<?= $basead; ?>importdatasiswa" id="importdatasiswa"><i class="glyphicon glyphicon-import text-primary"></i> Import Data Siswa </a>
             </li>
 
+            <li>
+              <a href="<?= $basead; ?>changepassword" id="ubah_password"><i class="glyphicon glyphicon-wrench text-primary"></i> Ubah Password </a>
+            </li>
+
           </ul>
         </li>
 
@@ -788,7 +796,9 @@ oncontextmenu="return false">
       require 'view/maintenance/siswa/add/index.php';
     } elseif ($act == 'editdatasiswa') {
       require 'view/maintenance/siswa/edit/index.php';
-    }
+    } elseif ($act == 'changepassword') {
+      require 'view/maintenance/changepassword/index.php';
+    } 
 
     #region users
     elseif ($act == 'tambahuser') {

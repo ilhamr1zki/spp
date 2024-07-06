@@ -8,6 +8,10 @@
 
     $timeIsOut = 0;
 
+    $getDataACC     = mysqli_query($con, "SELECT nama FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ");
+    $getDataACC     = mysqli_fetch_array($getDataACC);
+    $checkSession   = str_replace(["Accounting_"], "", $getDataACC['nama']);
+
     $code_accounting = $_SESSION['c_accounting'];
 
     $dataBulan = [
@@ -279,7 +283,7 @@
             $dataIDInvoice = "";
             $allData       = "";
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
                 if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
@@ -319,7 +323,7 @@
                 $dataIDInvoice = mysqli_query($con, "SELECT ID FROM input_data_sd WHERE NIS = '$data_nis' ");
                 $allData       = mysqli_query($con, "SELECT * FROM input_data_sd WHERE NIS = '$data_nis' ");
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
@@ -538,6 +542,10 @@
 <div class="box box-info">
 
     <?php if ($sesi == 1): ?>
+
+        <div class="box-header with-border">
+            <h3 class="box-title"> <i class="glyphicon glyphicon-new-window"></i> Input Data Baru </h3>
+        </div>
        
         <div class="box-body table-responsive">
 
@@ -1274,10 +1282,10 @@
                               $smk=mysqli_query($con,"SELECT * FROM siswa where c_kelas='$_GET[q]' order by nama asc ");
                             } else {
 
-                                if ($code_accounting == 'accounting1') {
+                                if ($code_accounting == 'accounting1' || $checkSession == 'sd') {
                                     $queryGetAllDataSiswa      = "SELECT * FROM data_murid_sd ORDER BY KELAS asc ";
                                     $execqueryGetAllDataSiswa  = mysqli_query($con, $queryGetAllDataSiswa);
-                                } else {
+                                } else if ($code_accounting == 'accounting2' || $checkSession == 'tk') {
                                     $queryGetAllDataSiswa      = "SELECT * FROM data_murid_tk";
                                     $execqueryGetAllDataSiswa  = mysqli_query($con, $queryGetAllDataSiswa);
                                 }

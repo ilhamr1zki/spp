@@ -1,6 +1,6 @@
 <?php 
 
-    if ($_SESSION['c_accounting'] == 'accounting1') {
+    if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
        	$namaMurid = $namaSiswa;
         $queryGetDataRegistrasi = "
@@ -44,7 +44,7 @@
             $end_number = $jumlahPagination;
         }
 
-    } else if ($_SESSION['c_accounting'] == 'accounting2') {
+    } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
         $namaMurid = $namaSiswa;
         $queryGetDataRegistrasi = "

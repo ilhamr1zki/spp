@@ -4,7 +4,7 @@
     // if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
     	// echo "Tidak tanggal SPP";
 
-        if ($_SESSION['c_accounting'] == 'accounting1') {
+        if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
             // echo "Sini";exit;
            	$namaMurid = $namaSiswa;
 	        $queryGetDataBuku = "
@@ -48,7 +48,7 @@
 	            $end_number = $jumlahPagination;
 	        }
 
-        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+        } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
             $namaMurid = $namaSiswa;
 	        $queryGetDataBuku = "

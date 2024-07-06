@@ -6,6 +6,10 @@
   $tampungData = [];
   $jenjangOpt  = [];
 
+  $getDataACC     = mysqli_query($con, "SELECT nama FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ");
+  $getDataACC     = mysqli_fetch_array($getDataACC);
+  $checkSession   = str_replace(["Accounting_"], "", $getDataACC['nama']);
+
   foreach ($jenjang_pendidikan as $dt) {
     $tampungData[] = $dt['kelas'];
   }
@@ -16,7 +20,7 @@
   $pekerjaan          = ["WIRASWASTA", "KS", "PNS", "TNI", "POLRI", "PENSIUNAN", "LAINNYA"];
   $pekerjaanIbu       = ["WIRASWASTA", "KS", "PNS", "TNI", "POLRI", "PENSIUNAN", "IRT", "LAINNYA"];
 
-  if ($_SESSION['c_accounting'] == 'accounting1') {
+  if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
     $dataSiswa          = mysqli_query($con, "
       SELECT 
@@ -28,7 +32,7 @@
       $jenjangOpt[] = $tampungData[$i];
     }
 
-  } else if ($_SESSION['c_accounting'] == 'accounting2') {
+  } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
     $dataSiswa          = mysqli_query($con, "
       SELECT
@@ -120,7 +124,7 @@
       $_SESSION['pesan'] = "jenjang_pendidikan_empty";
     } else {
 
-      if ($_SESSION['c_accounting'] == 'accounting1') {
+      if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
         if ($c_jenjang != "TK") {
 
@@ -171,7 +175,7 @@
 
         }
 
-      } else if ($_SESSION['c_accounting'] == 'accounting2') {
+      } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
         $kelas  = $klsSiswa;
         // echo $nama;exit;
@@ -331,7 +335,7 @@
           <tbody>
 
             <?php foreach ($dataSiswa as $data): ?>
-              <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+              <?php if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd'): ?>
 
                 <tr>
                   <td style="text-align: center;"> <?= $vr++; ?> </td>
@@ -384,7 +388,7 @@
                   </td>
                 </tr>
 
-              <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+              <?php elseif($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk'): ?>
 
                 <tr>
                   <td style="text-align: center;"> <?= $vr++; ?> </td>

@@ -5,7 +5,7 @@
     $tanggalDari    = $_POST['tanggal1'];
     $tanggalSampai  = $_POST['tanggal2'];
 
-    if ($_SESSION['c_accounting'] == 'accounting1') {
+    if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
         $queryGetDataPangkal = "
             SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -51,7 +51,7 @@
             $end_number = $jumlahPagination;
         }
 
-    } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+    } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
         $queryGetDataPangkal = "
             SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 

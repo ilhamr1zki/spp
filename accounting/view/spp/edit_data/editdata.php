@@ -36,6 +36,10 @@
 
     $timeIsOut = 0;
 
+    $getDataACC     = mysqli_query($con, "SELECT nama FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ");
+    $getDataACC     = mysqli_fetch_array($getDataACC);
+    $checkSession   = str_replace(["Accounting_"], "", $getDataACC['nama']);
+
     $isifilby       = 'kosong';
     $tanggalDari    = 'kosong_tgl1';
     $tanggalSampai  = 'kosong_tgl2';
@@ -126,7 +130,7 @@
 
     } else {
 
-        if ($_SESSION['c_accounting'] == 'accounting1') {
+        if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
             // Data Modal Siswa
             $dataSiswa = mysqli_query($con, "SELECT * FROM data_murid_sd"); 
@@ -158,7 +162,7 @@
                 $end_number = $jumlahPagination;
             }
 
-        } else if ($_SESSION['c_accounting'] == 'accounting2') {
+        } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
             $dataSiswa = mysqli_query($con, "SELECT * FROM data_murid_tk"); 
 
@@ -485,7 +489,7 @@
                 $ketPembayaran      = $_POST['ket_pembayaran'];
                 $pembayaranVIA      = $_POST['tipe_transaksi'];
 
-                if ($_SESSION['c_accounting'] == 'accounting1') {
+                if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                     $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_sd WHERE ID = '$idInvoice' "))['SPP'];
                     $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['SPP_txt'];
@@ -508,7 +512,7 @@
                     $queryUangLain      = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN FROM input_data_sd WHERE ID = '$idInvoice' "))['LAIN'];
                     $ketUangLain        = mysqli_fetch_assoc(mysqli_query($con, "SELECT LAIN_txt FROM input_data_sd WHERE ID = '$idInvoice' "))['LAIN_txt'];
 
-                } else if ($_SESSION['c_accounting'] == 'accounting2') {
+                } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                     $queryUangSPP       = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP FROM input_data_tk WHERE ID = '$idInvoice'"))['SPP'];
                     $ketUangSPP         = mysqli_fetch_assoc(mysqli_query($con, "SELECT SPP_txt FROM input_data_tk WHERE ID = '$idInvoice' "))['SPP_txt'];
@@ -579,7 +583,7 @@
             $tanggalDari;
             $tanggalSampai;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 switch ($typeFilter) {
                     case "SPP" :
@@ -6191,7 +6195,7 @@
                         break;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 switch ($typeFilter) {
                     case "SPP" :
@@ -12039,7 +12043,7 @@
 
             $dataIDInvoice = "";
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 // echo $data_uang_pangkal . " " . $data_ket_pangkal;exit;
                 if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
@@ -12156,7 +12160,7 @@
 
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
@@ -12301,7 +12305,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $setSesiPageFilterBy = 1;
 
@@ -12341,7 +12345,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $setSesiPageFilterBy = 1;
 
@@ -12408,7 +12412,7 @@
 
             $iniScrollPreviousPage = "ada";
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $setSesiPageFilterBy = 1;
 
@@ -12516,7 +12520,7 @@
 
             $iniScrollToPage = "ada";
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $setSesiPageFilterBy = 1;
 
@@ -12558,7 +12562,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
                 
                 $setSesiPageFilterBy = 1;
                 
@@ -12625,7 +12629,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') { 
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') { 
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -12669,7 +12673,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -12737,7 +12741,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -12782,7 +12786,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -12855,7 +12859,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -12896,7 +12900,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -12964,7 +12968,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13004,7 +13008,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13071,7 +13075,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13113,7 +13117,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSPP = "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13180,7 +13184,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13226,7 +13230,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13296,7 +13300,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterSPP = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13343,7 +13347,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
                 // echo "Last";exit;
                 $namaMurid      = $_POST['namaSiswaFilterSPPWithDate'];
                 $isifilby       = $_POST['iniFilterSPPWithDate'];
@@ -13430,7 +13434,7 @@
 
             $setSesiPageFilterBy = 2;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataPangkal = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13535,7 +13539,7 @@
             $iniScrollPreviousPage = "ada";
             $setSesiPageFilterBy = 2;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataPANGKAL = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13637,7 +13641,7 @@
 
             $setSesiPageFilterBy = 2;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataPANGKAL = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13742,7 +13746,7 @@
             $iniScrollFirstPage  = "ada";
             $setSesiPageFilterBy = 2;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13786,7 +13790,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13854,7 +13858,7 @@
             $iniScrollLastPage  = "ada";
             $setSesiPageFilterBy = 2;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterPANGKAL = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -13972,7 +13976,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataPangkalWithDate = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14014,7 +14018,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataPangkalWithDate = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14085,7 +14089,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataPangkalWithDate = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14125,7 +14129,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataPangkalWithDate = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14191,7 +14195,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataPangkalWithDate = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14233,7 +14237,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataPangkalWithDate = "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14300,7 +14304,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14346,7 +14350,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14416,7 +14420,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14463,7 +14467,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterPangkalWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14543,7 +14547,7 @@
 
             $setSesiPageFilterBy = 3;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14582,7 +14586,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14649,7 +14653,7 @@
 
             $setSesiPageFilterBy = 3;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14688,7 +14692,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14753,7 +14757,7 @@
 
             $setSesiPageFilterBy = 3;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') { 
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') { 
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14793,7 +14797,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataKegiatan = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14859,7 +14863,7 @@
 
             $setSesiPageFilterBy = 3;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') { 
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') { 
 
                 $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14903,7 +14907,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -14972,7 +14976,7 @@
 
             $setSesiPageFilterBy = 3;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') { 
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') { 
 
                 $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15017,7 +15021,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterKegiatan = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15090,7 +15094,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataKegiatanWithDate = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15133,7 +15137,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataKegiatanWithDate = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15204,7 +15208,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataKegiatanWithDate = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15243,7 +15247,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataKegiatanWithDate = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15308,7 +15312,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataKegiatanWithDate = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15350,7 +15354,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
                 
                 $queryGetDataKegiatanWithDate = "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15417,7 +15421,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterKegitanWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15463,7 +15467,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterKegitanWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15533,7 +15537,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15580,7 +15584,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterKegiatanWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15657,7 +15661,7 @@
 
             $setSesiPageFilterBy = 4;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataBuku = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15696,7 +15700,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataBuku = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15763,7 +15767,7 @@
 
             $setSesiPageFilterBy = 4;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataBuku = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15802,7 +15806,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } else if ($_SESSION['c_accounting'] == 'accounting2') {
+            } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataBuku = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15867,7 +15871,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataBuku = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15908,7 +15912,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                     $queryGetDataBuku = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -15974,7 +15978,7 @@
             $iniScrollFirstPage  = "ada";
             $setSesiPageFilterBy = 4;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16018,7 +16022,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16086,7 +16090,7 @@
             $iniScrollPreviousPage  = "ada";
             $setSesiPageFilterBy = 4;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16131,7 +16135,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterBuku = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16204,7 +16208,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataBukuWithDate = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16246,7 +16250,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataBukuWithDate = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16316,7 +16320,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataBukuWithDate = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16355,7 +16359,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataBukuWithDate = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16421,7 +16425,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataBukuWithDate = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16463,7 +16467,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataBukuWithDate = "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16530,7 +16534,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16576,7 +16580,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16646,7 +16650,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16693,7 +16697,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterBukuWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16770,7 +16774,7 @@
 
             $setSesiPageFilterBy = 5;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16809,7 +16813,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16876,7 +16880,7 @@
 
             $setSesiPageFilterBy = 5;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16915,7 +16919,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -16980,7 +16984,7 @@
 
             $setSesiPageFilterBy = 5;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17021,7 +17025,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSeragam = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17088,7 +17092,7 @@
 
             $setSesiPageFilterBy = 5;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17132,7 +17136,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17201,7 +17205,7 @@
 
             $setSesiPageFilterBy = 5;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17246,7 +17250,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterSeragam = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17319,7 +17323,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17361,7 +17365,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17431,7 +17435,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17470,7 +17474,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17535,7 +17539,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17577,7 +17581,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataSeragamWithDate = "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17645,7 +17649,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17691,7 +17695,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17762,7 +17766,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17809,7 +17813,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterSeragamWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17886,7 +17890,7 @@
 
             $setSesiPageFilterBy = 6;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17925,7 +17929,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -17992,7 +17996,7 @@
 
             $setSesiPageFilterBy = 6;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18031,7 +18035,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18096,7 +18100,7 @@
 
             $setSesiPageFilterBy = 6;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18137,7 +18141,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataRegistrasi = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18203,7 +18207,7 @@
             $iniScrollFirstPage  = "ada";
             $setSesiPageFilterBy = 6;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18247,7 +18251,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18315,7 +18319,7 @@
             $iniScrollLastPage  = "ada";
             $setSesiPageFilterBy = 6;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18360,7 +18364,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasi = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18433,7 +18437,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18475,7 +18479,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18545,7 +18549,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18584,7 +18588,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18649,7 +18653,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18691,7 +18695,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataRegistrasiWithDate = "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18759,7 +18763,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18805,7 +18809,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18876,7 +18880,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -18923,7 +18927,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterRegistrasiWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19000,7 +19004,7 @@
 
             $setSesiPageFilterBy = 7;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19039,7 +19043,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19106,7 +19110,7 @@
 
             $setSesiPageFilterBy = 7;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19145,7 +19149,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19210,7 +19214,7 @@
 
             $setSesiPageFilterBy = 7;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19251,7 +19255,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataLain = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19317,7 +19321,7 @@
             $iniScrollFirstPage  = "ada";
             $setSesiPageFilterBy = 7;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19361,7 +19365,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19429,7 +19433,7 @@
             $iniScrollLastPage  = "ada";
             $setSesiPageFilterBy = 7;
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19474,7 +19478,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterLain = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19547,7 +19551,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataLainWithDate = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19589,7 +19593,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataLainWithDate = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19659,7 +19663,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDatLainWithDate = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19698,7 +19702,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDatLainWithDate = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19763,7 +19767,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $queryGetDataLainWithDate = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19805,7 +19809,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $queryGetDataLainWithDate = "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19873,7 +19877,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19919,7 +19923,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -19990,7 +19994,7 @@
             $tanggalDari    = str_replace([" 00:00:00"], "", $dariTanggal);
             $tanggalSampai  = str_replace([" 23:59:59"], "", $sampaiTanggal);
 
-            if ($_SESSION['c_accounting'] == 'accounting1') {
+            if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
                 $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -20037,7 +20041,7 @@
                     $end_number = $jumlahPagination;
                 }
 
-            } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+            } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
                 $execQueryGetAllDataHistoriFilterLainWithDate = mysqli_query($con, "
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 

@@ -5,7 +5,7 @@
     $tanggalDari    = $_POST['tanggal1'];
     $tanggalSampai  = $_POST['tanggal2'];
 
-    if ($_SESSION['c_accounting'] == 'accounting1') {
+    if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
         $queryGetDataFilterBukuWithDate = "
             SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -53,7 +53,7 @@
             $end_number = $jumlahPagination;
         }
 
-    } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+    } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
         $queryGetDataFilterBukuWithDate = "
             SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 

@@ -3,15 +3,19 @@
   $timeOut        = $_SESSION['expire'];
     
   $timeRunningOut = time() + 5;
+  $timeIsOut      = 0;
 
-  $timeIsOut = 0;
+  $getDataACC     = mysqli_query($con, "SELECT nama FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ");
+  $getDataACC     = mysqli_fetch_array($getDataACC);
+  $checkSession   = str_replace(["Accounting_"], "", $getDataACC['nama']);
+  // echo $checkSession;exit;
 
   if ($timeRunningOut == $timeOut || $timeRunningOut > $timeOut) {
 
-    if ($_SESSION['c_accounting'] == 'accounting1') {
+    if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
       $jsi=mysqli_query($con,"SELECT * FROM data_murid_sd WHERE KELAS LIKE '%SD%' ");
       $hsi=mysqli_num_rows($jsi);
-    } else if ($_SESSION['c_accounting'] == 'accounting2') {
+    } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
       $jsi=mysqli_query($con,"SELECT * FROM data_murid_tk WHERE KELAS LIKE '%KB%' OR KELAS LIKE '%TKA%' OR KELAS LIKE '%TKB%' ");
       $hsi=mysqli_num_rows($jsi);
     }
@@ -22,10 +26,10 @@
 
   } else {
 
-    if ($_SESSION['c_accounting'] == 'accounting1') {
+    if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
       $jsi=mysqli_query($con,"SELECT * FROM data_murid_sd WHERE KELAS LIKE '%SD%' ");
       $hsi=mysqli_num_rows($jsi);
-    } else if ($_SESSION['c_accounting'] == 'accounting2') {
+    } else if ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
       $jsi=mysqli_query($con,"SELECT * FROM data_murid_tk WHERE KELAS LIKE '%KB%' OR KELAS LIKE '%TKA%' OR KELAS LIKE '%TKB%' ");
       $hsi=mysqli_num_rows($jsi);
     }
@@ -54,9 +58,9 @@
     <a href="<?php echo $basead; ?>siswa"><div class="info-box bg-blue">
       <span class="info-box-icon"><i class="glyphicon glyphicon-education"></i></span>
         <div class="info-box-content">
-          <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+          <?php if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd'): ?>
             <span class="info-box-text"> siswa SD </span>
-          <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+          <?php elseif($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk'): ?>
             <span class="info-box-text"> siswa KB TKA TKB </span>
           <?php endif ?>
           <span class="info-box-number"><?php echo $hsi; ?></span>

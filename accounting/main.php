@@ -23,6 +23,10 @@
   $currTahun    = "";
   $currSemester = "";
 
+  $getDataACC     = mysqli_query($con, "SELECT nama FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ");
+  $getDataACC     = mysqli_fetch_array($getDataACC);
+  $checkSession   = str_replace(["Accounting_"], "", $getDataACC['nama']);
+
   $check = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tahun_ajaran WHERE status = 'aktif' AND c_role = '$_SESSION[c_accounting]' "));
 
   if ($check != 0) {
@@ -695,14 +699,14 @@ oncontextmenu="return false">
           
 
           <li class="dropdown user user-menu">
-            <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+            <?php if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd'): ?>
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo $base; ?>imgstatis/logo2.png" class="user-image" alt="User Image">
                 <span class="hidden-xs"><?php echo ucfirst($na['username']); ?></span>
               </a>
 
-            <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+            <?php elseif($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk'): ?>
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo $base; ?>imgstatis/logo2.png" class="user-image" alt="User Image">
@@ -729,7 +733,7 @@ oncontextmenu="return false">
                 <?php endif ?>
                 <p>
                   <?php echo ucfirst($na['username']); ?>
-                  <small>(<?= ucfirst($na['nama']); ?>)</small>
+                  <small>(<?= str_replace(["_sd", "_tk"], "", ucfirst($na['nama'])); ?>)</small>
                 </p>
                 <p style="font-size: 11px;"><?php echo $aplikasi['namasek']; ?></p>
               </li>
@@ -763,7 +767,7 @@ oncontextmenu="return false">
           <?php endif ?>
         </div>
         <div class="pull-left info">
-          <p><?php echo ucfirst($na['username']); ?> (<?= ucfirst($na['nama']); ?>) </p>
+          <p><?php echo ucfirst($na['username']); ?> (<?= str_replace(["_sd", "_tk"], "", ucfirst($na['nama'])); ?>) </p>
           <i class="glyphicon glyphicon-time"></i> <?php echo tgl(date('d-m-Y')); ?>
         </div>
       </div>
@@ -791,9 +795,9 @@ oncontextmenu="return false">
                 <i class="glyphicon glyphicon-export"></i> <span style="margin-left: 5px;"> Export Data Pembayaran </span>
               </a>
               <ul class="treeview-menu">
-                <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+                <?php if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd'): ?>
                   <li> <small style="margin-left: 10px;"> <a href="<?= $baseac; ?>export_excel_sd.php"><i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 7px;"> </span> Pembayaran SD </a> </small> </li>
-                <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+                <?php elseif($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk'): ?>
                   <li> <small style="margin-left: 10px;"> <a href="<?= $baseac; ?>export_excel_tk.php"><i class="glyphicon glyphicon-download-alt"></i> <span style="margin-left: 7px;"> </span> Pembayaran TK </a> </small> </li>
                 <?php endif ?>
 
@@ -815,9 +819,9 @@ oncontextmenu="return false">
               <a href="<?php echo $baseac; ?>tambahdatasiswa" id="tambahdatasiswa"><i class="glyphicon glyphicon-plus text-primary"></i> <span style="margin-left: 5px;"> </span> Tambah Siswa Baru </a>
               <a href="<?= $baseac; ?>editdatasiswa" id="editdatasiswa"><i class="glyphicon glyphicon-pencil text-primary"></i> <span style="margin-left: 5px;"> </span> Edit Data Siswa </a>
 
-              <?php if ($_SESSION['c_accounting'] == 'accounting1'): ?>
+              <?php if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd'): ?>
                 <a href="<?php echo $baseac; ?>exportdatasiswa_sd.php" id="exportdatasiswa_sd"><i class="glyphicon glyphicon-export text-primary"></i> <span style="margin-left: 5px;"> </span> Export Data Siswa </a>
-              <?php elseif($_SESSION['c_accounting'] == 'accounting2'): ?>
+              <?php elseif($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk'): ?>
                 <a href="<?php echo $baseac; ?>exportdatasiswa_tk.php" id="exportdatasiswa_tk"><i class="glyphicon glyphicon-export text-primary"></i> <span style="margin-left: 5px;"> </span> Export Data Siswa </a>
               <?php endif; ?>
               

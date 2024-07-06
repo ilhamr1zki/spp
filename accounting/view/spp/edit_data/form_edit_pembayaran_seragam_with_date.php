@@ -5,7 +5,7 @@
     $tanggalDari    = $_POST['tanggal1'];
     $tanggalSampai  = $_POST['tanggal2'];
 
-    if ($_SESSION['c_accounting'] == 'accounting1') {
+    if ($_SESSION['c_accounting'] == 'accounting1' || $checkSession == 'sd') {
 
         $namaMurid = $namaSiswa;
 
@@ -61,7 +61,7 @@
             $end_number = $jumlahPagination;
         }
 
-    } elseif ($_SESSION['c_accounting'] == 'accounting2') {
+    } elseif ($_SESSION['c_accounting'] == 'accounting2' || $checkSession == 'tk') {
 
         $namaMurid = $namaSiswa;
 

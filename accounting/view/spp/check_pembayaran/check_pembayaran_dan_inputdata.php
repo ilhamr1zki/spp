@@ -1,6 +1,9 @@
 <?php 
 
     $code_accounting = $_SESSION['c_accounting'];
+    $getDataACC     = mysqli_query($con, "SELECT nama FROM accounting WHERE c_accounting = '$_SESSION[c_accounting]' ");
+    $getDataACC     = mysqli_fetch_array($getDataACC);
+    $checkSession   = str_replace(["Accounting_"], "", $getDataACC['nama']);
     
     $dataBulan = [
         'Januari',
@@ -66,7 +69,7 @@
 
     } else {
 
-        if ($code_accounting == 'accounting1') {
+        if ($code_accounting == 'accounting1' || $checkSession == 'sd') {
 
             if (isset($_POST['filter_by'])) {
 
@@ -155,7 +158,7 @@
                 }
             }
 
-        } else if ($code_accounting == 'accounting2') {
+        } else if ($code_accounting == 'accounting2' || $checkSession == 'tk') {
 
             if (isset($_POST['filter_by'])) {
 
@@ -268,7 +271,7 @@
         $iniScrollFilterPage    = "kosong";
 
 
-        if ($code_accounting == 'accounting1') {
+        if ($code_accounting == 'accounting1' || $checkSession == 'sd') {
             
             // histori input data sd
             $queryGetAllDataHistori     = "SELECT * FROM input_data_sd";
@@ -966,9 +969,7 @@
 
                             $namaMurid = $namaSiswa;
 
-                            if (strpos($namaMurid, "'")) {
-                                $namaMurid = substr($namaMurid,-5);
-                            }
+                       
 
                             $queryGetDataFilterSemua = "
                             SELECT * FROM input_data_sd WHERE NIS = '$nis' ";
@@ -6103,7 +6104,7 @@
 
             }
 
-        } else if ($code_accounting == 'accounting2') {
+        } else if ($code_accounting == 'accounting2' || $checkSession == 'tk') {
 
             // histori input data tk
             $queryGetAllDataHistori     = "SELECT * FROM input_data_tk ORDER BY ID DESC";
@@ -6381,16 +6382,14 @@
                             // echo "Masuk filter SPP tanpa filter tanggal dari dan tanggal sampai";exit;
                             $namaMurid = $namaSiswa;
 
-                            if (strpos($namaMurid, "'")) {
-                                $namaMurid = substr($namaMurid,-5);
-                            }
+                       
 
-                            $queryGetDataSPP = '
+                            $queryGetDataSPP = "
                             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                             FROM input_data_tk
                             WHERE
                             SPP != 0
-                            AND NAMA LIKE "%$namaMurid%" ';
+                            AND NIS = '$nis' ";
                             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                             // echo $hitungDataFilterSPP;
@@ -6516,9 +6515,7 @@
                             // echo "Masuk ke filter tanggal " . $dariTanggal . " & " . $sampaiTanggal;
                             $namaMurid = $namaSiswa;
 
-                            if (strpos($namaMurid, "'")) {
-                                $namaMurid = substr($namaMurid,-5);
-                            }
+                       
 
                             $tanggalDari    = $_POST['tanggal1'];
                             $tanggalSampai  = $_POST['tanggal2'];
@@ -6620,9 +6617,7 @@
                             // echo "Masuk filter PANGKAL tanpa filter tanggal dari dan tanggal sampai";exit;
                             $namaMurid = $namaSiswa;
 
-                            if (strpos($namaMurid, "'")) {
-                                $namaMurid = substr($namaMurid,-5);
-                            }
+                       
 
                             $queryGetDataPANGKAL = "
                             SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
@@ -6755,9 +6750,7 @@
                             // echo "Masuk ke filter tanggal " . $dariTanggal . " & " . $sampaiTanggal;
                             $namaMurid = $namaSiswa;
 
-                            if (strpos($namaMurid, "'")) {
-                                $namaMurid = substr($namaMurid,-5);
-                            }
+                       
 
                             $tanggalDari    = $_POST['tanggal1'];
                             $tanggalSampai  = $_POST['tanggal2']; 
@@ -6816,9 +6809,6 @@
                         if ($dariTanggal == " 00:00:00" && $sampaiTanggal == " 23:59:59") {
 
                             $namaMurid = $namaSiswa;
-                            if (strpos($namaMurid, "'")) {
-                                $namaMurid = substr($namaMurid,-5);
-                            }
 
                             $queryGetDataFilterSemua = "
                             SELECT * FROM input_data_tk WHERE NIS = '$nis' ";
@@ -22396,7 +22386,7 @@
                               $smk=mysqli_query($con,"SELECT * FROM siswa where c_kelas='$_GET[q]' order by nama asc ");
                             } else {
 
-                                if ($code_accounting == 'accounting1') {
+                                if ($code_accounting == 'accounting1' || $checkSession == 'sd') {
                                     $queryGetAllDataSiswa      = "SELECT * FROM data_murid_sd ORDER BY KELAS asc ";
                                     $execqueryGetAllDataSiswa  = mysqli_query($con, $queryGetAllDataSiswa);
                                 } else {

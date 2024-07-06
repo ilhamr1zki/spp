@@ -12,7 +12,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     $execQueryGetUser   = mysqli_query($con, $sqlGetUser);
 
     $countData          = mysqli_num_rows($execQueryGetUser);
-    $isiPassword        = mysqli_real_escape_string($con, htmlspecialchars($_POST['password']));
+    $isiPassword        = htmlspecialchars($_POST['password']);
 
     if ($countData == 1) {
 
@@ -38,6 +38,12 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
         exit;
       }
 
+    } else if ($countData == 0) {
+
+      session_start();
+      $_SESSION['pesan'] = 'gagal';
+      header('location:login');
+
     }
 
   } elseif ($_POST['sebagai'] == 'accounting') {
@@ -49,7 +55,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
     $execQueryGetUser   = mysqli_query($con, $sqlGetUser);
 
     $countData          = mysqli_num_rows($execQueryGetUser);
-    $isiPassword        = mysqli_real_escape_string($con, htmlspecialchars($_POST['password']));
+    $isiPassword        = htmlspecialchars($_POST['password']);
 
     if ($countData == 1) {
 
@@ -61,6 +67,7 @@ if(isset($_POST['username']) and isset($_POST['password'])) {
 
           session_start();
           $_SESSION['c_accounting'] = $getData['c_accounting'];
+          $_SESSION['newkey_acc']   = $getData['nama'];
           $_SESSION['start_name']   = $getData['username'];
           $_SESSION['start_sess']   = time();
           // Session Will Be Expired after 30 Minute
