@@ -307,9 +307,9 @@
     			<div class="col-sm-2">
     				<label> Nama / Username </label>
     				<?php if ($sesiErr == 1 || $sesiErr == 2): ?>
-						<input type="text" name="nmusr" value="<?= $nameOrUsername; ?>" required oninvalid="this.setCustomValidity('Minimal 5 Karakter')" minlength="5" oninput="this.setCustomValidity('')" class="form-control" placeholder="contoh : myusername">
+						<input type="text" name="nmusr" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g, '')" id="nmusr" value="<?= $nameOrUsername; ?>" required oninvalid="this.setCustomValidity('Minimal 5 Karakter')" minlength="5" oninput="this.setCustomValidity('')" class="form-control" placeholder="Tanpa spasi">
 					<?php else: ?>
-    					<input type="text" name="nmusr" required oninvalid="this.setCustomValidity('Minimal 5 Karakter')" minlength="5" oninput="this.setCustomValidity('')" id="nmusr" class="form-control" placeholder="contoh : myusername">
+    					<input type="text" name="nmusr" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g, '')" required oninvalid="this.setCustomValidity('Minimal 5 Karakter')" minlength="5" oninput="this.setCustomValidity('')" id="nmusr" class="form-control" placeholder="Tanpa spasi">
     				<?php endif ?>
     			</div>
     			
@@ -474,6 +474,12 @@
 				$("#said2").text('Show')
 			}
 	    })
+
+	    $('#nmusr').bind('input', function(){
+		    $(this).val(function(_, v){
+		     return v.replace(/\s+/g, '');
+		    });
+		});
 
   	});
 
