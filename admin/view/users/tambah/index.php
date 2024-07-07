@@ -418,7 +418,7 @@
 
     		<div class="row">
     			<div class="col-sm-3">
-    				<button class="btn btn-sm btn-success" type="submit" name="create_user"> Create </button>
+    				<button class="btn btn-sm btn-success" type="submit" name="create_user"> <i class="glyphicon glyphicon-floppy-disk"></i> Create </button>
     			</div>
     		</div>
 

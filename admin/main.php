@@ -906,6 +906,14 @@ oncontextmenu="return false">
       "info": false,
       "autoWidth": false
     });
+    $('#table_users').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": false,
+      "autoWidth": false
+    });
     $('#tabelCariSiswaCheckPembayarans').DataTable({
       "paging": true,
       "lengthChange": true,
