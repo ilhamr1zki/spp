@@ -124,7 +124,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label> Password Sekarang </label>
-                        <input type="password" class="form-control" name="password_lama" placeholder="password sekarang" value="<?= $tahunAjaran1; ?>" id="password_lama">
+                        <input type="password" required class="form-control" name="password_lama" placeholder="password sekarang" value="<?= $tahunAjaran1; ?>" id="password_lama">
                         <div class="checkbox" id="swp1" onmouseover="mouseOver1()">
                             <i class="glyphicon glyphicon-eye-open" id="icnEye1"></i> <span id="said1"> Show </span> Password
                         </div>  
@@ -134,7 +134,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label> Password Baru </label>
-                        <input type="password" class="form-control" name="password_baru" placeholder="Minimal 5 Karakter" value="<?= $tahunAjaran1; ?>" id="password_baru">
+                        <input type="password" required class="form-control" name="password_baru" placeholder="Minimal 5 Karakter" value="<?= $tahunAjaran1; ?>" id="password_baru">
                         <div class="checkbox" id="swp2" onmouseover="mouseOver2()">
                             <i class="glyphicon glyphicon-eye-open" id="icnEye2"></i> <span id="said2"> Show </span> Password
                         </div>  
@@ -144,7 +144,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label> Konfirmasi Password Baru </label>
-                        <input type="password" class="form-control" name="konfirmasi_password_baru" placeholder="Minimal 5 Karakter" value="<?= $tahunAjaran1; ?>" id="konf_password_baru">
+                        <input type="password" required class="form-control" name="konfirmasi_password_baru" placeholder="Minimal 5 Karakter" value="<?= $tahunAjaran1; ?>" id="konf_password_baru">
                         <div class="checkbox" id="swp3" onmouseover="mouseOver3()">
                             <i class="glyphicon glyphicon-eye-open" id="icnEye3"></i> <span id="said3"> Show </span> Password
                         </div>  

@@ -334,6 +334,7 @@
 
 		        } else {
 		            $_SESSION['form_success'] = "change_password_error";
+                	$sesiPage = 4;
 		        }
 
     		} elseif ($hitungDataUserACC == 1) {
@@ -373,6 +374,7 @@
 
 		        } else {
 		            $_SESSION['form_success'] = "change_password_error";
+                	$sesiPage = 4;
 		        }
 
     		}
@@ -708,7 +710,7 @@
 			                    <div class="col-sm-3">
 			                        <div class="form-group">
 					                    <label>PASSWORD SEKARANG</label>
-					                    <input type="password" name="curr_pass" placeholder="password sekarang" id="curr_pass" class="form-control" autofocus>
+					                    <input type="password" required name="curr_pass" placeholder="password sekarang" id="curr_pass" class="form-control" autofocus>
 					                    <div class="checkbox" id="swp1" onmouseover="mouseOver1()">
 				                            <i class="glyphicon glyphicon-eye-open" id="icnEye1"></i> <span id="said1"> Show </span> Password
 				                        </div>  
@@ -718,7 +720,7 @@
 			                    <div class="col-sm-3">
 			                        <div class="form-group">
 					                    <label>PASSWORD BARU</label>
-					                    <input type="password" name="new_pass" placeholder="min 5 Karakter" id="new_pass" class="form-control">
+					                    <input type="password" required name="new_pass" placeholder="min 5 Karakter" id="new_pass" class="form-control">
 					                    <div class="checkbox" id="swp2" onmouseover="mouseOver2()">
 				                            <i class="glyphicon glyphicon-eye-open" id="icnEye2"></i> <span id="said2"> Show </span> Password
 				                        </div> 
@@ -728,7 +730,7 @@
 			                    <div class="col-sm-3">
 			                        <div class="form-group">
 					                    <label>KONFIRMASI PASSWORD BARU</label>
-					                    <input type="password" name="conf_new_pass" id="conf_new_pass" placeholder="min 5 Karakter" class="form-control">
+					                    <input type="password" required name="conf_new_pass" id="conf_new_pass" placeholder="min 5 Karakter" class="form-control">
 					                    <div class="checkbox" id="swp3" onmouseover="mouseOver3()">
 				                            <i class="glyphicon glyphicon-eye-open" id="icnEye3"></i> <span id="said3"> Show </span> Password
 				                        </div>  
@@ -777,7 +779,7 @@
 			                    <div class="col-sm-3">
 			                        <div class="form-group">
 					                    <label>PASSWORD SEKARANG</label>
-					                    <input type="password" name="curr_pass" placeholder="password sekarang" value="<?= $dataInputPasswordSkrg; ?>" id="curr_pass" class="form-control">
+					                    <input type="password" required name="curr_pass" placeholder="password sekarang" value="<?= $dataInputPasswordSkrg; ?>" id="curr_pass" class="form-control">
 					                    <div class="checkbox" id="swp1" onmouseover="mouseOver1()">
 				                            <i class="glyphicon glyphicon-eye-open" id="icnEye1"></i> <span id="said1"> Show </span> Password
 				                        </div>  
@@ -787,7 +789,7 @@
 			                    <div class="col-sm-3">
 			                        <div class="form-group">
 					                    <label>PASSWORD BARU</label>
-					                    <input type="password" name="new_pass" placeholder="min 5 Karakter" id="new_pass" class="form-control" autofocus>
+					                    <input type="password" required name="new_pass" placeholder="min 5 Karakter" id="new_pass" class="form-control" autofocus>
 					                    <div class="checkbox" id="swp2" onmouseover="mouseOver2()">
 				                            <i class="glyphicon glyphicon-eye-open" id="icnEye2"></i> <span id="said2"> Show </span> Password
 				                        </div> 
@@ -797,7 +799,76 @@
 			                    <div class="col-sm-3">
 			                        <div class="form-group">
 					                    <label>KONFIRMASI PASSWORD BARU</label>
-					                    <input type="password" name="conf_new_pass" id="conf_new_pass" placeholder="min 5 Karakter" class="form-control">
+					                    <input type="password" required name="conf_new_pass" id="conf_new_pass" placeholder="min 5 Karakter" class="form-control">
+					                    <div class="checkbox" id="swp3" onmouseover="mouseOver3()">
+				                            <i class="glyphicon glyphicon-eye-open" id="icnEye3"></i> <span id="said3"> Show </span> Password
+				                        </div>  
+					                </div>
+			                    </div>
+
+	                    	</div>
+
+	                  	</div>
+	                </div>
+	            </div>
+			
+			</div>
+
+            <div class="box-footer" id="button_form_edit">
+              <button type="submit" name="update_password" id="btnSimpan" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-floppy-disk"></i> Change Password </button>
+
+        </form>  
+
+	    <form action="edituser" method="POST">
+	        <button type="submit" name="back" id="btnSimpan" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-log-out" id="cancel"></i> Kembali </button>
+	    </form>
+
+          	</div>
+
+    <!-- Wrong Current Password -->
+    <?php elseif($sesiPage == 4): ?>
+
+    	<form role="form" method="post" action="edituser">
+
+            <div class="box-body">
+
+	            <div class="row">
+	                <div class="col-sm-12">
+	                	<div class="box">
+
+		                	<div class="box-body">
+
+		                		<div class="col-sm-2">
+			                        <div class="form-group">
+					                    <label>ID</label>
+					                    <input type="text" value="<?= $idUsers; ?>" name="idUsers" readonly class="form-control">
+					                </div>
+			                    </div>
+
+			                    <div class="col-sm-3">
+			                        <div class="form-group">
+					                    <label>PASSWORD SEKARANG</label>
+					                    <input type="password" required name="curr_pass" placeholder="password sekarang" autofocus id="curr_pass" class="form-control">
+					                    <div class="checkbox" id="swp1" onmouseover="mouseOver1()">
+				                            <i class="glyphicon glyphicon-eye-open" id="icnEye1"></i> <span id="said1"> Show </span> Password
+				                        </div>  
+					                </div>
+			                    </div>
+
+			                    <div class="col-sm-3">
+			                        <div class="form-group">
+					                    <label>PASSWORD BARU</label>
+					                    <input type="password" required name="new_pass" placeholder="min 5 Karakter" id="new_pass" class="form-control">
+					                    <div class="checkbox" id="swp2" onmouseover="mouseOver2()">
+				                            <i class="glyphicon glyphicon-eye-open" id="icnEye2"></i> <span id="said2"> Show </span> Password
+				                        </div> 
+					                </div>
+			                    </div>
+
+			                    <div class="col-sm-3">
+			                        <div class="form-group">
+					                    <label>KONFIRMASI PASSWORD BARU</label>
+					                    <input type="password" required name="conf_new_pass" id="conf_new_pass" placeholder="min 5 Karakter" class="form-control">
 					                    <div class="checkbox" id="swp3" onmouseover="mouseOver3()">
 				                            <i class="glyphicon glyphicon-eye-open" id="icnEye3"></i> <span id="said3"> Show </span> Password
 				                        </div>  
