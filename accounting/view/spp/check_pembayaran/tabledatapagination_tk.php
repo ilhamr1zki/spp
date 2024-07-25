@@ -25,8 +25,8 @@
                     SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SPP != 0
-                    AND NIS = '$nis' ";
+                    SPP_txt <> '' AND
+                    NIS = '$nis' ";
                     $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                     $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                     // echo $hitungDataFilterSPP;
@@ -2152,8 +2152,8 @@
                     SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    PANGKAL != 0
-                    AND NIS = '$nis' ";
+                    PANGKAL_txt <> '' AND
+                    NIS = '$nis' ";
                     $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                     $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
                     // echo $hitungDataFilterPANGKAL;
@@ -5585,8 +5585,8 @@
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
-                                            <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data['REGISTRASI_txt']; ?>">
-                                            <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="">
+                                            <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                            <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data['REGISTRASI_txt']; ?>">
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
 
                                             <input type="hidden" name="jenisPembayaranSPP" value="0">
@@ -5838,8 +5838,8 @@
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
-                                            <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data['REGISTRASI_txt']; ?>">
-                                            <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="">
+                                            <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                            <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data['REGISTRASI_txt']; ?>">
                                             <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
 
                                             <input type="hidden" name="jenisPembayaranSPP" value="0">
@@ -33223,7 +33223,7 @@
                                     <input type="hidden" name="cetak_kuitansi_uang_registrasi" value="<?= $data['REGISTRASI']; ?>">
                                     <input type="hidden" name="cetak_kuitansi_uang_lain" value="<?= $data['LAIN']; ?>">
 
-                                    <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("-") : ($data['SPP_txt']); ?>">
+                                    <input type="hidden" name="cetak_kuitansi_ket_uang_spp" value="<?= ($data['SPP_txt'] == NULL || $data['SPP_txt'] == '') ? ("") : ($data['SPP_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="<?= ($data['PANGKAL_txt'] == NULL || $data['PANGKAL_txt'] == '') ? ("") : ($data['PANGKAL_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="<?= ($data['KEGIATAN_txt'] == NULL || $data['KEGIATAN_txt'] == '') ? ("") : ($data['KEGIATAN_txt']); ?>">
                                     <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="<?= ($data['BUKU_txt'] == NULL || $data['BUKU_txt'] == '') ? ("") : ($data['BUKU_txt']); ?>">

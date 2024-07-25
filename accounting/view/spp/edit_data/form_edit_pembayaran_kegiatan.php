@@ -7,8 +7,8 @@
         SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_sd
         WHERE
-        KEGIATAN != 0
-        AND NIS = '$nis' ";
+        KEGIATAN_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
         $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
@@ -19,8 +19,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            KEGIATAN != 0
-            AND NIS = '$nis' 
+            KEGIATAN_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);
@@ -47,8 +47,8 @@
         SELECT ID, NIS, NAMA, kelas, KEGIATAN, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_tk
         WHERE
-        KEGIATAN != 0
-        AND NIS = '$nis' ";
+        KEGIATAN_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataKegiatan    = mysqli_query($con, $queryGetDataKegiatan);
         $hitungDataFilterKegiatan = mysqli_num_rows($execQueryDataKegiatan);
@@ -60,8 +60,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, KEGIATAN, TRANSAKSI, BULAN AS pembayaran_bulan, KEGIATAN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            KEGIATAN != 0
-            AND NIS = '$nis' 
+            KEGIATAN_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

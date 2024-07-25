@@ -26,8 +26,7 @@
                         SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                         FROM input_data_sd
                         WHERE
-                        SPP != 0
-                        AND NIS = '$nis' ";
+                        NIS = '$nis' ";
                         $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
                         $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
                         // echo $hitungDataFilterSPP;
@@ -2148,8 +2147,7 @@
                         SELECT ID, NIS, NAMA, kelas, PANGKAL, BULAN AS pembayaran_bulan, PANGKAL_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                         FROM input_data_sd
                         WHERE
-                        PANGKAL != 0
-                        AND NIS = '$nis' ";
+                        NIS = '$nis' ";
                         $execQueryDataPANGKAL    = mysqli_query($con, $queryGetDataPANGKAL);
                         $hitungDataFilterPANGKAL = mysqli_num_rows($execQueryDataPANGKAL);
                         // echo $hitungDataFilterPANGKAL;
@@ -5517,8 +5515,8 @@
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
-                                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data['REGISTRASI_txt']; ?>">
-                                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="">
+                                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data['REGISTRASI_txt']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
 
                                                 <input type="hidden" name="jenisPembayaranSPP" value="0">
@@ -5770,8 +5768,8 @@
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_pangkal" value="">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_kegiatan" value="">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_buku" value="">
-                                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="<?= $data['REGISTRASI_txt']; ?>">
-                                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="">
+                                                <input type="hidden" name="cetak_kuitansi_ket_uang_seragam" value="">
+                                                <input type="hidden" name="cetak_kuitansi_ket_uang_registrasi" value="<?= $data['REGISTRASI_txt']; ?>">
                                                 <input type="hidden" name="cetak_kuitansi_ket_uang_lain" value="">
 
                                                 <input type="hidden" name="jenisPembayaranSPP" value="0">

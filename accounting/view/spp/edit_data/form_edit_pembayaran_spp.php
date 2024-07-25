@@ -28,8 +28,8 @@
             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            SPP != 0
-            AND NIS = '$nis' ";
+            SPP_txt <> '' AND
+            NIS = '$nis' ";
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
             // echo $hitungDataFilterSPP;
@@ -40,8 +40,8 @@
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_sd
                 WHERE
-                SPP != 0
-                AND NIS = '$nis' 
+                SPP_txt <> '' AND
+                NIS = '$nis' 
                 ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
@@ -70,8 +70,8 @@
             SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            SPP != 0
-            AND NIS = '$nis' ";
+            SPP_txt <> '' AND
+            NIS = '$nis' ";
             $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
             $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
             // echo $hitungDataFilterSPP;exit;
@@ -86,8 +86,8 @@
                 SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                 FROM input_data_tk
                 WHERE
-                SPP != 0
-                AND NIS = '$nis'
+                SPP_txt <> '' AND
+                NIS = '$nis'
                 ORDER BY ID DESC
                 LIMIT $dataAwal, $jumlahData");
             // print_r($ambildata_perhalaman->num_rows);
@@ -145,6 +145,7 @@
 
                     <?php $no = 1; ?>
                     <?php foreach ($ambildata_perhalaman as $data) : ?>
+                        
                         <tr>
                             <td style="text-align: center;"> <?= $data['ID']; ?> </td>
                             <td style="text-align: center;"> <?= $data['NIS']; ?> </td>

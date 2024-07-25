@@ -11,8 +11,8 @@
 	        SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	        FROM input_data_sd
 	        WHERE
-	        SPP != 0
-	        AND NIS = '$nis'
+	        SPP_txt <> '' AND
+	        NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
 	    ";
 
@@ -26,8 +26,8 @@
 	        SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	        FROM input_data_sd
 	        WHERE
-	        SPP != 0
-	        AND NIS = '$nis'
+	        SPP_txt <> '' AND
+	        NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
             order by STAMP
 	        LIMIT $dataAwal, $jumlahData
@@ -58,14 +58,15 @@
 	        SELECT ID, NIS, NAMA, kelas, SPP, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	        FROM input_data_tk
 	        WHERE
-	        SPP != 0
-	        AND NIS = '$nis'
+	        SPP_txt <> '' AND
+	        NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
 	    ";
 
 	    $execQueryDataSPP    = mysqli_query($con, $queryGetDataSPP);
 	    // $hitungDataFilterSPP = mysqli_num_rows($execQueryDataSPP);
 	    $hitungDataFilterSPPDate = mysqli_num_rows($execQueryDataSPP);
+	    // echo $hitungDataFilterSPPDate;exit;
 
 	    $dataAwal = ($halamanAktif * $jumlahData) - $jumlahData;
 
@@ -73,8 +74,8 @@
 	        SELECT ID, NIS, NAMA, DATE, kelas, SPP, TRANSAKSI, BULAN AS pembayaran_bulan, SPP_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	        FROM input_data_tk
 	        WHERE
-	        SPP != 0
-	        AND NIS = '$nis'
+	        SPP_txt <> '' AND
+	        NIS = '$nis'
 	        AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
 	        order by STAMP 
 	        LIMIT $dataAwal, $jumlahData
