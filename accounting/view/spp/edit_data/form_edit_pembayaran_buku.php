@@ -11,8 +11,8 @@
 	        SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	        FROM input_data_sd
 	        WHERE
-	        BUKU != 0
-	        AND NIS = '$nis' ";
+            BUKU_txt <> '' AND
+	        NIS = '$nis' ";
 
 	        $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
 	        $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
@@ -23,8 +23,8 @@
 	            SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	            FROM input_data_sd
 	            WHERE
-	            BUKU != 0
-	            AND NIS = '$nis' 
+                BUKU_txt <> '' AND
+	            NIS = '$nis' 
 	            ORDER BY ID DESC
 	            LIMIT $dataAwal, $jumlahData");
 	        // print_r($ambildata_perhalaman->num_rows);
@@ -55,8 +55,8 @@
 	        SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	        FROM input_data_tk
 	        WHERE
-	        BUKU != 0
-	        AND NIS = '$nis' ";
+            BUKU_txt <> '' AND
+	        NIS = '$nis' ";
 
 	        $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
 	        $hitungDataFilterBuku = mysqli_num_rows($execQueryDataBuku);
@@ -67,8 +67,8 @@
 	            SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
 	            FROM input_data_tk
 	            WHERE
-	            BUKU != 0
-	            AND NIS = '$nis' 
+                BUKU_txt <> '' AND
+	            NIS = '$nis' 
 	            ORDER BY ID DESC
 	            LIMIT $dataAwal, $jumlahData");
 	        // print_r($ambildata_perhalaman->num_rows);

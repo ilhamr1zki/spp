@@ -7,8 +7,8 @@
         SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_sd
         WHERE
-        LAIN != 0
-        AND NIS = '$nis' ";
+        LAIN_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
         $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
@@ -20,8 +20,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            LAIN != 0
-            AND NIS = '$nis' 
+            LAIN_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         $htg = mysqli_num_rows($ambildata_perhalaman);
@@ -50,8 +50,8 @@
         SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_tk
         WHERE
-        LAIN != 0
-        AND NIS = '$nis' ";
+        LAIN_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
         $hitungDataFilterLain = mysqli_num_rows($execQueryDataLain);
@@ -63,8 +63,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            LAIN != 0
-            AND NIS = '$nis' 
+            LAIN_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

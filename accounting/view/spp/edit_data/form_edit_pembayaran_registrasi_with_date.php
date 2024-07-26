@@ -11,8 +11,8 @@
             SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            REGISTRASI != 0
-            AND NIS = '$nis'
+            REGISTRASI_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
         ";
 
@@ -30,8 +30,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            REGISTRASI != 0
-            AND NIS = '$nis'
+            REGISTRASI_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
             ORDER BY STAMP
             LIMIT $dataAwal, $jumlahData
@@ -59,8 +59,8 @@
             SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            REGISTRASI != 0
-            AND NIS = '$nis'
+            REGISTRASI_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
         ";
 
@@ -78,8 +78,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            REGISTRASI != 0
-            AND NIS = '$nis'
+            REGISTRASI_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
             ORDER BY STAMP
             LIMIT $dataAwal, $jumlahData

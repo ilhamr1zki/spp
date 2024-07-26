@@ -15668,8 +15668,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -15679,8 +15679,8 @@
                     SELECT ID, NIS, NAMA, kelas, DATE, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -15707,8 +15707,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -15718,8 +15718,8 @@
                     SELECT ID, NIS, NAMA, kelas, DATE, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -15774,8 +15774,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataBuku);
@@ -15785,8 +15785,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -15813,8 +15813,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataBuku);
@@ -15824,8 +15824,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -15878,8 +15878,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -15891,8 +15891,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -15919,8 +15919,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku    = mysqli_query($con, $queryGetDataBuku);
@@ -15932,8 +15932,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis' 
+                    BUKU_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -15985,8 +15985,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -16003,8 +16003,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16029,8 +16029,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -16047,8 +16047,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16097,8 +16097,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -16116,8 +16116,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16142,8 +16142,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterBuku);
@@ -16161,8 +16161,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16215,8 +16215,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -16227,8 +16227,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16257,8 +16257,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -16269,8 +16269,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16327,8 +16327,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -16339,8 +16339,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -16366,8 +16366,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -16378,8 +16378,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -16432,8 +16432,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -16446,8 +16446,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -16474,8 +16474,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -16488,8 +16488,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -16541,8 +16541,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -16561,8 +16561,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16587,8 +16587,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -16607,8 +16607,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16657,8 +16657,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -16678,8 +16678,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16704,8 +16704,8 @@
                     SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    BUKU_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -16725,8 +16725,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    BUKU != 0
-                    AND NIS = '$nis'
+                    BUKU_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -16781,8 +16781,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -16792,8 +16792,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -16820,8 +16820,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -16831,8 +16831,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -16887,8 +16887,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataSeragam);
@@ -16898,8 +16898,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -16926,8 +16926,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataSeragam);
@@ -16937,8 +16937,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -16991,8 +16991,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -17004,8 +17004,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -17032,8 +17032,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
@@ -17045,8 +17045,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis' 
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -17099,8 +17099,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -17117,8 +17117,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17143,8 +17143,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -17161,8 +17161,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17212,8 +17212,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -17231,8 +17231,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17257,8 +17257,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterSeragam);
@@ -17276,8 +17276,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17330,8 +17330,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -17342,8 +17342,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17372,8 +17372,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -17384,8 +17384,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17442,8 +17442,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -17454,8 +17454,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -17481,8 +17481,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -17493,8 +17493,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -17546,8 +17546,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -17560,8 +17560,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -17588,8 +17588,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -17602,8 +17602,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -17656,8 +17656,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -17676,8 +17676,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17702,8 +17702,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -17722,8 +17722,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17773,8 +17773,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -17794,8 +17794,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17820,8 +17820,8 @@
                     SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    SERAGAM_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -17841,8 +17841,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    SERAGAM != 0
-                    AND NIS = '$nis'
+                    SERAGAM_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -17897,8 +17897,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -17908,8 +17908,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -17936,8 +17936,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -17947,8 +17947,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -18003,8 +18003,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataRegistrasi);
@@ -18014,8 +18014,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -18042,8 +18042,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataBuku     = mysqli_query($con, $queryGetDataRegistrasi);
@@ -18053,8 +18053,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -18107,8 +18107,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -18120,8 +18120,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -18148,8 +18148,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
@@ -18161,8 +18161,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis' 
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -18214,8 +18214,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -18232,8 +18232,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18258,8 +18258,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -18276,8 +18276,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18326,8 +18326,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -18345,8 +18345,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18371,8 +18371,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterRegistrasi);
@@ -18390,8 +18390,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18444,8 +18444,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -18456,8 +18456,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18486,8 +18486,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -18498,8 +18498,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18556,8 +18556,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -18568,8 +18568,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -18595,8 +18595,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -18607,8 +18607,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -18660,8 +18660,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -18674,8 +18674,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -18702,8 +18702,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -18716,8 +18716,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -18770,8 +18770,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -18790,8 +18790,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18816,8 +18816,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -18836,8 +18836,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18887,8 +18887,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -18908,8 +18908,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -18934,8 +18934,8 @@
                     SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    REGISTRASI_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -18955,8 +18955,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    REGISTRASI != 0
-                    AND NIS = '$nis'
+                    REGISTRASI_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19011,8 +19011,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -19022,8 +19022,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19050,8 +19050,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -19061,8 +19061,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19117,8 +19117,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataLain     = mysqli_query($con, $queryGetDataLain);
@@ -19128,8 +19128,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19156,8 +19156,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataLain     = mysqli_query($con, $queryGetDataLain);
@@ -19167,8 +19167,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19221,8 +19221,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -19234,8 +19234,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19262,8 +19262,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                 ";
 
                 $execQueryDataLain    = mysqli_query($con, $queryGetDataLain);
@@ -19275,8 +19275,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis' 
+                    LAIN_txt <> '' AND
+                    NIS = '$nis' 
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19328,8 +19328,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -19346,8 +19346,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19372,8 +19372,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -19390,8 +19390,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19440,8 +19440,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -19459,8 +19459,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19485,8 +19485,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                 ");
 
                 $totalData = mysqli_num_rows($execQueryGetAllDataHistoriFilterLain);
@@ -19504,8 +19504,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     ORDER BY ID DESC
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19558,8 +19558,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -19570,8 +19570,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19600,8 +19600,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -19612,8 +19612,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19670,8 +19670,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -19682,8 +19682,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -19709,8 +19709,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -19721,8 +19721,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal' 
                     LIMIT $dataAwal, $jumlahData");
 
@@ -19774,8 +19774,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -19788,8 +19788,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19816,8 +19816,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis' 
                 ";
 
@@ -19830,8 +19830,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData");
                 // print_r($ambildata_perhalaman->num_rows);
@@ -19884,8 +19884,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -19904,8 +19904,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -19930,8 +19930,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -19950,8 +19950,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -20001,8 +20001,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -20022,8 +20022,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_sd
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");
@@ -20048,8 +20048,8 @@
                     SELECT ID, NIS, NAMA, kelas, LAIN, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
+                    LAIN_txt <> '' AND
+                    STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     AND NIS = '$nis'
                 ");
 
@@ -20069,8 +20069,8 @@
                     SELECT ID, NIS, NAMA, DATE, kelas, LAIN, TRANSAKSI, BULAN AS pembayaran_bulan, LAIN_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
                     FROM input_data_tk
                     WHERE
-                    LAIN != 0
-                    AND NIS = '$nis'
+                    LAIN_txt <> '' AND
+                    NIS = '$nis'
                     AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
                     LIMIT $dataAwal, $jumlahData
                 ");

@@ -7,8 +7,8 @@
         SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_sd
         WHERE
-        REGISTRASI != 0
-        AND NIS = '$nis' ";
+        REGISTRASI_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
         $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
@@ -19,8 +19,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            REGISTRASI != 0
-            AND NIS = '$nis' 
+            REGISTRASI_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
 
@@ -51,8 +51,8 @@
         SELECT ID, NIS, NAMA, kelas, REGISTRASI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_tk
         WHERE
-        REGISTRASI != 0
-        AND NIS = '$nis' ";
+        REGISTRASI_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataRegistrasi    = mysqli_query($con, $queryGetDataRegistrasi);
         $hitungDataFilterRegistrasi = mysqli_num_rows($execQueryDataRegistrasi);
@@ -63,8 +63,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, REGISTRASI, TRANSAKSI, BULAN AS pembayaran_bulan, REGISTRASI_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            REGISTRASI != 0
-            AND NIS = '$nis' 
+            REGISTRASI_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);

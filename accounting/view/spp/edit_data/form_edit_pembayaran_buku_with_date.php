@@ -11,8 +11,8 @@
             SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            BUKU != 0
-            AND NIS = '$nis'
+            BUKU_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
         ";
 
@@ -30,8 +30,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            BUKU != 0
-            AND NIS = '$nis'
+            BUKU_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
             ORDER BY STAMP
             LIMIT $dataAwal, $jumlahData
@@ -59,8 +59,8 @@
             SELECT ID, NIS, NAMA, kelas, BUKU, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            BUKU != 0
-            AND NIS = '$nis'
+            BUKU_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
         ";
 
@@ -78,8 +78,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, BUKU, TRANSAKSI, BULAN AS pembayaran_bulan, BUKU_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            BUKU != 0
-            AND NIS = '$nis'
+            BUKU_txt <> '' AND
+            NIS = '$nis'
             AND STAMP >= '$dariTanggal' AND STAMP <= '$sampaiTanggal'
             ORDER BY STAMP
             LIMIT $dataAwal, $jumlahData

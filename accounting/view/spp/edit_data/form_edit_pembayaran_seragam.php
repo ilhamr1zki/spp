@@ -7,8 +7,8 @@
         SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_sd
         WHERE
-        SERAGAM != 0
-        AND NIS = '$nis' ";
+        SERAGAM_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
         $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
@@ -19,8 +19,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_sd
             WHERE
-            SERAGAM != 0
-            AND NIS = '$nis' 
+            SERAGAM_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);
@@ -50,8 +50,8 @@
         SELECT ID, NIS, NAMA, kelas, SERAGAM, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
         FROM input_data_tk
         WHERE
-        SERAGAM != 0
-        AND NIS = '$nis' ";
+        SERAGAM_txt <> '' AND
+        NIS = '$nis' ";
 
         $execQueryDataSeragam    = mysqli_query($con, $queryGetDataSeragam);
         $hitungDataFilterSeragam = mysqli_num_rows($execQueryDataSeragam);
@@ -62,8 +62,8 @@
             SELECT ID, NIS, NAMA, DATE, kelas, SERAGAM, TRANSAKSI, BULAN AS pembayaran_bulan, SERAGAM_txt, STAMP AS tanggal_diupdate, INPUTER AS di_input_oleh 
             FROM input_data_tk
             WHERE
-            SERAGAM != 0
-            AND NIS = '$nis' 
+            SERAGAM_txt <> '' AND
+            NIS = '$nis' 
             ORDER BY ID DESC
             LIMIT $dataAwal, $jumlahData");
         // print_r($ambildata_perhalaman->num_rows);
